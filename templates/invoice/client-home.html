@@ -47,10 +47,7 @@
                 <td>{{invoice.client.phoneNumber}}</td>
                 <td>{{invoice.dueDate}}</td>
                 <td>{{invoice.status}}</td>
-                <td>
-                    <a href="{% url 'delete-invoice' client.slug invoice.slug %}"><button class="btn btn-danger"> DELETE
-                        </button></a>
-                </td>
+            
                 <td>
                     <a href="{% url 'create-build-invoice' invoice.slug %}"><button class="btn btn-primary"> VIEW
                         </button></a>

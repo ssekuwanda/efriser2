@@ -240,6 +240,13 @@ def createInvoice(request, slug):
     inv = Invoice.objects.get(number=number)
     return redirect('create-build-invoice', slug=inv.slug)
 
+def createCreditNote(request, slug):
+    try:
+        invoice = InvoiceProducts.objects.filter(slug=slug)
+    except:
+        message.error(request, "Something happened")
+        return redirect('invoices9')
+
 
 @login_required
 def createBuildInvoice(request, slug):

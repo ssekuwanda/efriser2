@@ -30,6 +30,8 @@
             <h5 class="card-title">Add Products To Your Invoice
               
               <button href="#addProductModal" type="button" class="btn btn-link" data-bs-toggle="modal"> ADD PRODUCT </button>
+              <button href="#addcreditModal" type="button" class="btn btn-link" data-bs-toggle="modal"> ISSUE CREDIT NOTE </button>
+
             </h5>
             {% if products|length > 0 %}
             <div class="table-responsive">
@@ -110,4 +112,17 @@
       </div>
     </div>
   </div>
+    <!-- Credit Note Modals Start Here -->
+    <div class="modal modal-sheet py-5" tabindex="-1" id="addcreditModal">
+      <div class="modal-dialog">
+        <div class="modal-content rounded-6 shadow">
+          <form method="post" novalidate enctype="multipart/form-data" class="p-3">
+            <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+            {% csrf_token %}
+            {% include 'partials/partform.html' with form=prod_form %}
+            <button type="submit" class="btn btn-primary mt-3">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
 {% endblock %}

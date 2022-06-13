@@ -143,6 +143,24 @@ class Invoice(models.Model):
 
         super(Invoice, self).save(*args, **kwargs)
 
+class CreditNote(models.Model):
+    REASONS = [
+        ('101', 'Return of products due to expiry or damage, etc.'),
+        ('102', 'Cancellation of the purchase'),
+        ('103', 'Invoice amount wrongly stated due to miscalculation of price, tax or discounts, etc.'),
+        ('104', 'Partial or complete waive off of the service sale after the invoice is generated and sent to the customer'),
+        ('105', 'Others (Please specify'),
+    ]
+    invoice = models.ForeignKey(Invoice, blank=True, null=True, on_delete=models.SET_NULL)
+    date_created = models.DateTimeField(blank=True, null=True)
+    last_updated = models.DateTimeField(blank=True, null=True)
+    reason_code = models.CharField(max_length=10000, choices=REASONS, null=False, blank=False)
+    reason = models.TextField(null=True, blank=True)
+
+    def __str__(self): 
+        return str(self.invoice)
+
+
 class Unit_Measurement(models.Model):
     name = models.CharField(max_length=100, null=False, blank=False)
     code = models.CharField(max_length=3, null=True, blank=False)

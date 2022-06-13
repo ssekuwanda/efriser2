@@ -80,6 +80,9 @@ class InvoiceForm(forms.ModelForm):
     class Meta:
         model = Invoice
         fields = ['remarks', 'currency', 'payment_method']
+        widgets = {
+            'remarks': forms.Textarea(attrs={'rows':2})
+        }
 
 
 class SettingsForm(forms.ModelForm):
