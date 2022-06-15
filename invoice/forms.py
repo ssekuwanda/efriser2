@@ -96,11 +96,10 @@ class ClientSelectForm(forms.ModelForm):
         model = Invoice
         fields = ['client']
 
-
-
-
-
-
+class CreditNoteForm(forms.ModelForm):
+    class Meta:
+        model = CreditNote
+        fields = ['reason_code','reason']
 
 
 

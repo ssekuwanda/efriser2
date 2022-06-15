@@ -1,14 +1,13 @@
 {% extends 'partials/base.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
-
+{% load humanize %}
 
 {% block css %}
 <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block main %}
-
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">Products</h1>
     <div class="btn-toolbar mb-2 mb-md-0">
@@ -25,28 +24,36 @@
     <table class="table table-striped table-sm">
       <thead>
         <tr>
+          <th>#</th>
           <th>Name</th>
+          <th>Code</th>
           <th>Description</th>
-          <th>Quantity</th>
-          <th>Price</th>
-          <th>Related Invoice</th>
+          <th>Unit Of Measure</th>
+          <th>Commodity ID</th>
+          <th>Excise Tax</th>
+          <th>Stock</th>
+          <th>Unit Price</th>
+          <th>Currency</th>
+          <th></th>
+
         </tr>
       </thead>
       <tbody>
         {% for product in products %}
       <tr>
-        <td>{{product.name|title}}</td>
+        <td>{{ forloop.counter }}.</td>
+        <td>{{product.name}}</td>
         <td>{{product.code}}</td>
         <td>{{product.description}}</td>
         <td>{{product.unit_measure}}</td>
-        <td>{{product.unit_price}}</td>
-        <td>{{product.currency}}</td>
         <td>{{product.commodity_id}}</td>
-        <td>{{product.stock_warning}}</td>
-        <td>{{product.piece_measure_unit}}</td>
-        <td>{{product.quantity}}</td>
+        <td>None</td>
+        <td>{{product.stock_warning|intcomma }}</td>
+        <td>{{product.unit_price|intcomma}}</td>
         <td>{{product.currency}}</td>
-        <td>{{product.price}}</td>
+        <td>
+          <a class="btn btn-sm btn-primary" href="#" role="button">ADJUST</a>
+        </td>
       </tr>
         {% endfor %}
       </tbody>

@@ -1,3 +1,4 @@
+from urllib import response
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import render, redirect
@@ -146,13 +147,12 @@ def products(request):
             
             response = goodsUpload(issuer.tin, issuer.device_number, message)
 
-            if 'content' in response:
-                messages.error(
-                      request, 'Problem processing your request, please check the category code')
+            if response['returnStateInfo']['returnMessage'] != 'SUCCESS':
+                messages.error(request, f"{response['returnStateInfo']['returnMessage']} Please check that all details are correct")
                 return redirect('products')
             else:
                 form.save()
-                messages.success(request, 'New Product Added')
+                messages.success(request,response['returnStateInfo']['returnMessage'])
                 return redirect('products')     
         else:
             messages.error(request, 'Problem processing your request')
@@ -240,13 +240,6 @@ def createInvoice(request, slug):
     inv = Invoice.objects.get(number=number)
     return redirect('create-build-invoice', slug=inv.slug)
 
-def createCreditNote(request, slug):
-    try:
-        invoice = InvoiceProducts.objects.filter(slug=slug)
-    except:
-        message.error(request, "Something happened")
-        return redirect('invoices9')
-
 
 @login_required
 def createBuildInvoice(request, slug):
@@ -255,7 +248,6 @@ def createBuildInvoice(request, slug):
     except:
         messages.error(request, 'Something went wrong')
         return redirect('invoices')
-
     products = InvoiceProducts.objects.filter(invoice=invoice)
 
     context = {}
@@ -289,6 +281,7 @@ def createBuildInvoice(request, slug):
     context['buyerTin'] = invoice.client.tin
     context['itemCount'] = order_number
     context['remarks'] = ""
+    
     goods_summary = summary(context)
 
 
@@ -325,6 +318,7 @@ def createBuildInvoice(request, slug):
             invoice_update.json_response = inv["content"]
 
             if inv["returnMessage"] == "SUCCESS":
+                inv_form.finalized = True
                 inv_form.save()
                 messages.success(request, "Invoice Issued succesfully")
             else:
@@ -355,3 +349,33 @@ def client_home(request, slug):
     return render(request, 'invoice/client-home.html', context)
 
 
+def createCreditNote(request, slug):
+    invoice = Invoice.objects.get(slug=slug)
+    if request.method == 'POST':
+        form = CreditNoteForm(request.POST or None)
+        if request.method =="POST" and form.is_valid():
+            creditnote_load = json.dumps(credit_note(invoice, form))
+            encodedCreditNote = encode(creditnote_load).decode()
+            received_message = creditNoteUpload(encodedCreditNote,request)
+
+            if received_message['returnStateInfo']["returnMessage"] == "SUCCESS":
+                form = form.save(commit=False)
+                form.json_response = received_message
+                form.reference = received_message['data']['content']
+                form.invoice = invoice
+                form.save()
+                messages.success(request, "Credit note Issued Succesfully")
+                return redirect('create-build-invoice', slug=slug)
+            else:
+                messages.warning(request, received_message['returnStateInfo']["returnMessage"])
+    else:
+        form = CreditNoteForm()
+    return render(request, 'invoice/create-creditnote.html', {'form':form})
+
+def creditNoteHome(request):
+    credits = CreditNote.objects.all()
+
+    context = {'credits':credits}
+    return render(request, 'invoice/all_creditnotes.html', context)
+
+# def cnQuery(request):

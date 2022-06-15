@@ -1,0 +1,36 @@
+{% extends 'partials/base.html' %}
+{% load humanize %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block main %}
+<div class="header bg-gradient-primary pb-2 pt-2 pt-md-8">
+    <div class="container-fluid">
+        <div class="header-body">
+            <!-- Card stats -->
+        </div>
+    </div>
+</div>
+<div class="container-fluid mt--7">
+    <div class="row mt-5">
+        <div class="col-xl-11 mb-12 mb-xl-0">
+            <div class="card">
+                <div class="card-header border-0">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h3 class="mb-0 text-center">ISSUE CREDIT NOTE</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive text-sm">
+                    <form method="post" novalidate class="m-3" autocomplete="off">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <button type="submit" class="btn btn-primary btn-block">EDIT</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

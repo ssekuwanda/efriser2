@@ -28,10 +28,8 @@
         <div class="row">
           <div class="col-lg-12">
             <h5 class="card-title">Add Products To Your Invoice
-              
               <button href="#addProductModal" type="button" class="btn btn-link" data-bs-toggle="modal"> ADD PRODUCT </button>
-              <button href="#addcreditModal" type="button" class="btn btn-link" data-bs-toggle="modal"> ISSUE CREDIT NOTE </button>
-
+              <a href="{% url 'create-creditnote' invoice.slug %}">ISSUE CREDIT NOTE</a>
             </h5>
             {% if products|length > 0 %}
             <div class="table-responsive">
@@ -64,7 +62,6 @@
                   <td>{{tax|intcomma}}</td>
                   <td>{{net|intcomma}}</td>
                   <td>{{gross|intcomma}}</td>
-
                 </tr>
                 </tbody>
               </table>
@@ -73,6 +70,13 @@
           </div>
         </div>
         {% if invoice.finalized %}
+          <h5 class="card-title">CREDIT NOTES
+            
+            <a href="{% url 'create-creditnote' invoice.slug %}" style="padding-right: 100px;">ISSUE</a>
+          </h5>
+          {% for inv in invoice.credit_notes.all %}
+            <h4>{{inv}}</h4>
+            {% endfor %}
         {% else %}
           <form class="" action="#" method="post">
               {% csrf_token %}
@@ -92,6 +96,7 @@
               <br>
                 <button type="submit" class="btn btn-primary">CREATE INVOICE</button>
             </form>
+ 
           {% endif %}
           </div>
         </div>

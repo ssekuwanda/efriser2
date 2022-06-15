@@ -6,7 +6,7 @@ admin.site.register(Product)
 admin.site.register(Invoice)
 admin.site.register(Settings)
 admin.site.register(Unit_Measurement)
-
+admin.site.register(CreditNote)
 admin.site.register(InvoiceProducts)
 
 

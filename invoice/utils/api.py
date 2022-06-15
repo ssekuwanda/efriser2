@@ -29,7 +29,7 @@ def goodsUpload(tin, device_no, message):
     ic = "T130"
     encode_message = encode(str([message])).decode()
     data_dump = payload_info(tin, device_no, ic, encode_message)
-    response_data = post_message(data_dump)
+    response_data = post_creditnote(data_dump)
     return response_data
 
 
@@ -39,7 +39,6 @@ def uploadInvoice(issuer, context,goodsDetails, taxDetails,summary_json):
     message = invoice_load(issuer, context, goodsDetails, taxDetails,summary_json)
 
     to_json = json.dumps(message)
-    print(to_json)
     encode_message = encode(to_json).decode()
 
     tin = issuer.tin
@@ -72,5 +71,19 @@ def InvoiceService(data_dump):
 
         return return_info
     except re.HTTPError as ex:
+        return "No data received back"
+
+def post_creditnote(data_dump):
+    try:
+        r = re.post(base_url, json=data_dump)
+        content = r.json()['data']['content']
+        decoded = decode(content)
+        return r.json()
+    except re.HTTPError as ex:
         return "No data got"
 
+def creditNoteUpload(message, request):
+    ic = "T110"
+    data_dump = payload_info(request.user.company1.tin, request.user.company1.device_number,ic,message)
+    response_data = post_creditnote(data_dump)
+    return response_data

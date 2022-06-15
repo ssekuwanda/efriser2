@@ -1,5 +1,6 @@
 
 import json
+from invoice.utils.app_utilities import app_time
 
 
 def goods_details(prod, number):
@@ -58,3 +59,107 @@ def summary(summary_details):
             "qrCode": ""
         }
     return inv_summary
+
+
+def credit_note(note, form):
+    data = cleaned_json(note.json_response)
+    note_details = {
+        "oriInvoiceId": data['invoice_id'],
+        "oriInvoiceNo": data['fdn'],
+        "reasonCode": form.cleaned_data['reason_code'],
+        "reason": form.cleaned_data['reason'],
+        "applicationTime": str(app_time()),
+        "invoiceApplyCategoryCode": '101',
+        "currency": data['currency'],
+        "contactName": "",
+        "contactMobileNum":"",
+        "contactEmail":"",
+        "source":"103",
+        "remarks":"",
+        "sellersReferenceNo":"",
+        "goodsDetails":data['goodsDetails'],
+        "taxDetails":data['taxes'],
+        "summary":data['summary'],
+        "payWay":data['pay_mode'],
+    }
+    return note_details
+
+def cleaned_json(jsondata):
+    data = {}
+    data_dict = json.loads(jsondata)
+    data['antifake'] = data_dict['basicInformation']['antifakeCode']
+    data['currency'] = data_dict['basicInformation']['currency']
+    data['invoice_id'] = data_dict['basicInformation']['invoiceId']
+    data['fdn'] = data_dict['basicInformation']['invoiceNo']
+    data['date'] = data_dict['basicInformation']['issuedDate']
+    data['qr'] = data_dict['summary']['qrCode']
+    data['taxes'] = data_dict['taxDetails']
+    data['summary'] = data_dict['summary']
+    data['pay_mode'] = data_dict['payWay']
+
+    # Turning goods details to negative
+
+
+    def negative_tranformation():
+        all_goods = data_dict['goodsDetails']
+        new_goods = []
+        for goods in all_goods:
+            # ----------------------
+            qty_parts = float(goods['qty'])
+            neg_qty_parts = str(-1*qty_parts)
+            goods.update({'qty':neg_qty_parts}) 
+            # ---------------------------
+            total_parts = float(goods['total'])
+            neg_total_parts = str(-1*total_parts)
+            goods.update({'total':neg_total_parts}) 
+            # ------------------------
+            tax_parts = float(goods['tax'])
+            neg_tax_parts = str(-1*tax_parts)
+            goods.update({'tax':neg_tax_parts}) 
+            new_goods.append(goods)                 
+        return new_goods
+
+    data['goodsDetails'] = negative_tranformation()
+
+
+    def negative_tax():
+        all_taxes = data_dict['taxDetails']
+        new_taxes = []
+        for taxes in all_taxes:
+            # ----------------------
+            netAmount_parts = float(taxes['netAmount'])
+            neg_netAmount_parts = str(-1*netAmount_parts)
+            taxes.update({'netAmount':neg_netAmount_parts}) 
+            # ---------------------------
+            amount_parts = float(taxes['taxAmount'])
+            neg_amount_parts = str(-1*amount_parts)
+            taxes.update({'taxAmount':neg_amount_parts}) 
+            # ------------------------
+            gross_parts = float(taxes['grossAmount'])
+            neg_gross_parts = str(-1*gross_parts)
+            taxes.update({'grossAmount':neg_gross_parts}) 
+            new_taxes.append(taxes)                 
+        return new_taxes
+    data['taxDetails'] = negative_tax()
+
+
+    def negative_summary():
+        sum = data_dict['summary']
+        # ----------------------
+        netAmount_parts = float(sum['netAmount'])
+        neg_netAmount_parts = str(-1*netAmount_parts)
+        sum.update({'netAmount':neg_netAmount_parts}) 
+        # ---------------------------
+        amount_parts = float(sum['taxAmount'])
+        neg_amount_parts = str(-1*amount_parts)
+        sum.update({'taxAmount':neg_amount_parts}) 
+        # ------------------------
+        gross_parts = float(sum['grossAmount'])
+        neg_gross_parts = str(-1*gross_parts)
+        sum.update({'grossAmount':neg_gross_parts}) 
+        # ----------------------------------
+        sum['modeCode'] = "0"
+        return sum
+    data['summary'] = negative_summary()
+
+    return data

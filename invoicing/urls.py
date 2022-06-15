@@ -5,11 +5,11 @@ from django.conf import settings
 from django.conf import settings
 from django.conf.urls.static import static
 
-from invoice import views as invoice_views
+from invoice import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', invoice_views.index, name='index'),
+    path('', views.index, name='index'),
     path('invoice/',include('invoice.urls')),
 ]
 

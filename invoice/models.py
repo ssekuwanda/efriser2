@@ -52,7 +52,7 @@ class Company(models.Model):
 
 class Client(models.Model):
 
-    #Basic Fields. wwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
+    #Basic Fields.
     company = models.ForeignKey(Company, null=True, blank=True, on_delete=models.SET_NULL)
     name = models.CharField(max_length=100, null=True, blank=True)
     business_name = models.CharField(max_length=100, null=True, blank=True)
@@ -151,11 +151,14 @@ class CreditNote(models.Model):
         ('104', 'Partial or complete waive off of the service sale after the invoice is generated and sent to the customer'),
         ('105', 'Others (Please specify'),
     ]
-    invoice = models.ForeignKey(Invoice, blank=True, null=True, on_delete=models.SET_NULL)
-    date_created = models.DateTimeField(blank=True, null=True)
-    last_updated = models.DateTimeField(blank=True, null=True)
+    invoice = models.ForeignKey(Invoice, related_name="credit_notes", blank=True, null=True, on_delete=models.SET_NULL)
+    date_created = models.DateTimeField(blank=True, null=True, auto_now_add=True)
+    last_updated = models.DateTimeField(blank=True, null=True, auto_now=True)
     reason_code = models.CharField(max_length=10000, choices=REASONS, null=False, blank=False)
-    reason = models.TextField(null=True, blank=True)
+    json_response = models.TextField(null=True, blank=False)
+    reason = models.TextField(null=True, blank=False)
+    reference = models.CharField(max_length=10000, null=True, blank=False)
+    status = models.BooleanField(default=False) # False if not approved
 
     def __str__(self): 
         return str(self.invoice)

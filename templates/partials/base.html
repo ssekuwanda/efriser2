@@ -1,5 +1,5 @@
 {% load static %}
-
+{% load humanize %}
 
 
 <!doctype html>
@@ -83,6 +83,17 @@
               Clients
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'clients' %}">
+              <span data-feather="file"></span>
+              Invoices
+            </a>
+          </li><li class="nav-item">
+            <a class="nav-link" href="{% url 'creditnotes' %}">
+              <span data-feather="folder-minus"></span>
+              Credit Notes
+            </a>
+          </li>
           {% endif %}
         </ul>
 
@@ -108,17 +119,10 @@
         </ul>
       </div>
     </nav>
-
-
-
-    <!-- Add the messages here .... -->
-
-
-
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 
       {% for message in messages %}
-      <div class="alert {{ message.tags }} mb-4" role="alert">
+      <div class="alert {{ message.tags }} mb-4 pt-3" role="alert">
         {{ message }}
       </div>
       {% endfor %}

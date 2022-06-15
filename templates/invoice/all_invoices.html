@@ -28,7 +28,7 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>Number</th>
+                <th>Title</th>
                 <th>Client name</th>
                 <th>Phone Number</th>
                 <th>Due Date</th>
@@ -46,9 +46,8 @@
                 <td>{{invoice.client.clientName}}</td>
                 <td>{{invoice.client.phoneNumber}}</td>
                 <td>{{invoice.dueDate}}</td>
-                <td>
-                    <!-- {{invoice.json_response}} -->
-                </td>
+                <td>{{invoice.json_response}}</td>
+            
                 <td>
                     <a href="{% url 'create-build-invoice' invoice.slug %}"><button class="btn btn-primary"> VIEW
                         </button></a>

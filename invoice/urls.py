@@ -7,13 +7,17 @@ path('logout',views.logout, name='logout'),
 path('dashboard',views.dashboard, name='dashboard'),
 path('products', views.products, name='products'), 
 path('clients',views.clients, name='clients'),
-    path('invoices/<slug:slug>', views.invoices, name='invoices'),
+path('invoices/<slug:slug>', views.invoices, name='invoices'),
 path('client_home/<slug:slug>', views.client_home, name='client_home'),
+
+path('credit_notes', views.creditNoteHome, name='creditnotes'),
+
 
 
 #Create URL Paths
-    path('invoices/create/<slug:slug>',views.createInvoice, name='create-invoice'),
+path('invoices/create/<slug:slug>',views.createInvoice, name='create-invoice'),
 path('invoices/create-build/<slug:slug>',views.createBuildInvoice, name='create-build-invoice'),
+path('creditnote/create/<slug:slug>',views.createCreditNote, name='create-creditnote'),
 
 #Delete an invoice
     # path('invoices/delete/<slug:client_slug>/<slug:invoice_slug>',views.deleteInvoice, name='delete-invoice'),
