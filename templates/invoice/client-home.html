@@ -38,7 +38,6 @@
             </tr>
         </thead>
         <tbody>
-
             {% for invoice in invoices %}
             <tr>
                 <td>{{invoice.number}}</td>
@@ -46,9 +45,7 @@
                 <td>{{invoice.client.clientName}}</td>
                 <td>{{invoice.client.phoneNumber}}</td>
                 <td>{{invoice.dueDate}}</td>
-                <td>
-                    <!-- {{invoice.json_response}} -->
-                </td>
+                <td>  </td>
                 <td>
                     <a href="{% url 'create-build-invoice' invoice.slug %}"><button class="btn btn-primary"> VIEW
                         </button></a>

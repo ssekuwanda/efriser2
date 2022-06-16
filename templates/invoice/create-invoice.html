@@ -2,6 +2,7 @@
 {% load static %}
 {% load mathfilters %}
 {% load crispy_forms_tags %}
+{% load qr_code %}
 {% load humanize %}
 
 {% block css %}
@@ -10,32 +11,72 @@
 {% block main %}
 
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Create an Invoice</h1>
+    <h1 class="h2">Invoice Creation</h1>
     <div class="btn-toolbar mb-2 mb-md-0">
       <div class="btn-group me-2">
-        <a href="#"><button type="button" class="btn btn-primary">Go Back</button></a>
+              
+        <a href="#"><button type="button" class="btn btn-primary btn-sm">
+          <span data-feather="arrow-left"></span>
+          Go Back
+        </button></a>
       </div>
     </div>
   </div>
     <div class="container-fluid">
     <div class="card">
       <div class="card-header">
-        BDO Online Invoice Generator
+        <div class="row">
+          <div class="col-10">{{invoice.client|upper}} - {{invoice}}</div>
+          <div class="col-2">
+            {% if not invoice.finalized %}
+            <div class="spinner-grow spinner-grow-sm text-danger" role="status">
+              <span class="visually-hidden"></span>
+            </div>
+            {% endif %}
+          </div>
+        </div>  
       </div>
-
       <div class="card-body">
-
         <div class="row">
           <div class="col-lg-12">
-            <h5 class="card-title">Add Products To Your Invoice
-              <button href="#addProductModal" type="button" class="btn btn-link" data-bs-toggle="modal"> ADD PRODUCT </button>
-              <a href="{% url 'create-creditnote' invoice.slug %}">ISSUE CREDIT NOTE</a>
+            <h5 class="card-title">
+              {% if invoice.finalized %}
+              <a class="btn btn-primary btn-sm" href="{% url 'create-creditnote' invoice.slug %}">ISSUE CREDIT NOTE</a>
+              <a class="btn btn-success btn-sm" href="{% url 'invoices-doc' invoice.slug %}" role="button">PDF</a>
+              {% else %}
+              <button class="btn btn-primary btn-sm" href="#addProductModal" type="button" data-bs-toggle="modal"> ADD PRODUCT </button>
+              <a class="btn btn-primary btn-sm" href="{% url 'invoices-doc' invoice.slug %}" role="button">INVOICE</a>
+              <a class="btn btn-primary btn-sm" href="#" role="button">PREVIEW</a>
+              {% endif %}
+              <hr>
+              {% if invoice.finalized %}
+              <div class="row">
+                <div class="col-4">
+                  <h6>DATE: {{date|date:"l, F d, Y"|upper}}</h6>
+                  <h6>ANTI FAKE: {{antifake}}</h6>
+                  <h6>FDN: {{fdn}}</h6>
+                  <h6>ID: {{invoiceId}}</h6>
+                </div>
+                  <div class="col-4">
+                    <h6>CURRENCY: {{currency}}</h6>
+                    <h6>GROSS AMOUNT: {{gross|floatformat:2|intcomma}}</h6>
+                    <h6>NET AMOUNT: {{net|floatformat:2|intcomma}}</h6>
+                    <h6>TAX(VAT): {{tax|floatformat:2|intcomma}}</h6>
+                  </div>
+                  <div class="col-4">
+                      <div>
+                        {% qr_from_text qrcode size=2 image_format="png" error_correction="L" border=3 %}
+                      </div>
+                  </div>
+              </div>
+              {% endif %}
             </h5>
             {% if products|length > 0 %}
             <div class="table-responsive">
               <table class="table table-striped table-sm">
                 <thead>
                   <tr>
+                    <th>#</th>
                     <th>Product</th>
                     <th>Unit Of Measure</th>
                     <th>Unit Price</th>
@@ -43,11 +84,13 @@
                     <th>Tax Rate</th>
                     <th>PxQ</th>
                     <th>Total</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
                   {% for product in products %}
                 <tr>
+                  <td>{{ forloop.counter }}.</td>
                   <td>{{product.product.name}}</td>
                   <td>{{product.product.unit_measure}}</td>
                   <td>{{product.price|intcomma}}</td>
@@ -55,13 +98,21 @@
                   <td>{{product.product.tax_rate}}({{product.tax_total|intcomma}})</td>
                   <td>{{product.net_price|intcomma}}</td>
                   <td>{{product.total|intcomma}}</td>
+                  <td>
+                    {% if invoice.finalized %}
+                    {% else %}
+                    <a class="btn btn-danger btn-sm" href="{% url 'prod_delete' product.slug %}" role="button">REMOVE</a>
+                    {% endif %}
+                  </td>
                 </tr>
                   {% endfor %}
                 <tr class="bg-secondary text-light" style="font-weight: bold;">
+                  <td></td>
                   <td colspan="4" style="text-align: center; ">TOTAL</td>
-                  <td>{{tax|intcomma}}</td>
-                  <td>{{net|intcomma}}</td>
-                  <td>{{gross|intcomma}}</td>
+                  <td>{{tax|floatformat:2|intcomma}}</td>
+                  <td>{{net|floatformat:2|intcomma}}</td>
+                  <td>{{gross|floatformat:2|intcomma}}</td>
+                  <td></td>
                 </tr>
                 </tbody>
               </table>
@@ -69,14 +120,22 @@
             {% endif %}
           </div>
         </div>
+        <h5>CREDIT NOTE</h5>
         {% if invoice.finalized %}
-          <h5 class="card-title">CREDIT NOTES
-            
-            <a href="{% url 'create-creditnote' invoice.slug %}" style="padding-right: 100px;">ISSUE</a>
-          </h5>
           {% for inv in invoice.credit_notes.all %}
-            <h4>{{inv}}</h4>
-            {% endfor %}
+          <div class="row">
+            <div class="col-9">
+              <h6> {{ forloop.counter }}.<a href="#">{{inv.reference}}</a>
+                <span class="badge bg-danger">Pending Approval</span>
+              </h6>
+            </div>
+            <div class="col-3">
+              <button type="button" class="btn btn-sm btn-outline-dark">Cancel</button>
+              <button type="button" class="btn btn-sm btn-outline-success">Refresh Status</button>
+            </div>
+          </div>
+          <hr>
+          {% endfor %}
         {% else %}
           <form class="" action="#" method="post">
               {% csrf_token %}
@@ -96,8 +155,8 @@
               <br>
                 <button type="submit" class="btn btn-primary">CREATE INVOICE</button>
             </form>
- 
           {% endif %}
+    
           </div>
         </div>
       </div>
@@ -117,17 +176,5 @@
       </div>
     </div>
   </div>
-    <!-- Credit Note Modals Start Here -->
-    <div class="modal modal-sheet py-5" tabindex="-1" id="addcreditModal">
-      <div class="modal-dialog">
-        <div class="modal-content rounded-6 shadow">
-          <form method="post" novalidate enctype="multipart/form-data" class="p-3">
-            <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
-            {% csrf_token %}
-            {% include 'partials/partform.html' with form=prod_form %}
-            <button type="submit" class="btn btn-primary mt-3">Submit</button>
-          </form>
-        </div>
-      </div>
-    </div>
+
 {% endblock %}

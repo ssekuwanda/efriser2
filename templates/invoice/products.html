@@ -52,7 +52,7 @@
         <td>{{product.unit_price|intcomma}}</td>
         <td>{{product.currency}}</td>
         <td>
-          <a class="btn btn-sm btn-primary" href="#" role="button">ADJUST</a>
+          <a class="btn btn-sm btn-primary" href="{% url 'prod_update' product.slug %}" role="button">ADJUST</a>
         </td>
       </tr>
         {% endfor %}

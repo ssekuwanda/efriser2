@@ -1,11 +1,13 @@
 from urllib import response
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib import messages
 from django.conf import settings
-
+from django.template.loader import render_to_string
+from weasyprint import HTML, CSS
 from invoice.utils.api import *
+from invoice.utils.invoice_cleaner import *
 from .forms import *
 from .models import *
 from .functions import *
@@ -106,9 +108,9 @@ def dashboard(request):
 def invoices(request, slug):
     context = {}
     invoices = Invoice.objects.all()
-    cleint = Client.objects.get(slug=slug)
+    # cleint = Client.objects.get(slug=slug)
     context['invoices'] = invoices
-    context['cleint'] = cleint
+    context['cleint'] = "cleint"
 
     return render(request, 'invoice/invoices.html', context)
 
@@ -160,6 +162,22 @@ def products(request):
     return render(request, 'invoice/products.html', context)
 
 
+@login_required
+def productsMaintance(request, slug):
+    prod = get_object_or_404(Product, slug=slug)
+
+    if request.method == "POST":
+        form = ProdMetaForm(request.POST)
+        if form.is_valid():
+            form = form.save(commit=False)
+            form.product = prod
+            form.save()
+            return redirect('products')
+    else:
+        form = ProdMetaForm()
+    context = {'form': form,'product':prod}
+    return render(request, 'product/product_update.html', context)   
+
 
 @login_required
 def clients(request):
@@ -179,11 +197,10 @@ def clients(request):
         if form.is_valid():
             form_tin = form.cleaned_data['tin']
             form = form.save(commit=False)
-            
             response = None
-
             if form.tin:
                 response = getClientDetails(owned.tin, form_tin, owned.device_number)
+                print(response)
 
             if response:
                 if 'address' in json.loads(response)['taxpayer']:
@@ -206,7 +223,6 @@ def clients(request):
                     nin = json.loads(response)['taxpayer']['ninBrn']
                 else:
                     nin =""
-                
                 form.business_name = legal_name
                 form.email_address = email
                 form.contact_number = number
@@ -214,7 +230,6 @@ def clients(request):
                 form.address = address
             form.company = owned
             form.save()
-
             messages.success(request, 'New Client Added')
             return redirect('clients')
         else:
@@ -258,6 +273,7 @@ def createBuildInvoice(request, slug):
     tax_amount = 0
     gross_amount = 0
     order_number = 0
+    context.update(inv_context(invoice.json_response))
 
     for prod in products:
         good = goods_details(prod,order_number)
@@ -318,8 +334,8 @@ def createBuildInvoice(request, slug):
             invoice_update.json_response = inv["content"]
 
             if inv["returnMessage"] == "SUCCESS":
-                inv_form.finalized = True
-                inv_form.save()
+                invoice_update.finalized = True
+                invoice_update.save()
                 messages.success(request, "Invoice Issued succesfully")
             else:
                 messages.warning(request, inv["returnMessage"])
@@ -378,4 +394,30 @@ def creditNoteHome(request):
     context = {'credits':credits}
     return render(request, 'invoice/all_creditnotes.html', context)
 
-# def cnQuery(request):
+@login_required
+def pdfInvoice(request, slug):
+    company = request.user.company1
+    client = Client.objects.filter(company=company)
+    invoice = Invoice.objects.get(slug= slug)
+    
+    context = {}
+
+    context['company'] = company
+    context['client'] = client
+
+    html_string = render_to_string('documents/invoicepdf.html', context)
+    html = HTML(string=html_string, base_url=request.build_absolute_uri())
+    pdf = html.write_pdf(presentational_hints=True)
+
+    response = HttpResponse(pdf, content_type='application/pdf')
+    response['Content-Disposition'] = f'inline; filename=test.pdf'
+
+    return response
+
+@login_required
+def prod_delete(request, slug):
+    instance = get_object_or_404(InvoiceProducts, slug=slug)
+    instance.delete()
+    messages.success(
+        request, f"{instance.product.name} was successfully deleted")
+    return redirect('create-build-invoice', slug=instance.invoice.slug)

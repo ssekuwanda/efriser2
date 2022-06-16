@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+{% load static %}
+{% load humanize %}
+{% load mathfilters %}
+{% load qr_code %}
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name=author content="Prime Invoices">
+    <meta name=description content="@1984">
+    <meta name=producer content=" Prime">
+    <meta name=keywords content="">
+    <meta name=generator content="S">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>{{ engage.invoice_number }}</title>
+</head>
+
+<body>
+    <style>
+        @font-face {
+            font-family: "Trebuchet MS";
+            font-style: normal;
+            font-weight: normal;
+            src: local("Trebuchet MS"),
+            url("{% static 'assets/fonts/Trebuchet MS.ttf' %}");
+        }
+
+        @font-face {
+            font-family: "book-antiqua";
+            font-style: normal;
+            font-weight: normal;
+            src: local("book-antiqua"),
+            url("{% static 'assets/fonts/book-antiqua.ttf' %}");
+        }
+
+
+        body {
+            height: 100%;
+            margin: 0;
+            line-height: 1.5em;
+            font-family: Trebuchet MS;
+        }
+
+        footer {
+            height: 10px;
+        }
+
+        .container-1 {
+            display: flex;
+        }
+
+        .box-1 {
+            flex: 0.9;
+        }
+
+        .box-1 img {
+            width: 115px;
+        }
+
+        .box-2 {
+            flex: 0.8;
+        }
+
+        .box-2 p {
+            margin-top: 4px;
+            margin-bottom: 4px;
+            font-size: 12px;
+            color: rgb(83, 47, 0);
+            line-height: 1.3em;
+        }
+
+        .box-3 p {
+            margin-top: 4px;
+            margin-bottom: 4px;
+            font-size: 12px;
+            color: rgb(83, 47, 0);
+            line-height: 1.2em;
+        }
+
+        .box-3 {
+            flex: 0.8;
+        }
+
+        .box-8 {
+            flex: 1;
+            float: right;
+            color: rgb(117, 20, 20);
+            font-size: 28px;
+            font-family: book-antiqua;
+            text-decoration: underline;
+            text-decoration-color: black;
+        }
+
+        .box-9 img {
+            height: 60px;
+            margin-top: -27px;
+            padding-top: 0px;
+        }
+
+        .dcdm {
+            font-family: book-antiqua;
+            margin-top: -13px;
+            margin-left: 4px;
+            color: rgb(117, 20, 20);
+        }
+
+        div.upper {
+            padding-top: 50px;
+            line-height: 1.1em;
+        }
+
+        .upper p {
+            font-weight: bold;
+            font-size: 13.5px;
+            margin-top: 2px;
+            margin-bottom: 3px;
+        }
+
+        .address {
+            display: flex;
+            flex-direction: row;
+            margin-top: 0.5px;
+        }
+
+        .address p {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        p.add1 {
+            margin-top: 0px;
+            margin-bottom: 0px;
+            line-height: 19.5px;
+        }
+
+        .container-2 {
+            display: flex;
+            margin-top: 10px;
+        }
+
+        .word {
+            flex: 1;
+        }
+
+        .word p {
+            margin-top: 15px;
+            margin-bottom: 5px;
+        }
+
+        .number p {
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        .number {
+            flex: 0.1;
+            text-align: right;
+            padding-right: 30px;
+        }
+
+        .tax {
+            font-weight: bold;
+            margin-top: 8px;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .total {
+            width: 0px;
+            padding: 0px;
+            font-weight: bold;
+            border-top: solid;
+            border-bottom-style: double;
+            border-width: 2px;
+        }
+
+        .container-3 {
+            display: flex;
+            margin-top: 10px;
+        }
+
+        .other {
+            flex: 2;
+        }
+
+        .other p {
+            margin: 1px;
+            font-size: 14px;
+        }
+
+        .bank {
+            flex: 4;
+        }
+
+        .qr {
+            flex: 3
+        }
+
+        .bank p {
+            margin: 1px;
+            font-size: 14px;
+            line-height: 20px;
+        }
+
+        .note {
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .note-please {
+            font-size: 4px;
+            font-weight: bold;
+        }
+
+        .narative {
+            display: flex;
+            margin-bottom: 10px;
+        }
+
+        .dcdm_other {
+            padding-top: -12px;
+            margin-top: -12px;
+            padding-bottom: -12px;
+            margin-bottom: -12px;
+            display: flex;
+            line-height: 0px;
+            color: rgb(70, 70, 70);
+            font-family: book-antiqua;
+        }
+
+        .dcdm_blank {
+            flex: 2;
+        }
+
+        .dcdm_address {
+            flex: 1;
+            font-family: book-antiqua;
+        }
+
+        .dcdm_address h6 {
+            padding: -1px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            font-family: book-antiqua;
+        }
+
+        .nara1 {
+            flex: 3;
+        }
+
+        .nara2 {
+            flex: 0.5;
+            vertical-align: text-bottom;
+            padding-right: 2px;
+            margin-left: 13px;
+        }
+
+        .nara4 {
+            flex: 0.17;
+            padding-right: 6px;
+            margin-left: 4px;
+        }
+
+        p.texted {
+            margin: 0px;
+            padding: 0px;
+            font-size: 14px;
+            line-height: 21px;
+        }
+
+        p.total {
+            font-weight: bold;
+        }
+
+        .blank-foot {
+            flex: 3;
+        }
+
+        .address-foot {
+            text-decoration: overline;
+            color: rgb(0, 0, 0);
+            float: right;
+            text-align: right;
+            flex: 3;
+            font-size: 12px;
+            font-family: book-antiqua;
+        }
+
+        footer {
+            font-size: 8px;
+            margin: 0;
+            padding: 0;
+            color: rgb(83, 49, 0);
+            font-weight: 500;
+            position: absolute;
+            bottom: 8px;
+        }
+
+        .taxexempt {
+            flex: 8.5;
+            padding-left: 850px;
+        }
+
+        .wht {
+            border-style: solid;
+            width: 300px;
+            padding-left: 20px;
+            padding-right: 20px;
+            border: 2.5px solid #01579b;
+            border-radius: 9px;
+            color: #01579b;
+            font-weight: bold;
+            margin-right: 240px;
+            margin-left: 130px;
+            font-family: Lora;
+        }
+
+        .wht-1 {
+            font-size: 20px;
+            margin-bottom: 3px;
+            margin-top: 4px;
+        }
+
+        .wht-2 {
+            font-size: 20px;
+            margin-bottom: -30px;
+            margin-top: -5px;
+            padding-left: 7px;
+            letter-spacing: 1.5px;
+            padding-bottom: 7px;
+        }
+    </style>
+    <div class="container-1">
+        <div class="box-1" style="float: right; padding-top: 10px;">
+            <img src="#" style="height: 57px; width: 144px;" alt="" />
+        </div>
+        <div class="box-2">
+         
+            <p>Tel: {{company.telephone_number}}</p>
+            <p>Email: {{company.email}}</p>
+            {% if company.website %}
+            <p>{{company.website}}</p>
+            {% endif %}
+        </div>
+        <div class="box-3">
+            <p>{{ company.name }}</p>
+            <p>6th Floor, Block C</p>
+            <p>Nakawa Business Park</p>
+            <p>Plot 3-5 New Portbell Road</p>
+            <p>P.O. Box 9113</p>
+            <p>Kampala, Uganda</p>
+        </div>
+    </div>
+    <div class="container-1">
+        <div class="upper">
+            {% if engage.to_company == 'bdo_ea' %}
+            <p>TIN. 1000058650</p>
+            {% elif engage.to_company == 'dcdm' %}
+            <p>TIN. 1000036333</p>
+            {% elif engage.to_company == 'bdo_as' %}
+            <p>TIN. 1001054077</p>
+            {% endif %}
+            {% if engage.fiscal_document_number %}
+            <p>FISCAL DOCUMENT No:
+                <span style="letter-spacing: 0.8px;">
+                    {{ engage.fiscal_document_number }}
+                </span>
+            </p>
+            {% endif %}
+            <p>{{ note }}: {{ engage.invoice_number }}
+            <p>TASK CODE:
+                <span style="letter-spacing: 0.8px;">
+                    {{ engage.task.dept_initial|upper }}{{ engage.task.service.task_code }}{{
+                    engage.task.number}}{{client.client_number}}
+                </span>
+            </p>
+        </div>
+    </div>
+    <div class="address">
+        <div class="date">
+            <p>{{ engage.datestamp|date:"l, F d, Y" }}</p>
+            {% if client.addressed_to %}
+            <p class="add1">{{ client.addressed_to }}</p>
+            {% endif %}
+            <p class="add1">{{ client }}</p>
+            {% if client.plot %}
+            <p class="add1">{{ client.plot }}</p>
+            {% endif %}
+            {% if client.street %}
+            <p class="add1">{{ client.street }}</p>
+            {% endif %}
+            <p class="add1">{{ address|linebreaksbr }}</p>
+        </div>
+    </div>
+    <div class="container-2" style="padding-bottom: 0px;">
+        <div class="word">
+            <div class="narative" style="margin-bottom: 0px; padding-bottom: 0px;">
+                <div class="nara1 tax">
+                    <p>
+                        {% if engage.create == "Tax Invoice" %}
+                        {% if engage.vat == '18%' %}
+                        {{ engage.create|upper }}
+                        {% elif engage.vat == '0%' %}
+                        EXPORT INVOICE
+                        {% else %}
+                        EXEMPT
+                        {% endif %}
+                        {% else %}
+                        {{ engage.create }}
+                        {% endif %}
+                    </p>
+                </div>
+                <div class="nara2 tax number">
+                    <p>{{ engage.currency }}</p>
+                </div>
+            </div>
+            <div class="narative">
+                <div class="nara1">
+                    <p class="texted">
+                        {{ engage.narrative|linebreaksbr }}
+                    </p>
+                </div>
+                <div class="nara2" style="position: relative; min-height: 20px;">
+                    <p class="texted number" style="position: absolute; bottom: 0; right: 0;">
+                        {% if engage.create == "Credit Note" %}
+                        {{ engage.fees|mul:"-1"|floatformat:1|intcomma }}
+                        {% else %}
+                        {% if engage.currency == 'UGX' %}
+                        {{ engage.fees|floatformat:0|intcomma }}
+                        {% else %}
+                        {{ engage.fees|floatformat:1|intcomma }}
+                        {% endif %}
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+            {% if engage.disbursements %}
+            {% if engage.vat_on_disbursements %}
+            <div class="narative">
+                <div class="nara1">
+                    <p class="texted">Disbursements</p>
+                </div>
+                <div class="nara2">
+                    <p class="texted number">
+                        {% if engage.disbursements %}
+                        {% if engage.create == "Credit Note" %}
+                        {% if engage.currency == 'UGX' %}
+                        {{ engage.disbursements|mul:"-1"|floatformat:0|intcomma }}
+                        {% else %}
+                        {{ engage.disbursements|mul:"-1"|floatformat:1|intcomma }}
+                        {% endif %}
+                        {% else %}
+                        {% if engage.currency == 'UGX' %}
+                        {{ engage.disbursements|floatformat:0|intcomma }}
+                        {% else %}
+                        {{ engage.disbursements|floatformat:1|intcomma }}
+                        {% endif %}
+                        {% endif %}
+                        {% else %} - {% endif %}</p>
+                </div>
+            </div>
+            {% endif %}
+            {% endif %}
+            <div class="narative">
+                <div class="nara1">
+                    <p class="texted">
+                        {% if engage.create == "Disbursement Note" %}
+                        {% if engage.vat == '18%' %}
+                        VAT at 18%
+                        {% else%}
+                        {% endif %}
+                        {% else %}
+                        {% if engage.vat == '18%' %}
+                        VAT at 18%
+                        {% elif engage.vat == '0%' %}
+                        Export(VAT at 0%)
+                        {% else %}
+                        VAT at 0%
+                        {% endif %}
+                        {% endif %}
+                    </p>
+                </div>
+                <div class="nara2">
+                    <p class="texted number">
+                        {% if engage.create == "Disbursement Note" %}
+                        {% if engage.vat == '18%' %}
+                        {{ engage.total_vat|floatformat:0|intcomma }}
+                        {% else%}
+                        {% endif %}
+                        {% else %}
+                        {% if engage.vat == '18%' %}
+                        {% if engage.create == "Credit Note" %}
+                        {% if engage.currency == 'UGX' %}
+                        {{ engage.total_vat|mul:"-1"|floatformat:0|intcomma }}
+                        {% else %}
+                        {{ engage.total_vat|mul:"-1"|floatformat:1|intcomma }}
+                        {% endif %}
+                        {% else %}
+                        {% if engage.currency == 'UGX' %}
+                        {{ engage.total_vat|floatformat:0|intcomma }}
+                        {% else %}
+                        {{ engage.total_vat|floatformat:1|intcomma }}
+                        {% endif %}
+                        {% endif %}
+                        {% else %}
+                        -
+                        {% endif %}
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+            {% if engage.disbursements %}
+            {% if not engage.vat_on_disbursements %}
+            <div class="narative">
+                <div class="nara1">
+                    <p class="texted">Disbursements</p>
+                </div>
+                <div class="nara2">
+                    <p class="texted number">
+                        {% if engage.disbursements %}
+                        {% if engage.create == "Credit Note" %}
+                        {% if engage.currency == 'UGX' %}
+                        {{ engage.disbursements|mul:"-1"|floatformat:0|intcomma }}
+                        {% else %}
+                        {{ engage.disbursements|mul:"-1"|floatformat:1|intcomma }}
+                        {% endif %}
+                        {% else %}
+                        {% if engage.currency == 'UGX' %}
+                        {{ engage.disbursements|floatformat:0|intcomma }}
+                        {% else %}
+                        {{ engage.disbursements|floatformat:1|intcomma }}
+                        {% endif %}
+                        {% endif %}
+                        {% else %} - {% endif %}</p>
+                </div>
+            </div>
+            {% endif %}
+            {% endif %}
+            <div class="narative">
+                <div class="nara1">
+                    <p class="texted total">TOTAL</p>
+                </div>
+                <div class="nara2 total texted">
+                    <p class="texted number total-number" style="position: absolute;right: 0;">
+                        {% if engage.create == "Credit Note" %}
+                        {% if engage.currency == 'UGX' %}
+                        {{ engage.total_fees|mul:"-1"|floatformat:0|intcomma }}
+                        {% else %}
+                        {{ engage.total_fees|mul:"-1"|floatformat:1|intcomma }}
+                        {% endif %}
+                        {% else %}
+                        {% if engage.currency == 'UGX' %}
+                        {{ engage.total_fees|floatformat:0|intcomma }}
+                        {% else %}
+                        {{ engage.total_fees|floatformat:1|intcomma }}
+                        {% endif %}
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-3" style="margin-top: 0px;">
+        <div class="other">
+            <p style="padding-top: 12px; font-style: italic;">With Compliments</p>
+            <p style="font-style: italic; ">E&OE</p>
+        </div>
+        {% if engage.dcdm %}
+        {% else %}
+        <div class="wht taxexempt">
+            <p class="wht-1">WITHHOLDING</p>
+            <p class="wht-2">TAX EXEMPT</p>
+        </div>
+        {% endif %}
+    </div>
+    <div class="container-3">
+        <div class="bank">
+            <p class="note-please" style="font-size: 12px;">Please make payments or deposits to:</p>
+            {% if engage.to_company == 'bdo_ea' %}
+            <p>BDO EAST AFRICA</p>
+            {% elif engage.to_company == 'bdo_as' %}
+            <p>BDO EAST AFRICA ADVISORY SERVICES LIMITED</p>
+            {% elif engage.to_company == 'dcdm' %}
+            <p>DCDM ADVISORY SERVICES UGANDA LIMITED</p>
+            {% endif %}
+            <p>Bank Name: DFCU Bank</p>
+            <p>Bank Branch: Bugolobi, Kampala</p>
+            {% if engage.to_company == 'bdo_ea' %}
+            {% if engage.currency == 'UGX' %}
+            <p>Account number: 01413500094025</p>
+            {% else %}
+            <p>Account number: 02413500390842</p>
+            {% endif %}
+            {% elif engage.to_company == 'bdo_as' %}
+            {% if engage.currency == 'UGX' %}
+            <p>Account number: 01413500508179</p>
+            {% else %}
+            <p>Account number: 02413500508193</p>
+            {% endif %}
+            {% elif engage.to_company == 'dcdm' %}
+            {% if engage.currency == 'UGX' %}
+            <p>Account number: 01413500093741</p>
+            {% else %}
+            <p>Account number: 02413500367929</p>
+            {% endif %}
+            {% endif %}
+            <p>Swift Address: CITIUS33</p>
+            <p>Swift code: DFCUUGKA</p>
+        </div>
+        <div class="qr" style="padding: -40px; margin: 0px; text-align: right;">
+            {% qr_from_text engage.qr_code_info size=2 image_format="png" error_correction="L" border=3 %}
+        </div>
+    </div>
+</body>
+{% if engage.dcdm %}
+<footer class="dcdm-foot" style="margin-left: 450px;">
+    <div class="address-foot">Web Site: http//www.dcdm.biz</div>
+</footer>
+{% else %}
+<footer style="display:block; margin-left:auto; margin-right: auto; width: 100%;">
+This is an E-invoice
+</footer>
+{% endif %}
+
+</html>

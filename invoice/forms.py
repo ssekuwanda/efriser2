@@ -41,7 +41,7 @@ class ClientForm(forms.ModelForm):
 class InvoiceProductForm(forms.ModelForm):
     class Meta:
         model = InvoiceProducts
-        fields = ['product', 'notes', 'quantity', 'price']
+        fields = ['product', 'quantity', 'price']
 
 class ProductForm(forms.ModelForm):
     class Meta:
@@ -53,30 +53,6 @@ class ProductForm(forms.ModelForm):
 
 
 class InvoiceForm(forms.ModelForm):
-    # title = forms.CharField(
-    #                 required = True,
-    #                 label='Invoice Name or Title',
-    #                 widget=forms.TextInput(attrs={'class': 'form-control mb-3', 'placeholder': 'Enter Invoice Title'}),)
-    # paymentTerms = forms.ChoiceField(
-    #                 choices = THE_OPTIONS,
-    #                 required = True,
-    #                 label='Select Payment Terms',
-    #                 widget=forms.Select(attrs={'class': 'form-control mb-3'}),)
-    # status = forms.ChoiceField(
-    #                 choices = STATUS_OPTIONS,
-    #                 required = True,
-    #                 label='Change Invoice Status',
-    #                 widget=forms.Select(attrs={'class': 'form-control mb-3'}),)
-    # notes = forms.CharField(
-    #                 required = True,
-    #                 label='Enter any notes for the client',
-    #                 widget=forms.Textarea(attrs={'class': 'form-control mb-3'}))
-
-    # dueDate = forms.DateField(
-    #                     required = True,
-    #                     label='Invoice Due',
-    #                     widget=DateInput(attrs={'class': 'form-control mb-3'}),)
-
     class Meta:
         model = Invoice
         fields = ['remarks', 'currency', 'payment_method']
@@ -101,19 +77,7 @@ class CreditNoteForm(forms.ModelForm):
         model = CreditNote
         fields = ['reason_code','reason']
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-# <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+class ProdMetaForm(forms.ModelForm):
+    class Meta:
+        model = ProductMeta
+        fields = ['stock','price']

@@ -1,4 +1,5 @@
 import imp
+from math import prod
 from django.db import models
 from django.forms import JSONField
 from django.template.defaultfilters import slugify
@@ -19,15 +20,19 @@ class Company(models.Model):
     # Basic Fields
     owner = models.OneToOneField(
         User, related_name="company1", blank=True, null=True, on_delete=models.SET_NULL)
-    name = models.CharField("Company Name",max_length=100, null=True, blank=True)
+    name = models.CharField("Company Name",max_length=100, null=False, blank=False)
     email = models.EmailField(max_length=1000, null=True, blank=True)
+    telephone_number = models.CharField(max_length=100, null=False, blank=True)
+    location = models.TextField( null=False, blank=True, help_text="Separate Each location Detail with >")
+    website = models.CharField(max_length=1001, null=False, blank=True)
+
 
     companyLogo = models.ImageField(default='default_logo.jpg', upload_to='company_logos', blank=True, null=True)
-    company_type = models.CharField(max_length=100, choices=companyTypes, blank=True, null=True)
+    company_type = models.CharField(max_length=100, choices=companyTypes, blank=False, null=False)
 
     #Tax fields
-    tin = models.BigIntegerField()
-    device_number = models.CharField(max_length=100, null=True, blank=True)
+    tin = models.CharField(max_length=10)
+    device_number = models.CharField(max_length=100, null=False, blank=False)
 
     #Utility fields
     slug = models.SlugField(max_length=500, unique=True, blank=True, null=True)
@@ -54,13 +59,15 @@ class Client(models.Model):
 
     #Basic Fields.
     company = models.ForeignKey(Company, null=True, blank=True, on_delete=models.SET_NULL)
-    name = models.CharField(max_length=100, null=True, blank=True)
+    name = models.CharField(max_length=100, null=False, blank=False)
     business_name = models.CharField(max_length=100, null=True, blank=True)
     address = models.CharField(max_length=10000, null=True, blank=True)
-    email_address = models.CharField(max_length=100, null=True, blank=True)
+    email_address = models.EmailField( null=False, blank=True)
     contact_number = models.CharField(max_length=100, null=True, blank=True)
     nin_brn = models.CharField("nin/Brn", max_length=100, null=True, blank=True)
-    tin = models.BigIntegerField(null=True, blank=True, unique=True)
+    tin = models.CharField(max_length=10, null=True, blank=True, help_text="leave blanck if export")
+    # foreignier = models.BooleanField(default=False)
+
 
     #Utility fields
     uniqueId = models.CharField(null=True, blank=True, max_length=100)
@@ -104,7 +111,6 @@ class Invoice(models.Model):
     currency = models.CharField("CURRENCY",choices= CURRENCY,null=True, blank=True, max_length=100)
     tax = models.CharField(null=True, blank=True, max_length=100)
     payment_method = models.CharField(null=True, blank=True, max_length=100)
-
 
     # EFRIS fields
     fdn = models.CharField(null=True, blank=True, max_length=100)
@@ -201,10 +207,6 @@ class Product(models.Model):
         choices=YES_OR_NO, max_length=3, null=True, blank=True)
     description = models.CharField(null=False, blank=False, max_length=1024)
     stock_warning = models.CharField(null=False, blank=False, max_length=24)
-    # piece_measure_unit = models.CharField(null=True, blank=True, max_length=3)
-
-    #Related Fields
-    # invoice = models.ForeignKey(Invoice, blank=True, null=True, on_delete=models.CASCADE)
 
     #Utility fields
     uniqueId = models.CharField(null=True, blank=True, max_length=100)
@@ -232,14 +234,22 @@ class Product(models.Model):
         self.unit_price = round(self.unit_price, 2)
         super(Product, self).save(*args, **kwargs)
 
+class ProductMeta(models.Model):
+    product = models.ForeignKey(Product, related_name="prod_meta", on_delete=models.CASCADE)
+    stock = models.PositiveIntegerField()
+    price = models.PositiveIntegerField()
+
+    def __str__(self):
+        return f'{self.product.name} {self.stock}'
+
 class InvoiceProducts(models.Model):
     # Basic fields
     invoice = models.ForeignKey(
         Invoice, null=True, blank=True, on_delete=models.SET_NULL)
-    product = models.ForeignKey(Product, null=True, blank=True, on_delete=models.SET_NULL)
+    product = models.ForeignKey(Product, null=False, blank=False, on_delete=models.CASCADE)
     notes = models.TextField(null=True, blank=True)
-    quantity = models.FloatField()
-    price = models.FloatField("Unit Price")
+    quantity = models.FloatField(null=False)
+    price = models.FloatField("Unit Price", null=False)
 
     #Utility fields
     uniqueId = models.CharField(null=True, blank=True, max_length=100)
@@ -272,41 +282,6 @@ class InvoiceProducts(models.Model):
     def net_amount(self):
         return float((self.total())-self.tax())
     
-    # def net_price(self):
-    #     return self.price*self.quantity
-
-    # def total(self):
-    #     tax = 1
-    #     if self.product.tax_rate == "18%":
-    #         tax = 0.18
-    #     else:
-    #         tax = 1
-    #     return self.price*self.quantity
-
-    # def tax_total(self):
-    #     tax = 1
-    #     if self.product.tax_rate == "18%":
-    #         tax =0.18
-    #     else:
-    #         tax =1
-    #     return int(self.total())*tax
-
-    # def unit_tax(self):
-    #     tax = 1
-    #     if self.product.tax_rate == "18%":
-    #         tax =0.18
-    #     else:
-    #         tax =1
-    #     return (((self.price*self.quantity)*tax))/1.18
-    
-    # def net_product_px(self):
-    #     tax = 1
-    #     if self.product.tax_rate == "18%":
-    #         tax =0.18
-    #     else:
-    #         tax =1
-    #     return ((self.price*self.quantity)-int(self.unit_tax()))  
-
 
 
     def save(self, *args, **kwargs):

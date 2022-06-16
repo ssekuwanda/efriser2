@@ -6,17 +6,24 @@ path('login',views.login, name='login'),
 path('logout',views.logout, name='logout'),
 path('dashboard',views.dashboard, name='dashboard'),
 path('products', views.products, name='products'), 
+
+# -------------Clients--------------
 path('clients',views.clients, name='clients'),
-path('invoices/<slug:slug>', views.invoices, name='invoices'),
 path('client_home/<slug:slug>', views.client_home, name='client_home'),
 
-path('credit_notes', views.creditNoteHome, name='creditnotes'),
-
-
-
-#Create URL Paths
+# ----------- Invoice---------------
+path('invoices/<slug:slug>', views.invoices, name='invoices'),
 path('invoices/create/<slug:slug>',views.createInvoice, name='create-invoice'),
 path('invoices/create-build/<slug:slug>',views.createBuildInvoice, name='create-build-invoice'),
+path('invoice-pdf/<slug:slug>', views.pdfInvoice, name='invoices-doc'),
+
+# ---------------Product----------------
+path('prod_delete/<slug:slug>',views.prod_delete, name='prod_delete'),
+path('prod_update/<slug:slug>',views.productsMaintance, name='prod_update'),
+
+
+# --------------Credit notes---------
+path('credit_notes', views.creditNoteHome, name='creditnotes'),
 path('creditnote/create/<slug:slug>',views.createCreditNote, name='create-creditnote'),
 
 #Delete an invoice

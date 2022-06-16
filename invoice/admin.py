@@ -8,6 +8,7 @@ admin.site.register(Settings)
 admin.site.register(Unit_Measurement)
 admin.site.register(CreditNote)
 admin.site.register(InvoiceProducts)
+admin.site.register(ProductMeta)
 
 
 
