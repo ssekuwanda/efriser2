@@ -46,18 +46,20 @@ def tax_details(tax):
             "exciseCurrency": "",
             "taxRateName": "Standard"
         }
+    print(tax)
     return tax
 
 def summary(summary_details):
     inv_summary = {
-            "netAmount": str("{:.2f}".format(summary_details['net'])),
-            "taxAmount": str("{:.2f}".format(summary_details['tax'])),
+            "netAmount": str("{:.1f}".format(summary_details['net'])),
+            "taxAmount": str("{:.1f}".format(summary_details['tax'])),
             "grossAmount": str("{:.2f}".format(summary_details['gross'])),
             "itemCount": str(summary_details['itemCount']),
             "modeCode": "1",
             "remarks": str(summary_details['remarks']),
             "qrCode": ""
         }
+    print(inv_summary)
     return inv_summary
 
 
@@ -161,5 +163,4 @@ def cleaned_json(jsondata):
         sum['modeCode'] = "0"
         return sum
     data['summary'] = negative_summary()
-
     return data

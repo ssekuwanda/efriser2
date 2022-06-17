@@ -165,14 +165,29 @@ def products(request):
 @login_required
 def productsMaintance(request, slug):
     prod = get_object_or_404(Product, slug=slug)
+    comp = request.user.company1
 
     if request.method == "POST":
         form = ProdMetaForm(request.POST)
         if form.is_valid():
+            goods_update_details = {}
+            goods_update_details["quantity"] = form["stock"].value()
+            goods_update_details["unitPrice"] = form["price"].value()
+            goods_update_details["commodityGoodsId"] = prod.commodity_id
             form = form.save(commit=False)
+            form.company = comp
             form.product = prod
-            form.save()
-            return redirect('products')
+            prod.stock_warning = int(prod.stock_warning)+int(goods_update_details['quantity'])
+            response = upload_more_goods(request,goods_update_details )
+
+            if response['returnStateInfo']['returnMessage'] != 'SUCCESS':
+                messages.error(request, f"{response['returnStateInfo']['returnMessage']} Please check that all details are correct")
+                return redirect('products')
+            else:
+                prod.save()
+                form.save()
+                messages.success(request,response['returnStateInfo']['returnMessage'])
+            return redirect('products')  
     else:
         form = ProdMetaForm()
     context = {'form': form,'product':prod}
@@ -273,10 +288,12 @@ def createBuildInvoice(request, slug):
     tax_amount = 0
     gross_amount = 0
     order_number = 0
-    context.update(inv_context(invoice.json_response))
 
+    if invoice.json_response:
+        context.update(inv_context(invoice.json_response))
+    
     for prod in products:
-        good = goods_details(prod,order_number)
+        good = goods_details(prod, order_number)
         tax = tax_details(prod)
         order_number+=1
         

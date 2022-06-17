@@ -87,3 +87,17 @@ def creditNoteUpload(message, request):
     data_dump = payload_info(request.user.company1.tin, request.user.company1.device_number,ic,message)
     response_data = post_creditnote(data_dump)
     return response_data
+
+
+def upload_more_goods(request, goods):
+    data = []
+    data.append(goods,)
+    ic = "T131"
+    
+    data_dump = payload_info(request.user.company1.tin, request.user.company1.device_number,ic,data)
+    jsonified = json.dumps(data_dump)
+    print(jsonified)
+    print('-------------------------------')
+    response_data = post_message(data_dump)
+    print(response_data)
+    return response_data

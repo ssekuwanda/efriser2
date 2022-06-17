@@ -12,16 +12,16 @@ from jsonfield import JSONField
 randoms = randint(120,1000)
 
 class Company(models.Model):
-
     companyTypes = [
         ('Services', 'Services'), 
         ('Products', 'Products'),
         ]
+
     # Basic Fields
     owner = models.OneToOneField(
         User, related_name="company1", blank=True, null=True, on_delete=models.SET_NULL)
     name = models.CharField("Company Name",max_length=100, null=False, blank=False)
-    email = models.EmailField(max_length=1000, null=True, blank=True)
+    email = models.EmailField(max_length=1000, null=False, blank=False)
     telephone_number = models.CharField(max_length=100, null=False, blank=True)
     location = models.TextField( null=False, blank=True, help_text="Separate Each location Detail with >")
     website = models.CharField(max_length=1001, null=False, blank=True)
@@ -177,7 +177,6 @@ class Unit_Measurement(models.Model):
     def __str__(self):
         return self.name
 
-
 class Product(models.Model):
     CURRENCY = [
         ('UGX', 'UGX'),
@@ -198,7 +197,7 @@ class Product(models.Model):
     name = models.CharField(null=False, blank=False, max_length=100)
     code = models.CharField(null=False, blank=False, max_length=4)
     unit_measure = models.ForeignKey(
-        Unit_Measurement, on_delete=models.SET_NULL, null=True, blank=True)
+        Unit_Measurement, on_delete=models.SET_NULL, null=True, blank=False)
     unit_price = models.FloatField(null=False, blank=False)
     currency = models.CharField(choices=CURRENCY, max_length=3)
     tax_rate = models.CharField(choices=TAX_RATES, null=False, blank=False, max_length=3, default='18%')
@@ -235,6 +234,7 @@ class Product(models.Model):
         super(Product, self).save(*args, **kwargs)
 
 class ProductMeta(models.Model):
+    company = models.ForeignKey(Company, null=True, blank=True, on_delete=models.SET_NULL)
     product = models.ForeignKey(Product, related_name="prod_meta", on_delete=models.CASCADE)
     stock = models.PositiveIntegerField()
     price = models.PositiveIntegerField()
