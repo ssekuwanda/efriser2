@@ -1,10 +1,13 @@
 from ast import Return
+import base64
+from dataclasses import dataclass
 from email import message
 import requests as re
 from .payload import *
 from .encrpt import decode, encode
 
 base_url = "http://198.58.118.119:9880/efristcs/ws/tcsapp/getInformation"
+
 
 def post_message(data_dump):
     try:
@@ -88,16 +91,26 @@ def creditNoteUpload(message, request):
     response_data = post_creditnote(data_dump)
     return response_data
 
+def maintain_goods_post(data_dump):
+    try:
+        r = re.post(base_url, json=data_dump)
+        print('------------------------')
+        print(data_dump)
+        content = r.json()['data']['content']
+        print(r.status_code)
+        decoded = decode(content)
+        return decoded.decode()
+    except re.HTTPError as ex:
+        return "No data got"
 
 def upload_more_goods(request, goods):
     data = []
-    data.append(goods,)
+    data.append(goods)
     ic = "T131"
-    
-    data_dump = payload_info(request.user.company1.tin, request.user.company1.device_number,ic,data)
-    jsonified = json.dumps(data_dump)
-    print(jsonified)
-    print('-------------------------------')
-    response_data = post_message(data_dump)
-    print(response_data)
+    to_json = json.dumps(data)
+    encoded_goods = encode(to_json).decode()
+    data_dump = payload_info(request.user.company1.tin, request.user.company1.device_number, ic, encoded_goods)
+    dumper = json.dumps(data_dump)
+    response_data = maintain_goods_post(dumper)
     return response_data
+

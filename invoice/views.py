@@ -179,7 +179,8 @@ def productsMaintance(request, slug):
             form.product = prod
             prod.stock_warning = int(prod.stock_warning)+int(goods_update_details['quantity'])
             response = upload_more_goods(request,goods_update_details )
-
+            print('---111------------')
+            print(response)
             if response['returnStateInfo']['returnMessage'] != 'SUCCESS':
                 messages.error(request, f"{response['returnStateInfo']['returnMessage']} Please check that all details are correct")
                 return redirect('products')
@@ -215,7 +216,6 @@ def clients(request):
             response = None
             if form.tin:
                 response = getClientDetails(owned.tin, form_tin, owned.device_number)
-                print(response)
 
             if response:
                 if 'address' in json.loads(response)['taxpayer']:
