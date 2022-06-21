@@ -26,7 +26,6 @@ class Company(models.Model):
     location = models.TextField( null=False, blank=True, help_text="Separate Each location Detail with >")
     website = models.CharField(max_length=1001, null=False, blank=True)
 
-
     companyLogo = models.ImageField(default='default_logo.jpg', upload_to='company_logos', blank=True, null=True)
     company_type = models.CharField(max_length=100, choices=companyTypes, blank=False, null=False)
 
@@ -281,8 +280,6 @@ class InvoiceProducts(models.Model):
 
     def net_amount(self):
         return float((self.total())-self.tax())
-    
-
 
     def save(self, *args, **kwargs):
         if self.date_created is None:

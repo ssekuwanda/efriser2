@@ -334,10 +334,9 @@
     </style>
     <div class="container-1">
         <div class="box-1" style="float: right; padding-top: 10px;">
-            <img src="#" style="height: 57px; width: 144px;" alt="" />
+            <img src="{{ company.companyLogo.url }}" style="height: 57px; width: 144px;" alt="" />
         </div>
         <div class="box-2">
-         
             <p>Tel: {{company.telephone_number}}</p>
             <p>Email: {{company.email}}</p>
             {% if company.website %}
@@ -355,20 +354,12 @@
     </div>
     <div class="container-1">
         <div class="upper">
-            {% if engage.to_company == 'bdo_ea' %}
-            <p>TIN. 1000058650</p>
-            {% elif engage.to_company == 'dcdm' %}
-            <p>TIN. 1000036333</p>
-            {% elif engage.to_company == 'bdo_as' %}
-            <p>TIN. 1001054077</p>
-            {% endif %}
-            {% if engage.fiscal_document_number %}
+            <p>TIN. {{ company.tin }}</p>
             <p>FISCAL DOCUMENT No:
                 <span style="letter-spacing: 0.8px;">
                     {{ engage.fiscal_document_number }}
                 </span>
             </p>
-            {% endif %}
             <p>{{ note }}: {{ engage.invoice_number }}
             <p>TASK CODE:
                 <span style="letter-spacing: 0.8px;">

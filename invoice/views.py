@@ -338,7 +338,7 @@ def createBuildInvoice(request, slug):
             obj = prod_form.save(commit=False)
             obj.invoice = invoice
             obj.save()
-            messages.success(request, "Invoice product added succesfully")
+            messages.success(request, "Product added succesfully")
             return redirect('create-build-invoice', slug=slug)
         elif inv_form.is_valid and request.POST:
             invoice_update = inv_form.save(commit=False)
@@ -348,6 +348,7 @@ def createBuildInvoice(request, slug):
             context['remarks'] = inv_form['remarks'].value()
 
             inv = uploadInvoice(issuer, context, goodsDetails, taxDetails,summary_json)
+          
             invoice_update.json_response = inv["content"]
 
             if inv["returnMessage"] == "SUCCESS":
@@ -416,11 +417,12 @@ def pdfInvoice(request, slug):
     company = request.user.company1
     client = Client.objects.filter(company=company)
     invoice = Invoice.objects.get(slug= slug)
-    
     context = {}
-
+    print(invoice.json_response)
     context['company'] = company
     context['client'] = client
+    print(inv_context(invoice.json_response))
+    # context.update(inv_context(invoice.json_response))
 
     html_string = render_to_string('documents/invoicepdf.html', context)
     html = HTML(string=html_string, base_url=request.build_absolute_uri())

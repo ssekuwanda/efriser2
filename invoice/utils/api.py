@@ -113,4 +113,3 @@ def upload_more_goods(request, goods):
     dumper = json.dumps(data_dump)
     response_data = maintain_goods_post(dumper)
     return response_data
-
