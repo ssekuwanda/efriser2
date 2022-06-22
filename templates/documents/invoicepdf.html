@@ -14,7 +14,7 @@
     <meta name=generator content="S">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>{{ engage.invoice_number }}</title>
+    <title>{{ fdn }}</title>
 </head>
 
 <body>
@@ -355,34 +355,15 @@
     <div class="container-1">
         <div class="upper">
             <p>TIN. {{ company.tin }}</p>
-            <p>FISCAL DOCUMENT No:
-                <span style="letter-spacing: 0.8px;">
-                    {{ engage.fiscal_document_number }}
-                </span>
-            </p>
-            <p>{{ note }}: {{ engage.invoice_number }}
-            <p>TASK CODE:
-                <span style="letter-spacing: 0.8px;">
-                    {{ engage.task.dept_initial|upper }}{{ engage.task.service.task_code }}{{
-                    engage.task.number}}{{client.client_number}}
-                </span>
-            </p>
+            <p>FISCAL DOCUMENT NUMBER: {{ fdn }}</p>
+            <p>VERIFICTION CODE: {{ antifake }}
+            <p>INVOICE NUMBER: {{ invoice.number }}</p>
         </div>
     </div>
     <div class="address">
         <div class="date">
-            <p>{{ engage.datestamp|date:"l, F d, Y" }}</p>
-            {% if client.addressed_to %}
-            <p class="add1">{{ client.addressed_to }}</p>
-            {% endif %}
-            <p class="add1">{{ client }}</p>
-            {% if client.plot %}
-            <p class="add1">{{ client.plot }}</p>
-            {% endif %}
-            {% if client.street %}
-            <p class="add1">{{ client.street }}</p>
-            {% endif %}
-            <p class="add1">{{ address|linebreaksbr }}</p>
+            <p>{{ date|date:"l, F d, Y"|upper }}</p>
+            <p class="add1">TO: {{ buyerName }}</p>
         </div>
     </div>
     <div class="container-2" style="padding-bottom: 0px;">
@@ -601,18 +582,12 @@
             <p>Swift code: DFCUUGKA</p>
         </div>
         <div class="qr" style="padding: -40px; margin: 0px; text-align: right;">
-            {% qr_from_text engage.qr_code_info size=2 image_format="png" error_correction="L" border=3 %}
+            {% qr_from_text qrcode size=2 image_format="png" error_correction="L" border=3 %}
         </div>
     </div>
 </body>
-{% if engage.dcdm %}
-<footer class="dcdm-foot" style="margin-left: 450px;">
-    <div class="address-foot">Web Site: http//www.dcdm.biz</div>
-</footer>
-{% else %}
-<footer style="display:block; margin-left:auto; margin-right: auto; width: 100%;">
+<footer style="display:block; margin-left:auto; margin-right: auto; width: 140%;">
 This is an E-invoice
 </footer>
-{% endif %}
 
 </html>

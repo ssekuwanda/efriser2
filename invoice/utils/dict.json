@@ -1,0 +1,5944 @@
+{
+	"countryCode": [{
+		"description": "SJ-Svalbard and Jan Mayen Islands",
+		"name": "SJ-Svalbard and Jan Mayen Islands",
+		"value": "SJ"
+	}, {
+		"description": "KZ-Kazakstan",
+		"name": "KZ-Kazakstan",
+		"value": "KZ"
+	}, {
+		"description": "LY-Libyan Arab Jamahiriya",
+		"name": "LY-Libyan Arab Jamahiriya",
+		"value": "LY"
+	}, {
+		"description": "CX-Christmas Island[Australia]",
+		"name": "CX-Christmas Island[Australia]",
+		"value": "CX"
+	}, {
+		"description": "CD-Democratic Republic of Congo",
+		"name": "CD-Democratic Republic of Congo",
+		"value": "CD"
+	}, {
+		"description": "SS-South Sudan",
+		"name": "SS-South Sudan",
+		"value": "SS"
+	}, {
+		"description": "AE-United Arab Emirates",
+		"name": "AE-United Arab Emirates",
+		"value": "AE"
+	}, {
+		"description": "AN-Netherlands Antilles",
+		"name": "AN-Netherlands Antilles",
+		"value": "AN"
+	}, {
+		"description": "AT-Austria",
+		"name": "AT-Austria",
+		"value": "AT"
+	}, {
+		"description": "AZ-Azerbaijan",
+		"name": "AZ-Azerbaijan",
+		"value": "AZ"
+	}, {
+		"description": "BE-Belgium",
+		"name": "BE-Belgium",
+		"value": "BE"
+	}, {
+		"description": "BG-Bulgaria",
+		"name": "BG-Bulgaria",
+		"value": "BG"
+	}, {
+		"description": "BM-Bermuda",
+		"name": "BM-Bermuda",
+		"value": "BM"
+	}, {
+		"description": "BR-Brazil",
+		"name": "BR-Brazil",
+		"value": "BR"
+	}, {
+		"description": "BT-Bhutan",
+		"name": "BT-Bhutan",
+		"value": "BT"
+	}, {
+		"description": "BY-Belarus",
+		"name": "BY-Belarus",
+		"value": "BY"
+	}, {
+		"description": "CA-Canada",
+		"name": "CA-Canada",
+		"value": "CA"
+	}, {
+		"description": "CG-Congo",
+		"name": "CG-Congo",
+		"value": "CG"
+	}, {
+		"description": "CN-China",
+		"name": "CN-China",
+		"value": "CN"
+	}, {
+		"description": "CR-Costa Rica",
+		"name": "CR-Costa Rica",
+		"value": "CR"
+	}, {
+		"description": "CY-Cyprus",
+		"name": "CY-Cyprus",
+		"value": "CY"
+	}, {
+		"description": "DK-Denmark",
+		"name": "DK-Denmark",
+		"value": "DK"
+	}, {
+		"description": "DZ-Algeria",
+		"name": "DZ-Algeria",
+		"value": "DZ"
+	}, {
+		"description": "EH-Western Sahara",
+		"name": "EH-Western Sahara",
+		"value": "EH"
+	}, {
+		"description": "FO-Faeroe Islands",
+		"name": "FO-Faeroe Islands",
+		"value": "FO"
+	}, {
+		"description": "GE-Georgia",
+		"name": "GE-Georgia",
+		"value": "GE"
+	}, {
+		"description": "GI-Gibraltar",
+		"name": "GI-Gibraltar",
+		"value": "GI"
+	}, {
+		"description": "GN-Guinea",
+		"name": "GN-Guinea",
+		"value": "GN"
+	}, {
+		"description": "GR-Greece",
+		"name": "GR-Greece",
+		"value": "GR"
+	}, {
+		"description": "GU-Guam",
+		"name": "GU-Guam",
+		"value": "GU"
+	}, {
+		"description": "GY-Guyana",
+		"name": "GY-Guyana",
+		"value": "GY"
+	}, {
+		"description": "HR-Croatia",
+		"name": "HR-Croatia",
+		"value": "HR"
+	}, {
+		"description": "ID-Indonesia",
+		"name": "ID-Indonesia",
+		"value": "ID"
+	}, {
+		"description": "IN-India",
+		"name": "IN-India",
+		"value": "IN"
+	}, {
+		"description": "IR-Iran, Islamic Republic of",
+		"name": "IR-Iran, Islamic Republic of",
+		"value": "IR"
+	}, {
+		"description": "JP-Japan",
+		"name": "JP-Japan",
+		"value": "JP"
+	}, {
+		"description": "KH-Cambodia",
+		"name": "KH-Cambodia",
+		"value": "KH"
+	}, {
+		"description": "KY-Cayman Islands",
+		"name": "KY-Cayman Islands",
+		"value": "KY"
+	}, {
+		"description": "LI-Liechtenstein",
+		"name": "LI-Liechtenstein",
+		"value": "LI"
+	}, {
+		"description": "LT-Lithuania",
+		"name": "LT-Lithuania",
+		"value": "LT"
+	}, {
+		"description": "MA-Morocco",
+		"name": "MA-Morocco",
+		"value": "MA"
+	}, {
+		"description": "MG-Madagascar",
+		"name": "MG-Madagascar",
+		"value": "MG"
+	}, {
+		"description": "MN-Mongolia",
+		"name": "MN-Mongolia",
+		"value": "MN"
+	}, {
+		"description": "MR-Mauritania",
+		"name": "MR-Mauritania",
+		"value": "MR"
+	}, {
+		"description": "MU-Mauritius",
+		"name": "MU-Mauritius",
+		"value": "MU"
+	}, {
+		"description": "MX-Mexico",
+		"name": "MX-Mexico",
+		"value": "MX"
+	}, {
+		"description": "NC-New Caledonia",
+		"name": "NC-New Caledonia",
+		"value": "NC"
+	}, {
+		"description": "NI-Nicaragua",
+		"name": "NI-Nicaragua",
+		"value": "NI"
+	}, {
+		"description": "NP-Nepal",
+		"name": "NP-Nepal",
+		"value": "NP"
+	}, {
+		"description": "NU-Niue",
+		"name": "NU-Niue",
+		"value": "NU"
+	}, {
+		"description": "OM-Oman",
+		"name": "OM-Oman",
+		"value": "OM"
+	}, {
+		"description": "PE-Peru",
+		"name": "PE-Peru",
+		"value": "PE"
+	}, {
+		"description": "PG-Papua New Guinea",
+		"name": "PG-Papua New Guinea",
+		"value": "PG"
+	}, {
+		"description": "PR-Puerto Rico",
+		"name": "PR-Puerto Rico",
+		"value": "PR"
+	}, {
+		"description": "QA-Qatar",
+		"name": "QA-Qatar",
+		"value": "QA"
+	}, {
+		"description": "RU-Russian Federation",
+		"name": "RU-Russian Federation",
+		"value": "RU"
+	}, {
+		"description": "SC-Seychelles",
+		"name": "SC-Seychelles",
+		"value": "SC"
+	}, {
+		"description": "SG-Singapore",
+		"name": "SG-Singapore",
+		"value": "SG"
+	}, {
+		"description": "SM-San Marino",
+		"name": "SM-San Marino",
+		"value": "SM"
+	}, {
+		"description": "ST-Sao Tome and Principe",
+		"name": "ST-Sao Tome and Principe",
+		"value": "ST"
+	}, {
+		"description": "TD-Chad",
+		"name": "TD-Chad",
+		"value": "TD"
+	}, {
+		"description": "TH-Thailand",
+		"name": "TH-Thailand",
+		"value": "TH"
+	}, {
+		"description": "TM-Turkmenistan",
+		"name": "TM-Turkmenistan",
+		"value": "TM"
+	}, {
+		"description": "TR-Turkey",
+		"name": "TR-Turkey",
+		"value": "TR"
+	}, {
+		"description": "TV-Tuvalu",
+		"name": "TV-Tuvalu",
+		"value": "TV"
+	}, {
+		"description": "UG-Uganda",
+		"name": "UG-Uganda",
+		"value": "UG"
+	}, {
+		"description": "UY-Uruguay",
+		"name": "UY-Uruguay",
+		"value": "UY"
+	}, {
+		"description": "VG-British Virgin Islands",
+		"name": "VG-British Virgin Islands",
+		"value": "VG"
+	}, {
+		"description": "YE-Yemen",
+		"name": "YE-Yemen",
+		"value": "YE"
+	}, {
+		"description": "MI-Midway Islands",
+		"name": "MI-Midway Islands",
+		"value": "MI"
+	}, {
+		"description": "SH-Saint Helena",
+		"name": "SH-Saint Helena",
+		"value": "SH"
+	}, {
+		"description": "MK-The former Yugoslav Rep. Macedonia",
+		"name": "MK-The former Yugoslav Rep. Macedonia",
+		"value": "MK"
+	}, {
+		"description": "KP-Korea Democratic North",
+		"name": "KP-Korea Democratic North",
+		"value": "KP"
+	}, {
+		"description": "VA-Holy See (Vatican)",
+		"name": "VA-Holy See (Vatican)",
+		"value": "VA"
+	}, {
+		"description": "JT-Johnston Island",
+		"name": "JT-Johnston Island",
+		"value": "JT"
+	}, {
+		"description": "FI-Finland",
+		"name": "FI-Finland",
+		"value": "FI"
+	}, {
+		"description": "IT-Italy",
+		"name": "IT-Italy",
+		"value": "IT"
+	}, {
+		"description": "RO-Romania",
+		"name": "RO-Romania",
+		"value": "RO"
+	}, {
+		"description": "LA-Lao People's Democratic Republic",
+		"name": "LA-Lao People's Democratic Republic",
+		"value": "LA"
+	}, {
+		"description": "LB-Lebanon",
+		"name": "LB-Lebanon",
+		"value": "LB"
+	}, {
+		"description": "LC-Saint Lucia",
+		"name": "LC-Saint Lucia",
+		"value": "LC"
+	}, {
+		"description": "LK-Sri Lanka",
+		"name": "LK-Sri Lanka",
+		"value": "LK"
+	}, {
+		"description": "LR-Liberia",
+		"name": "LR-Liberia",
+		"value": "LR"
+	}, {
+		"description": "LS-Lesotho",
+		"name": "LS-Lesotho",
+		"value": "LS"
+	}, {
+		"description": "LU-Luxembourg",
+		"name": "LU-Luxembourg",
+		"value": "LU"
+	}, {
+		"description": "NA-Namibia",
+		"name": "NA-Namibia",
+		"value": "NA"
+	}, {
+		"description": "DJ-Djibouti",
+		"name": "DJ-Djibouti",
+		"value": "DJ"
+	}, {
+		"description": "DE-Germany",
+		"name": "DE-Germany",
+		"value": "DE"
+	}, {
+		"description": "ZR-Democratic Republic of Congo",
+		"name": "ZR-Democratic Republic of Congo",
+		"value": "ZR"
+	}, {
+		"description": "KR-Korea, Republic of",
+		"name": "KR-Korea, Republic of",
+		"value": "KR"
+	}, {
+		"description": "AF-Afghanistan",
+		"name": "AF-Afghanistan",
+		"value": "AF"
+	}, {
+		"description": "AG-Antigua and Barbuda",
+		"name": "AG-Antigua and Barbuda",
+		"value": "AG"
+	}, {
+		"description": "AI-Anguilla",
+		"name": "AI-Anguilla",
+		"value": "AI"
+	}, {
+		"description": "AL-Albania",
+		"name": "AL-Albania",
+		"value": "AL"
+	}, {
+		"description": "AM-Armenia",
+		"name": "AM-Armenia",
+		"value": "AM"
+	}, {
+		"description": "AO-Angola",
+		"name": "AO-Angola",
+		"value": "AO"
+	}, {
+		"description": "AQ-Antarctica",
+		"name": "AQ-Antarctica",
+		"value": "AQ"
+	}, {
+		"description": "AR-Argentina",
+		"name": "AR-Argentina",
+		"value": "AR"
+	}, {
+		"description": "AS-American Samoa",
+		"name": "AS-American Samoa",
+		"value": "AS"
+	}, {
+		"description": "AU-Australia",
+		"name": "AU-Australia",
+		"value": "AU"
+	}, {
+		"description": "AW-Aruba",
+		"name": "AW-Aruba",
+		"value": "AW"
+	}, {
+		"description": "BB-Barbados",
+		"name": "BB-Barbados",
+		"value": "BB"
+	}, {
+		"description": "BD-Bangladesh",
+		"name": "BD-Bangladesh",
+		"value": "BD"
+	}, {
+		"description": "BF-Burkina Faso",
+		"name": "BF-Burkina Faso",
+		"value": "BF"
+	}, {
+		"description": "BH-Bahrain",
+		"name": "BH-Bahrain",
+		"value": "BH"
+	}, {
+		"description": "BJ-Benin",
+		"name": "BJ-Benin",
+		"value": "BJ"
+	}, {
+		"description": "BN-Brunei Darussalam",
+		"name": "BN-Brunei Darussalam",
+		"value": "BN"
+	}, {
+		"description": "BO-Bolivia",
+		"name": "BO-Bolivia",
+		"value": "BO"
+	}, {
+		"description": "BS-Bahamas",
+		"name": "BS-Bahamas",
+		"value": "BS"
+	}, {
+		"description": "BV-Bouvet Island",
+		"name": "BV-Bouvet Island",
+		"value": "BV"
+	}, {
+		"description": "BW-Botswana",
+		"name": "BW-Botswana",
+		"value": "BW"
+	}, {
+		"description": "BZ-Belize",
+		"name": "BZ-Belize",
+		"value": "BZ"
+	}, {
+		"description": "CC-Cocos (Keeling) Islands",
+		"name": "CC-Cocos (Keeling) Islands",
+		"value": "CC"
+	}, {
+		"description": "CF-Central African Republic",
+		"name": "CF-Central African Republic",
+		"value": "CF"
+	}, {
+		"description": "CI-Cote d'Ivoire",
+		"name": "CI-Cote d'Ivoire",
+		"value": "CI"
+	}, {
+		"description": "CK-Cook Islands",
+		"name": "CK-Cook Islands",
+		"value": "CK"
+	}, {
+		"description": "CL-Chile",
+		"name": "CL-Chile",
+		"value": "CL"
+	}, {
+		"description": "CM-Cameroon",
+		"name": "CM-Cameroon",
+		"value": "CM"
+	}, {
+		"description": "CO-Colombia",
+		"name": "CO-Colombia",
+		"value": "CO"
+	}, {
+		"description": "CU-Cuba",
+		"name": "CU-Cuba",
+		"value": "CU"
+	}, {
+		"description": "CV-Cape Verde",
+		"name": "CV-Cape Verde",
+		"value": "CV"
+	}, {
+		"description": "CZ-Czech Republic",
+		"name": "CZ-Czech Republic",
+		"value": "CZ"
+	}, {
+		"description": "DM-Dominica",
+		"name": "DM-Dominica",
+		"value": "DM"
+	}, {
+		"description": "DO-Dominican Republic",
+		"name": "DO-Dominican Republic",
+		"value": "DO"
+	}, {
+		"description": "EC-Ecuador",
+		"name": "EC-Ecuador",
+		"value": "EC"
+	}, {
+		"description": "EE-Estonia",
+		"name": "EE-Estonia",
+		"value": "EE"
+	}, {
+		"description": "ET-Ethiopia",
+		"name": "ET-Ethiopia",
+		"value": "ET"
+	}, {
+		"description": "FJ-Fiji",
+		"name": "FJ-Fiji",
+		"value": "FJ"
+	}, {
+		"description": "FK-Falkland Islands (Malvinas)",
+		"name": "FK-Falkland Islands (Malvinas)",
+		"value": "FK"
+	}, {
+		"description": "GA-Gabon",
+		"name": "GA-Gabon",
+		"value": "GA"
+	}, {
+		"description": "GD-Grenada",
+		"name": "GD-Grenada",
+		"value": "GD"
+	}, {
+		"description": "GF-French Guiana",
+		"name": "GF-French Guiana",
+		"value": "GF"
+	}, {
+		"description": "GH-Ghana",
+		"name": "GH-Ghana",
+		"value": "GH"
+	}, {
+		"description": "GL-Greenland",
+		"name": "GL-Greenland",
+		"value": "GL"
+	}, {
+		"description": "GM-Gambia",
+		"name": "GM-Gambia",
+		"value": "GM"
+	}, {
+		"description": "GP-Guadeloupe",
+		"name": "GP-Guadeloupe",
+		"value": "GP"
+	}, {
+		"description": "GQ-Equatorial Guinea",
+		"name": "GQ-Equatorial Guinea",
+		"value": "GQ"
+	}, {
+		"description": "GT-Guatemala",
+		"name": "GT-Guatemala",
+		"value": "GT"
+	}, {
+		"description": "GW-Guinea-Bissau",
+		"name": "GW-Guinea-Bissau",
+		"value": "GW"
+	}, {
+		"description": "HK-Hong Kong(China)",
+		"name": "HK-Hong Kong(China)",
+		"value": "HK"
+	}, {
+		"description": "HN-Honduras",
+		"name": "HN-Honduras",
+		"value": "HN"
+	}, {
+		"description": "HT-Haiti",
+		"name": "HT-Haiti",
+		"value": "HT"
+	}, {
+		"description": "IE-Ireland",
+		"name": "IE-Ireland",
+		"value": "IE"
+	}, {
+		"description": "IL-Israel",
+		"name": "IL-Israel",
+		"value": "IL"
+	}, {
+		"description": "IQ-Iraq",
+		"name": "IQ-Iraq",
+		"value": "IQ"
+	}, {
+		"description": "IS-Iceland",
+		"name": "IS-Iceland",
+		"value": "IS"
+	}, {
+		"description": "JM-Jamaica",
+		"name": "JM-Jamaica",
+		"value": "JM"
+	}, {
+		"description": "JO-Jordan",
+		"name": "JO-Jordan",
+		"value": "JO"
+	}, {
+		"description": "KE-Kenya",
+		"name": "KE-Kenya",
+		"value": "KE"
+	}, {
+		"description": "KG-Kyrgyzstan",
+		"name": "KG-Kyrgyzstan",
+		"value": "KG"
+	}, {
+		"description": "KI-Kiribati",
+		"name": "KI-Kiribati",
+		"value": "KI"
+	}, {
+		"description": "KM-Comoros",
+		"name": "KM-Comoros",
+		"value": "KM"
+	}, {
+		"description": "KW-Kuwait",
+		"name": "KW-Kuwait",
+		"value": "KW"
+	}, {
+		"description": "LV-Latvia",
+		"name": "LV-Latvia",
+		"value": "LV"
+	}, {
+		"description": "MC-Monaco",
+		"name": "MC-Monaco",
+		"value": "MC"
+	}, {
+		"description": "MH-Marshall Islands",
+		"name": "MH-Marshall Islands",
+		"value": "MH"
+	}, {
+		"description": "ML-Mali",
+		"name": "ML-Mali",
+		"value": "ML"
+	}, {
+		"description": "MO-Macau(China)",
+		"name": "MO-Macau(China)",
+		"value": "MO"
+	}, {
+		"description": "MQ-Martinique",
+		"name": "MQ-Martinique",
+		"value": "MQ"
+	}, {
+		"description": "MS-Montserrat",
+		"name": "MS-Montserrat",
+		"value": "MS"
+	}, {
+		"description": "MT-Malta",
+		"name": "MT-Malta",
+		"value": "MT"
+	}, {
+		"description": "MV-Maldives",
+		"name": "MV-Maldives",
+		"value": "MV"
+	}, {
+		"description": "MW-Malawi",
+		"name": "MW-Malawi",
+		"value": "MW"
+	}, {
+		"description": "MY-Malaysia",
+		"name": "MY-Malaysia",
+		"value": "MY"
+	}, {
+		"description": "MZ-Mozambique",
+		"name": "MZ-Mozambique",
+		"value": "MZ"
+	}, {
+		"description": "NE-Niger",
+		"name": "NE-Niger",
+		"value": "NE"
+	}, {
+		"description": "NF-Norfolk Island",
+		"name": "NF-Norfolk Island",
+		"value": "NF"
+	}, {
+		"description": "NG-Nigeria",
+		"name": "NG-Nigeria",
+		"value": "NG"
+	}, {
+		"description": "NL-Netherlands",
+		"name": "NL-Netherlands",
+		"value": "NL"
+	}, {
+		"description": "NO-Norway",
+		"name": "NO-Norway",
+		"value": "NO"
+	}, {
+		"description": "NR-Nauru",
+		"name": "NR-Nauru",
+		"value": "NR"
+	}, {
+		"description": "NZ-New Zealand",
+		"name": "NZ-New Zealand",
+		"value": "NZ"
+	}, {
+		"description": "PA-Panama",
+		"name": "PA-Panama",
+		"value": "PA"
+	}, {
+		"description": "PF-French Polynesia",
+		"name": "PF-French Polynesia",
+		"value": "PF"
+	}, {
+		"description": "PH-Philippines",
+		"name": "PH-Philippines",
+		"value": "PH"
+	}, {
+		"description": "PK-Pakistan",
+		"name": "PK-Pakistan",
+		"value": "PK"
+	}, {
+		"description": "PL-Poland",
+		"name": "PL-Poland",
+		"value": "PL"
+	}, {
+		"description": "PT-Portugal",
+		"name": "PT-Portugal",
+		"value": "PT"
+	}, {
+		"description": "PW-Palau",
+		"name": "PW-Palau",
+		"value": "PW"
+	}, {
+		"description": "PY-Paraguay",
+		"name": "PY-Paraguay",
+		"value": "PY"
+	}, {
+		"description": "RE-Reunion",
+		"name": "RE-Reunion",
+		"value": "RE"
+	}, {
+		"description": "RW-Rwanda",
+		"name": "RW-Rwanda",
+		"value": "RW"
+	}, {
+		"description": "SA-Saudi Arabia",
+		"name": "SA-Saudi Arabia",
+		"value": "SA"
+	}, {
+		"description": "SB-Solomon Islands",
+		"name": "SB-Solomon Islands",
+		"value": "SB"
+	}, {
+		"description": "SD-Sudan",
+		"name": "SD-Sudan",
+		"value": "SD"
+	}, {
+		"description": "SE-Sweden",
+		"name": "SE-Sweden",
+		"value": "SE"
+	}, {
+		"description": "SI-Slovenia",
+		"name": "SI-Slovenia",
+		"value": "SI"
+	}, {
+		"description": "SL-Sierra Leone",
+		"name": "SL-Sierra Leone",
+		"value": "SL"
+	}, {
+		"description": "SO-Somalia",
+		"name": "SO-Somalia",
+		"value": "SO"
+	}, {
+		"description": "SR-Suriname",
+		"name": "SR-Suriname",
+		"value": "SR"
+	}, {
+		"description": "SV-El Salvador",
+		"name": "SV-El Salvador",
+		"value": "SV"
+	}, {
+		"description": "SY-Syrian Arab Republic",
+		"name": "SY-Syrian Arab Republic",
+		"value": "SY"
+	}, {
+		"description": "SZ-Swaziland",
+		"name": "SZ-Swaziland",
+		"value": "SZ"
+	}, {
+		"description": "TC-Turks and Caicos Islands",
+		"name": "TC-Turks and Caicos Islands",
+		"value": "TC"
+	}, {
+		"description": "TG-Togo",
+		"name": "TG-Togo",
+		"value": "TG"
+	}, {
+		"description": "TJ-Tajikistan",
+		"name": "TJ-Tajikistan",
+		"value": "TJ"
+	}, {
+		"description": "TK-Tokelau",
+		"name": "TK-Tokelau",
+		"value": "TK"
+	}, {
+		"description": "TN-Tunisia",
+		"name": "TN-Tunisia",
+		"value": "TN"
+	}, {
+		"description": "TO-Tonga",
+		"name": "TO-Tonga",
+		"value": "TO"
+	}, {
+		"description": "TP-East Timor",
+		"name": "TP-East Timor",
+		"value": "TP"
+	}, {
+		"description": "TT-Trinidad and Tobago",
+		"name": "TT-Trinidad and Tobago",
+		"value": "TT"
+	}, {
+		"description": "TW-Taiwan, Province of China",
+		"name": "TW-Taiwan, Province of China",
+		"value": "TW"
+	}, {
+		"description": "UA-Ukraine",
+		"name": "UA-Ukraine",
+		"value": "UA"
+	}, {
+		"description": "US-United States",
+		"name": "US-United States",
+		"value": "US"
+	}, {
+		"description": "UZ-Uzbekistan",
+		"name": "UZ-Uzbekistan",
+		"value": "UZ"
+	}, {
+		"description": "VE-Venezuela",
+		"name": "VE-Venezuela",
+		"value": "VE"
+	}, {
+		"description": "VN-Viet Nam",
+		"name": "VN-Viet Nam",
+		"value": "VN"
+	}, {
+		"description": "VU-Vanuatu",
+		"name": "VU-Vanuatu",
+		"value": "VU"
+	}, {
+		"description": "WF-Wallis and Futuna Islands",
+		"name": "WF-Wallis and Futuna Islands",
+		"value": "WF"
+	}, {
+		"description": "WS-Samoa",
+		"name": "WS-Samoa",
+		"value": "WS"
+	}, {
+		"description": "ZA-South Africa",
+		"name": "ZA-South Africa",
+		"value": "ZA"
+	}, {
+		"description": "MM-Myanmar",
+		"name": "MM-Myanmar",
+		"value": "MM"
+	}, {
+		"description": "MP-Northern Mariana Islands",
+		"name": "MP-Northern Mariana Islands",
+		"value": "MP"
+	}, {
+		"description": "MD-Republic of Moldova",
+		"name": "MD-Republic of Moldova",
+		"value": "MD"
+	}, {
+		"description": "KN-Saint Kitts and Nevis",
+		"name": "KN-Saint Kitts and Nevis",
+		"value": "KN"
+	}, {
+		"description": "PM-Saint Pierre and Miquelon",
+		"name": "PM-Saint Pierre and Miquelon",
+		"value": "PM"
+	}, {
+		"description": "VC-Saint Vincent and the Grenadines",
+		"name": "VC-Saint Vincent and the Grenadines",
+		"value": "VC"
+	}, {
+		"description": "TZ-United Republic of Tanzania",
+		"name": "TZ-United Republic of Tanzania",
+		"value": "TZ"
+	}, {
+		"description": "WK-Wake Island",
+		"name": "WK-Wake Island",
+		"value": "WK"
+	}, {
+		"description": "FM-Micronesia, Federated States of",
+		"name": "FM-Micronesia, Federated States of",
+		"value": "FM"
+	}, {
+		"description": "ZW-Zimbabwe",
+		"name": "ZW-Zimbabwe",
+		"value": "ZW"
+	}, {
+		"description": "AD-Andorra",
+		"name": "AD-Andorra",
+		"value": "AD"
+	}, {
+		"description": "BA-Bosnia and Herzegovina",
+		"name": "BA-Bosnia and Herzegovina",
+		"value": "BA"
+	}, {
+		"description": "IO-British Indian Ocean Territory",
+		"name": "IO-British Indian Ocean Territory",
+		"value": "IO"
+	}, {
+		"description": "IM-Isle of Man",
+		"name": "IM-Isle of Man",
+		"value": "IM"
+	}, {
+		"description": "SN-Senegal",
+		"name": "SN-Senegal",
+		"value": "SN"
+	}, {
+		"description": "CH-Switzerland",
+		"name": "CH-Switzerland",
+		"value": "CH"
+	}, {
+		"description": "ES-Spain",
+		"name": "ES-Spain",
+		"value": "ES"
+	}, {
+		"description": "FR-France",
+		"name": "FR-France",
+		"value": "FR"
+	}, {
+		"description": "GB-United Kingdom",
+		"name": "GB-United Kingdom",
+		"value": "GB"
+	}, {
+		"description": "SK-Slovakia",
+		"name": "SK-Slovakia",
+		"value": "SK"
+	}, {
+		"description": "HU-Hungary",
+		"name": "HU-Hungary",
+		"value": "HU"
+	}, {
+		"description": "ZM-Zambia",
+		"name": "ZM-Zambia",
+		"value": "ZM"
+	}, {
+		"description": "BI-Burundi",
+		"name": "BI-Burundi",
+		"value": "BI"
+	}, {
+		"description": "EG-Egypt",
+		"name": "EG-Egypt",
+		"value": "EG"
+	}, {
+		"description": "ER-Eritrea",
+		"name": "ER-Eritrea",
+		"value": "ER"
+	}, {
+		"description": "YU-Yugoslavia",
+		"name": "YU-Yugoslavia",
+		"value": "YU"
+	}, {
+		"description": "RS-Serbia",
+		"name": "RS-Serbia",
+		"value": "RS"
+	}, {
+		"description": "TF-French Southern Territories",
+		"name": "TF-French Southern Territories",
+		"value": "TF"
+	}, {
+		"description": "VI-United States Virgin Islands",
+		"name": "VI-United States Virgin Islands",
+		"value": "VI"
+	}, {
+		"description": "PN-Pitcairn",
+		"name": "PN-Pitcairn",
+		"value": "PN"
+	}],
+	"creditNoteMaximumInvoicingDays": [{
+		"name": "Credit Node Maximum Invoicing days",
+		"value": "366"
+	}],
+	"creditNoteValuePercentLimit": [{
+		"name": "credit Note Value Percent Limit",
+		"value": "0.6"
+	}],
+	"currencyType": [{
+		"description": "krone, kroner, ore, ore",
+		"name": "DKK",
+		"value": "112"
+	}, {
+		"description": "franc,francs,centime,centimes",
+		"name": "RWF",
+		"value": "109"
+	}, {
+		"description": "yen,yen,cen,cen",
+		"name": "JPY",
+		"value": "105"
+	}, {
+		"description": "yuan,yuan,fen,fen",
+		"name": "CNY",
+		"value": "106"
+	}, {
+		"description": "rand,rands,cent,cents",
+		"name": "ZAR",
+		"value": "107"
+	}, {
+		"description": "shilling,shillings,cent,cents",
+		"name": "TZS",
+		"value": "110"
+	}, {
+		"description": "shilling,shillings,cent,cents",
+		"name": "KES",
+		"value": "108"
+	}, {
+		"description": "pound,pounds,penny,pence",
+		"name": "GBP",
+		"value": "103"
+	}, {
+		"description": "euro,euros,cent,cents",
+		"name": "EUR",
+		"value": "104"
+	}, {
+		"description": "dollar,dollars,cent,cents",
+		"name": "USD",
+		"value": "102"
+	}, {
+		"description": "shilling,shillings,cent,cents",
+		"name": "UGX",
+		"value": "101"
+	}],
+	"exportRateUnit": [{
+		"name": "TY-Tank, cylindrical",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "TY"
+	}, {
+		"name": "TZ-Tubes, in bundle/bunch/truss",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "TZ"
+	}, {
+		"name": "UC-Uncaged",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "UC"
+	}, {
+		"name": "UN-Unit",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "UN"
+	}, {
+		"name": "VA-Vat",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "VA"
+	}, {
+		"name": "VEH-Vehicle",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "VEH"
+	}, {
+		"name": "VG-Bulk",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "VG"
+	}, {
+		"name": "VI-Vial",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "VI"
+	}, {
+		"name": "VK-Vanpack",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "VK"
+	}, {
+		"name": "VL-Bulk, liquid",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "VL"
+	}, {
+		"name": "VN-Vehicle",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "VN"
+	}, {
+		"name": "VO-Bulk,solid,large particles(nodules)",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "VO"
+	}, {
+		"name": "VP-Vacuum-packed",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "VP"
+	}, {
+		"name": "VQ-Bulk,liquefied gas(abnormal temp/pr",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "VQ"
+	}, {
+		"name": "VR-Bulk, solid, granular particles",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "VR"
+	}, {
+		"name": "VS-Bulk",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "VS"
+	}, {
+		"name": "VY-Bulk, solid, fine particles(powder)",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "VY"
+	}, {
+		"name": "WA-Intermediate bulk container",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "WA"
+	}, {
+		"name": "WB-Wickerbottle",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "WB"
+	}, {
+		"name": "WC-Intermediate bulk container,steel",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "WC"
+	}, {
+		"name": "WD-Intermediate bulk container,alumini",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "WD"
+	}, {
+		"name": "WF-Intermediate bulk container,metal",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "WF"
+	}, {
+		"name": "WG-Intermediate bulk cont,steel,pressu",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "WG"
+	}, {
+		"name": "WH-Inter bulk container,alumin,pressur",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "WH"
+	}, {
+		"name": "WJ-Inter bulk container,metal,pressure",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "WJ"
+	}, {
+		"name": "WK-Interme bulk container,steel,liquid",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "WK"
+	}, {
+		"name": "WL-Inter bulk container,alumin liquid",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "WL"
+	}, {
+		"name": "WM-Interm bulk container,metal,liquid",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "WM"
+	}, {
+		"name": "WN-Int bulk cont,woven plastic,no coat",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "WN"
+	}, {
+		"name": "WP-Inter bulk cont,woven plastic,coate",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "WP"
+	}, {
+		"name": "WQ-Inter bulk cont,woven plastic,liner",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "WQ"
+	}, {
+		"name": "WR-Inter bulk cont,woven plastic,coate",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "WR"
+	}, {
+		"name": "WS-Interm bulk container, plastic film",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "WS"
+	}, {
+		"name": "WT-Inter bulk cont,textile no coat/lin",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "WT"
+	}, {
+		"name": "WU-Inter bulk cont,natural wood,liner",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "WU"
+	}, {
+		"name": "WV-Inter bulk contain, textile, coated",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "WV"
+	}, {
+		"name": "WW-Inter bulk conta,textile,with liner",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "WW"
+	}, {
+		"name": "WX-Inter bulk cont,textile,coated/line",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "WX"
+	}, {
+		"name": "WY-Inter bulk cont,plywood,inner liner",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "WY"
+	}, {
+		"name": "WZ-Interm bulk conta,reconsituted wood",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "WZ"
+	}, {
+		"name": "XA-Bag,woven plastic,without inner coa",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "XA"
+	}, {
+		"name": "XB-Bag,woven plastic, sift proof",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "XB"
+	}, {
+		"name": "XC-Bag, woven plastic, water resistant",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "XC"
+	}, {
+		"name": "XD-Bag, plastics film",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "XD"
+	}, {
+		"name": "XF-Bag, textile,without inner coat/lin",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "XF"
+	}, {
+		"name": "XG-Bag, textile, sift proof",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "XG"
+	}, {
+		"name": "XH-Bag, textile, water resistant",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "XH"
+	}, {
+		"name": "XJ-Bag, paper, multi-wall",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "XJ"
+	}, {
+		"name": "XK-Bag,paper,multi-wall,water resistan",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "XK"
+	}, {
+		"name": "XX-SCT UN-IDENTIFIED",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "XX"
+	}, {
+		"name": "YA-Composte pack,plast recp steel drum",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "YA"
+	}, {
+		"name": "YB-Composte pack,plast recp steel crat",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "YB"
+	}, {
+		"name": "YC-Composte pack,plast recp alumi drum",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "YC"
+	}, {
+		"name": "YD-Composte pack,plast recp alum crate",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "YD"
+	}, {
+		"name": "YF-Composte pack,plast recp wooden box",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "YF"
+	}, {
+		"name": "YG-Composte pack,plast recp plywo drum",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "YG"
+	}, {
+		"name": "YH-Composte pack,plast recp plywo box",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "YH"
+	}, {
+		"name": "YJ-Composte pack,plast recp fibre drum",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "YJ"
+	}, {
+		"name": "YK-Composte pack,plast recp fibreb box",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "YK"
+	}, {
+		"name": "YL-Composte pack,plast recp plast drum",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "YL"
+	}, {
+		"name": "YM-Composte pack,plast recp plastc box",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "YM"
+	}, {
+		"name": "YN-Composte pack,glass recp steel drum",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "YN"
+	}, {
+		"name": "APZ-Ounce gb, us (31,10348 g)",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "APZ"
+	}, {
+		"name": "ASM-Alcoholic strength by mass",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "ASM"
+	}, {
+		"name": "ASV-Alcoholic strength by volume",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "ASV"
+	}, {
+		"name": "BFT-Board foot",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "BFT"
+	}, {
+		"name": "KGM-Kilogram",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "KGM"
+	}, {
+		"name": "KNI-Kilogram of nitrogen",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "KNI"
+	}, {
+		"name": "KNS-Kilogram of named substance",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "KNS"
+	}, {
+		"name": "KPH-Kilogram of caustic potash",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "KPH"
+	}, {
+		"name": "KPO-Kilogram of potassium oxide",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "KPO"
+	}, {
+		"name": "AGE-YEAR OF MANUFACTURE",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "AGE"
+	}, {
+		"name": "CCP-ENGINE CAPACITY(c.c)",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "CCP"
+	}, {
+		"name": "BHX-Hundred boxes",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "BHX"
+	}, {
+		"name": "BLD-Dry barrel (115,627 dm3)",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "BLD"
+	}, {
+		"name": "BLL-Barrel (petroleum) (158,987 dm3)",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "BLL"
+	}, {
+		"name": "BUA-Bushel (35,2391 dm3)",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "BUA"
+	}, {
+		"name": "BUI-Bushel (36,36874 dm3)",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "BUI"
+	}, {
+		"name": "CEN-Hundred",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "CEN"
+	}, {
+		"name": "CGM-Centigram",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "CGM"
+	}, {
+		"name": "CLF-Hundred leaves",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "CLF"
+	}, {
+		"name": "VEH-Vehicle",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "VEH"
+	}, {
+		"name": "CLT-Centilitre",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "CLT"
+	}, {
+		"name": "CMK-Square centimetre",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "CMK"
+	}, {
+		"name": "CMQ-Cubic centimetre",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "CMQ"
+	}, {
+		"name": "CMT-Centimetre",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "CMT"
+	}, {
+		"name": "CNP-Hundred packs",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "CNP"
+	}, {
+		"name": "CNT-Cental gb (45,359237 kg)",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "CNT"
+	}, {
+		"name": "CTM-Metric carat (200 mg = 2.10-4 kg)",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "CTM"
+	}, {
+		"name": "CWA-Hundredweight us (45,3592 kg)",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "CWA"
+	}, {
+		"name": "CWI-Hundredweight gb (50,802345 kg)",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "CWI"
+	}, {
+		"name": "DLT-Decilitre",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "DLT"
+	}, {
+		"name": "DMK-Square decimetre",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "DMK"
+	}, {
+		"name": "DMQ-Cubic decimetre",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "DMQ"
+	}, {
+		"name": "DMT-Decimetre",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "DMT"
+	}, {
+		"name": "DPC-Dozen pieces",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "DPC"
+	}, {
+		"name": "DPR-Dozen pairs",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "DPR"
+	}, {
+		"name": "DRA-Dram us (3,887935 g)",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "DRA"
+	}, {
+		"name": "DRI-Dram gb (l,771745 g)",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "DRI"
+	}, {
+		"name": "DRL-Dozen rolls",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "DRL"
+	}, {
+		"name": "DRM-Drachm gb (3,887935 g)",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "DRM"
+	}, {
+		"name": "DTH-Hectokilogram",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "DTH"
+	}, {
+		"name": "DTN-Centner, metric (100 kg)",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "DTN"
+	}, {
+		"name": "DWT-Pennyweight gb, us (1,555174 g)",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "DWT"
+	}, {
+		"name": "DZN-Dozen",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "DZN"
+	}, {
+		"name": "DZP-Dozen packs",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "DZP"
+	}, {
+		"name": "FOT-Foot (0,3048 m)",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "FOT"
+	}, {
+		"name": "FTK-Square foot",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "FTK"
+	}, {
+		"name": "FTQ-Cubic foot",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "FTQ"
+	}, {
+		"name": "GGR-Great gross (12 gross)",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "GGR"
+	}, {
+		"name": "GIA-Gill (11,8294 cm3)",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "GIA"
+	}, {
+		"name": "GII-Gill (0,142065 dm3)",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "GII"
+	}, {
+		"name": "GLD-Dry gallon (4,404884 dm3)",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "GLD"
+	}, {
+		"name": "GLI-Gallon (4,546092 dm3)",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "GLI"
+	}, {
+		"name": "GLL-Liquid gallon (3,7854l dm3)",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "GLL"
+	}, {
+		"name": "GRM-Gram",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "GRM"
+	}, {
+		"name": "GRN-Grain gb, us (64,798910 mg)",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "GRN"
+	}, {
+		"name": "GRO-Gross",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "GRO"
+	}, {
+		"name": "GRT-Gross [register] ton",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "GRT"
+	}, {
+		"name": "HGM-Hectogram",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "HGM"
+	}, {
+		"name": "HIU-Hundred international units",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "HIU"
+	}, {
+		"name": "HLT-Hectolitre",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "HLT"
+	}, {
+		"name": "HPA-Hectolitre of pure alcohol",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "HPA"
+	}, {
+		"name": "INH-Inch (25,4 mm)",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "INH"
+	}, {
+		"name": "INK-Square inch",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "INK"
+	}, {
+		"name": "INQ-Cubic inch",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "INQ"
+	}, {
+		"name": "KPP-Kilogram of phosphoric anhydride",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "KPP"
+	}, {
+		"name": "KSD-Kilogram of substance 90 % dry",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "KSD"
+	}, {
+		"name": "KSH-Kilogram of caustic soda",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "KSH"
+	}, {
+		"name": "KUR-Kilogram of uranium",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "KUR"
+	}, {
+		"name": "LBR-Pound gb, us (0,45359237 kg)",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "LBR"
+	}, {
+		"name": "LBT-Troy pound, us (373,242 g)",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "LBT"
+	}, {
+		"name": "LEF-Leaf",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "LEF"
+	}, {
+		"name": "LPA-Litre of pure alcohol",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "LPA"
+	}, {
+		"name": "LTN-Long ton gb, us (1,0160469 t)",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "LTN"
+	}, {
+		"name": "LTR-Litre (1 dm3)",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "LTR"
+	}, {
+		"name": "MAL-Megalitre",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "MAL"
+	}, {
+		"name": "MAM-Megametre",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "MAM"
+	}, {
+		"name": "MBF-Thousand board feet (2,36 m3)",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "MBF"
+	}, {
+		"name": "MGM-Milligram",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "MGM"
+	}, {
+		"name": "MIL-Thousand",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "MIL"
+	}, {
+		"name": "MTK-Square metre",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "MTK"
+	}, {
+		"name": "MTQ-Cubic metre",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "MTQ"
+	}, {
+		"name": "MTR-Metre",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "MTR"
+	}, {
+		"name": "NAR-Number of articles",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "NAR"
+	}, {
+		"name": "NBB-Number of bobbins",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "NBB"
+	}, {
+		"name": "NIU-Number of international units",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "NIU"
+	}, {
+		"name": "NMB-Number",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "NMB"
+	}, {
+		"name": "NMP-Number of packs",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "NMP"
+	}, {
+		"name": "NPL-Number of parcels",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "NPL"
+	}, {
+		"name": "NPR-Number of pairs",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "NPR"
+	}, {
+		"name": "NPT-Number of parts",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "NPT"
+	}, {
+		"name": "NRL-Number of rolls",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "NRL"
+	}, {
+		"name": "NTT-Net [register] ton",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "NTT"
+	}, {
+		"name": "ONZ-Ounce gb, us (28,349523 g)",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "ONZ"
+	}, {
+		"name": "OZA-Fluid ounce (29,5735 cm3)",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "OZA"
+	}, {
+		"name": "OZI-Fluid ounce (28,4l3 cm3)",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "OZI"
+	}, {
+		"name": "PCE-Piece",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "PCE"
+	}, {
+		"name": "PGL-Proof gallon",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "PGL"
+	}, {
+		"name": "PTD-Dry pint (0,55061 dm3)",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "PTD"
+	}, {
+		"name": "PTI-Pint (0,568262 dm3)",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "PTI"
+	}, {
+		"name": "PTL-Liquid pint (0,473l76 dm3)",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "PTL"
+	}, {
+		"name": "QTD-Dry quart (1,101221 dm3)",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "QTD"
+	}, {
+		"name": "QTI-Quart (1,136523 dm3)",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "QTI"
+	}, {
+		"name": "QTL-Liquid quart (0,946353 dm3)",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "QTL"
+	}, {
+		"name": "SET-Set",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "SET"
+	}, {
+		"name": "SHT-Shipping ton",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "SHT"
+	}, {
+		"name": "STI-Stone gb (6,350293 kg)",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "STI"
+	}, {
+		"name": "STN-Short ton gb, us (0,90718474 t)",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "STN"
+	}, {
+		"name": "TNE-Metric ton (1000 kg)",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "TNE"
+	}, {
+		"name": "TPR-Ten pairs",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "TPR"
+	}, {
+		"name": "TSD-Tonne of substance 90 per cent dry",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "TSD"
+	}, {
+		"name": "WCD-Cord  3-63 m3",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "WCD"
+	}, {
+		"name": "YDK-Square yard",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "YDK"
+	}, {
+		"name": "YDQ-Cubic yard",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "YDQ"
+	}, {
+		"name": "YRD-Yard 0-9144 m",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "YRD"
+	}, {
+		"name": "ZY-Intermediate bulk container",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "ZY"
+	}, {
+		"name": "ZZ-Mutually defined",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "ZZ"
+	}, {
+		"name": "Per quarter",
+		"periodTo": "30/08/2031",
+		"status": "101",
+		"validPeriodFrom": "20/08/2021",
+		"value": "QTR"
+	}, {
+		"name": "YP-Composte pack,glass recp steel crat",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "YP"
+	}, {
+		"name": "YQ-Composte pack,glass recp alumi drum",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "YQ"
+	}, {
+		"name": "YR-Composte pack,glass recp alum crate",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "YR"
+	}, {
+		"name": "YS-Composte pack,glass recp wooden box",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "YS"
+	}, {
+		"name": "YT-Composte pack,glass recp plywo drum",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "YT"
+	}, {
+		"name": "YV-Composte pack,glass recp wicker ham",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "YV"
+	}, {
+		"name": "YW-Composte pack,glass recp fibre drum",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "YW"
+	}, {
+		"name": "YX-Composte pack,glass recp fibreb box",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "YX"
+	}, {
+		"name": "YY-Composte pack,glas rec ex plas pack",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "YY"
+	}, {
+		"name": "YZ-Composte pack,glas rec so plas pack",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "YZ"
+	}, {
+		"name": "ZA-Interm bulk cont, paper, multi-wall",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "ZA"
+	}, {
+		"name": "ZB-Bag, large",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "ZB"
+	}, {
+		"name": "ZC-Inter bulk cont,paper,water resista",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "ZC"
+	}, {
+		"name": "ZD-Int.bulk.cont,plast,struc equip sol",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "ZD"
+	}, {
+		"name": "ZF-Int.bulk.cont,plast,free standing",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "ZF"
+	}, {
+		"name": "ZG-Int.bulk.cont,plast,struc equp pres",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "ZG"
+	}, {
+		"name": "ZH-Int.bulk.cont,plast,freestand,press",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "ZH"
+	}, {
+		"name": "ZJ-Int.bulk.cont,plast,struc equip liq",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "ZJ"
+	}, {
+		"name": "ZK-Int.bulk.cont,plast,freestand,liqui",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "ZK"
+	}, {
+		"name": "ZL-Int.bulk.cont,comp,rigid plast,soli",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "ZL"
+	}, {
+		"name": "ZM-Int.bulk.cont,comp,flexi plast,soli",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "ZM"
+	}, {
+		"name": "ZN-Int.bulk.cont,comp,rigid plast,pres",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "ZN"
+	}, {
+		"name": "ZP-Int.bulk.cont,comp,flex plast,press",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "ZP"
+	}, {
+		"name": "ZQ-Int.bulk.cont,comp,rigid plast,liqu",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "ZQ"
+	}, {
+		"name": "ZR-Int.bulk.cont,comp,flex plast,liqui",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "ZR"
+	}, {
+		"name": "ZS-Intermediate bulk container",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "ZS"
+	}, {
+		"name": "ZT-Intermediate bulk container",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "ZT"
+	}, {
+		"name": "ZU-Intermediate bulk container",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "ZU"
+	}, {
+		"name": "ZV-Intermediate bulk container",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "ZV"
+	}, {
+		"name": "ZW-Intermediate bulk container",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "ZW"
+	}, {
+		"name": "ZX-Intermediate bulk container",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "ZX"
+	}, {
+		"name": "MW",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "MW"
+	}, {
+		"name": "KWh -Kilo Watt Hour",
+		"periodTo": "30/09/2021",
+		"status": "101",
+		"validPeriodFrom": "08/09/2021",
+		"value": "202"
+	}, {
+		"name": "AA-Intermediate bulk container",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "AA"
+	}, {
+		"name": "AB-Receptacle",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "AB"
+	}, {
+		"name": "AC-Receptacle",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "AC"
+	}, {
+		"name": "AD-Receptacle",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "AD"
+	}, {
+		"name": "AE-Aerosol",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "AE"
+	}, {
+		"name": "AF-Pallet",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "AF"
+	}, {
+		"name": "AG-Pallet",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "AG"
+	}, {
+		"name": "AH-Pallet",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "AH"
+	}, {
+		"name": "AI-Clamshell",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "AI"
+	}, {
+		"name": "AJ-Cone",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "AJ"
+	}, {
+		"name": "AL-Ball",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "AL"
+	}, {
+		"name": "AM-Ampoule, non protected",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "AM"
+	}, {
+		"name": "AP-Ampoule, protected",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "AP"
+	}, {
+		"name": "AT-Atomizer",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "AT"
+	}, {
+		"name": "AV-Capsule",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "AV"
+	}, {
+		"name": "BA-Barrel",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "BA"
+	}, {
+		"name": "BB-Bobbin",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "BB"
+	}, {
+		"name": "BC-Bottle crate / bottle rack",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "BC"
+	}, {
+		"name": "BD-Board",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "BD"
+	}, {
+		"name": "BE-Bundle",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "BE"
+	}, {
+		"name": "BF-Ballon, non-protected",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "BF"
+	}, {
+		"name": "BG-Bag",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "BG"
+	}, {
+		"name": "BH-Bunch",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "BH"
+	}, {
+		"name": "BI-Bin",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "BI"
+	}, {
+		"name": "BJ-Bucket",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "BJ"
+	}, {
+		"name": "BK-Basket",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "BK"
+	}, {
+		"name": "BL-Bale, compressed",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "BL"
+	}, {
+		"name": "BM-Basin 5",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "BM"
+	}, {
+		"name": "BN-Bale, non compressed",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "BN"
+	}, {
+		"name": "BO-Bottle, non protected, cylindrical",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "BO"
+	}, {
+		"name": "BP-Ballon, protected",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "BP"
+	}, {
+		"name": "BQ-Bottle, protected cylindrical",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "BQ"
+	}, {
+		"name": "BR-Bar",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "BR"
+	}, {
+		"name": "BS-Bottle, non protected, bulbous",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "BS"
+	}, {
+		"name": "BT-Bolt",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "BT"
+	}, {
+		"name": "BU-Butt",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "BU"
+	}, {
+		"name": "BV-Bottle, protected bulbous",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "BV"
+	}, {
+		"name": "BW-Box, for liquids",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "BW"
+	}, {
+		"name": "BX-Box 21 to",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "BX"
+	}, {
+		"name": "BY-Board, in bundle/bunch/truss",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "BY"
+	}, {
+		"name": "BZ-Bars, in bundle/bunch/truss",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "BZ"
+	}, {
+		"name": "CA-Can, rectangular",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "CA"
+	}, {
+		"name": "CB-Crate, beer",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "CB"
+	}, {
+		"name": "CC-Churn",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "CC"
+	}, {
+		"name": "CD-Can, with handle and spout",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "CD"
+	}, {
+		"name": "CE-Creel",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "CE"
+	}, {
+		"name": "CF-Coffer",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "CF"
+	}, {
+		"name": "CG-Cage",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "CG"
+	}, {
+		"name": "CH-Chest",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "CH"
+	}, {
+		"name": "CI-Canister",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "CI"
+	}, {
+		"name": "CJ-Coffin",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "CJ"
+	}, {
+		"name": "CK-Cask",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "CK"
+	}, {
+		"name": "CL-Coil",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "CL"
+	}, {
+		"name": "CM-Card",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "CM"
+	}, {
+		"name": "CN-Container,nes as transport equipmen",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "CN"
+	}, {
+		"name": "CO-Carboy, non-protected",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "CO"
+	}, {
+		"name": "CP-Carboy, protected",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "CP"
+	}, {
+		"name": "CQ-Cartridge",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "CQ"
+	}, {
+		"name": "CR-Crate",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "CR"
+	}, {
+		"name": "CS-Case",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "CS"
+	}, {
+		"name": "CT-Carton",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "CT"
+	}, {
+		"name": "CU-Cup",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "CU"
+	}, {
+		"name": "CV-Cover",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "CV"
+	}, {
+		"name": "CW-Cage, roll",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "CW"
+	}, {
+		"name": "CX-Can, cylindrical",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "CX"
+	}, {
+		"name": "CY-Cylinder",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "CY"
+	}, {
+		"name": "CZ-Canvas",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "CZ"
+	}, {
+		"name": "DA-Crate, multiple layer, plastic",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "DA"
+	}, {
+		"name": "DB-Crate, multiple layer, wooden",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "DB"
+	}, {
+		"name": "DC-Crate",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "DC"
+	}, {
+		"name": "DG-Cage,commonwealth handlg equip pool",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "DG"
+	}, {
+		"name": "DH-Box,commonwealth handlig equip pool",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "DH"
+	}, {
+		"name": "DI-Drum, iron",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "DI"
+	}, {
+		"name": "DJ-Demijohn, non-protected",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "DJ"
+	}, {
+		"name": "DK-Crate, bulk, cardboard",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "DK"
+	}, {
+		"name": "DL-Crate, bulk, plastic",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "DL"
+	}, {
+		"name": "DM-Crate, bulk, wooden",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "DM"
+	}, {
+		"name": "DN-Dispenser",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "DN"
+	}, {
+		"name": "DP-Demijohn, protected",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "DP"
+	}, {
+		"name": "DR-Drum",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "DR"
+	}, {
+		"name": "DS-Tray, one layer no cover,plastic",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "DS"
+	}, {
+		"name": "DT-Tray, one layer no cover, wooden",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "DT"
+	}, {
+		"name": "DU-Tray, one layer no cover,polystyren",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "DU"
+	}, {
+		"name": "DV-Tray, one layer no cover, cardboard",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "DV"
+	}, {
+		"name": "DW-Tray,two layers no cover,platic tra",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "DW"
+	}, {
+		"name": "DX-Tray, two layers no cover, wooden",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "DX"
+	}, {
+		"name": "DY-Tray, two layers no cover,cardboard",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "DY"
+	}, {
+		"name": "EC-Bag, plastic",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "EC"
+	}, {
+		"name": "ED-Case, with pallet base",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "ED"
+	}, {
+		"name": "EE-Case, with pallet base, wooden",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "EE"
+	}, {
+		"name": "EF-Case, with pallet base, cardboard",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "EF"
+	}, {
+		"name": "EG-Case, with pallet base, plastic",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "EG"
+	}, {
+		"name": "EH-Case, with pallet base, metal",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "EH"
+	}, {
+		"name": "EI-Case, isothermic",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "EI"
+	}, {
+		"name": "EN-Envelope",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "EN"
+	}, {
+		"name": "FB-Flexibag",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "FB"
+	}, {
+		"name": "FC-Crate, friut",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "FC"
+	}, {
+		"name": "FD-Crate, framed",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "FD"
+	}, {
+		"name": "FE-Flexitank",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "FE"
+	}, {
+		"name": "FI-Firkin",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "FI"
+	}, {
+		"name": "FL-Flask",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "FL"
+	}, {
+		"name": "FO-Footlocker",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "FO"
+	}, {
+		"name": "FP-Filmpack",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "FP"
+	}, {
+		"name": "FR-Frame",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "FR"
+	}, {
+		"name": "FT-Foodtainer",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "FT"
+	}, {
+		"name": "FW-Cart",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "FW"
+	}, {
+		"name": "FX-Bag",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "FX"
+	}, {
+		"name": "GB-Bottle, gas",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "GB"
+	}, {
+		"name": "GI-Girder",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "GI"
+	}, {
+		"name": "GL-Container",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "GL"
+	}, {
+		"name": "GR-Receptable, glass",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "GR"
+	}, {
+		"name": "GU-Tray",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "GU"
+	}, {
+		"name": "GY-Bag",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "GY"
+	}, {
+		"name": "GZ-Girders, in bundle/bunch/truss",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "GZ"
+	}, {
+		"name": "HA-Basket, with handle, plastic",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "HA"
+	}, {
+		"name": "HB-Basket, with handle, wooden",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "HB"
+	}, {
+		"name": "HC-Basket, with handle, cardboard",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "HC"
+	}, {
+		"name": "HG-Hogshead",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "HG"
+	}, {
+		"name": "HN-Hanger",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "HN"
+	}, {
+		"name": "HR-Hamper",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "HR"
+	}, {
+		"name": "IA-Package, display, wooden",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "IA"
+	}, {
+		"name": "IB-Package, display, cardboard",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "IB"
+	}, {
+		"name": "IC-Package, display, plastic",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "IC"
+	}, {
+		"name": "ID-Package, display, metal",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "ID"
+	}, {
+		"name": "IE-Package, show",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "IE"
+	}, {
+		"name": "IF-Package, flow",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "IF"
+	}, {
+		"name": "IG-Package, paper wrapped",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "IG"
+	}, {
+		"name": "IH-Drum, plastic",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "IH"
+	}, {
+		"name": "IK-Package",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "IK"
+	}, {
+		"name": "IL-Tray",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "IL"
+	}, {
+		"name": "IN-Ingot",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "IN"
+	}, {
+		"name": "IZ-Ingots, in bundle/bunch/truss",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "IZ"
+	}, {
+		"name": "JB-Bag",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "JB"
+	}, {
+		"name": "JC-Jerrican, rectangular",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "JC"
+	}, {
+		"name": "JG-Jug",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "JG"
+	}, {
+		"name": "JR-Jar",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "JR"
+	}, {
+		"name": "JT-Jute bag",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "JT"
+	}, {
+		"name": "JY-Jerrican, cylindrical",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "JY"
+	}, {
+		"name": "KG-Keg",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "KG"
+	}, {
+		"name": "KI-Kit",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "KI"
+	}, {
+		"name": "LE-Luggage",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "LE"
+	}, {
+		"name": "LG-Log",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "LG"
+	}, {
+		"name": "LT-Lot",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "LT"
+	}, {
+		"name": "LU-Lug",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "LU"
+	}, {
+		"name": "LV-Liftvan",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "LV"
+	}, {
+		"name": "LZ-Logs, in bundle/bunch/truss",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "LZ"
+	}, {
+		"name": "MA-Crate",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "MA"
+	}, {
+		"name": "MB-Bag, multiply",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "MB"
+	}, {
+		"name": "MC-Crate, milk",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "MC"
+	}, {
+		"name": "ME-Container",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "ME"
+	}, {
+		"name": "MR-Receptable, metal",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "MR"
+	}, {
+		"name": "MS-Sack, multi-wall",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "MS"
+	}, {
+		"name": "MT-Mat",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "MT"
+	}, {
+		"name": "MW-Receptable, plastic wrapped",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "MW"
+	}, {
+		"name": "MX-Matchbox",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "MX"
+	}, {
+		"name": "NA-Not available",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "NA"
+	}, {
+		"name": "NE-Unpacked or unpackaged",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "NE"
+	}, {
+		"name": "NF-Unpacked or unpackaged",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "NF"
+	}, {
+		"name": "NG-Unpacked or unpackaged",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "NG"
+	}, {
+		"name": "NS-Nest",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "NS"
+	}, {
+		"name": "NT-Net",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "NT"
+	}, {
+		"name": "NU-Net, tube, plastic",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "NU"
+	}, {
+		"name": "NV-Net, tube, textile",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "NV"
+	}, {
+		"name": "OA-Pallet",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "OA"
+	}, {
+		"name": "OB-Pallet",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "OB"
+	}, {
+		"name": "OC-Pallet",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "OC"
+	}, {
+		"name": "OD-Pallet",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "OD"
+	}, {
+		"name": "OE-Pallet",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "OE"
+	}, {
+		"name": "OF-Platform",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "OF"
+	}, {
+		"name": "OK-Block",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "OK"
+	}, {
+		"name": "OT-Octabin",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "OT"
+	}, {
+		"name": "OU-Container",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "OU"
+	}, {
+		"name": "P2-Pan",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "P2"
+	}, {
+		"name": "PA-Packet",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "PA"
+	}, {
+		"name": "PB-Pallet, box",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "PB"
+	}, {
+		"name": "PC-Parcel",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "PC"
+	}, {
+		"name": "PLT - Pallet_ modular_ collars 80cm x 100cms",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "PLT"
+	}, {
+		"name": "PE-Pallet, modular,collars 80cm*120cms",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "PE"
+	}, {
+		"name": "PF-Pen",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "PF"
+	}, {
+		"name": "PG-Plate",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "PG"
+	}, {
+		"name": "PH-Pitcher",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "PH"
+	}, {
+		"name": "PI-Pipe",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "PI"
+	}, {
+		"name": "PJ-Punnet",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "PJ"
+	}, {
+		"name": "PK-Package",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "PK"
+	}, {
+		"name": "PL-Pail",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "PL"
+	}, {
+		"name": "PN-Plank",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "PN"
+	}, {
+		"name": "PO-Pouch",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "PO"
+	}, {
+		"name": "PP-Piece",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "PP"
+	}, {
+		"name": "PR-Receptable, plastic",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "PR"
+	}, {
+		"name": "PT-Pot",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "PT"
+	}, {
+		"name": "PU-Tray",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "PU"
+	}, {
+		"name": "PV-Pipes, in bundle/bunch/truss",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "PV"
+	}, {
+		"name": "PX-Pallet",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "PX"
+	}, {
+		"name": "PY-Plates, in bundle/bunch/truss",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "PY"
+	}, {
+		"name": "PZ-Planks, in bundle/bunch/truss",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "PZ"
+	}, {
+		"name": "QA-Drum,steel,non-removable head",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "QA"
+	}, {
+		"name": "QB-Drum, steel, removable head",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "QB"
+	}, {
+		"name": "QC-Drum,aluminium,non-removable head",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "QC"
+	}, {
+		"name": "QD-Drum, aluminium, removable head",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "QD"
+	}, {
+		"name": "QF-Drum, plastic, non-removable head",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "QF"
+	}, {
+		"name": "QG-Drum, plastic, removable head",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "QG"
+	}, {
+		"name": "QH-Barrel, wooden, bung type",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "QH"
+	}, {
+		"name": "QJ-Barrel, wooden, removable head",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "QJ"
+	}, {
+		"name": "QK-Jerrican, steel, non-removable head",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "QK"
+	}, {
+		"name": "QL-Jerrican, steel, removable head",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "QL"
+	}, {
+		"name": "QM-Jerrican,plastic,non-removable head",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "QM"
+	}, {
+		"name": "QN-Jerrican, plastic, removable head",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "QN"
+	}, {
+		"name": "QP-Box, wooden, natural wood, ordinary",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "QP"
+	}, {
+		"name": "QQ-Box,natural wood,with sift walls 5",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "QQ"
+	}, {
+		"name": "QR-Box, plastic, expanded",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "QR"
+	}, {
+		"name": "QS-Box, plastic, solid",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "QS"
+	}, {
+		"name": "RD-Rod",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "RD"
+	}, {
+		"name": "RG-Ring",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "RG"
+	}, {
+		"name": "RJ-Rack, clothing hanger",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "RJ"
+	}, {
+		"name": "RK-Rack",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "RK"
+	}, {
+		"name": "RL-Reel",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "RL"
+	}, {
+		"name": "RO-Roll",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "RO"
+	}, {
+		"name": "RT-Rednet",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "RT"
+	}, {
+		"name": "RZ-Rods, in bundle/bunch/truss",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "RZ"
+	}, {
+		"name": "SA-Sack",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "SA"
+	}, {
+		"name": "SB-Slab",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "SB"
+	}, {
+		"name": "SC-Crate, shallow",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "SC"
+	}, {
+		"name": "SD-Spindle",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "SD"
+	}, {
+		"name": "SE-Sea-chest",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "SE"
+	}, {
+		"name": "SH-Sachet",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "SH"
+	}, {
+		"name": "SI-Skid",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "SI"
+	}, {
+		"name": "SK-Case, skeleton",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "SK"
+	}, {
+		"name": "SL-Slipsheet",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "SL"
+	}, {
+		"name": "SM-Sheetmetal",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "SM"
+	}, {
+		"name": "SO-Spool",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "SO"
+	}, {
+		"name": "SP-Sheet, plastic wrapping",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "SP"
+	}, {
+		"name": "SS-Case",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "SS"
+	}, {
+		"name": "ST-Sheet",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "ST"
+	}, {
+		"name": "SU-Suitcase",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "SU"
+	}, {
+		"name": "SV-Envelope",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "SV"
+	}, {
+		"name": "SW-Shrinkwrapped",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "SW"
+	}, {
+		"name": "SX-Set",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "SX"
+	}, {
+		"name": "SY-Sleeve",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "SY"
+	}, {
+		"name": "SZ-Sheets, in bundle/bunch/truss",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "SZ"
+	}, {
+		"name": "T1-Tablet",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "T1"
+	}, {
+		"name": "TB-Tub",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "TB"
+	}, {
+		"name": "TC-Tea-chest",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "TC"
+	}, {
+		"name": "TD-Tube, collapsible",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "TD"
+	}, {
+		"name": "TE-Tyre",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "TE"
+	}, {
+		"name": "TG-Tank container",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "TG"
+	}, {
+		"name": "TI-Tierce",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "TI"
+	}, {
+		"name": "TK-Tank, rectangular",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "TK"
+	}, {
+		"name": "TL-Tub",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "TL"
+	}, {
+		"name": "TN-Tin",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "TN"
+	}, {
+		"name": "TO-Tun",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "TO"
+	}, {
+		"name": "TR-Trunk",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "TR"
+	}, {
+		"name": "TS-Truss",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "TS"
+	}, {
+		"name": "TT-Bag",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "TT"
+	}, {
+		"name": "TU-Tube",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "TU"
+	}, {
+		"name": "TV-Tube, with nozzle",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "TV"
+	}, {
+		"name": "TW-Pallet",
+		"periodTo": "04/09/2031",
+		"status": "101",
+		"validPeriodFrom": "06/09/2021",
+		"value": "TW"
+	}],
+	"format": {
+		"dateFormat": "dd/MM/yyyy",
+		"timeFormat": "dd/MM/yyyy HH:mm:ss"
+	},
+	"payWay": [{
+		"description": "Shopping or gift vouchers",
+		"name": "Shopping/Gift Voucher",
+		"value": "111"
+	}, {
+		"name": "RTGS",
+		"value": "109"
+	}, {
+		"name": "POS",
+		"value": "108"
+	}, {
+		"name": "EFT",
+		"value": "107"
+	}, {
+		"name": "Swift transfer",
+		"value": "110"
+	}, {
+		"name": "Visa/Master card",
+		"value": "106"
+	}, {
+		"name": "Mobile money",
+		"value": "105"
+	}, {
+		"name": "Demand draft",
+		"value": "104"
+	}, {
+		"name": "Cheque",
+		"value": "103"
+	}, {
+		"name": "Cash",
+		"value": "102"
+	}, {
+		"name": "Credit",
+		"value": "101"
+	}],
+	"rateUnit": [{
+		"name": "Per Shift",
+		"value": "216"
+	}, {
+		"description": "Used as a measure unit for Cattle",
+		"name": "Head",
+		"value": "215"
+	}, {
+		"description": "Used as a measure unit for animal semen",
+		"name": "Straw",
+		"value": "214"
+	}, {
+		"name": "Billing",
+		"value": "213"
+	}, {
+		"name": "Ream",
+		"value": "212"
+	}, {
+		"name": "MWh - Mega Watt Hour",
+		"value": "209"
+	}, {
+		"name": "Percentage",
+		"value": "210"
+	}, {
+		"name": "Tot",
+		"value": "211"
+	}, {
+		"description": "Cycle",
+		"name": "Cycle",
+		"value": "201"
+	}, {
+		"description": "Hours",
+		"name": "Hours",
+		"value": "207"
+	}, {
+		"description": "Cost",
+		"name": "Cost",
+		"value": "208"
+	}, {
+		"description": "KM (Kilometres)",
+		"name": "KM - Kilometres",
+		"value": "206"
+	}, {
+		"description": "Manhours",
+		"name": "Manhours",
+		"value": "205"
+	}, {
+		"description": "Core",
+		"name": "Core",
+		"value": "204"
+	}, {
+		"description": "Time of use",
+		"name": "Time of use",
+		"value": "203"
+	}, {
+		"description": "KWh (Kilo Watt Hour)",
+		"name": "KWh -Kilo Watt Hour",
+		"value": "202"
+	}, {
+		"description": "Per Person",
+		"name": "Per person",
+		"value": "PS"
+	}, {
+		"description": "Per day",
+		"name": "Per day",
+		"value": "PD"
+	}, {
+		"description": "kiloWatt",
+		"name": "kW",
+		"value": "kW"
+	}, {
+		"description": "MegaWatt",
+		"name": "MW",
+		"value": "MW"
+	}, {
+		"description": "Per Trip",
+		"name": "Per Trip",
+		"value": "PEP"
+	}, {
+		"description": "Per Quarter",
+		"name": "Per quarter",
+		"value": "QTR"
+	}, {
+		"description": "KSD-Kilogram of substance 90 % dry",
+		"name": "KSD-Kilogram of substance 90 % dry",
+		"value": "KSD"
+	}, {
+		"description": "KSH-Kilogram of caustic soda",
+		"name": "KSH-Kilogram of caustic soda",
+		"value": "KSH"
+	}, {
+		"description": "KUR-Kilogram of uranium",
+		"name": "KUR-Kilogram of uranium",
+		"value": "KUR"
+	}, {
+		"description": "LBR-Pound gb, us (0,45359237 kg)",
+		"name": "LBR-Pound gb, us (0,45359237 kg)",
+		"value": "LBR"
+	}, {
+		"description": "LBT-Troy pound, us (373,242 g)",
+		"name": "LBT-Troy pound, us (373,242 g)",
+		"value": "LBT"
+	}, {
+		"description": "LEF-Leaf",
+		"name": "LEF-Leaf",
+		"value": "LEF"
+	}, {
+		"description": "LPA-Litre of pure alcohol",
+		"name": "LPA-Litre of pure alcohol",
+		"value": "LPA"
+	}, {
+		"description": "LTN-Long ton gb, us (1,0160469 t)",
+		"name": "LTN-Long ton gb, us (1,0160469 t)",
+		"value": "LTN"
+	}, {
+		"description": "LTR-Litre (1 dm3)",
+		"name": "LTR-Litre (1 dm3)",
+		"value": "LTR"
+	}, {
+		"description": "MAL-Megalitre",
+		"name": "MAL-Megalitre",
+		"value": "MAL"
+	}, {
+		"description": "MAM-Megametre",
+		"name": "MAM-Megametre",
+		"value": "MAM"
+	}, {
+		"description": "MBF-Thousand board feet (2,36 m3)",
+		"name": "MBF-Thousand board feet (2,36 m3)",
+		"value": "MBF"
+	}, {
+		"description": "MGM-Milligram",
+		"name": "MGM-Milligram",
+		"value": "MGM"
+	}, {
+		"description": "MIL-Thousand",
+		"name": "MIL-Thousand",
+		"value": "MIL"
+	}, {
+		"description": "MTK-Square metre",
+		"name": "MTK-Square metre",
+		"value": "MTK"
+	}, {
+		"description": "MTQ-Cubic metre",
+		"name": "MTQ-Cubic metre",
+		"value": "MTQ"
+	}, {
+		"description": "MTR-Metre",
+		"name": "MTR-Metre",
+		"value": "MTR"
+	}, {
+		"description": "NAR-Number of articles",
+		"name": "NAR-Number of articles",
+		"value": "NAR"
+	}, {
+		"description": "NBB-Number of bobbins",
+		"name": "NBB-Number of bobbins",
+		"value": "NBB"
+	}, {
+		"description": "NIU-Number of international units",
+		"name": "NIU-Number of international units",
+		"value": "NIU"
+	}, {
+		"description": "NMB-Number",
+		"name": "NMB-Number",
+		"value": "NMB"
+	}, {
+		"description": "NMP-Number of packs",
+		"name": "NMP-Number of packs",
+		"value": "NMP"
+	}, {
+		"description": "NPL-Number of parcels",
+		"name": "NPL-Number of parcels",
+		"value": "NPL"
+	}, {
+		"description": "NPR-Number of pairs",
+		"name": "NPR-Number of pairs",
+		"value": "NPR"
+	}, {
+		"description": "NPT-Number of parts",
+		"name": "NPT-Number of parts",
+		"value": "NPT"
+	}, {
+		"description": "NRL-Number of rolls",
+		"name": "NRL-Number of rolls",
+		"value": "NRL"
+	}, {
+		"description": "NTT-Net [register] ton",
+		"name": "NTT-Net [register] ton",
+		"value": "NTT"
+	}, {
+		"description": "ONZ-Ounce gb, us (28,349523 g)",
+		"name": "ONZ-Ounce gb, us (28,349523 g)",
+		"value": "ONZ"
+	}, {
+		"description": "OZA-Fluid ounce (29,5735 cm3)",
+		"name": "OZA-Fluid ounce (29,5735 cm3)",
+		"value": "OZA"
+	}, {
+		"description": "OZI-Fluid ounce (28,4l3 cm3)",
+		"name": "OZI-Fluid ounce (28,4l3 cm3)",
+		"value": "OZI"
+	}, {
+		"description": "PCE-Piece",
+		"name": "PCE-Piece",
+		"value": "PCE"
+	}, {
+		"description": "PGL-Proof gallon",
+		"name": "PGL-Proof gallon",
+		"value": "PGL"
+	}, {
+		"description": "PTD-Dry pint (0,55061 dm3)",
+		"name": "PTD-Dry pint (0,55061 dm3)",
+		"value": "PTD"
+	}, {
+		"description": "PTI-Pint (0,568262 dm3)",
+		"name": "PTI-Pint (0,568262 dm3)",
+		"value": "PTI"
+	}, {
+		"description": "PTL-Liquid pint (0,473l76 dm3)",
+		"name": "PTL-Liquid pint (0,473l76 dm3)",
+		"value": "PTL"
+	}, {
+		"description": "QTD-Dry quart (1,101221 dm3)",
+		"name": "QTD-Dry quart (1,101221 dm3)",
+		"value": "QTD"
+	}, {
+		"description": "QTI-Quart (1,136523 dm3)",
+		"name": "QTI-Quart (1,136523 dm3)",
+		"value": "QTI"
+	}, {
+		"description": "QTL-Liquid quart (0,946353 dm3)",
+		"name": "QTL-Liquid quart (0,946353 dm3)",
+		"value": "QTL"
+	}, {
+		"description": "QTR-Quarter, gb (12,700586 kg)",
+		"name": "QRT-Quarter_ gb -12.700586 kg",
+		"value": "QRT"
+	}, {
+		"description": "SET-Set",
+		"name": "SET-Set",
+		"value": "SET"
+	}, {
+		"description": "SHT-Shipping ton",
+		"name": "SHT-Shipping ton",
+		"value": "SHT"
+	}, {
+		"description": "STI-Stone gb (6,350293 kg)",
+		"name": "STI-Stone gb (6,350293 kg)",
+		"value": "STI"
+	}, {
+		"description": "STN-Short ton gb, us (0,90718474 t)",
+		"name": "STN-Short ton gb, us (0,90718474 t)",
+		"value": "STN"
+	}, {
+		"description": "TNE-Metric ton (1000 kg)",
+		"name": "TNE-Metric ton (1000 kg)",
+		"value": "TNE"
+	}, {
+		"description": "TPR-Ten pairs",
+		"name": "TPR-Ten pairs",
+		"value": "TPR"
+	}, {
+		"description": "TSD-Tonne of substance 90 per cent dry",
+		"name": "TSD-Tonne of substance 90 per cent dry",
+		"value": "TSD"
+	}, {
+		"description": "WCD-Cord (3,63 m3)",
+		"name": "WCD-Cord  3-63 m3",
+		"value": "WCD"
+	}, {
+		"description": "YDK-Square yard",
+		"name": "YDK-Square yard",
+		"value": "YDK"
+	}, {
+		"description": "YDQ-Cubic yard",
+		"name": "YDQ-Cubic yard",
+		"value": "YDQ"
+	}, {
+		"description": "YRD-Yard (0,9144 m)",
+		"name": "YRD-Yard 0-9144 m",
+		"value": "YRD"
+	}, {
+		"description": "APZ-Ounce gb, us (31,10348 g)",
+		"name": "APZ-Ounce gb, us (31,10348 g)",
+		"value": "APZ"
+	}, {
+		"description": "ASM-Alcoholic strength by mass",
+		"name": "ASM-Alcoholic strength by mass",
+		"value": "ASM"
+	}, {
+		"description": "ASV-Alcoholic strength by volume",
+		"name": "ASV-Alcoholic strength by volume",
+		"value": "ASV"
+	}, {
+		"description": "BFT-Board foot",
+		"name": "BFT-Board foot",
+		"value": "BFT"
+	}, {
+		"description": "AGE-YEAR OF MANUFACTURE",
+		"name": "AGE-YEAR OF MANUFACTURE",
+		"value": "AGE"
+	}, {
+		"description": "CCP-ENGINE CAPACITY(c.c)",
+		"name": "CCP-ENGINE CAPACITY(c.c)",
+		"value": "CCP"
+	}, {
+		"description": "BHX-Hundred boxes",
+		"name": "BHX-Hundred boxes",
+		"value": "BHX"
+	}, {
+		"description": "BLD-Dry barrel (115,627 dm3)",
+		"name": "BLD-Dry barrel (115,627 dm3)",
+		"value": "BLD"
+	}, {
+		"description": "BLL-Barrel (petroleum) (158,987 dm3)",
+		"name": "BLL-Barrel (petroleum) (158,987 dm3)",
+		"value": "BLL"
+	}, {
+		"description": "BUA-Bushel (35,2391 dm3)",
+		"name": "BUA-Bushel (35,2391 dm3)",
+		"value": "BUA"
+	}, {
+		"description": "BUI-Bushel (36,36874 dm3)",
+		"name": "BUI-Bushel (36,36874 dm3)",
+		"value": "BUI"
+	}, {
+		"description": "CEN-Hundred",
+		"name": "CEN-Hundred",
+		"value": "CEN"
+	}, {
+		"description": "CGM-Centigram",
+		"name": "CGM-Centigram",
+		"value": "CGM"
+	}, {
+		"description": "CLF-Hundred leaves",
+		"name": "CLF-Hundred leaves",
+		"value": "CLF"
+	}, {
+		"description": "CLT-Centilitre",
+		"name": "CLT-Centilitre",
+		"value": "CLT"
+	}, {
+		"description": "CMK-Square centimetre",
+		"name": "CMK-Square centimetre",
+		"value": "CMK"
+	}, {
+		"description": "CMQ-Cubic centimetre",
+		"name": "CMQ-Cubic centimetre",
+		"value": "CMQ"
+	}, {
+		"description": "CMT-Centimetre",
+		"name": "CMT-Centimetre",
+		"value": "CMT"
+	}, {
+		"description": "CNP-Hundred packs",
+		"name": "CNP-Hundred packs",
+		"value": "CNP"
+	}, {
+		"description": "CNT-Cental gb (45,359237 kg)",
+		"name": "CNT-Cental gb (45,359237 kg)",
+		"value": "CNT"
+	}, {
+		"description": "CTM-Metric carat (200 mg = 2.10-4 kg)",
+		"name": "CTM-Metric carat (200 mg = 2.10-4 kg)",
+		"value": "CTM"
+	}, {
+		"description": "CWA-Hundredweight us (45,3592 kg)",
+		"name": "CWA-Hundredweight us (45,3592 kg)",
+		"value": "CWA"
+	}, {
+		"description": "CWI-Hundredweight gb (50,802345 kg)",
+		"name": "CWI-Hundredweight gb (50,802345 kg)",
+		"value": "CWI"
+	}, {
+		"description": "DLT-Decilitre",
+		"name": "DLT-Decilitre",
+		"value": "DLT"
+	}, {
+		"description": "DMK-Square decimetre",
+		"name": "DMK-Square decimetre",
+		"value": "DMK"
+	}, {
+		"description": "DMQ-Cubic decimetre",
+		"name": "DMQ-Cubic decimetre",
+		"value": "DMQ"
+	}, {
+		"description": "DMT-Decimetre",
+		"name": "DMT-Decimetre",
+		"value": "DMT"
+	}, {
+		"description": "DPC-Dozen pieces",
+		"name": "DPC-Dozen pieces",
+		"value": "DPC"
+	}, {
+		"description": "DPR-Dozen pairs",
+		"name": "DPR-Dozen pairs",
+		"value": "DPR"
+	}, {
+		"description": "DRA-Dram us (3,887935 g)",
+		"name": "DRA-Dram us (3,887935 g)",
+		"value": "DRA"
+	}, {
+		"description": "DRI-Dram gb (l,771745 g)",
+		"name": "DRI-Dram gb (l,771745 g)",
+		"value": "DRI"
+	}, {
+		"description": "DRL-Dozen rolls",
+		"name": "DRL-Dozen rolls",
+		"value": "DRL"
+	}, {
+		"description": "DRM-Drachm gb (3,887935 g)",
+		"name": "DRM-Drachm gb (3,887935 g)",
+		"value": "DRM"
+	}, {
+		"description": "DTH-Hectokilogram",
+		"name": "DTH-Hectokilogram",
+		"value": "DTH"
+	}, {
+		"description": "DTN-Centner, metric (100 kg)",
+		"name": "DTN-Centner, metric (100 kg)",
+		"value": "DTN"
+	}, {
+		"description": "DWT-Pennyweight gb, us (1,555174 g)",
+		"name": "DWT-Pennyweight gb, us (1,555174 g)",
+		"value": "DWT"
+	}, {
+		"description": "DZN-Dozen",
+		"name": "DZN-Dozen",
+		"value": "DZN"
+	}, {
+		"description": "DZP-Dozen packs",
+		"name": "DZP-Dozen packs",
+		"value": "DZP"
+	}, {
+		"description": "FOT-Foot (0,3048 m)",
+		"name": "FOT-Foot (0,3048 m)",
+		"value": "FOT"
+	}, {
+		"description": "FTK-Square foot",
+		"name": "FTK-Square foot",
+		"value": "FTK"
+	}, {
+		"description": "FTQ-Cubic foot",
+		"name": "FTQ-Cubic foot",
+		"value": "FTQ"
+	}, {
+		"description": "GGR-Great gross (12 gross)",
+		"name": "GGR-Great gross (12 gross)",
+		"value": "GGR"
+	}, {
+		"description": "GIA-Gill (11,8294 cm3)",
+		"name": "GIA-Gill (11,8294 cm3)",
+		"value": "GIA"
+	}, {
+		"description": "GII-Gill (0,142065 dm3)",
+		"name": "GII-Gill (0,142065 dm3)",
+		"value": "GII"
+	}, {
+		"description": "GLD-Dry gallon (4,404884 dm3)",
+		"name": "GLD-Dry gallon (4,404884 dm3)",
+		"value": "GLD"
+	}, {
+		"description": "GLI-Gallon (4,546092 dm3)",
+		"name": "GLI-Gallon (4,546092 dm3)",
+		"value": "GLI"
+	}, {
+		"description": "GLL-Liquid gallon (3,7854l dm3)",
+		"name": "GLL-Liquid gallon (3,7854l dm3)",
+		"value": "GLL"
+	}, {
+		"description": "GRM-Gram",
+		"name": "GRM-Gram",
+		"value": "GRM"
+	}, {
+		"description": "GRN-Grain gb, us (64,798910 mg)",
+		"name": "GRN-Grain gb, us (64,798910 mg)",
+		"value": "GRN"
+	}, {
+		"description": "GRO-Gross",
+		"name": "GRO-Gross",
+		"value": "GRO"
+	}, {
+		"description": "GRT-Gross [register] ton",
+		"name": "GRT-Gross [register] ton",
+		"value": "GRT"
+	}, {
+		"description": "HGM-Hectogram",
+		"name": "HGM-Hectogram",
+		"value": "HGM"
+	}, {
+		"description": "HIU-Hundred international units",
+		"name": "HIU-Hundred international units",
+		"value": "HIU"
+	}, {
+		"description": "HLT-Hectolitre",
+		"name": "HLT-Hectolitre",
+		"value": "HLT"
+	}, {
+		"description": "HPA-Hectolitre of pure alcohol",
+		"name": "HPA-Hectolitre of pure alcohol",
+		"value": "HPA"
+	}, {
+		"description": "INH-Inch (25,4 mm)",
+		"name": "INH-Inch (25,4 mm)",
+		"value": "INH"
+	}, {
+		"description": "INK-Square inch",
+		"name": "INK-Square inch",
+		"value": "INK"
+	}, {
+		"description": "INQ-Cubic inch",
+		"name": "INQ-Cubic inch",
+		"value": "INQ"
+	}, {
+		"description": "KGM-Kilogram",
+		"name": "KGM-Kilogram",
+		"value": "KGM"
+	}, {
+		"description": "KNI-Kilogram of nitrogen",
+		"name": "KNI-Kilogram of nitrogen",
+		"value": "KNI"
+	}, {
+		"description": "KNS-Kilogram of named substance",
+		"name": "KNS-Kilogram of named substance",
+		"value": "KNS"
+	}, {
+		"description": "KPH-Kilogram of caustic potash",
+		"name": "KPH-Kilogram of caustic potash",
+		"value": "KPH"
+	}, {
+		"description": "KPO-Kilogram of potassium oxide",
+		"name": "KPO-Kilogram of potassium oxide",
+		"value": "KPO"
+	}, {
+		"description": "KPP-Kilogram of phosphoric anhydride",
+		"name": "KPP-Kilogram of phosphoric anhydride",
+		"value": "KPP"
+	}, {
+		"name": "1USD",
+		"value": "118"
+	}, {
+		"name": "1UGX",
+		"value": "117"
+	}, {
+		"name": "Per week",
+		"value": "114"
+	}, {
+		"name": "Per annum",
+		"value": "116"
+	}, {
+		"name": "Per month",
+		"value": "115"
+	}, {
+		"name": "Dozen",
+		"value": "113"
+	}, {
+		"name": "Yard",
+		"value": "112"
+	}, {
+		"name": "Pair",
+		"value": "111"
+	}, {
+		"name": "Box",
+		"value": "110"
+	}, {
+		"description": "Metre (length)",
+		"name": "Metre",
+		"value": "200"
+	}, {
+		"description": "OT-Octabin",
+		"name": "OT-Octabin",
+		"value": "OT"
+	}, {
+		"description": "OU-Container",
+		"name": "OU-Container",
+		"value": "OU"
+	}, {
+		"description": "P2-Pan",
+		"name": "P2-Pan",
+		"value": "P2"
+	}, {
+		"description": "PA-Packet",
+		"name": "PA-Packet",
+		"value": "PA"
+	}, {
+		"description": "PB-Pallet, box",
+		"name": "PB-Pallet, box",
+		"value": "PB"
+	}, {
+		"description": "PC-Parcel",
+		"name": "PC-Parcel",
+		"value": "PC"
+	}, {
+		"description": "PD-Pallet, modular,collars 80cm*100cms",
+		"name": "PLT - Pallet_ modular_ collars 80cm x 100cms",
+		"value": "PLT"
+	}, {
+		"description": "PE-Pallet, modular,collars 80cm*120cms",
+		"name": "PE-Pallet, modular,collars 80cm*120cms",
+		"value": "PE"
+	}, {
+		"description": "PF-Pen",
+		"name": "PF-Pen",
+		"value": "PF"
+	}, {
+		"description": "PG-Plate",
+		"name": "PG-Plate",
+		"value": "PG"
+	}, {
+		"description": "PH-Pitcher",
+		"name": "PH-Pitcher",
+		"value": "PH"
+	}, {
+		"description": "PI-Pipe",
+		"name": "PI-Pipe",
+		"value": "PI"
+	}, {
+		"description": "PJ-Punnet",
+		"name": "PJ-Punnet",
+		"value": "PJ"
+	}, {
+		"description": "PK-Package",
+		"name": "PK-Package",
+		"value": "PK"
+	}, {
+		"description": "PL-Pail",
+		"name": "PL-Pail",
+		"value": "PL"
+	}, {
+		"description": "PN-Plank",
+		"name": "PN-Plank",
+		"value": "PN"
+	}, {
+		"description": "PO-Pouch",
+		"name": "PO-Pouch",
+		"value": "PO"
+	}, {
+		"description": "PP-Piece",
+		"name": "PP-Piece",
+		"value": "PP"
+	}, {
+		"description": "PR-Receptable, plastic",
+		"name": "PR-Receptable, plastic",
+		"value": "PR"
+	}, {
+		"description": "PT-Pot",
+		"name": "PT-Pot",
+		"value": "PT"
+	}, {
+		"description": "PU-Tray",
+		"name": "PU-Tray",
+		"value": "PU"
+	}, {
+		"description": "PV-Pipes, in bundle/bunch/truss",
+		"name": "PV-Pipes, in bundle/bunch/truss",
+		"value": "PV"
+	}, {
+		"description": "PX-Pallet",
+		"name": "PX-Pallet",
+		"value": "PX"
+	}, {
+		"description": "PY-Plates, in bundle/bunch/truss",
+		"name": "PY-Plates, in bundle/bunch/truss",
+		"value": "PY"
+	}, {
+		"description": "PZ-Planks, in bundle/bunch/truss",
+		"name": "PZ-Planks, in bundle/bunch/truss",
+		"value": "PZ"
+	}, {
+		"description": "QA-Drum,steel,non-removable head",
+		"name": "QA-Drum,steel,non-removable head",
+		"value": "QA"
+	}, {
+		"description": "QB-Drum, steel, removable head",
+		"name": "QB-Drum, steel, removable head",
+		"value": "QB"
+	}, {
+		"description": "QC-Drum,aluminium,non-removable head",
+		"name": "QC-Drum,aluminium,non-removable head",
+		"value": "QC"
+	}, {
+		"description": "QD-Drum, aluminium, removable head",
+		"name": "QD-Drum, aluminium, removable head",
+		"value": "QD"
+	}, {
+		"description": "QF-Drum, plastic, non-removable head",
+		"name": "QF-Drum, plastic, non-removable head",
+		"value": "QF"
+	}, {
+		"description": "QG-Drum, plastic, removable head",
+		"name": "QG-Drum, plastic, removable head",
+		"value": "QG"
+	}, {
+		"description": "QH-Barrel, wooden, bung type",
+		"name": "QH-Barrel, wooden, bung type",
+		"value": "QH"
+	}, {
+		"description": "QJ-Barrel, wooden, removable head",
+		"name": "QJ-Barrel, wooden, removable head",
+		"value": "QJ"
+	}, {
+		"description": "QK-Jerrican, steel, non-removable head",
+		"name": "QK-Jerrican, steel, non-removable head",
+		"value": "QK"
+	}, {
+		"description": "QL-Jerrican, steel, removable head",
+		"name": "QL-Jerrican, steel, removable head",
+		"value": "QL"
+	}, {
+		"description": "QM-Jerrican,plastic,non-removable head",
+		"name": "QM-Jerrican,plastic,non-removable head",
+		"value": "QM"
+	}, {
+		"description": "QN-Jerrican, plastic, removable head",
+		"name": "QN-Jerrican, plastic, removable head",
+		"value": "QN"
+	}, {
+		"description": "QP-Box, wooden, natural wood, ordinary",
+		"name": "QP-Box, wooden, natural wood, ordinary",
+		"value": "QP"
+	}, {
+		"description": "QQ-Box,natural wood,with sift walls 5",
+		"name": "QQ-Box,natural wood,with sift walls 5",
+		"value": "QQ"
+	}, {
+		"description": "QR-Box, plastic, expanded",
+		"name": "QR-Box, plastic, expanded",
+		"value": "QR"
+	}, {
+		"description": "QS-Box, plastic, solid",
+		"name": "QS-Box, plastic, solid",
+		"value": "QS"
+	}, {
+		"description": "RD-Rod",
+		"name": "RD-Rod",
+		"value": "RD"
+	}, {
+		"description": "RG-Ring",
+		"name": "RG-Ring",
+		"value": "RG"
+	}, {
+		"description": "RJ-Rack, clothing hanger",
+		"name": "RJ-Rack, clothing hanger",
+		"value": "RJ"
+	}, {
+		"description": "RK-Rack",
+		"name": "RK-Rack",
+		"value": "RK"
+	}, {
+		"description": "RL-Reel",
+		"name": "RL-Reel",
+		"value": "RL"
+	}, {
+		"description": "RO-Roll",
+		"name": "RO-Roll",
+		"value": "RO"
+	}, {
+		"description": "RT-Rednet",
+		"name": "RT-Rednet",
+		"value": "RT"
+	}, {
+		"description": "RZ-Rods, in bundle/bunch/truss",
+		"name": "RZ-Rods, in bundle/bunch/truss",
+		"value": "RZ"
+	}, {
+		"description": "SA-Sack",
+		"name": "SA-Sack",
+		"value": "SA"
+	}, {
+		"description": "SB-Slab",
+		"name": "SB-Slab",
+		"value": "SB"
+	}, {
+		"description": "SC-Crate, shallow",
+		"name": "SC-Crate, shallow",
+		"value": "SC"
+	}, {
+		"description": "SD-Spindle",
+		"name": "SD-Spindle",
+		"value": "SD"
+	}, {
+		"description": "SE-Sea-chest",
+		"name": "SE-Sea-chest",
+		"value": "SE"
+	}, {
+		"description": "SH-Sachet",
+		"name": "SH-Sachet",
+		"value": "SH"
+	}, {
+		"description": "SI-Skid",
+		"name": "SI-Skid",
+		"value": "SI"
+	}, {
+		"description": "SK-Case, skeleton",
+		"name": "SK-Case, skeleton",
+		"value": "SK"
+	}, {
+		"description": "SL-Slipsheet",
+		"name": "SL-Slipsheet",
+		"value": "SL"
+	}, {
+		"description": "SM-Sheetmetal",
+		"name": "SM-Sheetmetal",
+		"value": "SM"
+	}, {
+		"description": "SO-Spool",
+		"name": "SO-Spool",
+		"value": "SO"
+	}, {
+		"description": "SP-Sheet, plastic wrapping",
+		"name": "SP-Sheet, plastic wrapping",
+		"value": "SP"
+	}, {
+		"description": "SS-Case",
+		"name": "SS-Case",
+		"value": "SS"
+	}, {
+		"description": "ST-Sheet",
+		"name": "ST-Sheet",
+		"value": "ST"
+	}, {
+		"description": "SU-Suitcase",
+		"name": "SU-Suitcase",
+		"value": "SU"
+	}, {
+		"description": "SV-Envelope",
+		"name": "SV-Envelope",
+		"value": "SV"
+	}, {
+		"description": "SW-Shrinkwrapped",
+		"name": "SW-Shrinkwrapped",
+		"value": "SW"
+	}, {
+		"description": "SX-Set",
+		"name": "SX-Set",
+		"value": "SX"
+	}, {
+		"description": "SY-Sleeve",
+		"name": "SY-Sleeve",
+		"value": "SY"
+	}, {
+		"description": "SZ-Sheets, in bundle/bunch/truss",
+		"name": "SZ-Sheets, in bundle/bunch/truss",
+		"value": "SZ"
+	}, {
+		"description": "T1-Tablet",
+		"name": "T1-Tablet",
+		"value": "T1"
+	}, {
+		"description": "TB-Tub",
+		"name": "TB-Tub",
+		"value": "TB"
+	}, {
+		"description": "TC-Tea-chest",
+		"name": "TC-Tea-chest",
+		"value": "TC"
+	}, {
+		"description": "TD-Tube, collapsible",
+		"name": "TD-Tube, collapsible",
+		"value": "TD"
+	}, {
+		"description": "TE-Tyre",
+		"name": "TE-Tyre",
+		"value": "TE"
+	}, {
+		"description": "TG-Tank container",
+		"name": "TG-Tank container",
+		"value": "TG"
+	}, {
+		"description": "TI-Tierce",
+		"name": "TI-Tierce",
+		"value": "TI"
+	}, {
+		"description": "TK-Tank, rectangular",
+		"name": "TK-Tank, rectangular",
+		"value": "TK"
+	}, {
+		"description": "TL-Tub",
+		"name": "TL-Tub",
+		"value": "TL"
+	}, {
+		"description": "TN-Tin",
+		"name": "TN-Tin",
+		"value": "TN"
+	}, {
+		"description": "TO-Tun",
+		"name": "TO-Tun",
+		"value": "TO"
+	}, {
+		"description": "TR-Trunk",
+		"name": "TR-Trunk",
+		"value": "TR"
+	}, {
+		"description": "TS-Truss",
+		"name": "TS-Truss",
+		"value": "TS"
+	}, {
+		"description": "TT-Bag",
+		"name": "TT-Bag",
+		"value": "TT"
+	}, {
+		"description": "TU-Tube",
+		"name": "TU-Tube",
+		"value": "TU"
+	}, {
+		"description": "TV-Tube, with nozzle",
+		"name": "TV-Tube, with nozzle",
+		"value": "TV"
+	}, {
+		"description": "TW-Pallet",
+		"name": "TW-Pallet",
+		"value": "TW"
+	}, {
+		"description": "TY-Tank, cylindrical",
+		"name": "TY-Tank, cylindrical",
+		"value": "TY"
+	}, {
+		"description": "TZ-Tubes, in bundle/bunch/truss",
+		"name": "TZ-Tubes, in bundle/bunch/truss",
+		"value": "TZ"
+	}, {
+		"description": "UC-Uncaged",
+		"name": "UC-Uncaged",
+		"value": "UC"
+	}, {
+		"description": "UN-Unit",
+		"name": "UN-Unit",
+		"value": "UN"
+	}, {
+		"description": "VA-Vat",
+		"name": "VA-Vat",
+		"value": "VA"
+	}, {
+		"description": "VEH-Vehicle",
+		"name": "VEH-Vehicle",
+		"value": "VEH"
+	}, {
+		"description": "VG-Bulk",
+		"name": "VG-Bulk",
+		"value": "VG"
+	}, {
+		"description": "VI-Vial",
+		"name": "VI-Vial",
+		"value": "VI"
+	}, {
+		"description": "VK-Vanpack",
+		"name": "VK-Vanpack",
+		"value": "VK"
+	}, {
+		"description": "VL-Bulk, liquid",
+		"name": "VL-Bulk, liquid",
+		"value": "VL"
+	}, {
+		"description": "VN-Vehicle",
+		"name": "VN-Vehicle",
+		"value": "VN"
+	}, {
+		"description": "VO-Bulk,solid,large particles(nodules)",
+		"name": "VO-Bulk,solid,large particles(nodules)",
+		"value": "VO"
+	}, {
+		"description": "VP-Vacuum-packed",
+		"name": "VP-Vacuum-packed",
+		"value": "VP"
+	}, {
+		"description": "VQ-Bulk,liquefied gas(abnormal temp/pr",
+		"name": "VQ-Bulk,liquefied gas(abnormal temp/pr",
+		"value": "VQ"
+	}, {
+		"description": "VR-Bulk, solid, granular particles",
+		"name": "VR-Bulk, solid, granular particles",
+		"value": "VR"
+	}, {
+		"description": "VS-Bulk",
+		"name": "VS-Bulk",
+		"value": "VS"
+	}, {
+		"description": "VY-Bulk, solid, fine particles(powder)",
+		"name": "VY-Bulk, solid, fine particles(powder)",
+		"value": "VY"
+	}, {
+		"description": "WA-Intermediate bulk container",
+		"name": "WA-Intermediate bulk container",
+		"value": "WA"
+	}, {
+		"description": "WB-Wickerbottle",
+		"name": "WB-Wickerbottle",
+		"value": "WB"
+	}, {
+		"description": "WC-Intermediate bulk container,steel",
+		"name": "WC-Intermediate bulk container,steel",
+		"value": "WC"
+	}, {
+		"description": "WD-Intermediate bulk container,alumini",
+		"name": "WD-Intermediate bulk container,alumini",
+		"value": "WD"
+	}, {
+		"description": "WF-Intermediate bulk container,metal",
+		"name": "WF-Intermediate bulk container,metal",
+		"value": "WF"
+	}, {
+		"description": "WG-Intermediate bulk cont,steel,pressu",
+		"name": "WG-Intermediate bulk cont,steel,pressu",
+		"value": "WG"
+	}, {
+		"description": "WH-Inter bulk container,alumin,pressur",
+		"name": "WH-Inter bulk container,alumin,pressur",
+		"value": "WH"
+	}, {
+		"description": "WJ-Inter bulk container,metal,pressure",
+		"name": "WJ-Inter bulk container,metal,pressure",
+		"value": "WJ"
+	}, {
+		"description": "WK-Interme bulk container,steel,liquid",
+		"name": "WK-Interme bulk container,steel,liquid",
+		"value": "WK"
+	}, {
+		"description": "WL-Inter bulk container,alumin liquid",
+		"name": "WL-Inter bulk container,alumin liquid",
+		"value": "WL"
+	}, {
+		"description": "WM-Interm bulk container,metal,liquid",
+		"name": "WM-Interm bulk container,metal,liquid",
+		"value": "WM"
+	}, {
+		"description": "WN-Int bulk cont,woven plastic,no coat",
+		"name": "WN-Int bulk cont,woven plastic,no coat",
+		"value": "WN"
+	}, {
+		"description": "WP-Inter bulk cont,woven plastic,coate",
+		"name": "WP-Inter bulk cont,woven plastic,coate",
+		"value": "WP"
+	}, {
+		"description": "WQ-Inter bulk cont,woven plastic,liner",
+		"name": "WQ-Inter bulk cont,woven plastic,liner",
+		"value": "WQ"
+	}, {
+		"description": "WR-Inter bulk cont,woven plastic,coate",
+		"name": "WR-Inter bulk cont,woven plastic,coate",
+		"value": "WR"
+	}, {
+		"description": "WS-Interm bulk container, plastic film",
+		"name": "WS-Interm bulk container, plastic film",
+		"value": "WS"
+	}, {
+		"description": "WT-Inter bulk cont,textile no coat/lin",
+		"name": "WT-Inter bulk cont,textile no coat/lin",
+		"value": "WT"
+	}, {
+		"description": "WU-Inter bulk cont,natural wood,liner",
+		"name": "WU-Inter bulk cont,natural wood,liner",
+		"value": "WU"
+	}, {
+		"description": "WV-Inter bulk contain, textile, coated",
+		"name": "WV-Inter bulk contain, textile, coated",
+		"value": "WV"
+	}, {
+		"description": "WW-Inter bulk conta,textile,with liner",
+		"name": "WW-Inter bulk conta,textile,with liner",
+		"value": "WW"
+	}, {
+		"description": "WX-Inter bulk cont,textile,coated/line",
+		"name": "WX-Inter bulk cont,textile,coated/line",
+		"value": "WX"
+	}, {
+		"description": "WY-Inter bulk cont,plywood,inner liner",
+		"name": "WY-Inter bulk cont,plywood,inner liner",
+		"value": "WY"
+	}, {
+		"description": "WZ-Interm bulk conta,reconsituted wood",
+		"name": "WZ-Interm bulk conta,reconsituted wood",
+		"value": "WZ"
+	}, {
+		"description": "XA-Bag,woven plastic,without inner coa",
+		"name": "XA-Bag,woven plastic,without inner coa",
+		"value": "XA"
+	}, {
+		"description": "XB-Bag,woven plastic, sift proof",
+		"name": "XB-Bag,woven plastic, sift proof",
+		"value": "XB"
+	}, {
+		"description": "XC-Bag, woven plastic, water resistant",
+		"name": "XC-Bag, woven plastic, water resistant",
+		"value": "XC"
+	}, {
+		"description": "XD-Bag, plastics film",
+		"name": "XD-Bag, plastics film",
+		"value": "XD"
+	}, {
+		"description": "XF-Bag, textile,without inner coat/lin",
+		"name": "XF-Bag, textile,without inner coat/lin",
+		"value": "XF"
+	}, {
+		"description": "XG-Bag, textile, sift proof",
+		"name": "XG-Bag, textile, sift proof",
+		"value": "XG"
+	}, {
+		"description": "XH-Bag, textile, water resistant",
+		"name": "XH-Bag, textile, water resistant",
+		"value": "XH"
+	}, {
+		"description": "XJ-Bag, paper, multi-wall",
+		"name": "XJ-Bag, paper, multi-wall",
+		"value": "XJ"
+	}, {
+		"description": "XK-Bag,paper,multi-wall,water resistan",
+		"name": "XK-Bag,paper,multi-wall,water resistan",
+		"value": "XK"
+	}, {
+		"description": "XX-SCT UN-IDENTIFIED",
+		"name": "XX-SCT UN-IDENTIFIED",
+		"value": "XX"
+	}, {
+		"description": "YA-Composte pack,plast recp steel drum",
+		"name": "YA-Composte pack,plast recp steel drum",
+		"value": "YA"
+	}, {
+		"description": "YB-Composte pack,plast recp steel crat",
+		"name": "YB-Composte pack,plast recp steel crat",
+		"value": "YB"
+	}, {
+		"description": "YC-Composte pack,plast recp alumi drum",
+		"name": "YC-Composte pack,plast recp alumi drum",
+		"value": "YC"
+	}, {
+		"description": "YD-Composte pack,plast recp alum crate",
+		"name": "YD-Composte pack,plast recp alum crate",
+		"value": "YD"
+	}, {
+		"description": "YF-Composte pack,plast recp wooden box",
+		"name": "YF-Composte pack,plast recp wooden box",
+		"value": "YF"
+	}, {
+		"description": "YG-Composte pack,plast recp plywo drum",
+		"name": "YG-Composte pack,plast recp plywo drum",
+		"value": "YG"
+	}, {
+		"description": "YH-Composte pack,plast recp plywo box",
+		"name": "YH-Composte pack,plast recp plywo box",
+		"value": "YH"
+	}, {
+		"description": "YJ-Composte pack,plast recp fibre drum",
+		"name": "YJ-Composte pack,plast recp fibre drum",
+		"value": "YJ"
+	}, {
+		"description": "YK-Composte pack,plast recp fibreb box",
+		"name": "YK-Composte pack,plast recp fibreb box",
+		"value": "YK"
+	}, {
+		"description": "YL-Composte pack,plast recp plast drum",
+		"name": "YL-Composte pack,plast recp plast drum",
+		"value": "YL"
+	}, {
+		"description": "YM-Composte pack,plast recp plastc box",
+		"name": "YM-Composte pack,plast recp plastc box",
+		"value": "YM"
+	}, {
+		"description": "YN-Composte pack,glass recp steel drum",
+		"name": "YN-Composte pack,glass recp steel drum",
+		"value": "YN"
+	}, {
+		"description": "YP-Composte pack,glass recp steel crat",
+		"name": "YP-Composte pack,glass recp steel crat",
+		"value": "YP"
+	}, {
+		"description": "YQ-Composte pack,glass recp alumi drum",
+		"name": "YQ-Composte pack,glass recp alumi drum",
+		"value": "YQ"
+	}, {
+		"description": "YR-Composte pack,glass recp alum crate",
+		"name": "YR-Composte pack,glass recp alum crate",
+		"value": "YR"
+	}, {
+		"description": "YS-Composte pack,glass recp wooden box",
+		"name": "YS-Composte pack,glass recp wooden box",
+		"value": "YS"
+	}, {
+		"description": "YT-Composte pack,glass recp plywo drum",
+		"name": "YT-Composte pack,glass recp plywo drum",
+		"value": "YT"
+	}, {
+		"description": "YV-Composte pack,glass recp wicker ham",
+		"name": "YV-Composte pack,glass recp wicker ham",
+		"value": "YV"
+	}, {
+		"description": "YW-Composte pack,glass recp fibre drum",
+		"name": "YW-Composte pack,glass recp fibre drum",
+		"value": "YW"
+	}, {
+		"description": "YX-Composte pack,glass recp fibreb box",
+		"name": "YX-Composte pack,glass recp fibreb box",
+		"value": "YX"
+	}, {
+		"description": "YY-Composte pack,glas rec ex plas pack",
+		"name": "YY-Composte pack,glas rec ex plas pack",
+		"value": "YY"
+	}, {
+		"description": "YZ-Composte pack,glas rec so plas pack",
+		"name": "YZ-Composte pack,glas rec so plas pack",
+		"value": "YZ"
+	}, {
+		"description": "ZA-Interm bulk cont, paper, multi-wall",
+		"name": "ZA-Interm bulk cont, paper, multi-wall",
+		"value": "ZA"
+	}, {
+		"description": "ZB-Bag, large",
+		"name": "ZB-Bag, large",
+		"value": "ZB"
+	}, {
+		"description": "ZC-Inter bulk cont,paper,water resista",
+		"name": "ZC-Inter bulk cont,paper,water resista",
+		"value": "ZC"
+	}, {
+		"description": "ZD-Int.bulk.cont,plast,struc equip sol",
+		"name": "ZD-Int.bulk.cont,plast,struc equip sol",
+		"value": "ZD"
+	}, {
+		"description": "ZF-Int.bulk.cont,plast,free standing",
+		"name": "ZF-Int.bulk.cont,plast,free standing",
+		"value": "ZF"
+	}, {
+		"description": "ZG-Int.bulk.cont,plast,struc equp pres",
+		"name": "ZG-Int.bulk.cont,plast,struc equp pres",
+		"value": "ZG"
+	}, {
+		"description": "ZH-Int.bulk.cont,plast,freestand,press",
+		"name": "ZH-Int.bulk.cont,plast,freestand,press",
+		"value": "ZH"
+	}, {
+		"description": "ZJ-Int.bulk.cont,plast,struc equip liq",
+		"name": "ZJ-Int.bulk.cont,plast,struc equip liq",
+		"value": "ZJ"
+	}, {
+		"description": "ZK-Int.bulk.cont,plast,freestand,liqui",
+		"name": "ZK-Int.bulk.cont,plast,freestand,liqui",
+		"value": "ZK"
+	}, {
+		"description": "ZL-Int.bulk.cont,comp,rigid plast,soli",
+		"name": "ZL-Int.bulk.cont,comp,rigid plast,soli",
+		"value": "ZL"
+	}, {
+		"description": "ZM-Int.bulk.cont,comp,flexi plast,soli",
+		"name": "ZM-Int.bulk.cont,comp,flexi plast,soli",
+		"value": "ZM"
+	}, {
+		"description": "ZN-Int.bulk.cont,comp,rigid plast,pres",
+		"name": "ZN-Int.bulk.cont,comp,rigid plast,pres",
+		"value": "ZN"
+	}, {
+		"description": "ZP-Int.bulk.cont,comp,flex plast,press",
+		"name": "ZP-Int.bulk.cont,comp,flex plast,press",
+		"value": "ZP"
+	}, {
+		"description": "ZQ-Int.bulk.cont,comp,rigid plast,liqu",
+		"name": "ZQ-Int.bulk.cont,comp,rigid plast,liqu",
+		"value": "ZQ"
+	}, {
+		"description": "ZR-Int.bulk.cont,comp,flex plast,liqui",
+		"name": "ZR-Int.bulk.cont,comp,flex plast,liqui",
+		"value": "ZR"
+	}, {
+		"description": "ZS-Intermediate bulk container",
+		"name": "ZS-Intermediate bulk container",
+		"value": "ZS"
+	}, {
+		"description": "ZT-Intermediate bulk container",
+		"name": "ZT-Intermediate bulk container",
+		"value": "ZT"
+	}, {
+		"description": "ZU-Intermediate bulk container",
+		"name": "ZU-Intermediate bulk container",
+		"value": "ZU"
+	}, {
+		"description": "ZV-Intermediate bulk container",
+		"name": "ZV-Intermediate bulk container",
+		"value": "ZV"
+	}, {
+		"description": "ZW-Intermediate bulk container",
+		"name": "ZW-Intermediate bulk container",
+		"value": "ZW"
+	}, {
+		"description": "ZX-Intermediate bulk container",
+		"name": "ZX-Intermediate bulk container",
+		"value": "ZX"
+	}, {
+		"description": "ZY-Intermediate bulk container",
+		"name": "ZY-Intermediate bulk container",
+		"value": "ZY"
+	}, {
+		"description": "ZZ-Mutually defined",
+		"name": "ZZ-Mutually defined",
+		"value": "ZZ"
+	}, {
+		"description": "AA-Intermediate bulk container",
+		"name": "AA-Intermediate bulk container",
+		"value": "AA"
+	}, {
+		"description": "AB-Receptacle",
+		"name": "AB-Receptacle",
+		"value": "AB"
+	}, {
+		"description": "AC-Receptacle",
+		"name": "AC-Receptacle",
+		"value": "AC"
+	}, {
+		"description": "AD-Receptacle",
+		"name": "AD-Receptacle",
+		"value": "AD"
+	}, {
+		"description": "AE-Aerosol",
+		"name": "AE-Aerosol",
+		"value": "AE"
+	}, {
+		"description": "AF-Pallet",
+		"name": "AF-Pallet",
+		"value": "AF"
+	}, {
+		"description": "AG-Pallet",
+		"name": "AG-Pallet",
+		"value": "AG"
+	}, {
+		"description": "AH-Pallet",
+		"name": "AH-Pallet",
+		"value": "AH"
+	}, {
+		"description": "AI-Clamshell",
+		"name": "AI-Clamshell",
+		"value": "AI"
+	}, {
+		"description": "AJ-Cone",
+		"name": "AJ-Cone",
+		"value": "AJ"
+	}, {
+		"description": "AL-Ball",
+		"name": "AL-Ball",
+		"value": "AL"
+	}, {
+		"description": "AM-Ampoule, non protected",
+		"name": "AM-Ampoule, non protected",
+		"value": "AM"
+	}, {
+		"description": "AP-Ampoule, protected",
+		"name": "AP-Ampoule, protected",
+		"value": "AP"
+	}, {
+		"description": "AT-Atomizer",
+		"name": "AT-Atomizer",
+		"value": "AT"
+	}, {
+		"description": "AV-Capsule",
+		"name": "AV-Capsule",
+		"value": "AV"
+	}, {
+		"description": "BA-Barrel",
+		"name": "BA-Barrel",
+		"value": "BA"
+	}, {
+		"description": "BB-Bobbin",
+		"name": "BB-Bobbin",
+		"value": "BB"
+	}, {
+		"description": "BC-Bottle crate / bottle rack",
+		"name": "BC-Bottle crate / bottle rack",
+		"value": "BC"
+	}, {
+		"description": "BD-Board",
+		"name": "BD-Board",
+		"value": "BD"
+	}, {
+		"description": "BE-Bundle",
+		"name": "BE-Bundle",
+		"value": "BE"
+	}, {
+		"description": "BF-Ballon, non-protected",
+		"name": "BF-Ballon, non-protected",
+		"value": "BF"
+	}, {
+		"description": "BG-Bag",
+		"name": "BG-Bag",
+		"value": "BG"
+	}, {
+		"description": "BH-Bunch",
+		"name": "BH-Bunch",
+		"value": "BH"
+	}, {
+		"description": "BI-Bin",
+		"name": "BI-Bin",
+		"value": "BI"
+	}, {
+		"description": "BJ-Bucket",
+		"name": "BJ-Bucket",
+		"value": "BJ"
+	}, {
+		"description": "BK-Basket",
+		"name": "BK-Basket",
+		"value": "BK"
+	}, {
+		"description": "BL-Bale, compressed",
+		"name": "BL-Bale, compressed",
+		"value": "BL"
+	}, {
+		"description": "BM-Basin 5",
+		"name": "BM-Basin 5",
+		"value": "BM"
+	}, {
+		"description": "BN-Bale, non compressed",
+		"name": "BN-Bale, non compressed",
+		"value": "BN"
+	}, {
+		"description": "BO-Bottle, non protected, cylindrical",
+		"name": "BO-Bottle, non protected, cylindrical",
+		"value": "BO"
+	}, {
+		"description": "BP-Ballon, protected",
+		"name": "BP-Ballon, protected",
+		"value": "BP"
+	}, {
+		"description": "BQ-Bottle, protected cylindrical",
+		"name": "BQ-Bottle, protected cylindrical",
+		"value": "BQ"
+	}, {
+		"description": "BR-Bar",
+		"name": "BR-Bar",
+		"value": "BR"
+	}, {
+		"description": "BS-Bottle, non protected, bulbous",
+		"name": "BS-Bottle, non protected, bulbous",
+		"value": "BS"
+	}, {
+		"description": "BT-Bolt",
+		"name": "BT-Bolt",
+		"value": "BT"
+	}, {
+		"description": "BU-Butt",
+		"name": "BU-Butt",
+		"value": "BU"
+	}, {
+		"description": "BV-Bottle, protected bulbous",
+		"name": "BV-Bottle, protected bulbous",
+		"value": "BV"
+	}, {
+		"description": "BW-Box, for liquids",
+		"name": "BW-Box, for liquids",
+		"value": "BW"
+	}, {
+		"description": "BX-Box 21 to",
+		"name": "BX-Box 21 to",
+		"value": "BX"
+	}, {
+		"description": "BY-Board, in bundle/bunch/truss",
+		"name": "BY-Board, in bundle/bunch/truss",
+		"value": "BY"
+	}, {
+		"description": "BZ-Bars, in bundle/bunch/truss",
+		"name": "BZ-Bars, in bundle/bunch/truss",
+		"value": "BZ"
+	}, {
+		"description": "CA-Can, rectangular",
+		"name": "CA-Can, rectangular",
+		"value": "CA"
+	}, {
+		"description": "CB-Crate, beer",
+		"name": "CB-Crate, beer",
+		"value": "CB"
+	}, {
+		"description": "CC-Churn",
+		"name": "CC-Churn",
+		"value": "CC"
+	}, {
+		"description": "CD-Can, with handle and spout",
+		"name": "CD-Can, with handle and spout",
+		"value": "CD"
+	}, {
+		"description": "CE-Creel",
+		"name": "CE-Creel",
+		"value": "CE"
+	}, {
+		"description": "CF-Coffer",
+		"name": "CF-Coffer",
+		"value": "CF"
+	}, {
+		"description": "CG-Cage",
+		"name": "CG-Cage",
+		"value": "CG"
+	}, {
+		"description": "CH-Chest",
+		"name": "CH-Chest",
+		"value": "CH"
+	}, {
+		"description": "CI-Canister",
+		"name": "CI-Canister",
+		"value": "CI"
+	}, {
+		"description": "CJ-Coffin",
+		"name": "CJ-Coffin",
+		"value": "CJ"
+	}, {
+		"description": "CK-Cask",
+		"name": "CK-Cask",
+		"value": "CK"
+	}, {
+		"description": "CL-Coil",
+		"name": "CL-Coil",
+		"value": "CL"
+	}, {
+		"description": "CM-Card",
+		"name": "CM-Card",
+		"value": "CM"
+	}, {
+		"description": "CN-Container,nes as transport equipmen",
+		"name": "CN-Container,nes as transport equipmen",
+		"value": "CN"
+	}, {
+		"description": "CO-Carboy, non-protected",
+		"name": "CO-Carboy, non-protected",
+		"value": "CO"
+	}, {
+		"description": "CP-Carboy, protected",
+		"name": "CP-Carboy, protected",
+		"value": "CP"
+	}, {
+		"description": "CQ-Cartridge",
+		"name": "CQ-Cartridge",
+		"value": "CQ"
+	}, {
+		"description": "CR-Crate",
+		"name": "CR-Crate",
+		"value": "CR"
+	}, {
+		"description": "CS-Case",
+		"name": "CS-Case",
+		"value": "CS"
+	}, {
+		"description": "CT-Carton",
+		"name": "CT-Carton",
+		"value": "CT"
+	}, {
+		"description": "CU-Cup",
+		"name": "CU-Cup",
+		"value": "CU"
+	}, {
+		"description": "CV-Cover",
+		"name": "CV-Cover",
+		"value": "CV"
+	}, {
+		"description": "CW-Cage, roll",
+		"name": "CW-Cage, roll",
+		"value": "CW"
+	}, {
+		"description": "CX-Can, cylindrical",
+		"name": "CX-Can, cylindrical",
+		"value": "CX"
+	}, {
+		"description": "CY-Cylinder",
+		"name": "CY-Cylinder",
+		"value": "CY"
+	}, {
+		"description": "CZ-Canvas",
+		"name": "CZ-Canvas",
+		"value": "CZ"
+	}, {
+		"description": "DA-Crate, multiple layer, plastic",
+		"name": "DA-Crate, multiple layer, plastic",
+		"value": "DA"
+	}, {
+		"description": "DB-Crate, multiple layer, wooden",
+		"name": "DB-Crate, multiple layer, wooden",
+		"value": "DB"
+	}, {
+		"description": "DC-Crate",
+		"name": "DC-Crate",
+		"value": "DC"
+	}, {
+		"description": "DG-Cage,commonwealth handlg equip pool",
+		"name": "DG-Cage,commonwealth handlg equip pool",
+		"value": "DG"
+	}, {
+		"description": "DH-Box,commonwealth handlig equip pool",
+		"name": "DH-Box,commonwealth handlig equip pool",
+		"value": "DH"
+	}, {
+		"description": "DI-Drum, iron",
+		"name": "DI-Drum, iron",
+		"value": "DI"
+	}, {
+		"description": "DJ-Demijohn, non-protected",
+		"name": "DJ-Demijohn, non-protected",
+		"value": "DJ"
+	}, {
+		"description": "DK-Crate, bulk, cardboard",
+		"name": "DK-Crate, bulk, cardboard",
+		"value": "DK"
+	}, {
+		"description": "DL-Crate, bulk, plastic",
+		"name": "DL-Crate, bulk, plastic",
+		"value": "DL"
+	}, {
+		"description": "DM-Crate, bulk, wooden",
+		"name": "DM-Crate, bulk, wooden",
+		"value": "DM"
+	}, {
+		"description": "DN-Dispenser",
+		"name": "DN-Dispenser",
+		"value": "DN"
+	}, {
+		"description": "DP-Demijohn, protected",
+		"name": "DP-Demijohn, protected",
+		"value": "DP"
+	}, {
+		"description": "DR-Drum",
+		"name": "DR-Drum",
+		"value": "DR"
+	}, {
+		"description": "DS-Tray, one layer no cover,plastic",
+		"name": "DS-Tray, one layer no cover,plastic",
+		"value": "DS"
+	}, {
+		"description": "DT-Tray, one layer no cover, wooden",
+		"name": "DT-Tray, one layer no cover, wooden",
+		"value": "DT"
+	}, {
+		"description": "DU-Tray, one layer no cover,polystyren",
+		"name": "DU-Tray, one layer no cover,polystyren",
+		"value": "DU"
+	}, {
+		"description": "DV-Tray, one layer no cover, cardboard",
+		"name": "DV-Tray, one layer no cover, cardboard",
+		"value": "DV"
+	}, {
+		"description": "DW-Tray,two layers no cover,platic tra",
+		"name": "DW-Tray,two layers no cover,platic tra",
+		"value": "DW"
+	}, {
+		"description": "DX-Tray, two layers no cover, wooden",
+		"name": "DX-Tray, two layers no cover, wooden",
+		"value": "DX"
+	}, {
+		"description": "DY-Tray, two layers no cover,cardboard",
+		"name": "DY-Tray, two layers no cover,cardboard",
+		"value": "DY"
+	}, {
+		"description": "EC-Bag, plastic",
+		"name": "EC-Bag, plastic",
+		"value": "EC"
+	}, {
+		"description": "ED-Case, with pallet base",
+		"name": "ED-Case, with pallet base",
+		"value": "ED"
+	}, {
+		"description": "EE-Case, with pallet base, wooden",
+		"name": "EE-Case, with pallet base, wooden",
+		"value": "EE"
+	}, {
+		"description": "EF-Case, with pallet base, cardboard",
+		"name": "EF-Case, with pallet base, cardboard",
+		"value": "EF"
+	}, {
+		"description": "EG-Case, with pallet base, plastic",
+		"name": "EG-Case, with pallet base, plastic",
+		"value": "EG"
+	}, {
+		"description": "EH-Case, with pallet base, metal",
+		"name": "EH-Case, with pallet base, metal",
+		"value": "EH"
+	}, {
+		"description": "EI-Case, isothermic",
+		"name": "EI-Case, isothermic",
+		"value": "EI"
+	}, {
+		"description": "EN-Envelope",
+		"name": "EN-Envelope",
+		"value": "EN"
+	}, {
+		"description": "FB-Flexibag",
+		"name": "FB-Flexibag",
+		"value": "FB"
+	}, {
+		"description": "FC-Crate, friut",
+		"name": "FC-Crate, friut",
+		"value": "FC"
+	}, {
+		"description": "FD-Crate, framed",
+		"name": "FD-Crate, framed",
+		"value": "FD"
+	}, {
+		"description": "FE-Flexitank",
+		"name": "FE-Flexitank",
+		"value": "FE"
+	}, {
+		"description": "FI-Firkin",
+		"name": "FI-Firkin",
+		"value": "FI"
+	}, {
+		"description": "FL-Flask",
+		"name": "FL-Flask",
+		"value": "FL"
+	}, {
+		"description": "FO-Footlocker",
+		"name": "FO-Footlocker",
+		"value": "FO"
+	}, {
+		"description": "FP-Filmpack",
+		"name": "FP-Filmpack",
+		"value": "FP"
+	}, {
+		"description": "FR-Frame",
+		"name": "FR-Frame",
+		"value": "FR"
+	}, {
+		"description": "FT-Foodtainer",
+		"name": "FT-Foodtainer",
+		"value": "FT"
+	}, {
+		"description": "FW-Cart",
+		"name": "FW-Cart",
+		"value": "FW"
+	}, {
+		"description": "FX-Bag",
+		"name": "FX-Bag",
+		"value": "FX"
+	}, {
+		"description": "GB-Bottle, gas",
+		"name": "GB-Bottle, gas",
+		"value": "GB"
+	}, {
+		"description": "GI-Girder",
+		"name": "GI-Girder",
+		"value": "GI"
+	}, {
+		"description": "GL-Container",
+		"name": "GL-Container",
+		"value": "GL"
+	}, {
+		"description": "GR-Receptable, glass",
+		"name": "GR-Receptable, glass",
+		"value": "GR"
+	}, {
+		"description": "GU-Tray",
+		"name": "GU-Tray",
+		"value": "GU"
+	}, {
+		"description": "GY-Bag",
+		"name": "GY-Bag",
+		"value": "GY"
+	}, {
+		"description": "GZ-Girders, in bundle/bunch/truss",
+		"name": "GZ-Girders, in bundle/bunch/truss",
+		"value": "GZ"
+	}, {
+		"description": "HA-Basket, with handle, plastic",
+		"name": "HA-Basket, with handle, plastic",
+		"value": "HA"
+	}, {
+		"description": "HB-Basket, with handle, wooden",
+		"name": "HB-Basket, with handle, wooden",
+		"value": "HB"
+	}, {
+		"description": "HC-Basket, with handle, cardboard",
+		"name": "HC-Basket, with handle, cardboard",
+		"value": "HC"
+	}, {
+		"description": "HG-Hogshead",
+		"name": "HG-Hogshead",
+		"value": "HG"
+	}, {
+		"description": "HN-Hanger",
+		"name": "HN-Hanger",
+		"value": "HN"
+	}, {
+		"description": "HR-Hamper",
+		"name": "HR-Hamper",
+		"value": "HR"
+	}, {
+		"description": "IA-Package, display, wooden",
+		"name": "IA-Package, display, wooden",
+		"value": "IA"
+	}, {
+		"description": "IB-Package, display, cardboard",
+		"name": "IB-Package, display, cardboard",
+		"value": "IB"
+	}, {
+		"description": "IC-Package, display, plastic",
+		"name": "IC-Package, display, plastic",
+		"value": "IC"
+	}, {
+		"description": "ID-Package, display, metal",
+		"name": "ID-Package, display, metal",
+		"value": "ID"
+	}, {
+		"description": "IE-Package, show",
+		"name": "IE-Package, show",
+		"value": "IE"
+	}, {
+		"description": "IF-Package, flow",
+		"name": "IF-Package, flow",
+		"value": "IF"
+	}, {
+		"description": "IG-Package, paper wrapped",
+		"name": "IG-Package, paper wrapped",
+		"value": "IG"
+	}, {
+		"description": "IH-Drum, plastic",
+		"name": "IH-Drum, plastic",
+		"value": "IH"
+	}, {
+		"description": "IK-Package",
+		"name": "IK-Package",
+		"value": "IK"
+	}, {
+		"description": "IL-Tray",
+		"name": "IL-Tray",
+		"value": "IL"
+	}, {
+		"description": "IN-Ingot",
+		"name": "IN-Ingot",
+		"value": "IN"
+	}, {
+		"description": "IZ-Ingots, in bundle/bunch/truss",
+		"name": "IZ-Ingots, in bundle/bunch/truss",
+		"value": "IZ"
+	}, {
+		"description": "JB-Bag",
+		"name": "JB-Bag",
+		"value": "JB"
+	}, {
+		"description": "JC-Jerrican, rectangular",
+		"name": "JC-Jerrican, rectangular",
+		"value": "JC"
+	}, {
+		"description": "JG-Jug",
+		"name": "JG-Jug",
+		"value": "JG"
+	}, {
+		"description": "JR-Jar",
+		"name": "JR-Jar",
+		"value": "JR"
+	}, {
+		"description": "JT-Jute bag",
+		"name": "JT-Jute bag",
+		"value": "JT"
+	}, {
+		"description": "JY-Jerrican, cylindrical",
+		"name": "JY-Jerrican, cylindrical",
+		"value": "JY"
+	}, {
+		"description": "KG-Keg",
+		"name": "KG-Keg",
+		"value": "KG"
+	}, {
+		"description": "KI-Kit",
+		"name": "KI-Kit",
+		"value": "KI"
+	}, {
+		"description": "LE-Luggage",
+		"name": "LE-Luggage",
+		"value": "LE"
+	}, {
+		"description": "LG-Log",
+		"name": "LG-Log",
+		"value": "LG"
+	}, {
+		"description": "LT-Lot",
+		"name": "LT-Lot",
+		"value": "LT"
+	}, {
+		"description": "LU-Lug",
+		"name": "LU-Lug",
+		"value": "LU"
+	}, {
+		"description": "LV-Liftvan",
+		"name": "LV-Liftvan",
+		"value": "LV"
+	}, {
+		"description": "LZ-Logs, in bundle/bunch/truss",
+		"name": "LZ-Logs, in bundle/bunch/truss",
+		"value": "LZ"
+	}, {
+		"description": "MA-Crate",
+		"name": "MA-Crate",
+		"value": "MA"
+	}, {
+		"description": "MB-Bag, multiply",
+		"name": "MB-Bag, multiply",
+		"value": "MB"
+	}, {
+		"description": "MC-Crate, milk",
+		"name": "MC-Crate, milk",
+		"value": "MC"
+	}, {
+		"description": "ME-Container",
+		"name": "ME-Container",
+		"value": "ME"
+	}, {
+		"description": "MR-Receptable, metal",
+		"name": "MR-Receptable, metal",
+		"value": "MR"
+	}, {
+		"description": "MS-Sack, multi-wall",
+		"name": "MS-Sack, multi-wall",
+		"value": "MS"
+	}, {
+		"description": "MT-Mat",
+		"name": "MT-Mat",
+		"value": "MT"
+	}, {
+		"description": "MW-Receptable, plastic wrapped",
+		"name": "MW-Receptable, plastic wrapped",
+		"value": "MW"
+	}, {
+		"description": "MX-Matchbox",
+		"name": "MX-Matchbox",
+		"value": "MX"
+	}, {
+		"description": "NA-Not available",
+		"name": "NA-Not available",
+		"value": "NA"
+	}, {
+		"description": "NE-Unpacked or unpackaged",
+		"name": "NE-Unpacked or unpackaged",
+		"value": "NE"
+	}, {
+		"description": "NF-Unpacked or unpackaged",
+		"name": "NF-Unpacked or unpackaged",
+		"value": "NF"
+	}, {
+		"description": "NG-Unpacked or unpackaged",
+		"name": "NG-Unpacked or unpackaged",
+		"value": "NG"
+	}, {
+		"description": "NS-Nest",
+		"name": "NS-Nest",
+		"value": "NS"
+	}, {
+		"description": "NT-Net",
+		"name": "NT-Net",
+		"value": "NT"
+	}, {
+		"description": "NU-Net, tube, plastic",
+		"name": "NU-Net, tube, plastic",
+		"value": "NU"
+	}, {
+		"description": "NV-Net, tube, textile",
+		"name": "NV-Net, tube, textile",
+		"value": "NV"
+	}, {
+		"description": "OA-Pallet",
+		"name": "OA-Pallet",
+		"value": "OA"
+	}, {
+		"description": "OB-Pallet",
+		"name": "OB-Pallet",
+		"value": "OB"
+	}, {
+		"description": "OC-Pallet",
+		"name": "OC-Pallet",
+		"value": "OC"
+	}, {
+		"description": "OD-Pallet",
+		"name": "OD-Pallet",
+		"value": "OD"
+	}, {
+		"description": "OE-Pallet",
+		"name": "OE-Pallet",
+		"value": "OE"
+	}, {
+		"description": "OF-Platform",
+		"name": "OF-Platform",
+		"value": "OF"
+	}, {
+		"description": "OK-Block",
+		"name": "OK-Block",
+		"value": "OK"
+	}, {
+		"name": "g",
+		"value": "109"
+	}, {
+		"name": "-",
+		"value": "108"
+	}, {
+		"name": "50kgs",
+		"value": "107"
+	}, {
+		"name": "1000sticks",
+		"value": "106"
+	}, {
+		"name": "User per day of access",
+		"value": "104"
+	}, {
+		"name": "Kg",
+		"value": "103"
+	}, {
+		"name": "Minute",
+		"value": "105"
+	}, {
+		"name": "Litre",
+		"value": "102"
+	}, {
+		"name": "Stick",
+		"value": "101"
+	}],
+	"sector": [{
+		"code": "A",
+		"name": "Supermarket Industry",
+		"parentClass": "0",
+		"requiredFill": "0"
+	}, {
+		"code": "C",
+		"name": "Banking Industry",
+		"parentClass": "0"
+	}, {
+		"code": "C04",
+		"name": "Financial industry",
+		"parentClass": "C"
+	}, {
+		"code": "C0401",
+		"name": "Insurance",
+		"parentClass": "C04",
+		"requiredFill": "0"
+	}, {
+		"code": "C0402",
+		"name": "Stock market",
+		"parentClass": "C04",
+		"requiredFill": "1"
+	}, {
+		"code": "C0403",
+		"name": "Fund",
+		"parentClass": "C04",
+		"requiredFill": "0"
+	}, {
+		"code": "D",
+		"name": "Telecommunications Industry",
+		"parentClass": "0",
+		"requiredFill": "0"
+	}, {
+		"code": "E",
+		"name": "Agricultural Industry",
+		"parentClass": "0"
+	}, {
+		"code": "E01",
+		"name": "Cotton",
+		"parentClass": "E",
+		"requiredFill": "0"
+	}, {
+		"code": "F",
+		"name": "Animal husbandry",
+		"parentClass": "0"
+	}, {
+		"code": "F01",
+		"name": "Pig raising",
+		"parentClass": "F",
+		"requiredFill": "1"
+	}, {
+		"code": "F02",
+		"name": "Raising horse",
+		"parentClass": "F",
+		"requiredFill": "0"
+	}, {
+		"code": "G",
+		"name": "Fishery",
+		"parentClass": "0"
+	}, {
+		"code": "H",
+		"name": "Manufacturing",
+		"parentClass": "0"
+	}, {
+		"code": "H01",
+		"name": "Automotive Manufacturing",
+		"parentClass": "H",
+		"requiredFill": "0"
+	}, {
+		"code": "H02",
+		"name": "Clothing manufacturing",
+		"parentClass": "H",
+		"requiredFill": "1"
+	}]
+}

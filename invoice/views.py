@@ -76,14 +76,13 @@ def login(request):
 def dashboard(request):
     clients = Client.objects.all().count()
     invoices = Invoice.objects.all().count()
-    # paidInvoices = Invoice.objects.filter(status='PAID').count()
+
     context = {}
 
     if request.method == 'GET':
         form = CompanyForm()
         context['form'] = form
         return render(request, 'invoice/dashboard.html', context)
-
 
     if request.method == 'POST':
         form = CompanyForm(request.POST, request.FILES)
@@ -111,9 +110,7 @@ def invoices(request, slug):
     # cleint = Client.objects.get(slug=slug)
     context['invoices'] = invoices
     context['cleint'] = "cleint"
-
     return render(request, 'invoice/invoices.html', context)
-
 
 @login_required
 def products(request):
@@ -179,8 +176,7 @@ def productsMaintance(request, slug):
             form.product = prod
             prod.stock_warning = int(prod.stock_warning)+int(goods_update_details['quantity'])
             response = upload_more_goods(request,goods_update_details )
-            print('---111------------')
-            print(response)
+            
             if response['returnStateInfo']['returnMessage'] != 'SUCCESS':
                 messages.error(request, f"{response['returnStateInfo']['returnMessage']} Please check that all details are correct")
                 return redirect('products')
@@ -259,7 +255,6 @@ def logout(request):
     return redirect('login')
 
 ###--------------------------- Create Invoice Views Start here --------------------------------------------- ###
-
 @login_required
 def createInvoice(request, slug):
     number = 'INV-'+str(uuid4()).split('-')[1]
@@ -269,7 +264,6 @@ def createInvoice(request, slug):
 
     inv = Invoice.objects.get(number=number)
     return redirect('create-build-invoice', slug=inv.slug)
-
 
 @login_required
 def createBuildInvoice(request, slug):
@@ -300,8 +294,6 @@ def createBuildInvoice(request, slug):
         net_amount += prod.net_amount()
         tax_amount += prod.tax()
         gross_amount += prod.total()
-
-        # Add populated good to goods_details list
         goods_context.append(good)
         tax_context.append(tax)
     
@@ -316,7 +308,6 @@ def createBuildInvoice(request, slug):
     context['remarks'] = ""
     
     goods_summary = summary(context)
-
 
     goodsDetails = goods_context
     taxDetails = tax_context
@@ -347,8 +338,7 @@ def createBuildInvoice(request, slug):
             context['currency'] = inv_form['currency'].value()
             context['remarks'] = inv_form['remarks'].value()
 
-            inv = uploadInvoice(issuer, context, goodsDetails, taxDetails,summary_json)
-          
+            inv = uploadInvoice(issuer, context, goodsDetails, taxDetails,summary_json)          
             invoice_update.json_response = inv["content"]
 
             if inv["returnMessage"] == "SUCCESS":
@@ -359,7 +349,7 @@ def createBuildInvoice(request, slug):
                 messages.warning(request, inv["returnMessage"])
             
             return redirect('create-build-invoice', slug=slug)
-        # to be deleted 
+
         elif client_form.is_valid() and 'client' in request.POST:
 
             client_form.save()
@@ -372,7 +362,6 @@ def createBuildInvoice(request, slug):
             messages.error(request,"Problem processing your request")
             return render(request, 'invoice/create-invoice.html', context)
     return render(request, 'invoice/create-invoice.html', context)
-
 
 def client_home(request, slug):
     client = Client.objects.get(slug=slug)
@@ -418,11 +407,12 @@ def pdfInvoice(request, slug):
     client = Client.objects.filter(company=company)
     invoice = Invoice.objects.get(slug= slug)
     context = {}
-    print(invoice.json_response)
+
     context['company'] = company
     context['client'] = client
-    print(inv_context(invoice.json_response))
-    # context.update(inv_context(invoice.json_response))
+    context['invoice'] = invoice
+    context.update(inv_context(invoice.json_response))
+    print(context)
 
     html_string = render_to_string('documents/invoicepdf.html', context)
     html = HTML(string=html_string, base_url=request.build_absolute_uri())

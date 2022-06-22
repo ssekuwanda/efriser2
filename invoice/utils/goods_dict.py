@@ -6,12 +6,12 @@ def goods_details(prod, number):
     goods ={
             "item": str(prod.product.name),
             "itemCode": str(prod.product.code),
-            "qty": str("{:.1f}".format(prod.quantity)),
+            "qty": str("{:.2f}".format(prod.quantity)),
             "unitOfMeasure": str(prod.product.unit_measure.code),
-            "unitPrice": "{:.1f}".format(prod.price),
+            "unitPrice": "{:.2f}".format(prod.price),
             "total": str("{:.2f}".format(prod.total())),
             "taxRate": str(0.18) if prod.product.tax_rate =="18%" else str(0),
-            "tax": "{:.1f}".format(prod.tax()),
+            "tax": str(prod.tax()),
             "discountTotal": "",
             "discountTaxRate": "",
             "orderNumber": str(number),
@@ -37,9 +37,9 @@ def tax_details(tax):
     tax = {
             "taxCategory": "A: VAT-Standard",
             "taxCategoryCode":"01",
-            "netAmount": "{:.1f}".format(tax.net_amount()),
+            "netAmount": "{:.2f}".format(tax.net_amount()),
             "taxRate": str(0.18) if tax.product.tax_rate =="18%" else str(0),
-            "taxAmount": str("{:.1f}".format(tax.tax())),
+            "taxAmount": str("{:.2f}".format(tax.tax())),
             "grossAmount": str(tax.total()),
             "exciseUnit": "",
             "exciseCurrency": "",
@@ -49,8 +49,8 @@ def tax_details(tax):
 
 def summary(summary_details):
     inv_summary = {
-            "netAmount": str("{:.1f}".format(summary_details['net'])),
-            "taxAmount": str("{:.1f}".format(summary_details['tax'])),
+            "netAmount": str("{:.2f}".format(summary_details['net'])),
+            "taxAmount": str("{:.2f}".format(summary_details['tax'])),
             "grossAmount": str("{:.2f}".format(summary_details['gross'])),
             "itemCount": str(summary_details['itemCount']),
             "modeCode": "1",

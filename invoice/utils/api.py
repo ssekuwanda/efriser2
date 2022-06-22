@@ -28,11 +28,39 @@ def getClientDetails(tin, client_tin, device_no):
     return response_data
 
 
+def systemDict(tin, device_no):
+    import base64
+    import gzip
+    import struct
+    ic = "T115"
+    message = ""
+    data_dump = payload_info(tin, device_no,ic,message)
+    json_dump = json.dumps(data_dump)
+    try:
+        r = re.post(base_url, json=data_dump)
+        content = r.json()['data']['content']
+        gz = base64.b64decode(content)
+        ggz = gzip.decompress(gz).decode('UTF8')
+        print(ggz)
+
+
+        to_bytes = content.encode('utf-8')
+        pw = to_bytes.decode("utf-8")
+        # decoded = decode(content)
+        # print('----------------------')
+        # print( r.json())
+        return content
+    except re.HTTPError as ex:
+        return "No data got"
+    # return response_data
+
 def goodsUpload(tin, device_no, message):
     ic = "T130"
     encode_message = encode(str([message])).decode()
     data_dump = payload_info(tin, device_no, ic, encode_message)
     response_data = post_creditnote(data_dump)
+    print('----------------------')
+    print(response_data)
     return response_data
 
 
@@ -40,6 +68,8 @@ def uploadInvoice(issuer, context,goodsDetails, taxDetails,summary_json):
     interface_code = "T109"
 
     message = invoice_load(issuer, context, goodsDetails, taxDetails,summary_json)
+    print('--------------------')
+    print(message)
 
     to_json = json.dumps(message)
     encode_message = encode(to_json).decode()
@@ -94,10 +124,11 @@ def creditNoteUpload(message, request):
 def maintain_goods_post(data_dump):
     try:
         r = re.post(base_url, json=data_dump)
-        print('------------------------')
+        print('**************')
         print(data_dump)
+        print('------------------------')
+        print(r.json())
         content = r.json()['data']['content']
-        print(r.status_code)
         decoded = decode(content)
         return decoded.decode()
     except re.HTTPError as ex:

@@ -2,7 +2,10 @@ import enum
 
 
 class Currencies(enum.Enum):
-    pass
+    GBP= 103
+    EURO = 104
+    USD = 102
+    UGX = 101
 
 class PaymentMode(enum.Enum):
     Credit = 101
@@ -44,3 +47,5 @@ class InvoiceKind(enum.Enum):
         return [(i.name, i.value) for i in cls]
 
 print(InvoiceKind.choices())
+
+U

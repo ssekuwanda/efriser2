@@ -10,6 +10,11 @@ from random import randint
 from jsonfield import JSONField
 
 randoms = randint(120,1000)
+VAT_CHOICES = [
+        ('18%', 'Standard Rated Sale'), 
+        ('0%', 'Export'),
+        ('0%', 'Exempt'),
+        ]
 
 class Company(models.Model):
     companyTypes = [
@@ -248,6 +253,7 @@ class InvoiceProducts(models.Model):
     product = models.ForeignKey(Product, null=False, blank=False, on_delete=models.CASCADE)
     notes = models.TextField(null=True, blank=True)
     quantity = models.FloatField(null=False)
+    vat = models.CharField('VAT', choices=VAT_CHOICES,max_length=100, null=True, blank=False)
     price = models.FloatField("Unit Price", null=False)
 
     #Utility fields
@@ -276,10 +282,15 @@ class InvoiceProducts(models.Model):
             tax = 0.18
         else:
             tax = 1
-        return float((self.total()*tax)/1.18)
+        tax_amount = float((self.total()*tax)/1.18)
+        cleaned_tax = "{:.2f}".format(tax_amount)
+        return float(cleaned_tax)
 
     def net_amount(self):
         return float((self.total())-self.tax())
+
+    def total_details(self):
+        return float(self.net_amount()*self.quantity)
 
     def save(self, *args, **kwargs):
         if self.date_created is None:

@@ -3,9 +3,10 @@ import json
 from .encrpt import *
 
 
-def inv_context(jsonrep):
+def inv_context(input):
+    to_json = json.loads(input)
     output = {}
-    to_json = json.dumps(jsonrep)
+    # to_json = json.dumps(jsonrep)
     output['antifake'] = to_json['basicInformation']['antifakeCode']
     output['deviceNo'] = to_json['basicInformation']['deviceNo']
     output['invoiceId'] = to_json['basicInformation']['invoiceId']
