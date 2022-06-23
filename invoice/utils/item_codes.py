@@ -20,8 +20,6 @@ class PaymentMode(enum.Enum):
     Swift_transfer = 110
 
 # class BuyerTyper(enum.Enum):
-print(PaymentMode(101))
-print(PaymentMode.Credit.name)
 
 class InvoiceIndustry(enum.Enum):
     general_industry = 101

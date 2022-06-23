@@ -259,7 +259,18 @@ def logout(request):
 ###--------------------------- Create Invoice Views Start here --------------------------------------------- ###
 @login_required
 def createInvoice(request, slug):
-    number = 'INV-'+str(uuid4()).split('-')[1]
+    today = datetime.now()
+    company = request.user.company1
+ 
+    related_inv = Invoice.objects.filter(company=company, last_updated__year=today.year)
+    
+    for inv in Invoice.objects.filter(company=company):
+        if inv.inv_prod.all == None:
+            print('----------')
+            print(inv)
+            inv.delete()
+
+    number = company.short_name+'/'+00
     client = Client.objects.get(slug=slug)
     newInvoice = Invoice.objects.create(number=number, client=client)
     newInvoice.save()
@@ -399,7 +410,6 @@ def createCreditNote(request, slug):
 
 def creditNoteHome(request):
     credits = CreditNote.objects.all()
-
     context = {'credits':credits}
     return render(request, 'invoice/all_creditnotes.html', context)
 
@@ -408,13 +418,20 @@ def pdfInvoice(request, slug):
     company = request.user.company1
     client = Client.objects.filter(company=company)
     invoice = Invoice.objects.get(slug= slug)
-    context = {}
+    invoice_pdts = InvoiceProducts.objects.filter(invoice=invoice)
 
+    context = {}
     context['company'] = company
     context['client'] = client
     context['invoice'] = invoice
+    context['products'] = invoice_pdts
+
+    print(invoice.json_response)
+
     context.update(inv_context(invoice.json_response))
-    print(context)
+ 
+    bank = request.user.company1.bank_details.filter(currency=invoice.currency)
+    context['bank'] = bank
 
     html_string = render_to_string('documents/invoicepdf.html', context)
     html = HTML(string=html_string, base_url=request.build_absolute_uri())
@@ -422,7 +439,6 @@ def pdfInvoice(request, slug):
 
     response = HttpResponse(pdf, content_type='application/pdf')
     response['Content-Disposition'] = f'inline; filename=test.pdf'
-
     return response
 
 @login_required

@@ -1,4 +1,5 @@
 import imp
+from locale import currency
 from math import prod
 from django.db import models
 from django.forms import JSONField
@@ -8,6 +9,7 @@ from uuid import uuid4
 from django.contrib.auth.models import User
 from random import randint
 from jsonfield import JSONField
+# from django.core.urlresolvers import reverse
 
 randoms = randint(120,1000)
 VAT_CHOICES = [
@@ -15,6 +17,12 @@ VAT_CHOICES = [
         ('0%', 'Export'),
         ('0%', 'Exempt'),
         ]
+
+CURRENCY = [
+        ('UGX', 'UGX'),
+        ('USD', 'USD'),
+        ('GBP', 'GBP'),
+    ]
 
 class Company(models.Model):
     companyTypes = [
@@ -26,6 +34,7 @@ class Company(models.Model):
     owner = models.OneToOneField(
         User, related_name="company1", blank=True, null=True, on_delete=models.SET_NULL)
     name = models.CharField("Company Name",max_length=100, null=False, blank=False)
+    short_name = models.CharField(max_length=10, null=False, blank=False)
     email = models.EmailField(max_length=1000, null=False, blank=False)
     telephone_number = models.CharField(max_length=100, null=False, blank=True)
     location = models.TextField( null=False, blank=True, help_text="Separate Each location Detail with >")
@@ -37,7 +46,7 @@ class Company(models.Model):
     #Tax fields
     tin = models.CharField(max_length=10)
     device_number = models.CharField(max_length=100, null=False, blank=False)
-
+    wht_exempt = models.BooleanField(default=False)
     #Utility fields
     slug = models.SlugField(max_length=500, unique=True, blank=True, null=True)
     date_created = models.DateTimeField(blank=True, null=True)
@@ -59,8 +68,30 @@ class Company(models.Model):
 
         super(Company, self).save(*args, **kwargs)
 
-class Client(models.Model):
+class BankDetails(models.Model):
+    company = models.ForeignKey(Company, related_name='bank_details', on_delete=models.SET_NULL, null=True)
+    bank_name = models.CharField(max_length=1000)
+    branch = models.CharField(max_length=1000)
+    account_name = models.CharField(max_length=1000)
+    account_number = models.BigIntegerField()
+    swift_address = models.CharField(max_length=1000)
+    swift_code = models.CharField(max_length=1000)
+    currency = models.CharField(max_length=1000, choices=CURRENCY)
 
+    def __str__(self):
+        return self.bank_name
+
+class CompanyLocation(models.Model):
+    company = models.OneToOneField(Company, on_delete=models.SET_NULL, null=True)
+    plot = models.CharField(max_length=1000,null=True)
+    pobox = models.CharField('P.O.Box',max_length=1000,null=True)
+    location = models.CharField(max_length=1000,null=True, default='Kampala, Uganda')
+    other_details = models.CharField(max_length=1000,null=True) 
+
+    def __str__(self):
+        return self.plot
+
+class Client(models.Model):
     #Basic Fields.
     company = models.ForeignKey(Company, null=True, blank=True, on_delete=models.SET_NULL)
     name = models.CharField(max_length=100, null=False, blank=False)
@@ -72,21 +103,17 @@ class Client(models.Model):
     tin = models.CharField(max_length=10, null=True, blank=True, help_text="leave blanck if export")
     # foreignier = models.BooleanField(default=False)
 
-
     #Utility fields
     uniqueId = models.CharField(null=True, blank=True, max_length=100)
     slug = models.SlugField(max_length=500, unique=True, blank=True, null=True)
     date_created = models.DateTimeField(blank=True, null=True)
     last_updated = models.DateTimeField(blank=True, null=True)
 
-
     def __str__(self):
         return '{}'.format(self.name)
 
-
     def get_absolute_url(self):
         return reverse('client-detail', kwargs={'slug': self.slug})
-
 
     def save(self, *args, **kwargs):
         if self.date_created is None:
@@ -107,7 +134,7 @@ class Invoice(models.Model):
         ('GBP', 'GBP'),
     ]
     # Basic Fields
-    number = models.CharField(null=True, blank=True, max_length=100)
+    number = models.CharField(null=True, blank=True, max_length=1000)
     finalized = models.BooleanField(default=False)
     remarks = models.TextField(null=True, blank=True) 
     currency = models.CharField("CURRENCY",choices= CURRENCY,null=True, blank=True, max_length=100)
@@ -121,6 +148,7 @@ class Invoice(models.Model):
 
     #RELATED fields
     client = models.ForeignKey(Client, blank=True, null=True, on_delete=models.SET_NULL)
+    company = models.ForeignKey(Company, blank=True, null=True, on_delete=models.SET_NULL)
 
     #Utility fields
     uniqueId = models.CharField(null=True, blank=True, max_length=100)
@@ -242,7 +270,7 @@ class ProductMeta(models.Model):
 class InvoiceProducts(models.Model):
     # Basic fields
     invoice = models.ForeignKey(
-        Invoice, null=True, blank=True, on_delete=models.SET_NULL)
+        Invoice, null=True, blank=True, on_delete=models.SET_NULL, related_name='inv_prod')
     product = models.ForeignKey(Product, null=False, blank=False, on_delete=models.CASCADE)
     notes = models.TextField(null=True, blank=True)
     quantity = models.FloatField(null=False)

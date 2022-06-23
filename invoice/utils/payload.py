@@ -12,7 +12,6 @@ date_string = datetime.now(pytz.timezone('Africa/Nairobi')
 def payload_info(tin, device_no, ic, message):
     dt_string = datetime.now(pytz.timezone('Africa/Nairobi')).strftime("%Y-%m-%d %H:%M:%S")
 
-    # load is a dictonary/json
     load = {
         "data": {
             "content": message,

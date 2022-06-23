@@ -1,19 +1,18 @@
-from ast import Return
 import base64
-from dataclasses import dataclass
-from email import message
 import requests as re
 from .payload import *
 from .encrpt import decode, encode
+import base64
+import gzip
 
 base_url = "http://198.58.118.119:9880/efristcs/ws/tcsapp/getInformation"
-
 
 def post_message(data_dump):
     print(data_dump)
     try:
         r = re.post(base_url, json=data_dump)
-        print(r.json())
+        print('--------------------')
+        print(r)
         content = r.json()['data']['content']
         decoded = decode(content)
         return decoded.decode()
@@ -30,9 +29,6 @@ def getClientDetails(tin, client_tin, device_no):
 
 
 def systemDict(tin, device_no):
-    import base64
-    import gzip
-    import struct
     ic = "T115"
     message = ""
     data_dump = payload_info(tin, device_no,ic,message)
@@ -42,14 +38,9 @@ def systemDict(tin, device_no):
         content = r.json()['data']['content']
         gz = base64.b64decode(content)
         ggz = gzip.decompress(gz).decode('UTF8')
-        print(ggz)
-
 
         to_bytes = content.encode('utf-8')
         pw = to_bytes.decode("utf-8")
-        # decoded = decode(content)
-        # print('----------------------')
-        # print( r.json())
         return content
     except re.HTTPError as ex:
         return "No data got"

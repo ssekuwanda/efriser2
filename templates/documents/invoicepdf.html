@@ -34,7 +34,13 @@
             src: local("book-antiqua"),
             url("{% static 'assets/fonts/book-antiqua.ttf' %}");
         }
-
+        @font-face {
+            font-family: "lora";
+            font-style: normal;
+            font-weight: normal;
+            src: local("lora"),
+            url("{% static 'assets/fonts/Lora-Regular.ttf' %}");
+        }
 
         body {
             height: 100%;
@@ -331,6 +337,17 @@
             letter-spacing: 1.5px;
             padding-bottom: 7px;
         }
+        table {
+            border-collapse: collapse;
+        }
+
+        tr:nth-child(even) {
+            background-color: rgb(224, 224, 224);
+        }
+
+        tr:nth-child(odd) {
+            background-color: rgb(255, 255, 255);
+        }
     </style>
     <div class="container-1">
         <div class="box-1" style="float: right; padding-top: 10px;">
@@ -339,22 +356,19 @@
         <div class="box-2">
             <p>Tel: {{company.telephone_number}}</p>
             <p>Email: {{company.email}}</p>
-            {% if company.website %}
-            <p>{{company.website}}</p>
-            {% endif %}
+            {% if company.website %}<p>{{company.website}}</p>{% endif %}
+            <p>TIN: {{ company.tin }}</p>
         </div>
         <div class="box-3">
             <p>{{ company.name }}</p>
-            <p>6th Floor, Block C</p>
-            <p>Nakawa Business Park</p>
-            <p>Plot 3-5 New Portbell Road</p>
-            <p>P.O. Box 9113</p>
-            <p>Kampala, Uganda</p>
+            <p>{{ company.companylocation.plot }}</p>
+            <p>P.O. Box {{ company.companylocation.pobox }}</p>
+            <p>{{ company.companylocation.other_details }}</p>
+            <p>{{ company.companylocation.location }}</p>
         </div>
     </div>
     <div class="container-1">
         <div class="upper">
-            <p>TIN. {{ company.tin }}</p>
             <p>FISCAL DOCUMENT NUMBER: {{ fdn }}</p>
             <p>VERIFICTION CODE: {{ antifake }}
             <p>INVOICE NUMBER: {{ invoice.number }}</p>
@@ -366,228 +380,67 @@
             <p class="add1">TO: {{ buyerName }}</p>
         </div>
     </div>
-    <div class="container-2" style="padding-bottom: 0px;">
-        <div class="word">
-            <div class="narative" style="margin-bottom: 0px; padding-bottom: 0px;">
-                <div class="nara1 tax">
-                    <p>
-                        {% if engage.create == "Tax Invoice" %}
-                        {% if engage.vat == '18%' %}
-                        {{ engage.create|upper }}
-                        {% elif engage.vat == '0%' %}
-                        EXPORT INVOICE
-                        {% else %}
-                        EXEMPT
-                        {% endif %}
-                        {% else %}
-                        {{ engage.create }}
-                        {% endif %}
-                    </p>
-                </div>
-                <div class="nara2 tax number">
-                    <p>{{ engage.currency }}</p>
-                </div>
-            </div>
-            <div class="narative">
-                <div class="nara1">
-                    <p class="texted">
-                        {{ engage.narrative|linebreaksbr }}
-                    </p>
-                </div>
-                <div class="nara2" style="position: relative; min-height: 20px;">
-                    <p class="texted number" style="position: absolute; bottom: 0; right: 0;">
-                        {% if engage.create == "Credit Note" %}
-                        {{ engage.fees|mul:"-1"|floatformat:1|intcomma }}
-                        {% else %}
-                        {% if engage.currency == 'UGX' %}
-                        {{ engage.fees|floatformat:0|intcomma }}
-                        {% else %}
-                        {{ engage.fees|floatformat:1|intcomma }}
-                        {% endif %}
-                        {% endif %}
-                    </p>
-                </div>
-            </div>
-            {% if engage.disbursements %}
-            {% if engage.vat_on_disbursements %}
-            <div class="narative">
-                <div class="nara1">
-                    <p class="texted">Disbursements</p>
-                </div>
-                <div class="nara2">
-                    <p class="texted number">
-                        {% if engage.disbursements %}
-                        {% if engage.create == "Credit Note" %}
-                        {% if engage.currency == 'UGX' %}
-                        {{ engage.disbursements|mul:"-1"|floatformat:0|intcomma }}
-                        {% else %}
-                        {{ engage.disbursements|mul:"-1"|floatformat:1|intcomma }}
-                        {% endif %}
-                        {% else %}
-                        {% if engage.currency == 'UGX' %}
-                        {{ engage.disbursements|floatformat:0|intcomma }}
-                        {% else %}
-                        {{ engage.disbursements|floatformat:1|intcomma }}
-                        {% endif %}
-                        {% endif %}
-                        {% else %} - {% endif %}</p>
-                </div>
-            </div>
-            {% endif %}
-            {% endif %}
-            <div class="narative">
-                <div class="nara1">
-                    <p class="texted">
-                        {% if engage.create == "Disbursement Note" %}
-                        {% if engage.vat == '18%' %}
-                        VAT at 18%
-                        {% else%}
-                        {% endif %}
-                        {% else %}
-                        {% if engage.vat == '18%' %}
-                        VAT at 18%
-                        {% elif engage.vat == '0%' %}
-                        Export(VAT at 0%)
-                        {% else %}
-                        VAT at 0%
-                        {% endif %}
-                        {% endif %}
-                    </p>
-                </div>
-                <div class="nara2">
-                    <p class="texted number">
-                        {% if engage.create == "Disbursement Note" %}
-                        {% if engage.vat == '18%' %}
-                        {{ engage.total_vat|floatformat:0|intcomma }}
-                        {% else%}
-                        {% endif %}
-                        {% else %}
-                        {% if engage.vat == '18%' %}
-                        {% if engage.create == "Credit Note" %}
-                        {% if engage.currency == 'UGX' %}
-                        {{ engage.total_vat|mul:"-1"|floatformat:0|intcomma }}
-                        {% else %}
-                        {{ engage.total_vat|mul:"-1"|floatformat:1|intcomma }}
-                        {% endif %}
-                        {% else %}
-                        {% if engage.currency == 'UGX' %}
-                        {{ engage.total_vat|floatformat:0|intcomma }}
-                        {% else %}
-                        {{ engage.total_vat|floatformat:1|intcomma }}
-                        {% endif %}
-                        {% endif %}
-                        {% else %}
-                        -
-                        {% endif %}
-                        {% endif %}
-                    </p>
-                </div>
-            </div>
-            {% if engage.disbursements %}
-            {% if not engage.vat_on_disbursements %}
-            <div class="narative">
-                <div class="nara1">
-                    <p class="texted">Disbursements</p>
-                </div>
-                <div class="nara2">
-                    <p class="texted number">
-                        {% if engage.disbursements %}
-                        {% if engage.create == "Credit Note" %}
-                        {% if engage.currency == 'UGX' %}
-                        {{ engage.disbursements|mul:"-1"|floatformat:0|intcomma }}
-                        {% else %}
-                        {{ engage.disbursements|mul:"-1"|floatformat:1|intcomma }}
-                        {% endif %}
-                        {% else %}
-                        {% if engage.currency == 'UGX' %}
-                        {{ engage.disbursements|floatformat:0|intcomma }}
-                        {% else %}
-                        {{ engage.disbursements|floatformat:1|intcomma }}
-                        {% endif %}
-                        {% endif %}
-                        {% else %} - {% endif %}</p>
-                </div>
-            </div>
-            {% endif %}
-            {% endif %}
-            <div class="narative">
-                <div class="nara1">
-                    <p class="texted total">TOTAL</p>
-                </div>
-                <div class="nara2 total texted">
-                    <p class="texted number total-number" style="position: absolute;right: 0;">
-                        {% if engage.create == "Credit Note" %}
-                        {% if engage.currency == 'UGX' %}
-                        {{ engage.total_fees|mul:"-1"|floatformat:0|intcomma }}
-                        {% else %}
-                        {{ engage.total_fees|mul:"-1"|floatformat:1|intcomma }}
-                        {% endif %}
-                        {% else %}
-                        {% if engage.currency == 'UGX' %}
-                        {{ engage.total_fees|floatformat:0|intcomma }}
-                        {% else %}
-                        {{ engage.total_fees|floatformat:1|intcomma }}
-                        {% endif %}
-                        {% endif %}
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="" style="text-align: center; font-size: 20px;">TAX INVOICE</div>
+    <table style="width:100%; margin-bottom: 10px;">
+        <tr>
+            <th colspan="6">DESCRIPTION</th>
+            <th colspan="6" style="text-align: right;">UGX</th>
+        </tr>
+        {% for product in products %}
+        <tr>
+            <td colspan="6" style="width: 1px">{{ product.product }}</td>
+            <td colspan="6" style="text-align: right;">{{ product.price|intcomma }}</td>
+        </tr>
+        {% endfor %}
+        <tr">
+            <td colspan="6">
+                VAT
+            </td>
+            <td colspan="6" style="text-align: right;">
+                000
+            </td>
+        </tr>
+        <tr style="border-top: 1.5px solid black; border-bottom: 1.0px solid rgb(59, 59, 59);">
+            <td colspan="6">
+                TOTAL
+            </td>
+            <td colspan="6" style="text-align: right;">
+                000
+            </td>
+        </tr>
+    </table>
     <div class="container-3" style="margin-top: 0px;">
         <div class="other">
             <p style="padding-top: 12px; font-style: italic;">With Compliments</p>
             <p style="font-style: italic; ">E&OE</p>
         </div>
-        {% if engage.dcdm %}
-        {% else %}
-        <div class="wht taxexempt">
-            <p class="wht-1">WITHHOLDING</p>
-            <p class="wht-2">TAX EXEMPT</p>
+        {% if company.wht_exempt %}
+        <div class="wht taxexempt" style="color: rgb(0, 59, 168)">
+            <p class="wht-1" style="font-family: Lora; color: rgb(0, 59, 168); font-size: 25px; font-weight: bold;">WITHHOLDING</p>
+            <p class="wht-2" style="font-family: Lora; font-size: 25px; color: rgb(0, 59, 168); font-weight: bold;">TAX EXEMPT</p>
         </div>
         {% endif %}
     </div>
     <div class="container-3">
         <div class="bank">
             <p class="note-please" style="font-size: 12px;">Please make payments or deposits to:</p>
-            {% if engage.to_company == 'bdo_ea' %}
-            <p>BDO EAST AFRICA</p>
-            {% elif engage.to_company == 'bdo_as' %}
-            <p>BDO EAST AFRICA ADVISORY SERVICES LIMITED</p>
-            {% elif engage.to_company == 'dcdm' %}
-            <p>DCDM ADVISORY SERVICES UGANDA LIMITED</p>
-            {% endif %}
-            <p>Bank Name: DFCU Bank</p>
-            <p>Bank Branch: Bugolobi, Kampala</p>
-            {% if engage.to_company == 'bdo_ea' %}
-            {% if engage.currency == 'UGX' %}
-            <p>Account number: 01413500094025</p>
-            {% else %}
-            <p>Account number: 02413500390842</p>
-            {% endif %}
-            {% elif engage.to_company == 'bdo_as' %}
-            {% if engage.currency == 'UGX' %}
-            <p>Account number: 01413500508179</p>
-            {% else %}
-            <p>Account number: 02413500508193</p>
-            {% endif %}
-            {% elif engage.to_company == 'dcdm' %}
-            {% if engage.currency == 'UGX' %}
-            <p>Account number: 01413500093741</p>
-            {% else %}
-            <p>Account number: 02413500367929</p>
-            {% endif %}
-            {% endif %}
-            <p>Swift Address: CITIUS33</p>
-            <p>Swift code: DFCUUGKA</p>
+            {% for bk in bank %}
+                Bank Name: {{ bk.bank_name }} <br>
+                Account Name: {{ bk.account_name }} <br>
+                Bank Branch: {{ bk.branch }}<br>
+                Account Number: {{ bk.account_number }}<br>
+                Currency: {{ bk.currency }}<br>
+                Swift Address: {{ bk.swift_address }}<br>
+                Swift Code: {{ bk.swift_code }}<br>
+            {% endfor %}
         </div>
-        <div class="qr" style="padding: -40px; margin: 0px; text-align: right;">
-            {% qr_from_text qrcode size=2 image_format="png" error_correction="L" border=3 %}
+        <div class="qr" style="padding: 0px; margin: 0px; text-align: right;">
+            {% qr_from_text qrcode size=3 image_format="png" error_correction="L" border=3 %}
         </div>
     </div>
 </body>
-<footer style="display:block; margin-left:auto; margin-right: auto; width: 140%;">
-This is an E-invoice
+<footer style="text-align: center; display: table; margin-left:auto; margin-right: auto;">
+Please make all payments for this invoice using the account details listed therein on this invoice. Thanks!
 </footer>
 
 </html>
