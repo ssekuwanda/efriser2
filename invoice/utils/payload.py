@@ -7,6 +7,8 @@ now = datetime.now()
 dt_string = datetime.now(pytz.timezone('Africa/Nairobi')
                          ).strftime("%Y-%m-%d %H:%M:%S")
 
+date_string = datetime.now(pytz.timezone('Africa/Nairobi')
+                         ).strftime("%Y-%m-%d")
 def payload_info(tin, device_no, ic, message):
     dt_string = datetime.now(pytz.timezone('Africa/Nairobi')).strftime("%Y-%m-%d %H:%M:%S")
 
@@ -107,3 +109,25 @@ def invoice_load(issuer, context, goodsDetails, taxDetails,summary_json):
         }
     }
     return message
+
+
+def stockGoods(data):
+    stockIn = {
+        "goodsStockIn": {
+            "operationType": "101",
+            "remarks": "",
+            "stockInDate": date_string,
+            "stockInType": "103",
+            "productionBatchNo": "3",
+            "productionDate": date_string,
+            "branchId": ""
+        },
+        "goodsStockInItem": [
+            {
+                "goodsCode": str(data['commodityGoodsId']),
+                "quantity": str(data['quantity']),
+                "unitPrice": str(data['unitPrice'])
+            }
+        ]
+    }
+    return stockIn

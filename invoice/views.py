@@ -171,11 +171,13 @@ def productsMaintance(request, slug):
             goods_update_details["quantity"] = form["stock"].value()
             goods_update_details["unitPrice"] = form["price"].value()
             goods_update_details["commodityGoodsId"] = prod.commodity_id
+            
             form = form.save(commit=False)
             form.company = comp
             form.product = prod
             prod.stock_warning = int(prod.stock_warning)+int(goods_update_details['quantity'])
-            response = upload_more_goods(request,goods_update_details )
+            inner_json = stockGoods(goods_update_details)
+            response = upload_more_goods(request, inner_json)
             
             if response['returnStateInfo']['returnMessage'] != 'SUCCESS':
                 messages.error(request, f"{response['returnStateInfo']['returnMessage']} Please check that all details are correct")

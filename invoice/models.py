@@ -100,8 +100,6 @@ class Client(models.Model):
 
         super(Client, self).save(*args, **kwargs)
 
-
-
 class Invoice(models.Model):
     CURRENCY = [
         ('UGX', 'UGX'),
@@ -119,8 +117,6 @@ class Invoice(models.Model):
     # EFRIS fields
     fdn = models.CharField(null=True, blank=True, max_length=100)
     number = models.CharField(null=True, blank=True, max_length=100)
-    # anti_fake_code = models.CharField(null=True, blank=True, max_length=10000)
-    # qrcode = models.CharField(null=True, blank=True, max_length=10000)
     json_response = JSONField(blank=True)
 
     #RELATED fields
@@ -132,14 +128,11 @@ class Invoice(models.Model):
     date_created = models.DateTimeField(blank=True, null=True)
     last_updated = models.DateTimeField(blank=True, null=True)
 
-
     def __str__(self):
         return '{} {}'.format(self.number, self.uniqueId)
 
-
     def get_absolute_url(self):
         return reverse('invoice-detail', kwargs={'slug': self.slug})
-
 
     def save(self, *args, **kwargs):
         if self.date_created is None:
