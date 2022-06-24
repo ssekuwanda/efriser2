@@ -12,7 +12,7 @@ path('clients',views.clients, name='clients'),
 path('client_home/<slug:slug>', views.client_home, name='client_home'),
 
 # ----------- Invoice---------------
-path('invoices/<slug:slug>', views.invoices, name='invoices'),
+path('invoices/', views.invoices, name='all_invoices'),
 path('invoices/create/<slug:slug>',views.createInvoice, name='create-invoice'),
 path('invoices/create-build/<slug:slug>',views.createBuildInvoice, name='create-build-invoice'),
 path('invoice-pdf/<slug:slug>', views.pdfInvoice, name='invoices-doc'),

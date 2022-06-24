@@ -10,10 +10,10 @@
 {% block main %}
 
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h4 class="">INVOICES FOR {{client.business_name|upper}}</h4>
+    <h4 class="">OFFLINE INVOICES</h4>
     <div class="btn-toolbar mb-2 mb-md-0">
         <div class="btn-group me-2">
-            <a href="{% url 'create-invoice' client.slug %}">
+            <a href="#">
                 <button type="button" class="btn btn-primary">Add New Invoice</button>
             </a>
         </div>
@@ -28,30 +28,33 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>Title</th>
-                <th>Client name</th>
-                <th>Phone Number</th>
-                <th>Due Date</th>
-                <th>Invoice Status</th>
-                <th>Delete</th>
-                <th>View</th>
+                <th>CLEINT</th>
+                <th>DATE</th>
+                <th>FDN</th>
+                <th>INV NO.</th>
+                <th>CURRENCY</th>
+                <th>GROSS</th>
+                <th>TAXES</th>
+                <th>NET</th>
             </tr>
         </thead>
         <tbody>
 
-            {% for invoice in invoices %}
+            {% for invoice in cleaned_inv %}
             <tr>
-                <td>{{invoice.number}}</td>
-                <td>{{invoice.title}}</td>
-                <td>{{invoice.client.clientName}}</td>
-                <td>{{invoice.client.phoneNumber}}</td>
-                <td>{{invoice.dueDate}}</td>
-                <td>{{invoice.json_response}}</td>
-            
-                <td>
-                    <a href="{% url 'create-build-invoice' invoice.slug %}"><button class="btn btn-primary"> VIEW
+                <td>{{ forloop.counter }}</td>
+                <td>{{ invoice.buyerName }}</td>
+                <td>{{ invoice.date }}</td>
+                <td>{{ invoice.fdn }}</td>
+                <td>{{ invoice.invoiceId }}</td>
+                <td>{{ invoice.currency }}</td>
+                <td>{{ invoice.net }}</td>
+                <td>{{ invoice.tax }}</td>
+                <td>{{ invoice.gross }}</td>
+                <!-- <td>
+                    <a href="#"><button class="btn btn-primary"> VIEW
                         </button></a>
-                </td>
+                </td> -->
             </tr>
             {% endfor %}
 

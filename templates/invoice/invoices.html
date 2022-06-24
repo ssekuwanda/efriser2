@@ -26,8 +26,8 @@
       <thead>
         <tr>
           <th>#</th>
-          <th>Title</th>
-          <th>Client name</th>
+          <th>CLIENT</th>
+          <th>DATE</th>
           <th>Phone Number</th>
           <th>Due Date</th>
           <th>Invoice Status</th>
@@ -37,11 +37,11 @@
       </thead>
       <tbody>
 
-        {% for invoice in invoices %}
+        {% for invoice in cleaned_inv %}
       <tr>
-        <td>{{invoice.number}}</td>
-        <td>{{invoice.title}}</td>
-        <td>{{invoice.client.clientName}}</td>
+        <td>{{invoice.buyerName}}</td>
+        <td>{{invoice.date }}</td>
+        <td>{{invoice.antifake}}</td>
         <td>{{invoice.client.phoneNumber}}</td>
         <td>{{invoice.dueDate}}</td>
         <td>{{invoice.status}}</td>

@@ -384,20 +384,33 @@
     <table style="width:100%; margin-bottom: 10px;">
         <tr>
             <th colspan="6">DESCRIPTION</th>
-            <th colspan="6" style="text-align: right;">UGX</th>
+            <th colspan="2">NET</th>
+            <th colspan="2">VAT</th>
+            <th colspan="2" style="text-align: right;">GROSS</th>
         </tr>
-        {% for product in products %}
+      
         <tr>
-            <td colspan="6" style="width: 1px">{{ product.product }}</td>
-            <td colspan="6" style="text-align: right;">{{ product.price|intcomma }}</td>
+            {% for product in invoice %}
+            <td colspan="6" style="width: 1px">{{ product.goodsCategoryName }}</td>
+            
+                    {% for tax in taxes %}
+                    
+                        <td colspan="6" style="width: 1px">{{ tax.netAmount }}</td>
+                        <td colspan="6" style="width: 1px">{{ tax.taxAmount }}</td>
+                        <td colspan="6" style="width: 1px">{{ tax.grossAmount }}</td>
+                    
+                    {% endfor %}
+                    {% endfor %}
         </tr>
-        {% endfor %}
+     
+        
+
         <tr">
             <td colspan="6">
                 VAT
             </td>
             <td colspan="6" style="text-align: right;">
-                000
+                {{ clean_data.tax|floatformat:1|intcomma }}
             </td>
         </tr>
         <tr style="border-top: 1.5px solid black; border-bottom: 1.0px solid rgb(59, 59, 59);">
@@ -405,7 +418,7 @@
                 TOTAL
             </td>
             <td colspan="6" style="text-align: right;">
-                000
+                {{ clean_data.gross|intcomma }}
             </td>
         </tr>
     </table>

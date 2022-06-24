@@ -5,8 +5,10 @@ from .encrpt import *
 
 def inv_context(input):
     to_json = json.loads(input)
+    print(to_json)
+    # print('**************')
+    # print(to_json)
     output = {}
-    # to_json = json.dumps(jsonrep)
     output['antifake'] = to_json['basicInformation']['antifakeCode']
     output['deviceNo'] = to_json['basicInformation']['deviceNo']
     output['invoiceId'] = to_json['basicInformation']['invoiceId']
@@ -21,7 +23,16 @@ def inv_context(input):
     output['tax'] = float(to_json['summary']['taxAmount'])
     output['buyerName'] = to_json['buyerDetails']['buyerBusinessName']
     output['buyerTin'] = to_json['buyerDetails']['buyerTin']
-    print(output)
+
+    output['items'] = []
+    for item in to_json['goodsDetails']:
+        output['items'].append(item)
+    
+
+    output['tax'] = []
+    for item in to_json['taxDetails']:
+        output['tax'].append(item)
+
     return output
 
 def cn_context(jsonrep):

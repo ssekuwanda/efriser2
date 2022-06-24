@@ -104,10 +104,27 @@ def dashboard(request):
 
 
 @login_required
-def invoices(request, slug):
+def invoices(request):
     context = {}
-    invoices = Invoice.objects.all()
-    # cleint = Client.objects.get(slug=slug)
+    company = request.user.company1
+    invoices = Invoice.objects.filter(company=company)
+    context['invoices'] = invoices
+    context['cleaned_inv']=[]
+    for inv in invoices:
+        context['cleaned_inv'].append(inv_context(inv.json_response))
+    print('--------------')
+    print(context)
+    context['cleint'] = "cleint"
+    return render(request, 'invoice/all_invoices.html', context)
+
+@login_required
+def online_invoices(request):
+    context = {}
+    company = request.user.company1
+    invoices = Invoice.objects.filter(company=company)
+    for inv in invoices:
+        cleaned_data = inv_context(inv.json_response)
+        print(cleaned_data)
     context['invoices'] = invoices
     context['cleint'] = "cleint"
     return render(request, 'invoice/invoices.html', context)
@@ -423,12 +440,19 @@ def pdfInvoice(request, slug):
     context = {}
     context['company'] = company
     context['client'] = client
-    context['invoice'] = invoice
+    context['invoice'] = []
+    context['taxes'] = []
+
+    context['clean_data'] = inv_context(invoice.json_response)
     context['products'] = invoice_pdts
 
-    print(invoice.json_response)
+ 
+    for good in inv_context(invoice.json_response)['items']:
+        context['invoice'].append(good)
 
-    context.update(inv_context(invoice.json_response))
+    for tx in inv_context(invoice.json_response)['tax']:
+        context['taxes'].append(tx)
+    # context.update(inv_context(invoice.json_response))
  
     bank = request.user.company1.bank_details.filter(currency=invoice.currency)
     context['bank'] = bank
