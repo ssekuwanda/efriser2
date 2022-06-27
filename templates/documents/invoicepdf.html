@@ -369,8 +369,8 @@
     </div>
     <div class="container-1">
         <div class="upper">
-            <p>FISCAL DOCUMENT NUMBER: {{ fdn }}</p>
-            <p>VERIFICTION CODE: {{ antifake }}
+            <p>FISCAL DOCUMENT NUMBER: {{ clean_data.fdn }}</p>
+            <p>VERIFICTION CODE: {{ clean_data.antifake }}
             <p>INVOICE NUMBER: {{ invoice.number }}</p>
         </div>
     </div>
@@ -380,55 +380,38 @@
             <p class="add1">TO: {{ buyerName }}</p>
         </div>
     </div>
-    <div class="" style="text-align: center; font-size: 20px;">TAX INVOICE</div>
+    <div class="" style="text-align: center; font-size: 20px;">TAX INVOICE( {{ invoice.currency }})</div>
     <table style="width:100%; margin-bottom: 10px;">
         <tr>
-            <th colspan="6">DESCRIPTION</th>
-            <th colspan="2">NET</th>
-            <th colspan="2">VAT</th>
-            <th colspan="2" style="text-align: right;">GROSS</th>
+            <th colspan="9">DESCRIPTION</th>
+            <th colspan="1">NET</th>
+            <th colspan="1">VAT</th>
+            <th colspan="1" style="text-align: right;">GROSS</th>
         </tr>
-      
-        <tr>
-            {% for product in invoice %}
-            <td colspan="6" style="width: 1px">{{ product.goodsCategoryName }}</td>
-            
-                    {% for tax in taxes %}
-                    
-                        <td colspan="6" style="width: 1px">{{ tax.netAmount }}</td>
-                        <td colspan="6" style="width: 1px">{{ tax.taxAmount }}</td>
-                        <td colspan="6" style="width: 1px">{{ tax.grossAmount }}</td>
-                    
-                    {% endfor %}
-                    {% endfor %}
-        </tr>
-     
-        
-
-        <tr">
-            <td colspan="6">
-                VAT
-            </td>
-            <td colspan="6" style="text-align: right;">
-                {{ clean_data.tax|floatformat:1|intcomma }}
-            </td>
-        </tr>
+           {% for product in products %}
+           <tr>
+                <td colspan="9">{{ product.product.name }}</td>
+                <td colspan="1">{{product.net_amount|intcomma}}</td>
+                <td colspan="1">{{product.tax|intcomma}}</td>
+                <td colspan="1" style="text-align: right;">{{ product.total|intcomma }}</td>
+           </tr>
+        {% endfor %}
         <tr style="border-top: 1.5px solid black; border-bottom: 1.0px solid rgb(59, 59, 59);">
-            <td colspan="6">
+            <td colspan="9">
                 TOTAL
             </td>
-            <td colspan="6" style="text-align: right;">
-                {{ clean_data.gross|intcomma }}
-            </td>
+        <td>{{ clean_data.net|floatformat:2|intcomma}}</td>
+        <td>{{ tax }}</td>
+        <td style="text-align: right;">{{ clean_data.gross|floatformat:2|intcomma}}</td>
         </tr>
     </table>
-    <div class="container-3" style="margin-top: 0px;">
+    <div class="container-3" style="margin-top: 50px;">
         <div class="other">
             <p style="padding-top: 12px; font-style: italic;">With Compliments</p>
             <p style="font-style: italic; ">E&OE</p>
         </div>
         {% if company.wht_exempt %}
-        <div class="wht taxexempt" style="color: rgb(0, 59, 168)">
+        <div class="wht taxexempt" style="color: rgb(0, 59, 168);">
             <p class="wht-1" style="font-family: Lora; color: rgb(0, 59, 168); font-size: 25px; font-weight: bold;">WITHHOLDING</p>
             <p class="wht-2" style="font-family: Lora; font-size: 25px; color: rgb(0, 59, 168); font-weight: bold;">TAX EXEMPT</p>
         </div>
@@ -447,8 +430,8 @@
                 Swift Code: {{ bk.swift_code }}<br>
             {% endfor %}
         </div>
-        <div class="qr" style="padding: 0px; margin: 0px; text-align: right;">
-            {% qr_from_text qrcode size=3 image_format="png" error_correction="L" border=3 %}
+        <div  style="padding: 0px; margin: 0px; text-align: right;">
+            {% qr_from_text clean_data.qrcode size=3 image_format="png" error_correction="L" border=3 %}
         </div>
     </div>
 </body>

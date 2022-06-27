@@ -438,21 +438,27 @@ def pdfInvoice(request, slug):
     invoice_pdts = InvoiceProducts.objects.filter(invoice=invoice)
 
     context = {}
+    
     context['company'] = company
     context['client'] = client
     context['invoice'] = []
     context['taxes'] = []
-
     context['clean_data'] = inv_context(invoice.json_response)
     context['products'] = invoice_pdts
+    
+    tax_total = 0
 
- 
+    for prod in invoice_pdts:      
+        tax = tax_details(prod)
+        tax_total +=float(tax['taxAmount'])
+    context['tax'] = tax_total
+
     for good in inv_context(invoice.json_response)['items']:
         context['invoice'].append(good)
 
     for tx in inv_context(invoice.json_response)['tax']:
         context['taxes'].append(tx)
-    # context.update(inv_context(invoice.json_response))
+    # +context.update(inv_context(invoice.json_response))
  
     bank = request.user.company1.bank_details.filter(currency=invoice.currency)
     context['bank'] = bank

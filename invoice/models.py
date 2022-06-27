@@ -288,6 +288,10 @@ class InvoiceProducts(models.Model):
 
     def total(self):
         return float(self.price*self.quantity)
+
+    def unit_px(self):
+        px= str(float(self.total)-float(self.total)/(1.18))
+        return px
     
     def prod_tax(self):
         tax = 1

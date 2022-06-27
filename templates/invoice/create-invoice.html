@@ -77,12 +77,12 @@
                 <thead>
                   <tr>
                     <th>#</th>
-                    <th>Product</th>
+                    <th>Service</th>
                     <th>Unit Of Measure</th>
                     <th>Unit Price</th>
                     <th>Qty</th>
                     <th>Tax Rate</th>
-                    <th>PxQ</th>
+                    <th>VAT</th>
                     <th>Total</th>
                     <th></th>
                   </tr>
@@ -93,11 +93,11 @@
                   <td>{{ forloop.counter }}.</td>
                   <td>{{product.product.name}}</td>
                   <td>{{product.product.unit_measure}}</td>
-                  <td>{{product.price|intcomma}}</td>
+                  <td>{{product.net_amount|intcomma}}</td>
                   <td>{{product.quantity|intcomma}}</td>
-                  <td>{{product.product.tax_rate}}({{product.tax_total|intcomma}})</td>
-                  <td>{{product.net_price|intcomma}}</td>
-                  <td>{{product.total|intcomma}}</td>
+                  <td>{{product.product.tax_rate}}</td>
+                  <td>{{product.tax|intcomma}}</td>
+                  <td>{{ product.total|intcomma }}</td>
                   <td>
                     {% if invoice.finalized %}
                     {% else %}
@@ -108,9 +108,10 @@
                   {% endfor %}
                 <tr class="bg-secondary text-light" style="font-weight: bold;">
                   <td></td>
-                  <td colspan="4" style="text-align: center; ">TOTAL</td>
-                  <td>{{tax|floatformat:2|intcomma}}</td>
+                  <td colspan="2" style="text-align: center; ">TOTAL</td>
                   <td>{{net|floatformat:2|intcomma}}</td>
+                  <td></td><td></td>
+                  <td>{{tax|floatformat:2|intcomma}}</td>
                   <td>{{gross|floatformat:2|intcomma}}</td>
                   <td></td>
                 </tr>
