@@ -10,7 +10,6 @@ base_url = "http://198.58.118.119:9880/efristcs/ws/tcsapp/getInformation"
 def post_message(data_dump):
     try:
         r = re.post(base_url, json=data_dump)
-        print(r.json())
         content = r.json()['data']['content']
         decoded = decode(content)
         return decoded.decode()
@@ -117,7 +116,7 @@ def creditNoteUpload(message, request):
 def refreshCnStatus(tin, numb, msg):
     ic = "T112"
     data_dump = payload_info(tin, numb,ic,msg)
-    print(data_dump)
-    response_data = post_message(data_dump)
+    r = re.post(base_url, json=data_dump)
+    content = r.json()['returnStateInfo']['returnMessage']
 
-    return response_data
+    return content
