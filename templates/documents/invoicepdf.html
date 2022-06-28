@@ -14,7 +14,7 @@
     <meta name=generator content="S">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>{{ fdn }}</title>
+    <title>{{ clean_data.fdn }}</title>
 </head>
 
 <body>
@@ -371,16 +371,17 @@
         <div class="upper">
             <p>FISCAL DOCUMENT NUMBER: {{ clean_data.fdn }}</p>
             <p>VERIFICTION CODE: {{ clean_data.antifake }}
-            <p>INVOICE NUMBER: {{ invoice.number }}</p>
+            <p>INVOICE NUMBER: {{ clean_data.invoice_number }}</p>
+            <p>CURRENCY: {{ clean_data.currency }}</p>
         </div>
     </div>
     <div class="address">
         <div class="date">
-            <p>{{ date|date:"l, F d, Y"|upper }}</p>
-            <p class="add1">TO: {{ buyerName }}</p>
+            <p>{{ clean_data.date|date:"l, F d, Y"|upper }}</p>
+            <p class="add1">TO: {{ clean_data.buyerName }}</p>
         </div>
     </div>
-    <div class="" style="text-align: center; font-size: 20px;">TAX INVOICE( {{ invoice.currency }})</div>
+    <div class="" style="text-align: center; font-size: 20px;">TAX INVOICE</div>
     <table style="width:100%; margin-bottom: 10px;">
         <tr>
             <th colspan="9">DESCRIPTION</th>

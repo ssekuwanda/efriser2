@@ -33,20 +33,20 @@
                 <th>FDN</th>
                 <th>INV NO.</th>
                 <th>CURRENCY</th>
-                <th>GROSS</th>
-                <th>TAXES</th>
                 <th>NET</th>
+                <th>TAXES</th>
+                <th>GROSS</th>
             </tr>
         </thead>
         <tbody>
 
             {% for invoice in cleaned_inv %}
             <tr>
-                <td>{{ forloop.counter }}</td>
+                <td>{{ forloop.counter }}.</td>
                 <td>{{ invoice.buyerName }}</td>
-                <td>{{ invoice.date }}</td>
+                <td>{{ invoice.date|date:"D, d M, Y" }}</td>
                 <td>{{ invoice.fdn }}</td>
-                <td>{{ invoice.invoiceId }}</td>
+                <td>{{ invoice.invoice_number }}</td>
                 <td>{{ invoice.currency }}</td>
                 <td>{{ invoice.net }}</td>
                 <td>{{ invoice.tax }}</td>

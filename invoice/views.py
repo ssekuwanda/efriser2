@@ -13,6 +13,9 @@ from .models import *
 from .functions import *
 from .utils.goods_dict import *
 
+from django.db.models import Max, BigIntegerField
+from django.db.models.functions import Cast
+
 from django.contrib.auth.models import User, auth
 from random import randint
 from uuid import uuid4
@@ -108,12 +111,14 @@ def invoices(request):
     context = {}
     company = request.user.company1
     invoices = Invoice.objects.filter(company=company)
+
     context['invoices'] = invoices
     context['cleaned_inv']=[]
     for inv in invoices:
-        context['cleaned_inv'].append(inv_context(inv.json_response))
-    print('--------------')
-    print(context)
+        print(inv.json_response)
+        if inv.json_response:
+            context['cleaned_inv'].append(inv_context(inv.json_response))
+
     context['cleint'] = "cleint"
     return render(request, 'invoice/all_invoices.html', context)
 
@@ -124,7 +129,6 @@ def online_invoices(request):
     invoices = Invoice.objects.filter(company=company)
     for inv in invoices:
         cleaned_data = inv_context(inv.json_response)
-        print(cleaned_data)
     context['invoices'] = invoices
     context['cleint'] = "cleint"
     return render(request, 'invoice/invoices.html', context)
@@ -175,7 +179,6 @@ def products(request):
             return redirect('products')
     return render(request, 'invoice/products.html', context)
 
-
 @login_required
 def productsMaintance(request, slug):
     prod = get_object_or_404(Product, slug=slug)
@@ -188,21 +191,29 @@ def productsMaintance(request, slug):
             goods_update_details["quantity"] = form["stock"].value()
             goods_update_details["unitPrice"] = form["price"].value()
             goods_update_details["commodityGoodsId"] = prod.commodity_id
+            goods_update_details["code"] = prod.code
+
             
+            stock_dict = stockGoods(goods_update_details)
+            stock_json = json.dumps(stock_dict)
+            encrpt = encode(stock_json).decode("utf-8")
+
+            payload_data = payload_info(comp.tin, comp.device_number, "T131", encrpt)
+            output = post_message(payload_data)
+
             form = form.save(commit=False)
             form.company = comp
             form.product = prod
             prod.stock_warning = int(prod.stock_warning)+int(goods_update_details['quantity'])
-            inner_json = stockGoods(goods_update_details)
-            response = upload_more_goods(request, inner_json)
             
-            if response['returnStateInfo']['returnMessage'] != 'SUCCESS':
-                messages.error(request, f"{response['returnStateInfo']['returnMessage']} Please check that all details are correct")
-                return redirect('products')
-            else:
+            if output =="[]":
                 prod.save()
                 form.save()
-                messages.success(request,response['returnStateInfo']['returnMessage'])
+                messages.success(request, "GOODS RESTOCKED SUCCESSFULLY")
+                return redirect('products')
+            else:
+                messages.error(request,"Please check that all details are correct/ Services can't be restocked")
+                return redirect('products')
             return redirect('products')  
     else:
         form = ProdMetaForm()
@@ -278,21 +289,23 @@ def logout(request):
 def createInvoice(request, slug):
     today = datetime.now()
     company = request.user.company1
- 
-    related_inv = Invoice.objects.filter(company=company, last_updated__year=today.year)
-    
+     
     for inv in Invoice.objects.filter(company=company):
         if inv.inv_prod.all == None:
-            print('----------')
-            print(inv)
             inv.delete()
 
-    number = company.short_name+'/'+00
+    list_num = []
+    for numb in Invoice.objects.filter(company=company, last_updated__year=today.year):
+        list_num.append(numb.number)
+
+    max_numb = max(list_num)
+    new_numb = int(max_numb)+1
+
     client = Client.objects.get(slug=slug)
-    newInvoice = Invoice.objects.create(number=number, client=client)
+    newInvoice = Invoice.objects.create(number=new_numb, client=client, company=company)
     newInvoice.save()
 
-    inv = Invoice.objects.get(number=number)
+    inv = Invoice.objects.get(slug=newInvoice.slug)
     return redirect('create-build-invoice', slug=inv.slug)
 
 @login_required
@@ -396,7 +409,9 @@ def createBuildInvoice(request, slug):
 def client_home(request, slug):
     client = Client.objects.get(slug=slug)
     invoices = Invoice.objects.filter(client=client)
+    
     context ={}
+
     context['client'] = client
     context['invoices'] = invoices
     return render(request, 'invoice/client-home.html', context)
@@ -414,7 +429,10 @@ def createCreditNote(request, slug):
             if received_message['returnStateInfo']["returnMessage"] == "SUCCESS":
                 form = form.save(commit=False)
                 form.json_response = received_message
-                form.reference = received_message['data']['content']
+
+                reference = received_message['data']['content']
+                decrpt = decode(reference).decode()
+                form.reference = json.loads(decrpt)['referenceNo']
                 form.invoice = invoice
                 form.save()
                 messages.success(request, "Credit note Issued Succesfully")
@@ -456,7 +474,7 @@ def pdfInvoice(request, slug):
     for good in inv_context(invoice.json_response)['items']:
         context['invoice'].append(good)
 
-    for tx in inv_context(invoice.json_response)['tax']:
+    for tx in inv_context(invoice.json_response)['taxDetails']:
         context['taxes'].append(tx)
     # +context.update(inv_context(invoice.json_response))
  
@@ -478,3 +496,13 @@ def prod_delete(request, slug):
     messages.success(
         request, f"{instance.product.name} was successfully deleted")
     return redirect('create-build-invoice', slug=instance.invoice.slug)
+
+
+def refresh_cn_status(request, id):
+    cn = CreditNote.objects.get(id=id)
+    comp = request.user.company1
+    encrpted = encode(json.dumps({"id": cn.reference})).decode()
+    resp = refreshCnStatus(comp.tin, comp.device_number, encrpted)
+    print(resp)
+    
+    return redirect('create-build-invoice', slug=cn.invoice.slug)

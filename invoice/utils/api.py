@@ -8,16 +8,15 @@ import gzip
 base_url = "http://198.58.118.119:9880/efristcs/ws/tcsapp/getInformation"
 
 def post_message(data_dump):
-    print(data_dump)
     try:
         r = re.post(base_url, json=data_dump)
-        print('--------------------')
-        print(r)
+        print(r.json())
         content = r.json()['data']['content']
         decoded = decode(content)
         return decoded.decode()
     except re.HTTPError as ex:
         return "No data got"
+
 
 def getClientDetails(tin, client_tin, device_no):
     ic = "T119"
@@ -77,6 +76,8 @@ def uploadInvoice(issuer, context,goodsDetails, taxDetails,summary_json):
 
 def InvoiceService(data_dump):
     return_info = {}
+    print('***********************************0000')
+    print(data_dump)
     try:
         r = re.post(base_url, json=data_dump)
         
@@ -113,12 +114,10 @@ def creditNoteUpload(message, request):
     response_data = post_creditnote(data_dump)
     return response_data
 
+def refreshCnStatus(tin, numb, msg):
+    ic = "T112"
+    data_dump = payload_info(tin, numb,ic,msg)
+    print(data_dump)
+    response_data = post_message(data_dump)
 
-def upload_more_goods(request, goods):
-    ic = "T131"
-    to_json = json.dumps(goods)
-    encoded_goods = encode(to_json).decode()
-    data_dump = payload_info(request.user.company1.tin, request.user.company1.device_number, ic, encoded_goods)
-    dumped = json.dumps(data_dump)
-    response_data = post_message(dumped)
     return response_data

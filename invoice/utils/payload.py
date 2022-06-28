@@ -123,7 +123,7 @@ def stockGoods(data):
         },
         "goodsStockInItem": [
             {
-                "goodsCode": str(data['commodityGoodsId']),
+                "goodsCode": str(data['code']),
                 "quantity": str(data['quantity']),
                 "unitPrice": str(data['unitPrice'])
             }

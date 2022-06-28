@@ -1,6 +1,6 @@
 
 import json
-from invoice.utils.app_utilities import app_time
+from invoice.utils.app_utilities import app_time, app_date
 
 def goods_details(prod, number):
     goods ={
@@ -162,3 +162,22 @@ def cleaned_json(jsondata):
     data['summary'] = negative_summary()
     return data
 
+
+def stockInGoods(goodsDetail):
+    stock = {
+            "goodsStockIn": {
+            "operationType": "101",
+            "remarks": "Increase inventory",
+            "stockInDate": str(app_date()),
+            "stockInType": "103",
+            "productionBatchNo": "1200983",
+            "productionDate": str(app_date()),
+            "branchId": "",
+            },
+            "goodsStockInItem": [{
+            "commodityGoodsId": goodsDetail['commodityGoodsId'],
+            "quantity": goodsDetail['quantity'],
+            "unitPrice": goodsDetail['unitPrice'],
+            }]
+        }
+    return stock

@@ -126,13 +126,13 @@
           {% for inv in invoice.credit_notes.all %}
           <div class="row">
             <div class="col-9">
-              <h6> {{ forloop.counter }}.<a href="#">{{inv.reference}}</a>
+              <h6> {{ forloop.counter }}. REF: <a href="#">{{inv.reference}}</a>
                 <span class="badge bg-danger">Pending Approval</span>
               </h6>
             </div>
             <div class="col-3">
               <button type="button" class="btn btn-sm btn-outline-dark">Cancel</button>
-              <button type="button" class="btn btn-sm btn-outline-success">Refresh Status</button>
+              <a class="btn btn-sm btn-outline-success" href="{% url 'cn_refresh' inv.id %}" role="button">Refresh Status</a>
             </div>
           </div>
           <hr>

@@ -26,6 +26,9 @@ path('prod_update/<slug:slug>',views.productsMaintance, name='prod_update'),
 path('credit_notes', views.creditNoteHome, name='creditnotes'),
 path('creditnote/create/<slug:slug>',views.createCreditNote, name='create-creditnote'),
 
+path('creditnote/refresh_cn_status/<int:id>',views.refresh_cn_status, name='cn_refresh'),
+
+
 #Delete an invoice
     # path('invoices/delete/<slug:client_slug>/<slug:invoice_slug>',views.deleteInvoice, name='delete-invoice'),
 

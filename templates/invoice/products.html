@@ -52,7 +52,7 @@
         <td>{{product.unit_price|intcomma}}</td>
         <td>{{product.currency}}</td>
         <td>
-          <a class="btn btn-sm btn-primary" href="{% url 'prod_update' product.slug %}" role="button">ADJUST</a>
+          <a class="btn btn-sm btn-outline-info" href="{% url 'prod_update' product.slug %}" role="button">ADJUST</a>
         </td>
       </tr>
         {% endfor %}
@@ -61,15 +61,11 @@
   </div>
   {% else %}
   <div class="row">
-    <div class="col-lg-2">
-
-    </div>
     <div class="col-lg-8">
       <h3>Start by creating an invoice to see products listed here</h3>
       <img class=img-fluid  src="{% static 'assets/img/empty.svg' %}" alt="BDO Online Learning">
     </div>
     <div class="col-lg-3">
-
     </div>
   </div>
   {% endif %}

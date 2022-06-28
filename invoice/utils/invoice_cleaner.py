@@ -2,12 +2,8 @@ from datetime import datetime
 import json
 from .encrpt import *
 
-
 def inv_context(input):
     to_json = json.loads(input)
-    print(to_json)
-    # print('**************')
-    # print(to_json)
     output = {}
     output['antifake'] = to_json['basicInformation']['antifakeCode']
     output['deviceNo'] = to_json['basicInformation']['deviceNo']
@@ -22,25 +18,25 @@ def inv_context(input):
     output['itemNo'] = to_json['summary']['itemCount']
     output['tax'] = float(to_json['summary']['taxAmount'])
     output['buyerName'] = to_json['buyerDetails']['buyerBusinessName']
+    output['invoice_number'] = to_json['sellerDetails']['referenceNo']
     output['buyerTin'] = to_json['buyerDetails']['buyerTin']
 
     output['items'] = []
-    for item in to_json['goodsDetails']:
-        output['items'].append(item)
-    
+    for itm in to_json['goodsDetails']:
+        output['items'].append(itm)
 
-    output['tax'] = []
+    output['taxDetails'] = []
     for item in to_json['taxDetails']:
-        output['tax'].append(item)
+        output['taxDetails'].append(item)
 
     return output
 
 def cn_context(jsonrep):
     output = {}
-    to_json = json.loads(jsonrep)
+    to_json = json.dumps(jsonrep, indent=4)
     content = to_json['data']['content']
+    print(content)
     decoded_json = decode(content)
-    print(decoded_json)
     # output['antifake'] = to_json['basicInformation']['antifakeCode']
     # output['deviceNo'] = to_json['basicInformation']['deviceNo']
     # output['invoiceId'] = to_json['basicInformation']['invoiceId']

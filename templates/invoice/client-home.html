@@ -29,26 +29,26 @@
             <tr>
                 <th>#</th>
                 <th>Number</th>
-                <th>Client name</th>
-                <th>Phone Number</th>
-                <th>Due Date</th>
-                <th>Invoice Status</th>
-                <th>Delete</th>
-                <th>View</th>
+                <th>Date Created</th>
+                <th>FDN</th>
+                <th>Currency</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
             {% for invoice in invoices %}
             <tr>
-                <td>{{invoice.number}}</td>
-                <td>{{invoice.title}}</td>
-                <td>{{invoice.client.clientName}}</td>
-                <td>{{invoice.client.phoneNumber}}</td>
-                <td>{{invoice.dueDate}}</td>
-                <td>  </td>
                 <td>
-                    <a href="{% url 'create-build-invoice' invoice.slug %}"><button class="btn btn-primary"> VIEW
-                        </button></a>
+                    {{ forloop.counter }}.
+                </td>
+                <td>{{invoice}}</td>
+                <td>{{invoice.date_created|date:"D, d M, Y" }}</td>
+                <td>{{invoice.json_rep.fdn }}</td>
+                <td>{{invoice.currency }}</td>
+                <td>
+                <a href="{% url 'create-build-invoice' invoice.slug %}">
+                    <button class="btn btn-sm btn-outline-success"> VIEW</button>
+                </a>
                 </td>
             </tr>
             {% endfor %}

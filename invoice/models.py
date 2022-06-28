@@ -9,6 +9,8 @@ from uuid import uuid4
 from django.contrib.auth.models import User
 from random import randint
 from jsonfield import JSONField
+
+from invoice.utils.invoice_cleaner import inv_context
 # from django.core.urlresolvers import reverse
 
 randoms = randint(120,1000)
@@ -134,7 +136,7 @@ class Invoice(models.Model):
         ('GBP', 'GBP'),
     ]
     # Basic Fields
-    number = models.CharField(null=True, blank=True, max_length=1000)
+    number = models.IntegerField()
     finalized = models.BooleanField(default=False)
     remarks = models.TextField(null=True, blank=True) 
     currency = models.CharField("CURRENCY",choices= CURRENCY,null=True, blank=True, max_length=100)
@@ -143,7 +145,6 @@ class Invoice(models.Model):
 
     # EFRIS fields
     fdn = models.CharField(null=True, blank=True, max_length=100)
-    number = models.CharField(null=True, blank=True, max_length=100)
     json_response = JSONField(blank=True)
 
     #RELATED fields
@@ -156,20 +157,23 @@ class Invoice(models.Model):
     date_created = models.DateTimeField(blank=True, null=True)
     last_updated = models.DateTimeField(blank=True, null=True)
 
-    def __str__(self):
-        return '{} {}'.format(self.number, self.uniqueId)
-
     def get_absolute_url(self):
         return reverse('invoice-detail', kwargs={'slug': self.slug})
+
+    def json_rep(self):
+        return inv_context(self.json_response)
+
+    def __str__(self):
+        return str(self.company.short_name+'/'+str(self.number)+'/'+str(self.date_created.year))
 
     def save(self, *args, **kwargs):
         if self.date_created is None:
             self.date_created = timezone.localtime(timezone.now())
         if self.uniqueId is None:
             self.uniqueId = str(uuid4()).split('-')[4]
-            self.slug = slugify('{} {}'.format(self.number, self.uniqueId))
+            self.slug = slugify('{}'.format(self.uniqueId))
 
-        self.slug = slugify('{} {}'.format(self.number, self.uniqueId))
+        self.slug = slugify('{}'.format(self.uniqueId))
         self.last_updated = timezone.localtime(timezone.now())
 
         super(Invoice, self).save(*args, **kwargs)
@@ -185,7 +189,7 @@ class CreditNote(models.Model):
     invoice = models.ForeignKey(Invoice, related_name="credit_notes", blank=True, null=True, on_delete=models.SET_NULL)
     date_created = models.DateTimeField(blank=True, null=True, auto_now_add=True)
     last_updated = models.DateTimeField(blank=True, null=True, auto_now=True)
-    reason_code = models.CharField(max_length=10000, choices=REASONS, null=False, blank=False)
+    reason_code = models.CharField(max_length=100000000, choices=REASONS, null=False, blank=False)
     json_response = models.TextField(null=True, blank=False)
     reason = models.TextField(null=True, blank=False)
     reference = models.CharField(max_length=10000, null=True, blank=False)
