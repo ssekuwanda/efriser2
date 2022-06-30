@@ -49,8 +49,6 @@ def goodsUpload(tin, device_no, message):
     encode_message = encode(str([message])).decode()
     data_dump = payload_info(tin, device_no, ic, encode_message)
     response_data = post_creditnote(data_dump)
-    print('----------------------')
-    print(response_data)
     return response_data
 
 
@@ -58,8 +56,6 @@ def uploadInvoice(issuer, context,goodsDetails, taxDetails,summary_json):
     interface_code = "T109"
 
     message = invoice_load(issuer, context, goodsDetails, taxDetails,summary_json)
-    print('--------------------')
-    print(message)
 
     to_json = json.dumps(message)
     encode_message = encode(to_json).decode()
@@ -75,8 +71,6 @@ def uploadInvoice(issuer, context,goodsDetails, taxDetails,summary_json):
 
 def InvoiceService(data_dump):
     return_info = {}
-    print('***********************************0000')
-    print(data_dump)
     try:
         r = re.post(base_url, json=data_dump)
         
@@ -118,5 +112,59 @@ def refreshCnStatus(tin, numb, msg):
     data_dump = payload_info(tin, numb,ic,msg)
     r = re.post(base_url, json=data_dump)
     content = r.json()['returnStateInfo']['returnMessage']
-
     return content
+
+def cnListUpload(msg, request):
+    ic = "T111"
+    data_dump = payload_info(request.user.company1.tin, request.user.company1.device_number,ic,msg)
+    return_msg = post_message(data_dump)
+    return return_msg
+
+
+def invListUpload(start_date, end_date, request):
+    json_req = {
+        "invoiceKind": "1",
+        "pageNo": "1",
+        "pageSize": "99",
+        "startDate": start_date,
+        "endDate": end_date,
+    }
+
+    ic = "T106"
+    inv_json = json.dumps(json_req)
+    msg = encode(inv_json).decode("utf-8")
+    data_dump = payload_info(request.user.company1.tin, request.user.company1.device_number,ic,msg)
+    try:
+        r = re.post(base_url, json=data_dump)
+        content = r.json()['data']['content']
+        try:
+            decoded = decode(content)
+            return_json = json.loads(decoded.decode()  ) 
+        except:
+            gz = base64.b64decode(content)
+            return_json = json.loads(gzip.decompress(gz).decode('UTF8'))
+            
+    except re.HTTPError as ex:
+        return "No data got"
+    return return_json
+
+def msg_middleware(request, msg):
+    json_req = {
+        "invoiceNo": msg
+        }
+
+    ic = "T108"
+    inv_json = json.dumps(json_req)
+    msg = encode(inv_json).decode("utf-8")
+    data_dump = payload_info(request.user.company1.tin, request.user.company1.device_number,ic,msg)
+    try:
+        r = re.post(base_url, json=data_dump)
+        content = r.json()['data']['content']
+        if content:
+            decoded = decode(content)
+            return_json = json.loads(decoded.decode()) 
+        else:
+            return_json = None
+    except re.HTTPError as ex:
+        return "No data got"
+    return return_json

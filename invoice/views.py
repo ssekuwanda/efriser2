@@ -193,7 +193,6 @@ def productsMaintance(request, slug):
             goods_update_details["commodityGoodsId"] = prod.commodity_id
             goods_update_details["code"] = prod.code
 
-            
             stock_dict = stockGoods(goods_update_details)
             stock_json = json.dumps(stock_dict)
             encrpt = encode(stock_json).decode("utf-8")
@@ -371,6 +370,8 @@ def createBuildInvoice(request, slug):
         if prod_form.is_valid():
             obj = prod_form.save(commit=False)
             obj.invoice = invoice
+            if obj.price == '':
+                obj.price = 1
             obj.save()
             messages.success(request, "Product added succesfully")
             return redirect('create-build-invoice', slug=slug)
@@ -418,6 +419,8 @@ def client_home(request, slug):
 
 
 def createCreditNote(request, slug):
+    company = request.user.company1
+
     invoice = Invoice.objects.get(slug=slug)
     if request.method == 'POST':
         form = CreditNoteForm(request.POST or None)
@@ -434,6 +437,9 @@ def createCreditNote(request, slug):
                 decrpt = decode(reference).decode()
                 form.reference = json.loads(decrpt)['referenceNo']
                 form.invoice = invoice
+                form.company = company
+                if form.unit_price == '':
+                    form.unit_price = 1
                 form.save()
                 messages.success(request, "Credit note Issued Succesfully")
                 return redirect('create-build-invoice', slug=slug)
@@ -452,11 +458,13 @@ def creditNoteHome(request):
 def pdfInvoice(request, slug):
     company = request.user.company1
     client = Client.objects.filter(company=company)
-    invoice = Invoice.objects.get(slug= slug)
-    invoice_pdts = InvoiceProducts.objects.filter(invoice=invoice)
+
 
     context = {}
-    
+    invoice = Invoice.objects.get(slug= slug)
+    context['invDetails'] = invoice
+    invoice_pdts = InvoiceProducts.objects.filter(invoice=invoice)
+
     context['company'] = company
     context['client'] = client
     context['invoice'] = []
@@ -503,6 +511,60 @@ def refresh_cn_status(request, id):
     comp = request.user.company1
     encrpted = encode(json.dumps({"id": cn.reference})).decode()
     resp = refreshCnStatus(comp.tin, comp.device_number, encrpted)
-    print(resp)
     
     return redirect('create-build-invoice', slug=cn.invoice.slug)
+
+
+def cn_list(request):
+    context = {}
+    context['details']=[]
+    if request.method == "POST":
+        start_date = str(request.POST['start_date'])
+        end_date = str(request.POST['end_date'])
+        query = str(request.POST['query'])
+
+        cn_dict = cnQueryList(start_date, end_date, query)
+        cn_json = json.dumps(cn_dict)
+        encrpt = encode(cn_json).decode("utf-8")
+        uploadList = cnListUpload(encrpt, request)
+        json_dump = json.loads(uploadList)
+        print(json_dump)
+
+        for rec in json_dump['records']:
+            context['details'].append(rec)
+    return render(request, 'credit_note/cn_list.html', context)
+    
+
+def inv_list(request):
+    context = {}
+    context['details']=[]
+    if request.method == "POST":
+        start_date = str(request.POST['start_date'])
+        end_date = str(request.POST['end_date'])
+
+        return_msg = invListUpload(start_date, end_date, request)
+        for rec in return_msg['records']:
+            context['details'].append(rec)
+    return render(request, 'invoice/inv_list.html', context)
+
+def inv_details(request):
+    context = {}
+    context['details']=[]
+    if request.method == "POST":
+        fdn = str(request.POST['fdn'])
+
+        return_msg = msg_middleware(request, fdn)
+        if return_msg:
+            context['antifake']=return_msg['basicInformation']['antifakeCode']
+            context['date']=return_msg['basicInformation']['issuedDate']
+            context['fdn']=return_msg['basicInformation']['invoiceNo']
+            context['currency']=return_msg['basicInformation']['currency']
+
+            context['buyer']=return_msg['buyerDetails']['buyerLegalName']
+            context['tin']=return_msg['buyerDetails']['buyerTin']
+
+            context['gross']=return_msg['summary']['grossAmount']
+            context['net']=return_msg['summary']['netAmount']
+            context['tax']=return_msg['summary']['taxAmount']
+
+    return render(request, 'invoice/inv_details.html', context)

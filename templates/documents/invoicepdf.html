@@ -3,6 +3,7 @@
 {% load humanize %}
 {% load mathfilters %}
 {% load qr_code %}
+{% load markdownify %}
 <html lang="en">
 
 <head>
@@ -382,6 +383,7 @@
         </div>
     </div>
     <div class="" style="text-align: center; font-size: 20px;">TAX INVOICE</div>
+
     <table style="width:100%; margin-bottom: 10px;">
         <tr>
             <th colspan="9">DESCRIPTION</th>
@@ -406,7 +408,11 @@
         <td style="text-align: right;">{{ clean_data.gross|floatformat:2|intcomma}}</td>
         </tr>
     </table>
-    <div class="container-3" style="margin-top: 50px;">
+        <div class="" style="text-align: justify; text-justify: inter-word;">
+            {{ invDetails.remarks|markdownify }}
+        </div>
+        <hr>
+    <div class="container-3">
         <div class="other">
             <p style="padding-top: 12px; font-style: italic;">With Compliments</p>
             <p style="font-style: italic; ">E&OE</p>
@@ -436,8 +442,7 @@
         </div>
     </div>
 </body>
-<footer style="text-align: center; display: table; margin-left:auto; margin-right: auto;">
-Please make all payments for this invoice using the account details listed therein on this invoice. Thanks!
-</footer>
-
+    <footer style="text-align: center; display: table; margin-left:auto; margin-right: auto;">
+        Please make all payments for this invoice using the account details listed therein on this invoice. Thanks!
+    </footer>
 </html>

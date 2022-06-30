@@ -130,3 +130,14 @@ def stockGoods(data):
         ]
     }
     return stockIn
+
+def cnQueryList(date1, date2, query):
+    json_req = {
+        "queryType": query,
+        "invoiceApplyCategoryCode": "101",
+        "startDate": date1,
+        "endDate": date2,
+        "pageNo": "1",
+        "pageSize": "50"
+        }
+    return json_req

@@ -194,6 +194,7 @@ class CreditNote(models.Model):
     reason = models.TextField(null=True, blank=False)
     reference = models.CharField(max_length=10000, null=True, blank=False)
     status = models.BooleanField(default=False) # False if not approved
+    company = models.ForeignKey(Company, blank=True, null=True, on_delete=models.SET_NULL)
 
     def __str__(self): 
         return str(self.invoice)
@@ -227,7 +228,7 @@ class Product(models.Model):
     code = models.CharField(null=False, blank=False, max_length=4)
     unit_measure = models.ForeignKey(
         Unit_Measurement, on_delete=models.SET_NULL, null=True, blank=False)
-    unit_price = models.FloatField(null=False, blank=False)
+    unit_price = models.FloatField('Fees',null=False, blank=True, default=1)
     currency = models.CharField(choices=CURRENCY, max_length=3)
     tax_rate = models.CharField(choices=TAX_RATES, null=False, blank=False, max_length=3, default='18%')
     commodity_id = models.CharField(null=False, blank=False, max_length=18)
@@ -277,9 +278,9 @@ class InvoiceProducts(models.Model):
         Invoice, null=True, blank=True, on_delete=models.SET_NULL, related_name='inv_prod')
     product = models.ForeignKey(Product, null=False, blank=False, on_delete=models.CASCADE)
     notes = models.TextField(null=True, blank=True)
-    quantity = models.FloatField(null=False)
+    quantity = models.FloatField(null=False, default=1, blank=True)
     vat = models.CharField('VAT', choices=VAT_CHOICES,max_length=100, null=True, blank=False)
-    price = models.FloatField("Unit Price", null=False)
+    price = models.FloatField("Unit Price", null=False, blank=True)
 
     #Utility fields
     uniqueId = models.CharField(null=True, blank=True, max_length=100)

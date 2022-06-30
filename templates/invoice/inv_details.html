@@ -1,0 +1,38 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block css %}
+<link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block main %}
+
+<div class="alert alert-warning mt-4 border border-success" role="alert">
+    <h4 class="alert-heading text-center">QUERY INVOICE</h4>
+    <hr class="my-1">
+    <form class="form-inline" method="post" action="#">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-4">
+                <label class="sr-only" for="inlineFormInputName2">Fisical Device Number</label>
+                <input type="text" class="form-control mb-2 mr-sm-2" pattern="[0-9]{12}" maxlength="12" id="inlineFormInputName2" name="fdn" required placeholder="FDN">
+            </div>
+        </div>
+        <button type="submit" class="mb-2 btn btn-info ml-2">SUBMIT</button>
+    </form>
+</div>
+<div class="jumbotron">
+    <h1 class="display-4">{{ fdn }}</h1>
+    <p class="lead">Date: {{ date }}</p>
+    <p class="lead">Buyer: {{ buyer }}</p>
+    <p class="lead">TIN: {{ tin }}</p>
+    <p class="lead">Gross: {{ gross }}</p>
+    <p class="lead">Net: {{ net }}</p>
+    <p class="lead">Tax: {{ tax }}</p>
+
+    <hr class="my-4">
+</div>
+</div>
+
+{% endblock %}
