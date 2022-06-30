@@ -2,6 +2,7 @@ from pathlib import Path
 from django.contrib.messages import constants as messages
 import os
 from decouple import config
+import dj_database_url
 
 MESSAGE_TAGS = {
     messages.DEBUG: 'alert-info',
@@ -18,6 +19,7 @@ SECRET_KEY = config('SECRET_KEY')
 
 DEBUG = True
 ONLINE = True
+
 
 ALLOWED_HOSTS = ['*']
 
@@ -76,14 +78,9 @@ WSGI_APPLICATION = 'invoicing.wsgi.application'
 
 if ONLINE:
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': config('DB_NAME'),
-            'USER': config('DB_USER'),
-            'PASSWORD': config('DB_PASSWORD'),
-            'HOST': config('DB_HOST'),
-            'PORT': '',
-        }
+        'default': dj_database_url.config(
+            default=config('DATABASE_URL')
+        )
     }
 else:
     DATABASES = {
