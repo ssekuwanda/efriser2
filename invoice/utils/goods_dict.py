@@ -181,3 +181,4 @@ def stockInGoods(goodsDetail):
             }]
         }
     return stock
+

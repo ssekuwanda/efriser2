@@ -438,8 +438,7 @@ def createCreditNote(request, slug):
                 form.reference = json.loads(decrpt)['referenceNo']
                 form.invoice = invoice
                 form.company = company
-                if form.unit_price == '':
-                    form.unit_price = 1
+            
                 form.save()
                 messages.success(request, "Credit note Issued Succesfully")
                 return redirect('create-build-invoice', slug=slug)
@@ -459,7 +458,6 @@ def pdfInvoice(request, slug):
     company = request.user.company1
     client = Client.objects.filter(company=company)
 
-
     context = {}
     invoice = Invoice.objects.get(slug= slug)
     context['invDetails'] = invoice
@@ -477,7 +475,9 @@ def pdfInvoice(request, slug):
     for prod in invoice_pdts:      
         tax = tax_details(prod)
         tax_total +=float(tax['taxAmount'])
+
     context['tax'] = tax_total
+    fdn = inv_context(invoice.json_response)['fdn']
 
     for good in inv_context(invoice.json_response)['items']:
         context['invoice'].append(good)
@@ -494,7 +494,7 @@ def pdfInvoice(request, slug):
     pdf = html.write_pdf(presentational_hints=True)
 
     response = HttpResponse(pdf, content_type='application/pdf')
-    response['Content-Disposition'] = f'inline; filename=test.pdf'
+    response['Content-Disposition'] = f'inline; filename={fdn}.pdf'
     return response
 
 @login_required
@@ -568,3 +568,7 @@ def inv_details(request):
             context['tax']=return_msg['summary']['taxAmount']
 
     return render(request, 'invoice/inv_details.html', context)
+
+def cancel_cn(request, slug):
+    return render(request, 'invoice/cancel_cn.html', context={'hh':'33'})
+    

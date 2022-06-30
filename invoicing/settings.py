@@ -18,13 +18,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 DEBUG = True
-ONLINE = True
 
+ONLINE = False
 
 ALLOWED_HOSTS = ['*']
-
-
-# Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -76,20 +73,19 @@ TEMPLATES = [
 WSGI_APPLICATION = 'invoicing.wsgi.application'
 
 
-# if ONLINE:
-#     DATABASES = {
-#         'default': dj_database_url.config(
-#             default=config('DATABASE_URL')
-#         )
-#     }
-# else:
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+if ONLINE:
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=config('DATABASE_URL')
+        )
     }
-}
-
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -107,7 +103,6 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'Africa/Kampala'
@@ -118,14 +113,11 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')]
 STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 
 CSS_LOCATION = os.path.join(BASE_DIR,'static')
-
 
 #Dynamic files and documents
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
@@ -186,4 +178,3 @@ MARKDOWNIFY = {
         ]
     }
 }
-

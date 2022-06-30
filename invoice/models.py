@@ -135,13 +135,21 @@ class Invoice(models.Model):
         ('USD', 'USD'),
         ('GBP', 'GBP'),
     ]
+    payWay = [
+        ('107','EFT'),
+        ('106','Visa'),
+        ('105','Mobile money'),
+        ('103','Cheque'),
+        ('102','Cash'),
+        ('101','Credit'),
+    ]
     # Basic Fields
     number = models.IntegerField()
     finalized = models.BooleanField(default=False)
     remarks = models.TextField(null=True, blank=True) 
     currency = models.CharField("CURRENCY",choices= CURRENCY,null=True, blank=True, max_length=100)
     tax = models.CharField(null=True, blank=True, max_length=100)
-    payment_method = models.CharField(null=True, blank=True, max_length=100)
+    payment_method = models.CharField(null=True, blank=True, choices=payWay, max_length=100)
 
     # EFRIS fields
     fdn = models.CharField(null=True, blank=True, max_length=100)
