@@ -19,7 +19,13 @@ def inv_context(input):
     output['tax'] = float(to_json['summary']['taxAmount'])
     output['buyerName'] = to_json['buyerDetails']['buyerBusinessName']
     output['invoice_number'] = to_json['sellerDetails']['referenceNo']
-    output['buyerTin'] = to_json['buyerDetails']['buyerTin']
+    try:
+        if to_json['buyerDetails']['buyerTin']:
+            output['buyerTin'] = to_json['buyerDetails']['buyerTin']
+        else:
+            output['buyerTin'] = ""
+    except:
+        output['buyerTin'] = ""
 
     output['items'] = []
     for itm in to_json['goodsDetails']:
@@ -35,7 +41,6 @@ def cn_context(jsonrep):
     output = {}
     to_json = json.dumps(jsonrep, indent=4)
     content = to_json['data']['content']
-    print(content)
     decoded_json = decode(content)
     # output['antifake'] = to_json['basicInformation']['antifakeCode']
     # output['deviceNo'] = to_json['basicInformation']['deviceNo']

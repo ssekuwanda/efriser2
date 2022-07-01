@@ -1,0 +1,192 @@
+{
+  "sellerDetails": {
+    "tin": "201905081705",
+    "ninBrn": "201905081705",
+    "legalName": "zhangsan",
+    "businessName": "lisi",
+    "address": "beijin",
+    "mobilePhone": "15501234567",
+    "linePhone": "010-6689666",
+    "emailAddress": "123456@163.com",
+    "placeOfBusiness": "beijin",
+    "referenceNo": "00000000012",
+    "branchId": "207300908813650312",
+    "isCheckReferenceNo": "0"
+  },
+  "basicInformation": {
+    "deviceNo": "201905081234",
+    "issuedDate": "2019-05-08 17:13:12",
+    "operator": "aisino",
+    "currency": "UGX",
+    "invoiceType": "1", this is an invoice
+    "invoiceKind": "1",
+    "dataSource": "106",
+    "invoiceIndustryCode": "102", this changes according to export(102) or standed(101)
+  },
+  "buyerDetails": {
+    "buyerTin": "201905081705",  TIN mandetory if B2B or B2G
+    "buyerPassportNum": "201905081705",
+    "buyerLegalName": "zhangsan",
+    "buyerBusinessName": "lisi",
+    "buyerAddress": "beijin",
+    "buyerEmail": "123456@163.com",
+    "buyerMobilePhone": "15501234567",
+    "buyerLinePhone": "010-6689666",
+    "buyerPlaceOfBusi": "beijin",
+    "buyerType": "1", 0 - B2B or B2G 1 - B2C, 2 - B2Foreigner
+  },
+  "buyerExtend": {
+    "propertyType": "abc",
+    "district": "haidian",
+    "municipalityCounty": "haidian",
+    "divisionSubcounty": "haidian1",
+    "town": "haidian1",
+    "cellVillage": "haidian1",
+    "effectiveRegistrationDate": "2020-10-19",
+    "meterStatus": "101"
+  },
+  "goodsDetails": [
+    {
+      "item": "apple",
+      "itemCode": "101",
+      "qty": "2",
+      "unitOfMeasure": "kg",
+      "unitPrice": "150.00",
+      "total": "1",
+      "taxRate": "0.18",
+      "tax": "12.88",
+      "discountTotal": "18.00",
+      "discountTaxRate": "0.18",
+      "orderNumber": "1",
+      "discountFlag": "1",
+      "deemedFlag": "1",
+      "exciseFlag": "2",
+      "categoryId": "1234",
+      "categoryName": "Test",
+      "goodsCategoryId": "5467",
+      "goodsCategoryName": "Test",
+      "exciseRate": "0.12",
+      "exciseRule": "1",
+      "exciseTax": "20.22",
+      "pack": "1",
+      "stick": "20",
+      "exciseUnit": "101",
+      "exciseCurrency": "UGX",
+      "exciseRateName": "123"
+    },
+    {
+      "item": "car",
+      "itemCode": "101",
+      "qty": "2",
+      "unitOfMeasure": "kg",
+      "unitPrice": "150.00",
+      "total": "1",
+      "taxRate": "0.18",
+      "tax": "12.88",
+      "discountTotal": "18.00",
+      "discountTaxRate": "0.18",
+      "orderNumber": "2",
+      "discountFlag": "1",
+      "deemedFlag": "1",
+      "exciseFlag": "2",
+      "categoryId": "Test",
+      "categoryName": "Test",
+      "goodsCategoryId": "Test",
+      "goodsCategoryName": "Test",
+      "exciseRate": "0.12",
+      "exciseRule": "1",
+      "exciseTax": "20.22",
+      "pack": "1",
+      "stick": "20",
+      "exciseUnit": "101",
+      "exciseCurrency": "UGX",
+      "exciseRateName": "123"
+    }
+  ],
+  "taxDetails": [
+    {
+      "taxCategoryCode": "01",
+      "netAmount": "3813.55",
+      "taxRate": "0.18",
+      "taxAmount": "686.45",
+      "grossAmount": "4500.00",
+      "exciseUnit": "101",
+      "exciseCurrency": "UGX",
+      "taxRateName": "123"
+    },
+    {
+      "taxCategoryCode": "05",
+      "netAmount": "1818.18",
+      "taxRate": "0.1",
+      "taxAmount": "181.82",
+      "grossAmount": "2000.00",
+      "exciseUnit": "101",
+      "exciseCurrency": "UGX",
+      "taxRateName": "123"
+    }
+  ],
+  "summary": {
+    "netAmount": "8379",
+    "taxAmount": "868",
+    "grossAmount": "9247",
+    "itemCount": "5",
+    "modeCode": "0",
+    "remarks": "This is another remark test.",
+    "qrCode": "asdfghjkl"
+  },
+  "payWay": [
+    {
+      "paymentMode": "101",
+      "paymentAmount": "686.45",
+      "orderNumber": "a"
+    },
+    {
+      "paymentMode": "102",
+      "paymentAmount": "686.45",
+      "orderNumber": "a"
+    }
+  ],
+  "extend": {
+    "reason": "reason",
+    "reasonCode": "102"
+  },
+  "importServicesSeller": {
+    "importBusinessName": "lisi",
+    "importEmailAddress": "123456@163.com",
+    "importContactNumber": "15501234567",
+    "importAddress": "beijin",
+    "importInvoiceDate": "2020-09-05",
+    "importAttachmentName": "test",
+    "importAttachmentContent": "MIIDFjCCAf6gAwIBAgIRAKPGAol9CEdpkIoFa8huM6zfj1WEBRxteoo6PH46un4FGj4N6ioIGzVr9G40uhQGdm16ZU+q44XjW2oUnI9w="
+  },
+  "airlineGoodsDetails": [
+    {
+      "item": "apple",
+      "itemCode": "101",
+      "qty": "2",
+      "unitOfMeasure": "103",
+      "unitPrice": "150.00",
+      "total": "1",
+      "taxRate": "0.18",
+      "tax": "12.88",
+      "discountTotal": "18.00",
+      "discountTaxRate": "0.18",
+      "orderNumber": "1",
+      "discountFlag": "1",
+      "deemedFlag": "1",
+      "exciseFlag": "2",
+      "categoryId": "1234",
+      "categoryName": "Test",
+      "goodsCategoryId": "5467",
+      "goodsCategoryName": "Test",
+      "exciseRate": "0.12",
+      "exciseRule": "1",
+      "exciseTax": "20.22",
+      "pack": "1",
+      "stick": "20",
+      "exciseUnit": "101",
+      "exciseCurrency": "UGX",
+      "exciseRateName": "123"
+    }
+  ]
+}

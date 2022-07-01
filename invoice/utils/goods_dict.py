@@ -2,21 +2,26 @@
 import json
 from invoice.utils.app_utilities import app_time, app_date
 
-def goods_details(prod, number):
+def goods_details(prod, number, inv):
+    deemed = ''
+    deemedFlag = '2'
+    if inv.client.company_type == '3':
+        deemedFlag = '1'
+        deemed = ' '+'(Deemed)'
     goods ={
-            "item": str(prod.product.name),
+            "item": str(prod.product.name)+deemed,
             "itemCode": str(prod.product.code),
             "qty": str("{:.2f}".format(prod.quantity)),
             "unitOfMeasure": str(prod.product.unit_measure.code),
             "unitPrice": "{:.2f}".format(prod.price),
             "total": str("{:.2f}".format(prod.total())),
-            "taxRate": str(0.18) if prod.product.tax_rate =="18%" else str(0),
+            "taxRate": str(0.18) if prod.vat =="18%" else str(0),
             "tax": str(prod.tax()),
             "discountTotal": "",
             "discountTaxRate": "",
             "orderNumber": str(number),
             "discountFlag": "2",
-            "deemedFlag": "2",
+            "deemedFlag": deemedFlag,
             "exciseFlag": "2",
             "categoryId": "",
             "categoryName": "",
@@ -33,10 +38,16 @@ def goods_details(prod, number):
         }
     return goods
 
-def tax_details(tax):
+def tax_details(tax, inv):
+    taxCat = ''
+    if inv.client.company_type == '3':
+        taxCat = '04'
+    else:
+        taxCat = '01'
+
     tax = {
-            "taxCategory": "A: VAT-Standard",
-            "taxCategoryCode":"01",
+            # "taxCategory": "A: VAT-Standard",
+            "taxCategoryCode":taxCat,
             "netAmount": "{:.2f}".format(tax.net_amount()),
             "taxRate": str(0.18) if tax.product.tax_rate =="18%" else str(0),
             "taxAmount": str("{:.2f}".format(tax.tax())),

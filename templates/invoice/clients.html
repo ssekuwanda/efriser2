@@ -72,19 +72,43 @@
 
       <form class="" action="#" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-
-
       <div class="modal-header border-bottom-0">
         <h5 class="modal-title">Add new client</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body py-0">
-        {{form.as_p}}
+        <div class="row">
+          <div class="col-12">{{ form.name|as_crispy_field}}</div>
+        </div>
+      <div class="row">
+        <div class="row">
+          <div class="col-12">{{ form.business_name|as_crispy_field}}</div>
+        </div>
       </div>
+      <div class="row">
+        <div class="col-6">
+          <div class="col-12">{{ form.email_address|as_crispy_field}}</div>
+        </div>
+        <div class="col-6">
+          <div class="col-12">{{ form.contact_number|as_crispy_field}}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <div class="col-12">{{ form.tin|as_crispy_field}}</div>
+        </div>
+        <div class="col-6">
+          <div class="col-12">{{ form.company_type|as_crispy_field}}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">{{ form.address|as_crispy_field}}</div>
+      </div>
+      <hr>
       <div class="modal-footer flex-column border-top-0">
-        <button type="submit" class="btn btn-lg btn-primary w-100 mx-0 mb-2">Save changes</button>
+        <button type="submit" class="btn btn-sm btn-primary btn-block">CREATE NEW CLEINT</button>
       </div>
-
+      </div>
       </form>
     </div>
   </div>

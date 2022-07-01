@@ -9,6 +9,13 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Row, Column
 
 
+BUYER_TYPE = [
+    ('0','Business'),
+    ('3','Government'),
+    ('1','Consumer'),
+    ('2','Foreigner'),
+    ]
+
 class DateInput(forms.DateInput):
     input_type = 'date'
 
@@ -29,14 +36,16 @@ class UserLoginForm(forms.ModelForm):
 class CompanyForm(forms.ModelForm):
     class Meta:
         model = Company
-        fields = ['name', 'companyLogo', 'company_type','tin','device_number']
+        fields = ['name', 'companyLogo','tin','device_number']
 
 
 class ClientForm(forms.ModelForm):
+    company_type= forms.CharField(widget=forms.RadioSelect(choices=BUYER_TYPE))
     class Meta:
         model = Client
-        fields = ['name', 'business_name',
-                  'address', 'email_address', 'contact_number', 'nin_brn','tin']
+        fields = ['name', 'business_name','address', 'email_address', 'contact_number', 'company_type','tin']
+
+            
 
 class InvoiceProductForm(forms.ModelForm):
     class Meta:
@@ -81,3 +90,9 @@ class ProdMetaForm(forms.ModelForm):
     class Meta:
         model = ProductMeta
         fields = ['stock','price']
+
+
+class CnCancelForm(forms.ModelForm):
+    class Meta:
+        model = CnCancel
+        fields = ['reason',]

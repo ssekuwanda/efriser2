@@ -62,7 +62,7 @@ def invoice_load(issuer, context, goodsDetails, taxDetails,summary_json):
             "linePhone": "",
             "emailAddress": issuer.email,
             "placeOfBusiness": "",
-            "referenceNo": context["invoice"].number,
+            "referenceNo": context["invoice"].inv_number(),
         },
         "basicInformation": {
             "invoiceNo": "",
@@ -82,14 +82,14 @@ def invoice_load(issuer, context, goodsDetails, taxDetails,summary_json):
             "buyerTin": str(context["buyerTin"]),
             "buyerNinBrn": "",
             "buyerPassportNum": "",
-            "buyerLegalName": "",
-            "buyerBusinessName": "",
+            "buyerLegalName": context["buyerLegalName"][0],
+            "buyerBusinessName":context["buyerLegalName"][0],
             "buyerAddress": "",
-            "buyerEmail": "",
+            "buyerEmail": context['buyerEmail'][0],
             "buyerMobilePhone": "",
             "buyerLinePhone": "",
             "buyerPlaceOfBusi": "",
-            "buyerType": "0",
+            "buyerType": str(context['buyerType']),
             "buyerCitizenship": "",
             "buyerSector": "",
             "buyerReferenceNo": ""
@@ -107,6 +107,7 @@ def invoice_load(issuer, context, goodsDetails, taxDetails,summary_json):
             "reasonCode": ""
         }
     }
+    print(message)
     return message
 
 

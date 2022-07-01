@@ -121,8 +121,9 @@
             {% endif %}
           </div>
         </div>
-        <h5>CREDIT NOTE</h5>
         {% if invoice.finalized %}
+        <h5>CREDIT NOTE</h5>
+        
           {% for inv in invoice.credit_notes.all %}
           <div class="row">
             <div class="col-9">
@@ -131,7 +132,7 @@
               </h6>
             </div>
             <div class="col-3">
-              <button type="button" class="btn btn-sm btn-outline-dark">Cancel</button>
+              <a class="btn btn-sm btn-outline-dark" href="{% url 'cancel_cn' inv.id %}" role="button">Cancel</a>
               <a class="btn btn-sm btn-outline-success" href="{% url 'cn_refresh' inv.id %}" role="button">Refresh Status</a>
             </div>
           </div>

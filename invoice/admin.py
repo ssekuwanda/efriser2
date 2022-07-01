@@ -11,4 +11,4 @@ admin.site.register(InvoiceProducts)
 admin.site.register(ProductMeta)
 admin.site.register(BankDetails)
 admin.site.register(CompanyLocation)
-
+admin.site.register(CnCancel)

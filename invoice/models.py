@@ -26,6 +26,13 @@ CURRENCY = [
         ('GBP', 'GBP'),
     ]
 
+BUYER_TYPE = [
+    ('0','Business'),
+    ('3','Government'),
+    ('1','Consumer'),
+    ('2','Foreigner'),
+    ]
+
 class Company(models.Model):
     companyTypes = [
         ('Services', 'Services'), 
@@ -43,7 +50,6 @@ class Company(models.Model):
     website = models.CharField(max_length=1001, null=False, blank=True)
 
     companyLogo = models.ImageField(default='default_logo.jpg', upload_to='company_logos', blank=True, null=True)
-    company_type = models.CharField(max_length=100, choices=companyTypes, blank=False, null=False)
 
     #Tax fields
     tin = models.CharField(max_length=10)
@@ -98,11 +104,12 @@ class Client(models.Model):
     company = models.ForeignKey(Company, null=True, blank=True, on_delete=models.SET_NULL)
     name = models.CharField(max_length=100, null=False, blank=False)
     business_name = models.CharField(max_length=100, null=True, blank=True)
-    address = models.CharField(max_length=10000, null=True, blank=True)
-    email_address = models.EmailField( null=False, blank=True)
-    contact_number = models.CharField(max_length=100, null=True, blank=True)
-    nin_brn = models.CharField("nin/Brn", max_length=100, null=True, blank=True)
-    tin = models.CharField(max_length=10, null=True, blank=True, help_text="leave blanck if export")
+    address = models.CharField(max_length=10000, null=True, blank=False)
+    email_address = models.EmailField( null=False, blank=False)
+    company_type = models.CharField(max_length=100, choices=BUYER_TYPE, blank=False, null=True)
+
+    contact_number = models.CharField(max_length=100, null=True, blank=False)
+    tin = models.CharField(max_length=10, null=True, blank=True, help_text="leave blank if export")
     # foreignier = models.BooleanField(default=False)
 
     #Utility fields
@@ -169,7 +176,13 @@ class Invoice(models.Model):
         return reverse('invoice-detail', kwargs={'slug': self.slug})
 
     def json_rep(self):
-        return inv_context(self.json_response)
+        if inv_context(self.json_response):
+            return inv_context(self.json_response)
+        else:
+            return None
+
+    def inv_number(self):
+        return str(self.company.short_name+'/'+str(self.number)+'/'+str(self.date_created.year))
 
     def __str__(self):
         return str(self.company.short_name+'/'+str(self.number)+'/'+str(self.date_created.year))
@@ -207,6 +220,16 @@ class CreditNote(models.Model):
     def __str__(self): 
         return str(self.invoice)
 
+class CnCancel(models.Model):
+    
+    REASONS = [('101','Buyer refused to accept the invoice due to incorrect invoice/receipt'), ('102','Not delivered due to incorrect invoice/receipt'),('103','Other reasons')]
+    reason = models.CharField(max_length=10000, choices=REASONS, null=True, blank=False)
+    cn = models.OneToOneField(CreditNote, blank=True, null=True, on_delete=models.SET_NULL)
+    last_updated = models.DateTimeField(blank=True, null=True, auto_now=True)
+    date_created = models.DateTimeField(blank=True, null=True, auto_now_add=True)
+
+    def __str__(self): 
+        return str(self.reason)
 
 class Unit_Measurement(models.Model):
     name = models.CharField(max_length=100, null=False, blank=False)
@@ -227,8 +250,6 @@ class Product(models.Model):
         ('No','No'),
     ]
 
-    TAX_RATES = [('18%', '18%'),('0%','0%'),]
-
     # EFRIS Calibration
     company = models.ForeignKey(
         Company, null=True, blank=True, on_delete=models.SET_NULL)
@@ -238,7 +259,7 @@ class Product(models.Model):
         Unit_Measurement, on_delete=models.SET_NULL, null=True, blank=False)
     unit_price = models.FloatField('Fees',null=False, blank=True, default=1)
     currency = models.CharField(choices=CURRENCY, max_length=3)
-    tax_rate = models.CharField(choices=TAX_RATES, null=False, blank=False, max_length=3, default='18%')
+    tax_rate = models.CharField(choices=VAT_CHOICES, null=False, blank=False, max_length=3, default='18%')
     commodity_id = models.CharField(null=False, blank=False, max_length=18)
     has_excise_duty = models.CharField(
         choices=YES_OR_NO, max_length=3, null=True, blank=True)
@@ -287,8 +308,8 @@ class InvoiceProducts(models.Model):
     product = models.ForeignKey(Product, null=False, blank=False, on_delete=models.CASCADE)
     notes = models.TextField(null=True, blank=True)
     quantity = models.FloatField(null=False, default=1, blank=True)
-    vat = models.CharField('VAT', choices=VAT_CHOICES,max_length=100, null=True, blank=False)
-    price = models.FloatField("Unit Price", null=False, blank=True)
+    vat = models.CharField('VAT', choices=VAT_CHOICES, max_length=100, null=True, blank=False)
+    price = models.FloatField("Unit Price", null=False, blank=False)
 
     #Utility fields
     uniqueId = models.CharField(null=True, blank=True, max_length=100)
@@ -297,31 +318,40 @@ class InvoiceProducts(models.Model):
     last_updated = models.DateTimeField(auto_now_add=True, blank=True)
 
     def __str__(self):
-        return '{}--{}'.format(str(self.invoice), self.id)
+        return '{}-{}'.format(str(self.invoice), self.id)
 
     def total(self):
         return float(self.price*self.quantity)
 
     def unit_px(self):
-        px= str(float(self.total)-float(self.total)/(1.18))
+        if self.invoice.client.company_type == 'B2B' or 'B2C' or 'B2G':
+            if self.vat == '18%':
+                px= str(float(self.total)-float(self.total)/(1.18))
+            else:
+                px= str(float(self.total))
+        else:
+            px= str(float(self.total))
         return px
     
     def prod_tax(self):
         tax = 1
-        if self.product.tax_rate == "18%":
+        if self.vat == "18%":
             tax = 0.18
         else:
             tax = 1
         return float(self.total()*tax)   
 
     def tax(self):
-        tax = 1
-        if self.product.tax_rate == "18%":
-            tax = 0.18
+        tax_amount = 0
+        if self.invoice.client.company_type == 'B2B' or 'B2C' or 'B2G':
+            if self.vat == "18%":
+                tax_amount = float((self.total()*0.18)/1.18)
+            else:
+                tax_amount = float(0)
         else:
-            tax = 1
-        tax_amount = float((self.total()*tax)/1.18)
+            tax_amount = float(0)
         cleaned_tax = "{:.2f}".format(tax_amount)
+   
         return float(cleaned_tax)
 
     def net_amount(self):

@@ -115,7 +115,6 @@ def invoices(request):
     context['invoices'] = invoices
     context['cleaned_inv']=[]
     for inv in invoices:
-        print(inv.json_response)
         if inv.json_response:
             context['cleaned_inv'].append(inv_context(inv.json_response))
 
@@ -135,11 +134,11 @@ def online_invoices(request):
 
 @login_required
 def products(request):
+    issuer = request.user.company1
     context = {}
-    products = Product.objects.all()
+    products = Product.objects.filter(company=issuer)
     context['products'] = products
 
-    issuer = request.user.company1
 
     if request.method == 'GET':
         form = ProductForm()
@@ -238,7 +237,7 @@ def clients(request):
         if form.is_valid():
             form_tin = form.cleaned_data['tin']
             form = form.save(commit=False)
-            response = None
+            # response = None
             if form.tin:
                 response = getClientDetails(owned.tin, form_tin, owned.device_number)
 
@@ -325,12 +324,12 @@ def createBuildInvoice(request, slug):
     gross_amount = 0
     order_number = 0
 
-    if invoice.json_response:
+    if invoice.json_response != "":
         context.update(inv_context(invoice.json_response))
     
     for prod in products:
-        good = goods_details(prod, order_number)
-        tax = tax_details(prod)
+        good = goods_details(prod, order_number, invoice)
+        tax = tax_details(prod, invoice)
         order_number+=1
         
         net_amount += prod.net_amount()
@@ -345,10 +344,22 @@ def createBuildInvoice(request, slug):
     context['tax'] = tax_amount
     context['gross'] = gross_amount
     context['operator'] = request.user.username
-    context['buyerTin'] = invoice.client.tin
+    if invoice.client.tin:
+        context['buyerTin'] = invoice.client.tin
+    else:
+        context['buyerTin'] = ""
     context['itemCount'] = order_number
     context['remarks'] = ""
-    
+    context['payWay'] = invoice.payment_method,
+    context['buyerLegalName'] = invoice.client.name,
+    context['buyerEmail'] = invoice.client.email_address,
+
+    context['buyerAddress'] = invoice.client.address
+    if invoice.client.company_type != '3':
+        context['buyerType'] = invoice.client.company_type
+    else:
+        context['buyerType'] = str(0)
+
     goods_summary = summary(context)
 
     goodsDetails = goods_context
@@ -382,7 +393,7 @@ def createBuildInvoice(request, slug):
             context['currency'] = inv_form['currency'].value()
             context['remarks'] = inv_form['remarks'].value()
 
-            inv = uploadInvoice(issuer, context, goodsDetails, taxDetails,summary_json)          
+            inv = uploadInvoice(issuer, context, goodsDetails, taxDetails,summary_json)  
             invoice_update.json_response = inv["content"]
 
             if inv["returnMessage"] == "SUCCESS":
@@ -435,6 +446,7 @@ def createCreditNote(request, slug):
 
                 reference = received_message['data']['content']
                 decrpt = decode(reference).decode()
+                form.json_response = decrpt
                 form.reference = json.loads(decrpt)['referenceNo']
                 form.invoice = invoice
                 form.company = company
@@ -473,7 +485,7 @@ def pdfInvoice(request, slug):
     tax_total = 0
 
     for prod in invoice_pdts:      
-        tax = tax_details(prod)
+        tax = tax_details(prod, invoice)
         tax_total +=float(tax['taxAmount'])
 
     context['tax'] = tax_total
@@ -528,7 +540,6 @@ def cn_list(request):
         encrpt = encode(cn_json).decode("utf-8")
         uploadList = cnListUpload(encrpt, request)
         json_dump = json.loads(uploadList)
-        print(json_dump)
 
         for rec in json_dump['records']:
             context['details'].append(rec)
@@ -569,6 +580,28 @@ def inv_details(request):
 
     return render(request, 'invoice/inv_details.html', context)
 
-def cancel_cn(request, slug):
-    return render(request, 'invoice/cancel_cn.html', context={'hh':'33'})
+def cancel_cn(request, id):
+    cn = CreditNote.objects.get(id = id)
+
+    msg = {}
+    msg['inv_id'] =  inv_context(cn.invoice.json_response)['invoiceId']
+    msg['cn_ref'] = cn.reference
+    # cn_dict = cancel_cn_helper()
+    
+    form = CnCancelForm()
+    msg['form']= form
+    if request.method == 'POST':
+        form = CnCancelForm(request.POST)
+
+        if form.is_valid():
+            msg['reason'] = form.cleaned_data['reason']
+            form = form.save(commit=False)
+            form.cn = cn
+            print(form)
+            form.save()
+        else:
+            messages.error(request, 'Problem processing your request')
+            return redirect('cancel_cn','cn.slug')
+
+    return render(request, 'credit_note/cancel_cn.html',msg)
     

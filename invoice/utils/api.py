@@ -30,7 +30,6 @@ def systemDict(tin, device_no):
     ic = "T115"
     message = ""
     data_dump = payload_info(tin, device_no,ic,message)
-    json_dump = json.dumps(data_dump)
     try:
         r = re.post(base_url, json=data_dump)
         content = r.json()['data']['content']
@@ -54,20 +53,14 @@ def goodsUpload(tin, device_no, message):
 
 def uploadInvoice(issuer, context,goodsDetails, taxDetails,summary_json):
     interface_code = "T109"
-
     message = invoice_load(issuer, context, goodsDetails, taxDetails,summary_json)
-
     to_json = json.dumps(message)
     encode_message = encode(to_json).decode()
-
     tin = issuer.tin
     device_no = issuer.device_number
-
     data_dump = payload_info(tin, device_no, interface_code, encode_message)
     response_data = InvoiceService(data_dump)
-
     return response_data
-
 
 def InvoiceService(data_dump):
     return_info = {}
@@ -95,6 +88,7 @@ def InvoiceService(data_dump):
 def post_creditnote(data_dump):
     try:
         r = re.post(base_url, json=data_dump)
+        print(r.json())
         content = r.json()['data']['content']
         decoded = decode(content)
         return r.json()
@@ -175,7 +169,7 @@ def cancel_cn_helper(request, msg):
         "invoiceNo": "786059685752403327",
         "reason": "reason",
         "reasonCode": "102",
-        "invoiceApplyCategoryCode": "103"
+        "invoiceApplyCategoryCode": "104"
     }
 
     ic = "T114"

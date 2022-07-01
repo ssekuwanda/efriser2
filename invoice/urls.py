@@ -23,12 +23,12 @@ path('inv_details/', views.inv_details, name='inv_details'),
 path('prod_delete/<slug:slug>',views.prod_delete, name='prod_delete'),
 path('prod_update/<slug:slug>',views.productsMaintance, name='prod_update'),
 
-
 # --------------Credit notes---------
 path('credit_notes', views.creditNoteHome, name='creditnotes'),
 path('credit_notes_list', views.cn_list, name='cn_list'),
 path('creditnote/create/<slug:slug>',views.createCreditNote, name='create-creditnote'),
 path('creditnote/refresh_cn_status/<int:id>',views.refresh_cn_status, name='cn_refresh'),
+path('creditnote/cancel-cn/<int:id>',views.cancel_cn, name='cancel_cn'),
 
 
 #Delete an invoice

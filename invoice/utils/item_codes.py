@@ -1,6 +1,5 @@
 import enum
 
-
 class Currencies(enum.Enum):
     GBP= 103
     EURO = 104
@@ -18,8 +17,6 @@ class PaymentMode(enum.Enum):
     POS = 108
     RTGS = 109
     Swift_transfer = 110
-
-# class BuyerTyper(enum.Enum):
 
 class InvoiceIndustry(enum.Enum):
     general_industry = 101
@@ -43,7 +40,3 @@ class InvoiceKind(enum.Enum):
     @classmethod
     def choices(cls):
         return [(i.name, i.value) for i in cls]
-
-print(InvoiceKind.choices())
-
-U
