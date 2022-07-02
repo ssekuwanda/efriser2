@@ -12,21 +12,10 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h4 class="">OFFLINE INVOICES</h4>
     <h4 class="">
-        <a href="{% url 'inv_list' %}">ALL INVOICES</a>
+        <a class="btn btn-sm btn-outline-success" href="{% url 'inv_list' %}" role="button">ALL INVOICES</a>
+        <a class="btn btn-sm btn-outline-success" href="{% url 'inv_details' %}" role="button">VALIDATE INVOICE</a>
     </h4>
-    <h4 class="">
-        <a href="{% url 'inv_details' %}">QUERY INVOICE</a>
-    </h4>
-    <div class="btn-toolbar mb-2 mb-md-0">
-        <div class="btn-group me-2">
-            <a href="#">
-                <button type="button" class="btn btn-primary">Add New Invoice</button>
-            </a>
-        </div>
-    </div>
 </div>
-
-<!-- <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas> -->
 
 {% if invoices|length > 0 %}
 <div class="table-responsive">

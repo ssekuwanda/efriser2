@@ -139,7 +139,7 @@ def invListUpload(start_date, end_date, request):
             return_json = json.loads(gzip.decompress(gz).decode('UTF8'))
             
     except re.HTTPError as ex:
-        return "No data got"
+        return "No data received back"
     return return_json
 
 def msg_middleware(request, msg):

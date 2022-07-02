@@ -24,7 +24,7 @@ from django.http import HttpResponse
 from django.template.loader import get_template
 import os
 from django.db.models import Sum
-
+from django.db.models import Q
 
 #Anonymous required
 def anonymous_required(function=None, redirect_url=None):
@@ -79,8 +79,12 @@ def login(request):
 def dashboard(request):
     clients = Client.objects.all().count()
     invoices = Invoice.objects.all().count()
+    credits = CreditNote.objects.all().count()
 
     context = {}
+    context['clients'] = clients
+    context['invoices'] = invoices
+    context['credits'] = credits
 
     if request.method == 'GET':
         form = CompanyForm()
@@ -101,8 +105,7 @@ def dashboard(request):
             messages.error(request, 'Problem processing your request')
             return redirect('dashboard')
 
-    context['clients'] = clients
-    context['invoices'] = invoices
+
     return render(request, 'invoice/dashboard.html', context)
 
 
@@ -222,6 +225,7 @@ def productsMaintance(request, slug):
 @login_required
 def clients(request):
     owned = request.user.company1
+    queryset = Client.objects.filter(name__icontains='Boston')
     context = {}
     clients = Client.objects.filter(company=owned)
     context['clients'] = clients
@@ -577,6 +581,9 @@ def inv_details(request):
             context['gross']=return_msg['summary']['grossAmount']
             context['net']=return_msg['summary']['netAmount']
             context['tax']=return_msg['summary']['taxAmount']
+            messages.success(request, "Valid Invoice")
+        else:
+            messages.warning(request, "Invalid Invoice")
 
     return render(request, 'invoice/inv_details.html', context)
 

@@ -10,12 +10,15 @@
 {% block main %}
 
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Clients</h1>
+    <h1 class="h2">CLIENTS</h1>
     <div class="btn-toolbar mb-2 mb-md-0">
       <div class="btn-group me-2">
-        <button href="#addClientModal" type="button" class="btn btn-primary" data-bs-toggle="modal">Add New Client</button>
       </div>
+        <form action="#" method="get">
+          <input type="search" name="q" placeholder="Search client by name..." class="form-control" />
+        </form>
     </div>
+    <button href="#addClientModal" type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal">Add New Client</button>
   </div>
 
   <!-- <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas> -->
