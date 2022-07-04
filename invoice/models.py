@@ -162,15 +162,18 @@ class Invoice(models.Model):
     fdn = models.CharField(null=True, blank=True, max_length=100)
     json_response = JSONField(blank=True)
 
-    #RELATED fields
+    # RELATED fields
     client = models.ForeignKey(Client, blank=True, null=True, on_delete=models.SET_NULL)
     company = models.ForeignKey(Company, blank=True, null=True, on_delete=models.SET_NULL)
 
-    #Utility fields
+    # Utility fields
     uniqueId = models.CharField(null=True, blank=True, max_length=100)
     slug = models.SlugField(max_length=500, unique=True, blank=True, null=True)
     date_created = models.DateTimeField(blank=True, null=True)
     last_updated = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        ordering = ("-date_created",)
 
     def get_absolute_url(self):
         return reverse('invoice-detail', kwargs={'slug': self.slug})

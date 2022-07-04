@@ -187,3 +187,13 @@ def cancel_cn_helper(request, msg):
     except re.HTTPError as ex:
         return "No data got"
     return return_json
+
+def cn_approval_request(msg):
+    ic = 'T113'
+    json_req = {
+        "referenceNo": msg['ref'],
+        "approveStatus": "101",
+        "taskId": "1",
+        "remark": msg['remarks']
+        }
+    return json_req

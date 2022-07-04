@@ -23,9 +23,9 @@
         <thead>
             <tr>
                 <th>#</th>
+                <th>FDN</th>
                 <th>CLEINT</th>
                 <th>DATE</th>
-                <th>FDN</th>
                 <th>INV NO.</th>
                 <th>CURRENCY</th>
                 <th>NET</th>
@@ -34,13 +34,13 @@
             </tr>
         </thead>
         <tbody>
-
             {% for invoice in cleaned_inv %}
             <tr>
-                <td>{{ forloop.counter }}.</td>
-                <td>{{ invoice.buyerName }}</td>
+                <td>
+                    <a href="#" style="text-decoration: none;">{{ invoice.fdn }}</a>
+                </td>
+                <td class="text-wrap" style="width: 12rem;">{{ invoice.buyerName }}</td>
                 <td>{{ invoice.date|date:"D, d M, Y" }}</td>
-                <td>{{ invoice.fdn }}</td>
                 <td>{{ invoice.invoice_number }}</td>
                 <td>{{ invoice.currency }}</td>
                 <td>{{ invoice.net }}</td>
@@ -52,7 +52,6 @@
                 </td> -->
             </tr>
             {% endfor %}
-
         </tbody>
     </table>
 </div>

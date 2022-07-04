@@ -53,7 +53,7 @@ def login(request):
     if request.method == 'GET':
         form = UserLoginForm()
         context['form'] = form
-        return render(request, 'invoice/login.html', context)
+        return render(request, 'accounts/login.html', context)
 
     if request.method == 'POST':
         form = UserLoginForm(request.POST)
@@ -72,7 +72,7 @@ def login(request):
             return redirect('login')
 
 
-    return render(request, 'invoice/login.html', context)
+    return render(request, 'accounts/login.html', context)
 
 
 @login_required
@@ -120,6 +120,7 @@ def invoices(request):
     for inv in invoices:
         if inv.json_response:
             context['cleaned_inv'].append(inv_context(inv.json_response))
+            context['cleaned_inv'].append({'slug':inv.slug})
 
     context['cleint'] = "cleint"
     return render(request, 'invoice/all_invoices.html', context)
@@ -587,9 +588,10 @@ def inv_details(request):
 
     return render(request, 'invoice/inv_details.html', context)
 
+
 def cancel_cn(request, id):
     cn = CreditNote.objects.get(id = id)
-
+    invoice = cn.invoice
     msg = {}
     msg['inv_id'] =  inv_context(cn.invoice.json_response)['invoiceId']
     msg['cn_ref'] = cn.reference
@@ -604,11 +606,12 @@ def cancel_cn(request, id):
             msg['reason'] = form.cleaned_data['reason']
             form = form.save(commit=False)
             form.cn = cn
-            print(form)
             form.save()
         else:
             messages.error(request, 'Problem processing your request')
-            return redirect('cancel_cn','cn.slug')
+            return redirect('create-build-invoice','invoice.slug')
 
     return render(request, 'credit_note/cancel_cn.html',msg)
     
+def approve_cn(self):
+    pass

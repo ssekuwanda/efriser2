@@ -26,6 +26,7 @@
                     <form method="post" novalidate class="m-3" autocomplete="off">
                         {% csrf_token %}
                         {{ form|crispy }}
+                        <hr>
                         <button type="submit" class="btn btn-primary btn-block">SUBMIT</button>
                     </form>
                 </div>
