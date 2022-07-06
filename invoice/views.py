@@ -1,34 +1,24 @@
-from urllib import response
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib import messages
-from django.conf import settings
 from django.template.loader import render_to_string
-from weasyprint import HTML, CSS
+from weasyprint import HTML
 from invoice.utils.api import *
 from invoice.utils.invoice_cleaner import *
 from .forms import *
 from .models import *
 from .functions import *
 from .utils.goods_dict import *
-
-from django.db.models import Max, BigIntegerField
-from django.db.models.functions import Cast
-
-from django.contrib.auth.models import User, auth
-from random import randint
+from django.contrib.auth.models import auth
 from uuid import uuid4
-
 from django.http import HttpResponse
 from django.template.loader import get_template
-import os
 from django.db.models import Sum
 from django.db.models import Q
 
 #Anonymous required
 def anonymous_required(function=None, redirect_url=None):
-
    if not redirect_url:
        redirect_url = 'dashboard'
 
@@ -72,7 +62,6 @@ def login(request):
 
 
     return render(request, 'accounts/login.html', context)
-
 
 @login_required
 def dashboard(request):
@@ -141,7 +130,6 @@ def products(request):
     context = {}
     products = Product.objects.filter(company=issuer)
     context['products'] = products
-
 
     if request.method == 'GET':
         form = ProductForm()

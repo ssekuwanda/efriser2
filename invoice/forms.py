@@ -50,7 +50,7 @@ class ClientForm(forms.ModelForm):
 class InvoiceProductForm(forms.ModelForm):
     class Meta:
         model = InvoiceProducts
-        fields = ['product', 'vat', 'price']
+        fields = ['product', 'tax_type', 'price']
 
 class ProductForm(forms.ModelForm):
     class Meta:
@@ -68,7 +68,6 @@ class InvoiceForm(forms.ModelForm):
         widgets = {
             'remarks': forms.Textarea(attrs={'rows':2})
         }
-
 
 class SettingsForm(forms.ModelForm):
     class Meta:

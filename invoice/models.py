@@ -99,13 +99,6 @@ class CompanyLocation(models.Model):
     def __str__(self):
         return self.plot
 
-class Tax_Type(models.Model):
-    code = models.CharField(max_length=2, blank=False, null=False)
-    description = models.CharField(max_length=200, blank=False, null=False)
-
-    def __str__(self):
-        return str(self.code)+'-'+str(self.description)
-
 class Client(models.Model):
     #Basic Fields.
     company = models.ForeignKey(Company, null=True, blank=True, on_delete=models.SET_NULL)
@@ -114,7 +107,6 @@ class Client(models.Model):
     address = models.CharField(max_length=10000, null=True, blank=False)
     email_address = models.EmailField( null=False, blank=False)
     company_type = models.CharField(max_length=100, choices=BUYER_TYPE, blank=False, null=True)
-    tax_type = models.ForeignKey(Tax_Type, blank=False, on_delete=models.CASCADE)
 
     contact_number = models.CharField(max_length=100, null=True, blank=False)
     tin = models.CharField(max_length=10, null=True, blank=True, help_text="leave blank if export")
@@ -312,6 +304,13 @@ class ProductMeta(models.Model):
     def __str__(self):
         return f'{self.product.name} {self.stock}'
 
+class Tax_Type(models.Model):
+    code = models.CharField(max_length=2, blank=False, null=False)
+    description = models.CharField(max_length=200, blank=False, null=False)
+
+    def __str__(self):
+        return str(self.description)
+
 class InvoiceProducts(models.Model):
     # Basic fields
     invoice = models.ForeignKey(
@@ -321,6 +320,7 @@ class InvoiceProducts(models.Model):
     quantity = models.FloatField(null=False, default=1, blank=True)
     vat = models.CharField('VAT', choices=VAT_CHOICES, max_length=100, null=True, blank=False)
     price = models.FloatField("Unit Price", null=False, blank=False)
+    tax_type = models.ForeignKey(Tax_Type, blank=False, on_delete=models.CASCADE)
 
     #Utility fields
     uniqueId = models.CharField(null=True, blank=True, max_length=100)
@@ -336,7 +336,7 @@ class InvoiceProducts(models.Model):
 
     def unit_px(self):
         if self.invoice.client.company_type == 'B2B' or 'B2C' or 'B2G':
-            if self.vat == '18%':
+            if self.tax_type.code == '01':
                 px= str(float(self.total)-float(self.total)/(1.18))
             else:
                 px= str(float(self.total))
@@ -346,7 +346,7 @@ class InvoiceProducts(models.Model):
     
     def prod_tax(self):
         tax = 1
-        if self.vat == "18%":
+        if self.tax_type.code == '01':
             tax = 0.18
         else:
             tax = 1
@@ -355,7 +355,7 @@ class InvoiceProducts(models.Model):
     def tax(self):
         tax_amount = 0
         if self.invoice.client.company_type == 'B2B' or 'B2C' or 'B2G':
-            if self.vat == "18%":
+            if self.tax_type.code == '01':
                 tax_amount = float((self.total()*0.18)/1.18)
             else:
                 tax_amount = float(0)

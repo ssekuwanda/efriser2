@@ -1,13 +1,22 @@
 
 import json
+from platform import python_branch
 from invoice.utils.app_utilities import app_time, app_date
 
 def goods_details(prod, number, inv):
     deemed = ''
     deemedFlag = '2'
+
     if inv.client.company_type == '3':
         deemedFlag = '1'
         deemed = ' '+'(Deemed)'
+
+    tax_rate = ""
+    if prod.tax_type.code == "01":
+        tax_rate = "0.18"
+    else:
+        tax_rate = "-"
+
     goods ={
             "item": str(prod.product.name)+deemed,
             "itemCode": str(prod.product.code),
@@ -15,7 +24,7 @@ def goods_details(prod, number, inv):
             "unitOfMeasure": str(prod.product.unit_measure.code),
             "unitPrice": "{:.2f}".format(prod.price),
             "total": str("{:.2f}".format(prod.total())),
-            "taxRate": str(0.18) if prod.vat =="18%" else str(0),
+            "taxRate": tax_rate,
             "tax": str(prod.tax()),
             "discountTotal": "",
             "discountTaxRate": "",
@@ -39,23 +48,24 @@ def goods_details(prod, number, inv):
     return goods
 
 def tax_details(tax, inv):
-    taxCat = ''
-    if inv.client.company_type == '3':
-        taxCat = '04'
+    tax_rate = ""
+    if tax.tax_type.code == "01":
+        tax_rate = "0.18"
+    elif tax.tax_type.code == "02":
+        tax_rate = "0"
+    elif tax.tax_type.code == "03":
+        tax_rate = "-"
     else:
-        taxCat = '01'
+        tax_rate = ""
 
     tax = {
-            # "taxCategory": "A: VAT-Standard",
-            "taxCategoryCode":taxCat,
+            "taxCategoryCode":str(tax.tax_type.code),
             "netAmount": "{:.2f}".format(tax.net_amount()),
-            # "taxRate": str(0.18) if tax.product.tax_rate =="18%" else str(0),
-            "taxRate": str(0.18) if tax.product.tax_rate =="18%" else str(0),
+            "taxRate": tax_rate,
             "taxAmount": str("{:.2f}".format(tax.tax())),
             "grossAmount": str(tax.total()),
             "exciseUnit": "",
             "exciseCurrency": "",
-            "taxRateName": "Standard"
         }
     return tax
 
@@ -69,7 +79,7 @@ def summary(summary_details):
             "remarks": str(summary_details['remarks']),
             "qrCode": ""
         }
-    return inv_summary
+    return inv_summary 
 
 
 def credit_note(note, form):
