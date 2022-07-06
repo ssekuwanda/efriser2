@@ -93,6 +93,9 @@ class ProdMetaForm(forms.ModelForm):
 
 
 class CnCancelForm(forms.ModelForm):
+    REASONS = [('101','Buyer refused to accept the invoice due to incorrect invoice/receipt'), ('102','Not delivered due to incorrect invoice/receipt'),('103','Other reasons')]
+
+    reason= forms.CharField(widget=forms.RadioSelect(choices=REASONS))
     class Meta:
         model = CnCancel
         fields = ['reason',]

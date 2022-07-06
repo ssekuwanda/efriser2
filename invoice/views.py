@@ -41,7 +41,6 @@ def anonymous_required(function=None, redirect_url=None):
        return actual_decorator(function)
    return actual_decorator
 
-
 def index(request):
     context = {}
     return render(request, 'invoice/index.html', context)
@@ -466,7 +465,9 @@ def createCreditNote(request, slug):
     return render(request, 'invoice/create-creditnote.html', {'form':form})
 
 def creditNoteHome(request):
+    company = request.user.company1
     credits = CreditNote.objects.all()
+
     context = {'credits':credits}
     return render(request, 'invoice/all_creditnotes.html', context)
 
@@ -585,7 +586,6 @@ def inv_details(request):
             messages.success(request, "Valid Invoice")
         else:
             messages.warning(request, "Invalid Invoice")
-
     return render(request, 'invoice/inv_details.html', context)
 
 
@@ -595,6 +595,7 @@ def cancel_cn(request, id):
     msg = {}
     msg['inv_id'] =  inv_context(cn.invoice.json_response)['invoiceId']
     msg['cn_ref'] = cn.reference
+
     # cn_dict = cancel_cn_helper()
     
     form = CnCancelForm()
@@ -610,7 +611,6 @@ def cancel_cn(request, id):
         else:
             messages.error(request, 'Problem processing your request')
             return redirect('create-build-invoice','invoice.slug')
-
     return render(request, 'credit_note/cancel_cn.html',msg)
     
 def approve_cn(self):

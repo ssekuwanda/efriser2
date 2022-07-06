@@ -24,25 +24,21 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>Title</th>
                 <th>Client name</th>
-                <th>Phone Number</th>
                 <th>Due Date</th>
-                <th>Invoice Status</th>
-                <th>Delete</th>
-                <th>View</th>
+                <th>Reference</th>
+                <th>Reason</th>
             </tr>
         </thead>
         <tbody>
 
             {% for cred in credits %}
             <tr>
-                <td>{{cred.number}}</td>
-                <td>{{cred.title}}</td>
-                <!-- <td>{{cred.client.clientName}}</td>
-                <td>{{cred.client.phoneNumber}}</td>
-                <td>{{cred.dueDate}}</td> -->
-                <td>{{cred.json_response}}</td>
+                <td>{{ forloop.counter }}.</td>
+                <td>{{ cred.invoice.client  }}</td>
+                <td>{{ cred.date_created }}</td>
+                <td>{{ cred.reference }}</td>
+                <td>{{ cred.reason }}</td>
             </tr>
             {% endfor %}
         </tbody>
@@ -58,12 +54,7 @@
         <img class=img-fluid src="{% static 'assets/img/empty.svg' %}" alt="EFRISER">
     </div>
     <div class="col-lg-3">
-
     </div>
 </div>
 {% endif %}
-
-
-
-
 {% endblock %}

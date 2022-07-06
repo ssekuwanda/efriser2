@@ -49,6 +49,7 @@ def tax_details(tax, inv):
             # "taxCategory": "A: VAT-Standard",
             "taxCategoryCode":taxCat,
             "netAmount": "{:.2f}".format(tax.net_amount()),
+            # "taxRate": str(0.18) if tax.product.tax_rate =="18%" else str(0),
             "taxRate": str(0.18) if tax.product.tax_rate =="18%" else str(0),
             "taxAmount": str("{:.2f}".format(tax.tax())),
             "grossAmount": str(tax.total()),

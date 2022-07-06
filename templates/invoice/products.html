@@ -30,11 +30,12 @@
           <th>Description</th>
           <th>Unit Of Measure</th>
           <th>Commodity ID</th>
-          <th>Excise Tax</th>
           <th>Stock</th>
+          <th>VAT</th>
+          <th>Excise Tax</th>
           <th>Unit Price</th>
           <th>Currency</th>
-          <th></th>
+          <th>Adjust</th>
 
         </tr>
       </thead>
@@ -47,8 +48,9 @@
         <td>{{product.description}}</td>
         <td>{{product.unit_measure}}</td>
         <td>{{product.commodity_id}}</td>
-        <td>None</td>
         <td>{{product.stock_warning|intcomma }}</td>
+        <td>18%</td>
+        <td>None</td>
         <td>{{product.unit_price|intcomma}}</td>
         <td>{{product.currency}}</td>
         <td>

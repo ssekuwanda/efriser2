@@ -16,7 +16,7 @@ from invoice.utils.invoice_cleaner import inv_context
 randoms = randint(120,1000)
 VAT_CHOICES = [
         ('18%', 'Standard Rated Sale'), 
-        ('0%', 'Export'),
+        ('-', 'Export'),
         ('0%', 'Exempt'),
         ]
 
@@ -99,6 +99,13 @@ class CompanyLocation(models.Model):
     def __str__(self):
         return self.plot
 
+class Tax_Type(models.Model):
+    code = models.CharField(max_length=2, blank=False, null=False)
+    description = models.CharField(max_length=200, blank=False, null=False)
+
+    def __str__(self):
+        return str(self.code)+'-'+str(self.description)
+
 class Client(models.Model):
     #Basic Fields.
     company = models.ForeignKey(Company, null=True, blank=True, on_delete=models.SET_NULL)
@@ -107,6 +114,7 @@ class Client(models.Model):
     address = models.CharField(max_length=10000, null=True, blank=False)
     email_address = models.EmailField( null=False, blank=False)
     company_type = models.CharField(max_length=100, choices=BUYER_TYPE, blank=False, null=True)
+    tax_type = models.ForeignKey(Tax_Type, blank=False, on_delete=models.CASCADE)
 
     contact_number = models.CharField(max_length=100, null=True, blank=False)
     tin = models.CharField(max_length=10, null=True, blank=True, help_text="leave blank if export")
