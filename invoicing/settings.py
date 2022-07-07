@@ -71,7 +71,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'invoicing.wsgi.application'
 
-
 if ONLINE:
     DATABASES = {
         'default': dj_database_url.config(
@@ -124,7 +123,6 @@ MEDIA_URL = '/uploads/'
 
 LOGIN_REDIRECT_URL = 'dashboard'
 LOGIN_URL = 'login'
-
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
