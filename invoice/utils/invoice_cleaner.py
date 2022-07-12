@@ -9,9 +9,13 @@ def inv_context(input):
     output['deviceNo'] = to_json['basicInformation']['deviceNo']
     output['invoiceId'] = to_json['basicInformation']['invoiceId']
     output['currency'] = to_json['basicInformation']['currency']
-
     output['fdn'] = to_json['basicInformation']['invoiceNo']
-    output['date'] = datetime.strptime(to_json['basicInformation']['issuedDate'], '%d/%m/%Y %H:%M:%S')
+
+    if '-' in to_json['basicInformation']['issuedDate']:
+        output['date'] = datetime.strptime(to_json['basicInformation']['issuedDate'],'%Y-%m-%d %H:%M:%S')
+    else:
+        output['date'] = datetime.strptime(to_json['basicInformation']['issuedDate'],'%d/%m/%Y %H:%M:%S')
+        
     output['qrcode'] = to_json['summary']['qrCode']
     output['gross'] = float(to_json['summary']['grossAmount'])
     output['net'] = float(to_json['summary']['netAmount'])

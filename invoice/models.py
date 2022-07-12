@@ -1,4 +1,3 @@
-import imp
 from locale import currency
 from math import prod
 from django.db import models
@@ -107,7 +106,6 @@ class Client(models.Model):
     address = models.CharField(max_length=10000, null=True, blank=False)
     email_address = models.EmailField( null=False, blank=False)
     company_type = models.CharField(max_length=100, choices=BUYER_TYPE, blank=False, null=True)
-
     contact_number = models.CharField(max_length=100, null=True, blank=False)
     tin = models.CharField(max_length=10, null=True, blank=True, help_text="leave blank if export")
     # foreignier = models.BooleanField(default=False)

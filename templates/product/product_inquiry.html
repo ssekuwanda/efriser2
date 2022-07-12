@@ -1,0 +1,37 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block css %}
+<link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block main %}
+
+<div class="alert alert-warning mt-4 border border-success" role="alert">
+    <h4 class="alert-heading text-center">PRODUCT INQUIRY</h4>
+</div>
+{% for rec in records %}
+<div class="jumbotron">
+    <p class="lead">Category Code: {{ rec.commodityCategoryCode }}</p>
+    <p class="lead">Name: {{ rec.commodityCategoryName }}</p>
+    <p class="lead">Date created: {{ rec.createDate }}</p>
+    {% if ec.currency == "101" %}
+        <p class="lead">Currency: UGX</p>
+    {% else %}
+        <p class="lead">Currency: USD</p>
+    {% endif %}
+    <p class="lead">Goods Code: {{ rec.goodsCode }}</p>
+    <p class="lead">Name: {{ rec.goodsName }}</p>
+    <p class="lead">Unit Measure: {{ rec.measureUnit }}</p>
+    <p class="lead">Stock: {{ rec.stock }}</p>
+    <p class="lead">Stock Prewarning: {{ rec.stockPrewarning }}</p>
+    <p class="lead">Tax Rate: {{ rec.taxRate }}</p>
+    <p class="lead">Unit Price: {{ rec.unitPrice }}</p>
+    <p class="lead">Last Updated: {{ rec.updateDateStr }}</p>
+    <hr class="my-4">
+{% endfor %}
+</div>
+</div>
+
+{% endblock %}

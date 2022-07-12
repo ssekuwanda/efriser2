@@ -4,6 +4,8 @@ from .payload import *
 from .encrpt import decode, encode
 import base64
 import gzip
+from django.contrib import messages
+
 
 base_url = "http://198.58.118.119:9880/efristcs/ws/tcsapp/getInformation"
 
@@ -38,7 +40,7 @@ def systemDict(tin, device_no):
 
         to_bytes = content.encode('utf-8')
         pw = to_bytes.decode("utf-8")
-        return content
+        return ggz
     except re.HTTPError as ex:
         return "No data got"
     # return response_data
@@ -50,11 +52,19 @@ def goodsUpload(tin, device_no, message):
     response_data = post_creditnote(data_dump)
     return response_data
 
+def goodsInquire(request, req):
+    ic = 'T127'
+    dump = json.dumps(req)
+    encode_request = encode(dump).decode()
+    outer_json = payload_info(request.user.company1.tin, request.user.company1.device_number,ic,encode_request)
+    return post_message(outer_json)
+    
 
-def uploadInvoice(issuer, context,goodsDetails, taxDetails,summary_json):
+def uploadInvoice(issuer, context,goodsDetails, taxDetails,summary_json, payment_detials):
     interface_code = "T109"
-    message = invoice_load(issuer, context, goodsDetails, taxDetails,summary_json)
+    message = invoice_load(issuer, context, goodsDetails, taxDetails,summary_json, payment_detials)
     to_json = json.dumps(message)
+    print(to_json)
     encode_message = encode(to_json).decode()
     tin = issuer.tin
     device_no = issuer.device_number
@@ -165,23 +175,27 @@ def msg_middleware(request, msg):
 
 def cancel_cn_helper(request, msg):
     json_req = {
-        "oriInvoiceId": "31000000000000000001",
-        "invoiceNo": "786059685752403327",
-        "reason": "reason",
-        "reasonCode": "102",
+        "oriInvoiceId": msg['inv_id'],
+        "invoiceNo": msg['cn_ref'],
+        "reason": "",
+        "reasonCode": msg['reason'],
         "invoiceApplyCategoryCode": "104"
     }
 
     ic = "T114"
+    print('88888888888888888888888888888888')
+    print(json_req)
     inv_json = json.dumps(json_req)
     msg = encode(inv_json).decode("utf-8")
     data_dump = payload_info(request.user.company1.tin, request.user.company1.device_number,ic,msg)
     try:
         r = re.post(base_url, json=data_dump)
         content = r.json()['data']['content']
+        print(r.json())
         if content:
             decoded = decode(content)
             return_json = json.loads(decoded.decode()) 
+            messages.success(request, return_json['returnStateInfo']['returnMessage'])
         else:
             return_json = None
     except re.HTTPError as ex:

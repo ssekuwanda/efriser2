@@ -8,7 +8,6 @@ import json
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Row, Column
 
-
 BUYER_TYPE = [
     ('0','Business'),
     ('3','Government'),

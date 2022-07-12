@@ -36,6 +36,7 @@
           <th>Unit Price</th>
           <th>Currency</th>
           <th>Adjust</th>
+          <th>Inquire</th>
 
         </tr>
       </thead>
@@ -56,6 +57,9 @@
         <td>
           <a class="btn btn-sm btn-outline-info" href="{% url 'prod_update' product.slug %}" role="button">ADJUST</a>
         </td>
+          <td>
+            <a class="btn btn-sm btn-outline-primary" href="{% url 'goods_inquiry' product.slug %}" role="button">INQUIRE</a>
+          </td>
       </tr>
         {% endfor %}
       </tbody>

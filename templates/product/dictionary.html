@@ -1,0 +1,38 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block css %}
+<link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block main %}
+
+<div class="alert alert-warning mt-4 border border-success" role="alert">
+    <h4 class="alert-heading text-center">URA DICTIONARY</h4>
+    <hr class="my-1">
+    <form class="form-inline" method="post" action="#">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-6">
+                <div class="dropdown">
+                    <select required class="mb-2 btn btn-primary dropdown-toggle" id="dropdownMenuButton" name="q">
+                        <option value="countryCode">Country Code</option>
+                        <option value="currencyType">Currency</option>
+                        <option value="payWay">Payment Method</option>
+                        <option value="rateUnit">Rate Units</option>
+                        <option value="exportRateUnit">Export Rates</option>
+                        <option value="sector">Sector</option>
+                        <option value="currencyType">Currency</option>
+                    </select>
+                </div>
+                <button type="submit" class="mb-2 btn btn-info ml-2">SEARCH</button>
+            </div>
+        </div>
+      </form>
+      {% for i in item %}
+        <p>{{i}}</p>
+      {% endfor %}
+</div>
+
+{% endblock %}

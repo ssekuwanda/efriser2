@@ -15,9 +15,9 @@ def goods_details(prod, number, inv):
     if prod.tax_type.code == "01":
         tax_rate = "0.18"
     else:
-        tax_rate = "-"
+        tax_rate = "0"
 
-    goods ={
+    goods = {
             "item": str(prod.product.name)+deemed,
             "itemCode": str(prod.product.code),
             "qty": str("{:.2f}".format(prod.quantity)),
@@ -81,6 +81,14 @@ def summary(summary_details):
         }
     return inv_summary 
 
+
+def pay_way(details):
+    payment_details = {
+        "paymentMode": details['payment_method'],
+        "paymentAmount": str("{:.2f}".format(details['gross'])),
+        "orderNumber": "a"
+        },
+    return payment_details
 
 def credit_note(note, form):
     data = cleaned_json(note.json_response)

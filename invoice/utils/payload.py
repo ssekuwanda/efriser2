@@ -50,7 +50,7 @@ def payload_info(tin, device_no, ic, message):
     }
     return load
 
-def invoice_load(issuer, context, goodsDetails, taxDetails,summary_json):
+def invoice_load(issuer, context, goodsDetails, taxDetails,summary_json, payment_details):
     message = {
         "sellerDetails": {
             "tin": str(issuer.tin),
@@ -74,8 +74,8 @@ def invoice_load(issuer, context, goodsDetails, taxDetails,summary_json):
             "oriInvoiceId": "",
             "invoiceType": "1",
             "invoiceKind": "1",
-            "dataSource": "103",
-            "invoiceIndustryCode": "",
+            "dataSource": "106",
+            "invoiceIndustryCode": context["industryCode"][0],
             "isBatch": "0"
         },
         "buyerDetails": {
@@ -97,17 +97,12 @@ def invoice_load(issuer, context, goodsDetails, taxDetails,summary_json):
         "goodsDetails": goodsDetails,
         "taxDetails": taxDetails,
         "summary": summary_json,
-        "payWay": [{
-            "paymentMode": "101",
-            "paymentAmount": "95000",
-            "orderNumber": "b"
-        }],
+        "payWay": payment_details,
         "extend": {
             "reason": "",
             "reasonCode": ""
         }
     }
-    print(message)
     return message
 
 

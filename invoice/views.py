@@ -4,6 +4,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib import messages
 from django.template.loader import render_to_string
 from weasyprint import HTML
+from invoice.request_msg import goods_inquiry_req
 from invoice.utils.api import *
 from invoice.utils.invoice_cleaner import *
 from .forms import *
@@ -16,6 +17,7 @@ from django.http import HttpResponse
 from django.template.loader import get_template
 from django.db.models import Sum
 from django.db.models import Q
+import pickle
 
 #Anonymous required
 def anonymous_required(function=None, redirect_url=None):
@@ -93,7 +95,6 @@ def dashboard(request):
             messages.error(request, 'Problem processing your request')
             return redirect('dashboard')
 
-
     return render(request, 'invoice/dashboard.html', context)
 
 
@@ -109,7 +110,6 @@ def invoices(request):
         if inv.json_response:
             context['cleaned_inv'].append(inv_context(inv.json_response))
             context['cleaned_inv'].append({'slug':inv.slug})
-
     context['cleint'] = "cleint"
     return render(request, 'invoice/all_invoices.html', context)
 
@@ -209,11 +209,29 @@ def productsMaintance(request, slug):
     context = {'form': form,'product':prod}
     return render(request, 'product/product_update.html', context)   
 
+def goods_inquiry(request, slug):
+    prod = get_object_or_404(Product, slug=slug)
+    req = goods_inquiry_req(prod)
+    result = json.loads(goodsInquire(request, req))
+    print(result)
+    return render(request, 'product/product_inquiry.html', result) 
+
+def dictonary(request):
+    if request.method == 'POST':
+        query = request.POST.get('q', False)
+        pickled = json.loads(systemDict(request.user.company1.tin, request.user.company1.device_number))
+        context = {}
+        for item in pickled[query]:
+            context.update(item)
+        print(context)
+        return render(request, 'product/dictionary.html', context)
+   
+    return render(request, 'product/dictionary.html')
 
 @login_required
 def clients(request):
     owned = request.user.company1
-    queryset = Client.objects.filter(name__icontains='Boston')
+
     context = {}
     clients = Client.objects.filter(company=owned)
     context['clients'] = clients
@@ -268,13 +286,11 @@ def clients(request):
             return redirect('clients')
     return render(request, 'invoice/clients.html', context)
 
-
 @login_required
 def logout(request):
     auth.logout(request)
     return redirect('login')
 
-###--------------------------- Create Invoice Views Start here --------------------------------------------- ###
 @login_required
 def createInvoice(request, slug):
     today = datetime.now()
@@ -347,12 +363,19 @@ def createBuildInvoice(request, slug):
     context['buyerEmail'] = invoice.client.email_address,
 
     context['buyerAddress'] = invoice.client.address
+    if invoice.client.company_type == "2":
+        context['industryCode'] = "102",
+    else:
+        context['industryCode'] = "101",
+  
     if invoice.client.company_type != '3':
         context['buyerType'] = invoice.client.company_type
     else:
         context['buyerType'] = str(0)
 
     goods_summary = summary(context)
+    
+
 
     goodsDetails = goods_context
     taxDetails = tax_context
@@ -384,8 +407,10 @@ def createBuildInvoice(request, slug):
             issuer = request.user.company1
             context['currency'] = inv_form['currency'].value()
             context['remarks'] = inv_form['remarks'].value()
+            context['payment_method'] = inv_form['payment_method'].value()
+            payment_details = pay_way(context)
 
-            inv = uploadInvoice(issuer, context, goodsDetails, taxDetails,summary_json)  
+            inv = uploadInvoice(issuer, context, goodsDetails, taxDetails,summary_json, payment_details)  
             invoice_update.json_response = inv["content"]
 
             if inv["returnMessage"] == "SUCCESS":
@@ -394,11 +419,9 @@ def createBuildInvoice(request, slug):
                 messages.success(request, "Invoice Issued succesfully")
             else:
                 messages.warning(request, inv["returnMessage"])
-            
             return redirect('create-build-invoice', slug=slug)
 
         elif client_form.is_valid() and 'client' in request.POST:
-
             client_form.save()
             messages.success(request, "Client added to invoice succesfully")
             return redirect('create-build-invoice', slug=slug)
@@ -511,7 +534,6 @@ def prod_delete(request, slug):
         request, f"{instance.product.name} was successfully deleted")
     return redirect('create-build-invoice', slug=instance.invoice.slug)
 
-
 def refresh_cn_status(request, id):
     cn = CreditNote.objects.get(id=id)
     comp = request.user.company1
@@ -519,7 +541,6 @@ def refresh_cn_status(request, id):
     resp = refreshCnStatus(comp.tin, comp.device_number, encrpted)
     
     return redirect('create-build-invoice', slug=cn.invoice.slug)
-
 
 def cn_list(request):
     context = {}
@@ -539,7 +560,6 @@ def cn_list(request):
             context['details'].append(rec)
     return render(request, 'credit_note/cn_list.html', context)
     
-
 def inv_list(request):
     context = {}
     context['details']=[]
@@ -557,7 +577,6 @@ def inv_details(request):
     context['details']=[]
     if request.method == "POST":
         fdn = str(request.POST['fdn'])
-
         return_msg = msg_middleware(request, fdn)
         if return_msg:
             context['antifake']=return_msg['basicInformation']['antifakeCode']
@@ -579,12 +598,9 @@ def inv_details(request):
 
 def cancel_cn(request, id):
     cn = CreditNote.objects.get(id = id)
-    invoice = cn.invoice
     msg = {}
     msg['inv_id'] =  inv_context(cn.invoice.json_response)['invoiceId']
     msg['cn_ref'] = cn.reference
-
-    # cn_dict = cancel_cn_helper()
     
     form = CnCancelForm()
     msg['form']= form
@@ -593,6 +609,9 @@ def cancel_cn(request, id):
 
         if form.is_valid():
             msg['reason'] = form.cleaned_data['reason']
+            cn_dict = cancel_cn_helper(request, msg)
+            print(cn_dict)
+            print('------------------------------------')
             form = form.save(commit=False)
             form.cn = cn
             form.save()
