@@ -15,9 +15,6 @@ from django.contrib.auth.models import auth
 from uuid import uuid4
 from django.http import HttpResponse
 from django.template.loader import get_template
-from django.db.models import Sum
-from django.db.models import Q
-import pickle
 
 #Anonymous required
 def anonymous_required(function=None, redirect_url=None):
@@ -220,11 +217,8 @@ def dictonary(request):
     if request.method == 'POST':
         query = request.POST.get('q', False)
         pickled = json.loads(systemDict(request.user.company1.tin, request.user.company1.device_number))
-        context = {}
-        for item in pickled[query]:
-            context.update(item)
-        print(context)
-        return render(request, 'product/dictionary.html', context)
+      
+        return render(request, 'product/dictionary.html', {'context':pickled})
    
     return render(request, 'product/dictionary.html')
 
@@ -357,7 +351,6 @@ def createBuildInvoice(request, slug):
     else:
         context['buyerTin'] = ""
     context['itemCount'] = order_number
-    context['remarks'] = ""
     context['payWay'] = invoice.payment_method,
     context['buyerLegalName'] = invoice.client.name,
     context['buyerEmail'] = invoice.client.email_address,
@@ -373,13 +366,8 @@ def createBuildInvoice(request, slug):
     else:
         context['buyerType'] = str(0)
 
-    goods_summary = summary(context)
-    
-
-
     goodsDetails = goods_context
     taxDetails = tax_context
-    summary_json = goods_summary
 
     if request.method == 'GET':
         prod_form = InvoiceProductForm()
@@ -409,8 +397,10 @@ def createBuildInvoice(request, slug):
             context['remarks'] = inv_form['remarks'].value()
             context['payment_method'] = inv_form['payment_method'].value()
             payment_details = pay_way(context)
+            goods_summary = summary(context)
 
-            inv = uploadInvoice(issuer, context, goodsDetails, taxDetails,summary_json, payment_details)  
+
+            inv = uploadInvoice(issuer, context, goodsDetails, taxDetails,goods_summary, payment_details)  
             invoice_update.json_response = inv["content"]
 
             if inv["returnMessage"] == "SUCCESS":
@@ -552,7 +542,8 @@ def cn_list(request):
 
         cn_dict = cnQueryList(start_date, end_date, query)
         cn_json = json.dumps(cn_dict)
-        encrpt = encode(cn_json).decode("utf-8")
+        encoded_string = encode(cn_json)
+        encrpt = encoded_string.decode('utf-8')
         uploadList = cnListUpload(encrpt, request)
         json_dump = json.loads(uploadList)
 
@@ -596,7 +587,7 @@ def inv_details(request):
     return render(request, 'invoice/inv_details.html', context)
 
 
-def cancel_cn(request, id):
+def cancel_cn(request, inv, cn ):
     cn = CreditNote.objects.get(id = id)
     msg = {}
     msg['inv_id'] =  inv_context(cn.invoice.json_response)['invoiceId']
@@ -610,8 +601,6 @@ def cancel_cn(request, id):
         if form.is_valid():
             msg['reason'] = form.cleaned_data['reason']
             cn_dict = cancel_cn_helper(request, msg)
-            print(cn_dict)
-            print('------------------------------------')
             form = form.save(commit=False)
             form.cn = cn
             form.save()
@@ -619,6 +608,49 @@ def cancel_cn(request, id):
             messages.error(request, 'Problem processing your request')
             return redirect('create-build-invoice','invoice.slug')
     return render(request, 'credit_note/cancel_cn.html',msg)
+
+# this cancels a CN that is not yet approved
+def cancel_cn_application(request, id, ref):
+    details = {
+        "businessKey": id,
+        "referenceNo": ref
+        }
+    message = encode(str(details)).decode()
+    payload_data = payload_info(request.user.company1.tin, request.user.company1.device_number,"T120",message)
+    request_json = post_message(payload_data)
+    if request_json == "":
+        messages.error(request, 'Check that the credit note is not approved/Rejected, It must have a status of submitted!!')
+    else:
+        messages.success(request, 'Invoice Cancelled successfully')
+    return redirect('cn_list')
+
+def cancel_approved_cn(request, fdn, cn, ref):
+    note = CreditNote.objects.get(reference = ref)
+    msg = {}
+    msg['oriInvoiceId']=fdn
+    msg['invoiceNo']=cn
+    msg['invoiceApplyCategoryCode']="104"
+
+    form = CnCancelForm()
+
+    if request.method == 'POST':
+        form = CnCancelForm(request.POST)
+        if form.is_valid():
+            msg['reasonCode'] = form.cleaned_data['reason']
+            msg['reason'] = form.cleaned_data['details']
+            form = form.save(commit=False)
+            form.cn = note
+            message = encode(str(msg)).decode()
+            payload_data = payload_info(request.user.company1.tin, request.user.company1.device_number,"T114",message)
+            request_json = post_message(payload_data)
+            print(request_json)
+            form.save()
+            messages.success(request, 'Credit note issued successfully')
+            return redirect('cn_list')
+            
+        else:
+            messages.error(request, 'Problem processing your request')
+            return redirect('cancel_approved_cn', fdn, cn, ref)
+    return render(request, 'credit_note/cancel_cn.html',{'form':form})
+
     
-def approve_cn(self):
-    pass

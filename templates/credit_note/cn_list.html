@@ -63,13 +63,13 @@
                 <th>BUYER</th>
                 <th>TIN</th>
                 <th>DATE</th>
-
                 <th>CURRENCY</th>
                 <th>STATUS</th>
                 <th>ID</th>
                 <th>INVOICE</th>
                 <th>GROSS</th>
                 <th>TOTAL</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -82,9 +82,13 @@
                 <td>{{ detail.currency }}</td>
 
                 {% if detail.approveStatus == "101" %}
-                    <td>Approved</td>
+                    <td>
+                        Approved
+                    </td>
                 {% elif detail.approveStatus == "102" %}
-                    <td>Submitted</td>
+                    <td>
+                       Submitted
+                    </td>
                 {% elif detail.approveStatus == "103" %}
                     <td>Rejected</td>
                 {% elif detail.approveStatus == "104" %}
@@ -94,6 +98,20 @@
                 <td>{{ detail.oriInvoiceNo }}</td>
                 <td>{{ detail.grossAmount }}</td>
                 <td>{{ detail.totalAmount }}</td>
+                
+                {% if detail.approveStatus == "101" %}
+                <td>
+                    <a class="btn btn-sm btn-outline-danger" href="{% url 'cancel_approved_cn' detail.oriInvoiceNo detail.invoiceNo detail.referenceNo %}" role="button">Cancel</a>
+                </td>
+                {% elif detail.approveStatus == "102" %}
+                <td>
+                    <a class="btn btn-sm btn-outline-danger" href="{% url 'cancel_fresh_cn' detail.id detail.referenceNo %}"role="button">Cancel</a>
+                </td>
+                {% else %}
+                <td>
+                 
+                </td>
+                {% endif %}
             </tr>
             {% endfor %}
         </tbody>

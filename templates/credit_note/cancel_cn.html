@@ -25,7 +25,7 @@
                 <div class="table-responsive text-sm">
                     <form method="post" novalidate class="m-3" autocomplete="off">
                         {% csrf_token %}
-                        {{ form|crispy }}
+                        {{ form }}
                         <hr>
                         <button type="submit" class="btn btn-primary btn-block">SUBMIT CANCEL REQUEST</button>
                     </form>

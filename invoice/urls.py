@@ -32,6 +32,9 @@ path('credit_notes_list', views.cn_list, name='cn_list'),
 path('creditnote/create/<slug:slug>',views.createCreditNote, name='create-creditnote'),
 path('creditnote/refresh_cn_status/<int:id>',views.refresh_cn_status, name='cn_refresh'),
 path('creditnote/cancel-cn/<int:id>',views.cancel_cn, name='cancel_cn'),
+path('creditnote/cancel-fresh/<str:id>/<str:ref>',views.cancel_cn_application, name='cancel_fresh_cn'),
+path('creditnote/cancel-approved/<str:fdn>/<str:cn>/<str:ref>',views.cancel_approved_cn, name='cancel_approved_cn'),
+
 
 
 #Delete an invoice

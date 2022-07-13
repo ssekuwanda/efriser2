@@ -13,8 +13,12 @@ def post_message(data_dump):
     try:
         r = re.post(base_url, json=data_dump)
         content = r.json()['data']['content']
-        decoded = decode(content)
-        return decoded.decode()
+        if r.json()['data']['dataDescription']['zipCode'] == '1':
+            gz = base64.b64decode(content)
+            return gzip.decompress(gz).decode('utf-8')
+        else:
+            decoded = decode(content)
+            return decoded.decode()
     except re.HTTPError as ex:
         return "No data got"
 
@@ -36,7 +40,7 @@ def systemDict(tin, device_no):
         r = re.post(base_url, json=data_dump)
         content = r.json()['data']['content']
         gz = base64.b64decode(content)
-        ggz = gzip.decompress(gz).decode('UTF8')
+        ggz = gzip.decompress(gz).decode('utf-8')
 
         to_bytes = content.encode('utf-8')
         pw = to_bytes.decode("utf-8")
@@ -183,8 +187,7 @@ def cancel_cn_helper(request, msg):
     }
 
     ic = "T114"
-    print('88888888888888888888888888888888')
-    print(json_req)
+
     inv_json = json.dumps(json_req)
     msg = encode(inv_json).decode("utf-8")
     data_dump = payload_info(request.user.company1.tin, request.user.company1.device_number,ic,msg)

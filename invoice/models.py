@@ -221,16 +221,22 @@ class CreditNote(models.Model):
     def __str__(self): 
         return str(self.invoice)
 
+    class Meta:
+        ordering = ("-date_created",)
+
 class CnCancel(models.Model):
     
     REASONS = [('101','Buyer refused to accept the invoice due to incorrect invoice/receipt'), ('102','Not delivered due to incorrect invoice/receipt'),('103','Other reasons')]
     reason = models.CharField(max_length=10000, choices=REASONS, null=True, blank=False)
+    details = models.CharField(max_length=100, null=True, blank=True)
     cn = models.OneToOneField(CreditNote, blank=True, null=True, on_delete=models.SET_NULL)
     last_updated = models.DateTimeField(blank=True, null=True, auto_now=True)
     date_created = models.DateTimeField(blank=True, null=True, auto_now_add=True)
 
     def __str__(self): 
         return str(self.reason)
+    class Meta:
+        ordering = ("-date_created",)
 
 class Unit_Measurement(models.Model):
     name = models.CharField(max_length=100, null=False, blank=False)
@@ -273,14 +279,14 @@ class Product(models.Model):
     date_created = models.DateTimeField(blank=True, null=True)
     last_updated = models.DateTimeField(blank=True, null=True)
 
-
     def __str__(self):
         return '{}'.format(self.name)
-
 
     def get_absolute_url(self):
         return reverse('product-detail', kwargs={'slug': self.slug})
 
+    class Meta:
+        ordering = ("-date_created",)
 
     def save(self, *args, **kwargs):
         if self.date_created is None:
@@ -298,9 +304,13 @@ class ProductMeta(models.Model):
     product = models.ForeignKey(Product, related_name="prod_meta", on_delete=models.CASCADE)
     stock = models.PositiveIntegerField()
     price = models.PositiveIntegerField()
+    date_created = models.DateTimeField(blank=True, null=True)
+    last_updated = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
         return f'{self.product.name} {self.stock}'
+    class Meta:
+        ordering = ("-date_created",)
 
 class Tax_Type(models.Model):
     code = models.CharField(max_length=2, blank=False, null=False)
@@ -328,6 +338,9 @@ class InvoiceProducts(models.Model):
 
     def __str__(self):
         return '{}-{}'.format(str(self.invoice), self.id)
+
+    class Meta:
+        ordering = ("-date_created",)
 
     def total(self):
         return float(self.price*self.quantity)
@@ -389,7 +402,6 @@ class Settings(models.Model):
     phoneNumber = models.CharField(null=True, blank=True, max_length=100)
     emailAddress = models.CharField(null=True, blank=True, max_length=100)
     taxNumber = models.CharField(null=True, blank=True, max_length=100)
-
 
     #Utility fields
     uniqueId = models.CharField(null=True, blank=True, max_length=100)

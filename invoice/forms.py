@@ -96,4 +96,4 @@ class CnCancelForm(forms.ModelForm):
     reason= forms.CharField(widget=forms.RadioSelect(choices=REASONS))
     class Meta:
         model = CnCancel
-        fields = ['reason',]
+        fields = ['reason','details',]

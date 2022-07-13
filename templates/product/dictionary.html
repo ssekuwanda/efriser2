@@ -1,4 +1,5 @@
 {% extends 'partials/base.html' %}
+{% load custom_tags %}
 {% load static %}
 {% load crispy_forms_tags %}
 
@@ -30,9 +31,9 @@
             </div>
         </div>
       </form>
-      {% for i in item %}
-        <p>{{i}}</p>
-      {% endfor %}
+      {% for cont in context %}
+        <p>{{ cont }}</p>
+     {% endfor %}
 </div>
 
 {% endblock %}
