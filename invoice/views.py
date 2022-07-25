@@ -425,14 +425,11 @@ def createBuildInvoice(request, slug):
 
 def client_home(request, slug):
     client = Client.objects.get(slug=slug)
-    invoices = Invoice.objects.filter(client=client)
-    
+    invoices = Invoice.objects.filter(client=client) 
     context ={}
-
     context['client'] = client
     context['invoices'] = invoices
     return render(request, 'invoice/client-home.html', context)
-
 
 def createCreditNote(request, slug):
     company = request.user.company1
@@ -586,7 +583,6 @@ def inv_details(request):
             messages.warning(request, "Invalid Invoice")
     return render(request, 'invoice/inv_details.html', context)
 
-
 def cancel_cn(request, inv, cn ):
     cn = CreditNote.objects.get(id = id)
     msg = {}
@@ -652,5 +648,3 @@ def cancel_approved_cn(request, fdn, cn, ref):
             messages.error(request, 'Problem processing your request')
             return redirect('cancel_approved_cn', fdn, cn, ref)
     return render(request, 'credit_note/cancel_cn.html',{'form':form})
-
-    

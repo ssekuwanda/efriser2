@@ -81,6 +81,15 @@ def summary(summary_details):
         }
     return inv_summary 
 
+def invoice_recovery(summary_details):
+    inv = {
+        "net_amount": summary_details.amount,
+        "amount": summary_details.amount,
+        "new_creditnote" : summary_details.fees,
+        "tax": summary_details.tax_amount,
+        "total_reimbusermnents": summary_details.reimbursements,
+
+    }
 
 def pay_way(details):
     payment_details = {

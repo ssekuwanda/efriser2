@@ -380,6 +380,10 @@
         <div class="date">
             <p>{{ clean_data.date|date:"l, F d, Y"|upper }}</p>
             <p class="add1">TO: {{ clean_data.buyerName }}</p>
+            {% if clean_data.buyerTin %}
+            <p class="add1">TIN: {{ clean_data.buyerTin }}</p>
+            {% endif %}
+
         </div>
     </div>
     <div class="" style="text-align: center; font-size: 20px;">TAX INVOICE</div>
@@ -409,9 +413,8 @@
         </tr>
     </table>
         <div class="" style="text-align: justify; text-justify: inter-word;">
-            {{ invDetails.remarks|markdownify }}
+            <span>Remarks:</span>  {{ invDetails.remarks|markdownify }}
         </div>
-        <hr>
     <div class="container-3">
         <div class="other">
             <p style="padding-top: 12px; font-style: italic;">With Compliments</p>
@@ -437,7 +440,7 @@
                 Swift Code: {{ bk.swift_code }}<br>
             {% endfor %}
         </div>
-        <div  style="padding: 0px; margin: 0px; text-align: right;">
+        <div style="padding: 0px; margin: 0px; text-align: right;">
             {% qr_from_text clean_data.qrcode size=3 image_format="png" error_correction="L" border=3 %}
         </div>
     </div>

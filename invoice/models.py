@@ -34,7 +34,7 @@ BUYER_TYPE = [
 
 class Company(models.Model):
     companyTypes = [
-        ('Services', 'Services'), 
+        ('Services', 'Services'),
         ('Products', 'Products'),
         ]
 
@@ -47,13 +47,13 @@ class Company(models.Model):
     telephone_number = models.CharField(max_length=100, null=False, blank=True)
     location = models.TextField( null=False, blank=True, help_text="Separate Each location Detail with >")
     website = models.CharField(max_length=1001, null=False, blank=True)
-
     companyLogo = models.ImageField(default='default_logo.jpg', upload_to='company_logos', blank=True, null=True)
 
-    #Tax fields
+    #Tax fields  
     tin = models.CharField(max_length=10)
     device_number = models.CharField(max_length=100, null=False, blank=False)
     wht_exempt = models.BooleanField(default=False)
+    
     #Utility fields
     slug = models.SlugField(max_length=500, unique=True, blank=True, null=True)
     date_created = models.DateTimeField(blank=True, null=True)
@@ -72,7 +72,6 @@ class Company(models.Model):
 
         self.slug = slugify('{} {}'.format(self.name, self.id))
         self.last_updated = timezone.localtime(timezone.now())
-
         super(Company, self).save(*args, **kwargs)
 
 class BankDetails(models.Model):
@@ -151,7 +150,7 @@ class Invoice(models.Model):
     # Basic Fields
     number = models.IntegerField()
     finalized = models.BooleanField(default=False)
-    remarks = models.TextField(null=True, blank=True) 
+    remarks = models.TextField(max_length=1000,null=True, blank=True) 
     currency = models.CharField("CURRENCY",choices= CURRENCY,null=True, blank=True, max_length=100)
     tax = models.CharField(null=True, blank=True, max_length=100)
     payment_method = models.CharField(null=True, blank=True, choices=payWay, max_length=100)
@@ -392,7 +391,6 @@ class InvoiceProducts(models.Model):
         self.price = round(self.price, 2)
         super(InvoiceProducts, self).save(*args, **kwargs)
 
-
 class Settings(models.Model):
     #Basic Fields
     clientName = models.CharField(null=True, blank=True, max_length=200)
@@ -408,7 +406,6 @@ class Settings(models.Model):
     slug = models.SlugField(max_length=500, unique=True, blank=True, null=True)
     date_created = models.DateTimeField(blank=True, null=True)
     last_updated = models.DateTimeField(blank=True, null=True)
-
 
     def __str__(self):
         return '{} {}'.format(self.clientName, self.uniqueId)
