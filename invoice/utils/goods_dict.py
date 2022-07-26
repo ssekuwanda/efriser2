@@ -14,8 +14,14 @@ def goods_details(prod, number, inv):
     tax_rate = ""
     if prod.tax_type.code == "01":
         tax_rate = "0.18"
+    elif prod.tax_type.code == "03":
+        tax_rate = "-"
+    elif prod.tax_type.code == "04":
+        tax_rate = "0.18"
     else:
         tax_rate = "0"
+
+    
 
     goods = {
             "item": str(prod.product.name)+deemed,
@@ -58,7 +64,7 @@ def tax_details(tax, inv):
     else:
         tax_rate = ""
 
-    tax = {
+    tax_request = {
             "taxCategoryCode":str(tax.tax_type.code),
             "netAmount": "{:.2f}".format(tax.net_amount()),
             "taxRate": tax_rate,
@@ -67,12 +73,12 @@ def tax_details(tax, inv):
             "exciseUnit": "",
             "exciseCurrency": "",
         }
-    return tax
+    return tax_request
 
 def summary(summary_details):
     inv_summary = {
             "netAmount": str("{:.2f}".format(summary_details['net'])),
-            "taxAmount": str("{:.2f}".format(summary_details['tax'])),
+            "taxAmount": str("{:.2f}".format(summary_details['tax_summary'])),
             "grossAmount": str("{:.2f}".format(summary_details['gross'])),
             "itemCount": str(summary_details['itemCount']),
             "modeCode": "1",

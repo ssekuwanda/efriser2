@@ -6,12 +6,9 @@ import base64
 import gzip
 from django.contrib import messages
 
-
-base_url = "http://198.58.118.119:9880/efristcs/ws/tcsapp/getInformation"
-
-def post_message(data_dump):
+def post_message(request, data_dump):
     try:
-        r = re.post(base_url, json=data_dump)
+        r = re.post(request.user.company1.url, json=data_dump)
         content = r.json()['data']['content']
         if r.json()['data']['dataDescription']['zipCode'] == '1':
             gz = base64.b64decode(content)
@@ -23,21 +20,19 @@ def post_message(data_dump):
         return "No data got"
 
 
-def getClientDetails(tin, client_tin, device_no):
+def getClientDetails(request, client_tin):
     ic = "T119"
     message = encode(str({"tin": client_tin, "ninBrn": ""})).decode()
-    data_dump = payload_info(tin, device_no,ic,message)
-    response_data = post_message(data_dump)
-
+    data_dump = payload_info(request, ic, message)
+    response_data = post_message(request, data_dump)
     return response_data
 
-
-def systemDict(tin, device_no):
+def systemDict(request):
     ic = "T115"
     message = ""
-    data_dump = payload_info(tin, device_no,ic,message)
+    data_dump = payload_info(request,ic,message)
     try:
-        r = re.post(base_url, json=data_dump)
+        r = re.post(request.user.company1.url, json=data_dump)
         content = r.json()['data']['content']
         gz = base64.b64decode(content)
         ggz = gzip.decompress(gz).decode('utf-8')
@@ -47,39 +42,34 @@ def systemDict(tin, device_no):
         return ggz
     except re.HTTPError as ex:
         return "No data got"
-    # return response_data
 
-def goodsUpload(tin, device_no, message):
+def goodsUpload(request, message):
     ic = "T130"
     encode_message = encode(str([message])).decode()
-    data_dump = payload_info(tin, device_no, ic, encode_message)
-    response_data = post_creditnote(data_dump)
+    data_dump = payload_info(request, ic, encode_message)
+    response_data = post_creditnote(request, data_dump)
     return response_data
 
 def goodsInquire(request, req):
     ic = 'T127'
     dump = json.dumps(req)
     encode_request = encode(dump).decode()
-    outer_json = payload_info(request.user.company1.tin, request.user.company1.device_number,ic,encode_request)
-    return post_message(outer_json)
+    outer_json = payload_info(request ,ic,encode_request)
+    return post_message(request, outer_json)
     
-
-def uploadInvoice(issuer, context,goodsDetails, taxDetails,summary_json, payment_detials):
+def uploadInvoice(request, context, goodsDetails, taxDetails,summary_json, payment_detials):
     interface_code = "T109"
-    message = invoice_load(issuer, context, goodsDetails, taxDetails,summary_json, payment_detials)
+    message = invoice_load(request, context, goodsDetails, taxDetails,summary_json, payment_detials)
     to_json = json.dumps(message)
-    print(to_json)
     encode_message = encode(to_json).decode()
-    tin = issuer.tin
-    device_no = issuer.device_number
-    data_dump = payload_info(tin, device_no, interface_code, encode_message)
-    response_data = InvoiceService(data_dump)
+    data_dump = payload_info(request, interface_code, encode_message)
+    response_data = InvoiceService(request, data_dump)
     return response_data
 
-def InvoiceService(data_dump):
+def InvoiceService(request, data_dump):
     return_info = {}
     try:
-        r = re.post(base_url, json=data_dump)
+        r = re.post(request.user.company1.url, json=data_dump)
         
         if "returnStateInfo" in r.json():
             return_code = r.json()["returnStateInfo"]
@@ -99,35 +89,35 @@ def InvoiceService(data_dump):
     except re.HTTPError as ex:
         return "No data received back"
 
-def post_creditnote(data_dump):
+def post_creditnote(request, data_dump):
+    base_url = request.user.company1.url
     try:
         r = re.post(base_url, json=data_dump)
-        print(r.json())
         content = r.json()['data']['content']
-        decoded = decode(content)
         return r.json()
     except re.HTTPError as ex:
         return "No data got"
 
 def creditNoteUpload(message, request):
     ic = "T110"
-    data_dump = payload_info(request.user.company1.tin, request.user.company1.device_number,ic,message)
-    response_data = post_creditnote(data_dump)
+    data_dump = payload_info(request, ic, message)
+    response_data = post_creditnote(request, data_dump)
     return response_data
 
-def refreshCnStatus(tin, numb, msg):
+def refreshCnStatus(request, msg):
     ic = "T112"
-    data_dump = payload_info(tin, numb,ic,msg)
-    r = re.post(base_url, json=data_dump)
+    data_dump = payload_info(request, ic, msg)
+    r = re.post(request.user.company1.url, json=data_dump)
+
     content = r.json()['returnStateInfo']['returnMessage']
     return content
 
 def cnListUpload(msg, request):
     ic = "T111"
-    data_dump = payload_info(request.user.company1.tin, request.user.company1.device_number,ic,msg)
-    return_msg = post_message(data_dump)
+    data_dump = payload_info(request, ic, msg)
+    return_msg = post_message(request,data_dump)
+    
     return return_msg
-
 
 def invListUpload(start_date, end_date, request):
     json_req = {
@@ -141,9 +131,9 @@ def invListUpload(start_date, end_date, request):
     ic = "T106"
     inv_json = json.dumps(json_req)
     msg = encode(inv_json).decode("utf-8")
-    data_dump = payload_info(request.user.company1.tin, request.user.company1.device_number,ic,msg)
+    data_dump = payload_info(request,ic,msg)
     try:
-        r = re.post(base_url, json=data_dump)
+        r = re.post(request.user.company1.url, json=data_dump)
         content = r.json()['data']['content']
         try:
             decoded = decode(content)

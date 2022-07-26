@@ -27,18 +27,26 @@
                 <th>Client name</th>
                 <th>Due Date</th>
                 <th>Reference</th>
+                <th>Invoice Number</th>
+                <th>Status</th>
                 <th>Reason</th>
             </tr>
         </thead>
         <tbody>
-
             {% for cred in credits %}
             <tr>
                 <td>{{ forloop.counter }}.</td>
                 <td>{{ cred.invoice.client  }}</td>
                 <td>{{ cred.date_created }}</td>
                 <td>{{ cred.reference }}</td>
+                <td>{{ cred.fdn }}</td>
+                <td>{{ cred.approval }}</td>
                 <td>{{ cred.reason }}</td>
+                <td>
+                {% if cred.status %}
+                <a class="btn btn-outline-success btn-sm" href="{% url 'creditnote_pdf' cred.fdn %}" role="button">PDF</a>
+                {% endif %}
+                </td>
             </tr>
             {% endfor %}
         </tbody>
@@ -47,7 +55,6 @@
 {% else %}
 <div class="row">
     <div class="col-lg-2">
-
     </div>
     <div class="col-lg-8">
         <h3>Start by Adding First Invoice</h3>

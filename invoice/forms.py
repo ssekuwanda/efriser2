@@ -35,7 +35,7 @@ class UserLoginForm(forms.ModelForm):
 class CompanyForm(forms.ModelForm):
     class Meta:
         model = Company
-        fields = ['name', 'companyLogo','tin','device_number']
+        fields = ['name', 'companyLogo','tin','device_number','email','telephone_number','location','url','nature','wht_exempt','vat_wht']
 
 
 class ClientForm(forms.ModelForm):

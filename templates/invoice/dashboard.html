@@ -56,22 +56,43 @@
                 {{form.companyLogo|as_crispy_field}}
               </div>
               <div class="row">
-                
                   <div class="col-6">
                     {{form.tin|as_crispy_field}}
                   </div>
-                  <div class="row">
-                    <div class="col-6">
-                      {{form.device_number|as_crispy_field}}
-                    </div>
+                  <div class="col-6">
+                    {{form.device_number|as_crispy_field}}
                   </div>
               </div>
+              <div class="row">
+                <div class="col-6">
+                  {{form.email|as_crispy_field}}
+                </div>
+                <div class="col-6">
+                  {{form.telephone_number|as_crispy_field}}
+                </div>
+            </div>              <div class="row">
+              <div class="col-6">
+                {{form.location|as_crispy_field}}
+              </div>
+              <div class="col-6">
+                {{form.url|as_crispy_field}}
+              </div>
+          </div>              <div class="row">
+            <div class="col-4">
+              {{form.nature|as_crispy_field}}
             </div>
-            
+            <div class="col-4">
+              {{form.wht_exempt|as_crispy_field}}
+            </div>
+            <div class="col-4">
+              {{form.vat_wht|as_crispy_field}}
+            </div>
+        </div>
+            </div>
             {{form.}} 
           </div>
           <div class="modal-footer flex-column border-top-0">
-            <button type="submit" class="btn btn-lg btn-primary w-100 mx-0 mb-2">Save changes</button>
+            <button type="submit" class="btn btn-sm btn-primary w-100 mx-0 mb-2">ADD COMPANY</button>
           </div>
         </form>
       </div>

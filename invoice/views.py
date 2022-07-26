@@ -1,5 +1,4 @@
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib import messages
 from django.template.loader import render_to_string
@@ -15,52 +14,6 @@ from django.contrib.auth.models import auth
 from uuid import uuid4
 from django.http import HttpResponse
 from django.template.loader import get_template
-
-#Anonymous required
-def anonymous_required(function=None, redirect_url=None):
-   if not redirect_url:
-       redirect_url = 'dashboard'
-
-   actual_decorator = user_passes_test(
-       lambda u: u.is_anonymous,
-       login_url=redirect_url
-   )
-
-   if function:
-       return actual_decorator(function)
-   return actual_decorator
-
-def index(request):
-    context = {}
-    return render(request, 'invoice/index.html', context)
-
-
-@anonymous_required
-def login(request):
-    context = {}
-    if request.method == 'GET':
-        form = UserLoginForm()
-        context['form'] = form
-        return render(request, 'accounts/login.html', context)
-
-    if request.method == 'POST':
-        form = UserLoginForm(request.POST)
-
-        username = request.POST['username']
-        password = request.POST['password']
-
-        user = auth.authenticate(username=username, password=password)
-        if user is not None:
-            auth.login(request, user)
-
-            return redirect('dashboard')
-        else:
-            context['form'] = form
-            messages.error(request, 'Invalid Credentials')
-            return redirect('login')
-
-
-    return render(request, 'accounts/login.html', context)
 
 @login_required
 def dashboard(request):
@@ -85,15 +38,12 @@ def dashboard(request):
             form = form.save(commit=False)
             form.owner = request.user
             form.save()
-
             messages.success(request, 'New Company Added')
             return redirect('dashboard')
         else:
             messages.error(request, 'Problem processing your request')
             return redirect('dashboard')
-
     return render(request, 'invoice/dashboard.html', context)
-
 
 @login_required
 def invoices(request):
@@ -110,6 +60,7 @@ def invoices(request):
     context['cleint'] = "cleint"
     return render(request, 'invoice/all_invoices.html', context)
 
+# Not yet implemented
 @login_required
 def online_invoices(request):
     context = {}
@@ -152,10 +103,10 @@ def products(request):
             message['description'] = form.description
             message['stockPrewarning'] = form.stock_warning
             
-            response = goodsUpload(issuer.tin, issuer.device_number, message)
+            response = goodsUpload(request, message)
 
             if response['returnStateInfo']['returnMessage'] != 'SUCCESS':
-                messages.error(request, f"{response['returnStateInfo']['returnMessage']} Please check that all details are correct")
+                messages.error(request, f"{response['returnStateInfo']['returnMessage']} Please check that all details are correct & that the code is unique")
                 return redirect('products')
             else:
                 form.save()
@@ -184,8 +135,8 @@ def productsMaintance(request, slug):
             stock_json = json.dumps(stock_dict)
             encrpt = encode(stock_json).decode("utf-8")
 
-            payload_data = payload_info(comp.tin, comp.device_number, "T131", encrpt)
-            output = post_message(payload_data)
+            payload_data = payload_info(request, "T131", encrpt)
+            output = post_message(request, payload_data)
 
             form = form.save(commit=False)
             form.company = comp
@@ -200,7 +151,6 @@ def productsMaintance(request, slug):
             else:
                 messages.error(request,"Please check that all details are correct/ Services can't be restocked")
                 return redirect('products')
-            return redirect('products')  
     else:
         form = ProdMetaForm()
     context = {'form': form,'product':prod}
@@ -210,16 +160,13 @@ def goods_inquiry(request, slug):
     prod = get_object_or_404(Product, slug=slug)
     req = goods_inquiry_req(prod)
     result = json.loads(goodsInquire(request, req))
-    print(result)
     return render(request, 'product/product_inquiry.html', result) 
 
 def dictonary(request):
     if request.method == 'POST':
         query = request.POST.get('q', False)
-        pickled = json.loads(systemDict(request.user.company1.tin, request.user.company1.device_number))
-      
+        pickled = json.loads(systemDict(request))
         return render(request, 'product/dictionary.html', {'context':pickled})
-   
     return render(request, 'product/dictionary.html')
 
 @login_required
@@ -241,10 +188,8 @@ def clients(request):
         if form.is_valid():
             form_tin = form.cleaned_data['tin']
             form = form.save(commit=False)
-            # response = None
             if form.tin:
-                response = getClientDetails(owned.tin, form_tin, owned.device_number)
-
+                response = getClientDetails(request, form_tin)
             if response:
                 if 'address' in json.loads(response)['taxpayer']:
                     address = json.loads(response)['taxpayer']['address']
@@ -279,11 +224,6 @@ def clients(request):
             messages.error(request, 'Problem processing your request')
             return redirect('clients')
     return render(request, 'invoice/clients.html', context)
-
-@login_required
-def logout(request):
-    auth.logout(request)
-    return redirect('login')
 
 @login_required
 def createInvoice(request, slug):
@@ -323,6 +263,7 @@ def createBuildInvoice(request, slug):
     
     net_amount = 0
     tax_amount = 0
+    tax_amount_summary = 0
     gross_amount = 0
     order_number = 0
 
@@ -335,15 +276,23 @@ def createBuildInvoice(request, slug):
         order_number+=1
         
         net_amount += prod.net_amount()
+        
         tax_amount += prod.tax()
         gross_amount += prod.total()
         goods_context.append(good)
         tax_context.append(tax)
+
+        # check if the customer is VAT exempt if yes tax = 0 in the summary section
+        if prod.tax_type.code == "04":
+            tax_amount_summary = 0
+        else:
+            tax_amount_summary += prod.tax()
     
     context['invoice'] = invoice
     context['products'] = products
     context['net'] = net_amount
     context['tax'] = tax_amount
+    context['tax_summary'] = tax_amount_summary
     context['gross'] = gross_amount
     context['operator'] = request.user.username
     if invoice.client.tin:
@@ -392,7 +341,6 @@ def createBuildInvoice(request, slug):
         elif inv_form.is_valid and request.POST:
             invoice_update = inv_form.save(commit=False)
             
-            issuer = request.user.company1
             context['currency'] = inv_form['currency'].value()
             context['remarks'] = inv_form['remarks'].value()
             context['payment_method'] = inv_form['payment_method'].value()
@@ -400,7 +348,7 @@ def createBuildInvoice(request, slug):
             goods_summary = summary(context)
 
 
-            inv = uploadInvoice(issuer, context, goodsDetails, taxDetails,goods_summary, payment_details)  
+            inv = uploadInvoice(request, context, goodsDetails, taxDetails, goods_summary, payment_details)  
             invoice_update.json_response = inv["content"]
 
             if inv["returnMessage"] == "SUCCESS":
@@ -432,8 +380,6 @@ def client_home(request, slug):
     return render(request, 'invoice/client-home.html', context)
 
 def createCreditNote(request, slug):
-    company = request.user.company1
-
     invoice = Invoice.objects.get(slug=slug)
     if request.method == 'POST':
         form = CreditNoteForm(request.POST or None)
@@ -451,7 +397,7 @@ def createCreditNote(request, slug):
                 form.json_response = decrpt
                 form.reference = json.loads(decrpt)['referenceNo']
                 form.invoice = invoice
-                form.company = company
+                form.company = request.user.company1
             
                 form.save()
                 messages.success(request, "Credit note Issued Succesfully")
@@ -464,7 +410,7 @@ def createCreditNote(request, slug):
 
 def creditNoteHome(request):
     company = request.user.company1
-    credits = CreditNote.objects.all()
+    credits = CreditNote.objects.filter(company=company)
 
     context = {'credits':credits}
     return render(request, 'invoice/all_creditnotes.html', context)
@@ -488,7 +434,7 @@ def pdfInvoice(request, slug):
     
     tax_total = 0
 
-    for prod in invoice_pdts:      
+    for prod in invoice_pdts:     
         tax = tax_details(prod, invoice)
         tax_total +=float(tax['taxAmount'])
 
@@ -514,6 +460,52 @@ def pdfInvoice(request, slug):
     return response
 
 @login_required
+def creditnote_pdf(request, fdn):
+    company = request.user.company1
+    client = Client.objects.filter(company=company)
+
+    context = {}
+    note = CreditNote.objects.get(fdn=fdn)
+    invoice = note.invoice
+    context['cn'] = note
+    context['invDetails'] = invoice
+    invoice_pdts = InvoiceProducts.objects.filter(invoice=invoice)
+
+    context['company'] = company
+    context['client'] = client
+    context['invoice'] = []
+    context['taxes'] = []
+    context['clean_data'] = inv_context(invoice.json_response)
+    context['products'] = invoice_pdts
+    
+    tax_total = 0
+
+    for prod in invoice_pdts:     
+        tax = tax_details(prod, invoice)
+        tax_total +=float(tax['taxAmount'])
+
+    context['tax'] = tax_total
+    fdn = inv_context(invoice.json_response)['fdn']
+
+    for good in inv_context(invoice.json_response)['items']:
+        context['invoice'].append(good)
+
+    for tx in inv_context(invoice.json_response)['taxDetails']:
+        context['taxes'].append(tx)
+    # +context.update(inv_context(invoice.json_response))
+ 
+    bank = request.user.company1.bank_details.filter(currency=invoice.currency)
+    context['bank'] = bank
+
+    html_string = render_to_string('documents/creditnotepdf.html', context)
+    html = HTML(string=html_string, base_url=request.build_absolute_uri())
+    pdf = html.write_pdf(presentational_hints=True)
+
+    response = HttpResponse(pdf, content_type='application/pdf')
+    response['Content-Disposition'] = f'inline; filename={fdn}.pdf'
+    return response
+
+@login_required
 def prod_delete(request, slug):
     instance = get_object_or_404(InvoiceProducts, slug=slug)
     instance.delete()
@@ -523,13 +515,13 @@ def prod_delete(request, slug):
 
 def refresh_cn_status(request, id):
     cn = CreditNote.objects.get(id=id)
-    comp = request.user.company1
     encrpted = encode(json.dumps({"id": cn.reference})).decode()
-    resp = refreshCnStatus(comp.tin, comp.device_number, encrpted)
+    resp = refreshCnStatus(request, encrpted)
     
     return redirect('create-build-invoice', slug=cn.invoice.slug)
 
 def cn_list(request):
+    all_cns = CreditNote.objects.filter(company=request.user.company1, status=False)
     context = {}
     context['details']=[]
     if request.method == "POST":
@@ -544,6 +536,24 @@ def cn_list(request):
         uploadList = cnListUpload(encrpt, request)
         json_dump = json.loads(uploadList)
 
+        for cns in all_cns:
+            for js in json_dump['records']:
+                if js['referenceNo']==cns.reference:
+                    try:
+                        cns.fdn = js['invoiceNo']
+                        cns.status = True
+                    except KeyError:
+                        pass
+                    if js['approveStatus'] == "101":
+                        cns.approval = "Approved"
+                    elif js['approveStatus'] == "102":
+                        cns.approval = "Submitted"
+                    elif js['approveStatus'] == "103":
+                        cns.approval = "Rejected"
+                    elif js['approveStatus'] == "104":
+                        cns.approval = "Voided"
+                    cns.save()                    
+
         for rec in json_dump['records']:
             context['details'].append(rec)
     return render(request, 'credit_note/cn_list.html', context)
@@ -554,7 +564,6 @@ def inv_list(request):
     if request.method == "POST":
         start_date = str(request.POST['start_date'])
         end_date = str(request.POST['end_date'])
-
         return_msg = invListUpload(start_date, end_date, request)
         for rec in return_msg['records']:
             context['details'].append(rec)

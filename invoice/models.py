@@ -44,15 +44,18 @@ class Company(models.Model):
     name = models.CharField("Company Name",max_length=100, null=False, blank=False)
     short_name = models.CharField(max_length=10, null=False, blank=False)
     email = models.EmailField(max_length=1000, null=False, blank=False)
-    telephone_number = models.CharField(max_length=100, null=False, blank=True)
-    location = models.TextField( null=False, blank=True, help_text="Separate Each location Detail with >")
+    telephone_number = models.CharField(max_length=100, null=False, blank=False)
+    location = models.CharField(max_length=1000, null=False, blank=False, help_text="Separate Each location Detail with >")
     website = models.CharField(max_length=1001, null=False, blank=True)
-    companyLogo = models.ImageField(default='default_logo.jpg', upload_to='company_logos', blank=True, null=True)
+    companyLogo = models.ImageField('Logo',default='default_logo.jpg', upload_to='company_logos', blank=False, null=True)
 
     #Tax fields  
     tin = models.CharField(max_length=10)
     device_number = models.CharField(max_length=100, null=False, blank=False)
+    url = models.URLField(null=True)
     wht_exempt = models.BooleanField(default=False)
+    vat_wht = models.BooleanField(default=False)
+    nature = models.CharField(max_length=120, choices=companyTypes)
     
     #Utility fields
     slug = models.SlugField(max_length=500, unique=True, blank=True, null=True)
@@ -109,7 +112,7 @@ class Client(models.Model):
     tin = models.CharField(max_length=10, null=True, blank=True, help_text="leave blank if export")
     # foreignier = models.BooleanField(default=False)
 
-    #Utility fields
+    # Utility fields
     uniqueId = models.CharField(null=True, blank=True, max_length=100)
     slug = models.SlugField(max_length=500, unique=True, blank=True, null=True)
     date_created = models.DateTimeField(blank=True, null=True)
@@ -216,6 +219,8 @@ class CreditNote(models.Model):
     reference = models.CharField(max_length=10000, null=True, blank=False)
     status = models.BooleanField(default=False) # False if not approved
     company = models.ForeignKey(Company, blank=True, null=True, on_delete=models.SET_NULL)
+    fdn = models.CharField(max_length=122, null=True)
+    approval = models.CharField(max_length=122, null=True, default="Pending")
 
     def __str__(self): 
         return str(self.invoice)
@@ -366,6 +371,8 @@ class InvoiceProducts(models.Model):
         tax_amount = 0
         if self.invoice.client.company_type == 'B2B' or 'B2C' or 'B2G':
             if self.tax_type.code == '01':
+                tax_amount = float((self.total()*0.18)/1.18)
+            elif self.tax_type.code == '04':
                 tax_amount = float((self.total()*0.18)/1.18)
             else:
                 tax_amount = float(0)

@@ -1,4 +1,4 @@
-{% extends 'accounts/base_auth.html' %}
+{% extends 'accounts/base_accounts.html' %}
 {% load crispy_forms_tags %}
 
 
@@ -14,18 +14,18 @@
           <input type="hidden" name="next" value="{{ next }}">
           {{ form|crispy }}
           <div class="row p-2">
-              <button type="submit" class="btn btn-sm btn-primary btn-block">LOG IN</button>
-            </div>
-        </form> 
+            <button type="submit" class="btn btn-sm btn-primary btn-block">LOG IN</button>
+          </div>
+        </form>
       </div>
       <div class="card-footer text-muted text-center">
         Sign Up Instead?
-        <a href="#">Sign up</a>
+        <a href="{% url 'signup' %}">Sign up</a>
       </div>
     </div>
     <div class="text-center py-2">
       <small>
-        <a href="#" class="text-muted">Forgot your password?</a>
+        <a href="{% url 'password_reset' %}" class="text-muted">Forgot your password?</a>
       </small>
     </div>
   </div>

@@ -9,7 +9,7 @@ dt_string = datetime.now(pytz.timezone('Africa/Nairobi')
 
 date_string = datetime.now(pytz.timezone('Africa/Nairobi')
                          ).strftime("%Y-%m-%d")
-def payload_info(tin, device_no, ic, message):
+def payload_info(request, ic, message):
     dt_string = datetime.now(pytz.timezone('Africa/Nairobi')).strftime("%Y-%m-%d %H:%M:%S")
 
     load = {
@@ -32,8 +32,8 @@ def payload_info(tin, device_no, ic, message):
             "responseCode": "TA",
             "userName": "admin",
             "deviceMAC": "FFFFFFFFFFFF",
-            "deviceNo": str(device_no),
-            "tin": str(tin),
+            "deviceNo": str(request.user.company1.device_number),
+            "tin": str(request.user.company1.tin),
             "brn": "",
             "taxpayerID": "1",
             "longitude": "116.397128",
@@ -50,24 +50,24 @@ def payload_info(tin, device_no, ic, message):
     }
     return load
 
-def invoice_load(issuer, context, goodsDetails, taxDetails,summary_json, payment_details):
+def invoice_load(request, context, goodsDetails, taxDetails,summary_json, payment_details):
     message = {
         "sellerDetails": {
-            "tin": str(issuer.tin),
+            "tin": str(request.user.company1.tin),
             "ninBrn": "",
-            "legalName": str(issuer.name),
+            "legalName": str(request.user.company1.name),
             "businessName": "",
             "address": "",
             "mobilePhone": "",
             "linePhone": "",
-            "emailAddress": issuer.email,
+            "emailAddress": request.user.company1.email,
             "placeOfBusiness": "",
             "referenceNo": context["invoice"].inv_number(),
         },
         "basicInformation": {
             "invoiceNo": "",
             "antifakeCode": "",
-            "deviceNo": issuer.device_number,
+            "deviceNo": str(request.user.company1.device_number),
             "issuedDate": str(dt_string),
             "operator": context["operator"],
             "currency": context["currency"],

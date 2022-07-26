@@ -21,6 +21,7 @@ DEBUG = True
 ONLINE = False
 
 ALLOWED_HOSTS = ['*']
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -30,12 +31,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+
     'crispy_forms',
     'widget_tweaks',
     'mathfilters',
     'invoice',
     'qr_code',
     'markdownify',
+    'accounts',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -64,6 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'invoice.context_processors.recaptcha',
             ],
             'libraries': {
             'custom_tags':'invoice.template_tags.custom_tags',
@@ -139,6 +143,11 @@ EMAIL_HOST_PASSWORD = ''
 DEFAULT_FROM_EMAIL = ''
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+GOOGLE_RECAPTCHA_ENABLED = config("GOOGLE_RECAPTCHA_ENABLED", default=False)
+GOOGLE_RECAPTCHA_SITE_KEY = config("GOOGLE_RECAPTCHA_SITE_KEY", default="")
+GOOGLE_RECAPTCHA_SECRET_KEY = config("GOOGLE_RECAPTCHA_SECRET_KEY", default="")
+
 
 MARKDOWNIFY = {
     "default": {

@@ -2,9 +2,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-path('login',views.login, name='login'),
-path('logout',views.logout, name='logout'),
-path('dashboard',views.dashboard, name='dashboard'),
+path('',views.dashboard, name='dashboard'),
 path('products', views.products, name='products'), 
 
 # -------------Clients--------------
@@ -34,6 +32,7 @@ path('creditnote/refresh_cn_status/<int:id>',views.refresh_cn_status, name='cn_r
 path('creditnote/cancel-cn/<int:id>',views.cancel_cn, name='cancel_cn'),
 path('creditnote/cancel-fresh/<str:id>/<str:ref>',views.cancel_cn_application, name='cancel_fresh_cn'),
 path('creditnote/cancel-approved/<str:fdn>/<str:cn>/<str:ref>',views.cancel_approved_cn, name='cancel_approved_cn'),
+path('creditnote/pdf/<str:fdn>',views.creditnote_pdf, name='creditnote_pdf'),
 
 
 

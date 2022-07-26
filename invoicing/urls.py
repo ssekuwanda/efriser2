@@ -8,8 +8,8 @@ from invoice import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name='index'),
-    path('invoice/',include('invoice.urls')),
+    path('',include('invoice.urls')),
+    path('auth/',include('accounts.urls')),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 if settings.DEBUG:

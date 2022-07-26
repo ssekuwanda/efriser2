@@ -43,7 +43,11 @@
                 </td>
                 <td>{{invoice}}</td>
                 <td>{{invoice.date_created|date:"D, d M, Y" }}</td>
-                    {% comment %} <td>{{invoice.json_rep.fdn }}</td> {% endcomment %}
+                <td>
+                    {% if invoice.json_rep.fdn != 'None' %}
+                        {{ invoice.json_rep.fdn }}
+                    {% endif %}
+                </td>
                 <td>{{invoice.currency }}</td>
                 <td>
                 <a href="{% url 'create-build-invoice' invoice.slug %}">
