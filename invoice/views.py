@@ -17,9 +17,9 @@ from django.template.loader import get_template
 
 @login_required
 def dashboard(request):
-    clients = Client.objects.all().count()
-    invoices = Invoice.objects.all().count()
-    credits = CreditNote.objects.all().count()
+    clients = Client.objects.filter(company=request.user.company1).count()
+    invoices = Invoice.objects.filter(company=request.user.company1).count()
+    credits = CreditNote.objects.filter(company=request.user.company1).count()
 
     context = {}
     context['clients'] = clients
@@ -234,7 +234,7 @@ def createInvoice(request, slug):
         if inv.inv_prod.all == None:
             inv.delete()
 
-    list_num = []
+    list_num = [0]
     for numb in Invoice.objects.filter(company=company, last_updated__year=today.year):
         list_num.append(numb.number)
 
@@ -250,6 +250,10 @@ def createInvoice(request, slug):
 
 @login_required
 def createBuildInvoice(request, slug):
+    ps = []
+    for product in Product.objects.filter(company=request.user.company1):
+        ps.append(product.id)
+
     try:
         invoice = Invoice.objects.get(slug=slug)
     except:
@@ -319,14 +323,14 @@ def createBuildInvoice(request, slug):
     taxDetails = tax_context
 
     if request.method == 'GET':
-        prod_form = InvoiceProductForm()
+        prod_form = InvoiceProductForm(ps)
         inv_form = InvoiceForm(instance=invoice)
         context['prod_form'] = prod_form
         context['inv_form'] = inv_form
         return render(request, 'invoice/create-invoice.html', context)
 
     if request.method == 'POST':
-        prod_form = InvoiceProductForm(request.POST)
+        prod_form = InvoiceProductForm(ps,request.POST)
         inv_form = InvoiceForm(request.POST, instance=invoice)
         client_form = ClientSelectForm(request.POST, instance=invoice)
 

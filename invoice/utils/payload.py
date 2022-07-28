@@ -48,6 +48,7 @@ def payload_info(request, ic, message):
             "returnMessage": ""
         }
     }
+    
     return load
 
 def invoice_load(request, context, goodsDetails, taxDetails,summary_json, payment_details):

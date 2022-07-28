@@ -37,19 +37,20 @@ class CompanyForm(forms.ModelForm):
         model = Company
         fields = ['name', 'companyLogo','tin','device_number','email','telephone_number','location','url','nature','wht_exempt','vat_wht']
 
-
 class ClientForm(forms.ModelForm):
     company_type= forms.CharField(widget=forms.RadioSelect(choices=BUYER_TYPE))
     class Meta:
         model = Client
         fields = ['name', 'business_name','address', 'email_address', 'contact_number', 'company_type','tin']
-
-            
-
+    
 class InvoiceProductForm(forms.ModelForm):
     class Meta:
         model = InvoiceProducts
         fields = ['product', 'tax_type', 'price']
+
+    def __init__(self, ps, *args, **kwargs):
+        super(InvoiceProductForm, self).__init__(*args, **kwargs)
+        self.fields['product'].queryset = Product.objects.filter(id__in=ps)
 
 class ProductForm(forms.ModelForm):
     class Meta:
@@ -58,7 +59,6 @@ class ProductForm(forms.ModelForm):
                   'unit_price', 'currency', 'commodity_id', 
                   'has_excise_duty', 'description', 'stock_warning', 
                   ]
-
 
 class InvoiceForm(forms.ModelForm):
     class Meta:
