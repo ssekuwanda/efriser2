@@ -397,18 +397,18 @@
            {% for product in products %}
            <tr>
                 <td colspan="9">{{ product.product.name }}</td>
-                <td colspan="1">{{product.net_amount|floatformat:2|intcomma}}</td>
-                <td colspan="1">{{product.tax|floatformat:2|intcomma}}</td>
-                <td colspan="1" style="text-align: right;">{{ product.total|floatformat:2|intcomma }}</td>
+                <td colspan="1">-{{product.net_amount|floatformat:2|intcomma}}</td>
+                <td colspan="1">-{{product.tax|floatformat:2|intcomma}}</td>
+                <td colspan="1" style="text-align: right;">-{{ product.total|floatformat:2|intcomma }}</td>
            </tr>
         {% endfor %}
         <tr style="border-top: 1.5px solid black; border-bottom: 1.0px solid rgb(59, 59, 59);">
             <td colspan="9">
                 TOTAL
             </td>
-        <td>{{ clean_data.net|floatformat:2|intcomma}}</td>
-        <td>{{ tax|floatformat:2|intcomma }}</td>
-        <td style="text-align: right;">{{ clean_data.gross|floatformat:2|intcomma}}</td>
+        <td>-{{ clean_data.net|floatformat:2|intcomma}}</td>
+        <td>-{{ tax|floatformat:2|intcomma }}</td>
+        <td style="text-align: right;">-{{ clean_data.gross|floatformat:2|intcomma}}</td>
         </tr>
     </table>
         <div class="" style="text-align: justify; text-justify: inter-word;">
