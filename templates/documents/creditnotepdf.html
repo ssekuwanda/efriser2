@@ -5,7 +5,7 @@
 {% load qr_code %}
 {% load markdownify %}
 <html lang="en">
-
+    
 <head>
     <meta charset="utf-8">
     <meta name=author content="Prime Invoices">
@@ -370,8 +370,8 @@
     </div>
     <div class="container-1">
         <div class="upper">
-            <p>FISCAL DOCUMENT NUMBER: {{ cn.fdn }}</p>
-            <p>VERIFICTION CODE: {{ cn.reference }}
+            <p>CREDIT NOTE NUMBER: {{ cn.fdn }}</p>
+            <p>VERIFICTION CODE: {{ cn.anti_fake }}
             <p>CURRENCY: {{ clean_data.currency }}</p>
         </div>
     </div>

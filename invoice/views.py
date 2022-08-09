@@ -21,6 +21,10 @@ def dashboard(request):
     invoices = Invoice.objects.filter(company=request.user.company1).count()
     credits = CreditNote.objects.filter(company=request.user.company1).count()
 
+    invoice2 = Invoice.objects.filter(company=request.user.company1,json_response="")
+    for inv in invoice2:
+        inv.delete()
+
     context = {}
     context['clients'] = clients
     context['invoices'] = invoices
@@ -48,8 +52,12 @@ def dashboard(request):
 @login_required
 def invoices(request):
     context = {}
+
     company = request.user.company1
     invoices = Invoice.objects.filter(company=company)
+    invoice2 = Invoice.objects.filter(company=company,json_response="")
+    for inv in invoice2:
+        inv.delete()
 
     context['invoices'] = invoices
     context['cleaned_inv']=[]
@@ -66,6 +74,11 @@ def online_invoices(request):
     context = {}
     company = request.user.company1
     invoices = Invoice.objects.filter(company=company)
+
+    invoice2 = Invoice.objects.filter(company=company,json_response="")
+    for inv in invoice2:
+        inv.delete()
+
     for inv in invoices:
         cleaned_data = inv_context(inv.json_response)
     context['invoices'] = invoices
@@ -156,12 +169,14 @@ def productsMaintance(request, slug):
     context = {'form': form,'product':prod}
     return render(request, 'product/product_update.html', context)   
 
+@login_required
 def goods_inquiry(request, slug):
     prod = get_object_or_404(Product, slug=slug)
     req = goods_inquiry_req(prod)
     result = json.loads(goodsInquire(request, req))
     return render(request, 'product/product_inquiry.html', result) 
 
+@login_required
 def dictonary(request):
     if request.method == 'POST':
         query = request.POST.get('q', False)
@@ -383,6 +398,7 @@ def client_home(request, slug):
     context['invoices'] = invoices
     return render(request, 'invoice/client-home.html', context)
 
+@login_required
 def createCreditNote(request, slug):
     invoice = Invoice.objects.get(slug=slug)
     if request.method == 'POST':
@@ -412,12 +428,12 @@ def createCreditNote(request, slug):
         form = CreditNoteForm()
     return render(request, 'invoice/create-creditnote.html', {'form':form})
 
+@login_required
 def creditNoteHome(request):
     company = request.user.company1
-    credits = CreditNote.objects.filter(company=company)
-
+    credits = CreditNote.objects.filter(company=company)#.order_by('-status')
     context = {'credits':credits}
-    return render(request, 'invoice/all_creditnotes.html', context)
+    return render(request, 'credit_note/all_creditnotes.html', context)
 
 @login_required
 def pdfInvoice(request, slug):
@@ -468,7 +484,16 @@ def creditnote_pdf(request, fdn):
     company = request.user.company1
     client = Client.objects.filter(company=company)
 
+
     context = {}
+    cnote = CreditNote.objects.get(fdn=fdn)
+    
+    anti_fake = ""
+    if cnote.anti_fake == None:
+        vc = msg_middleware(request, fdn)
+        anti_fake = vc['basicInformation']['antifakeCode']
+        CreditNote.objects.filter(fdn=fdn).update(anti_fake=anti_fake)
+
     note = CreditNote.objects.get(fdn=fdn)
     invoice = note.invoice
     context['cn'] = note
@@ -476,6 +501,8 @@ def creditnote_pdf(request, fdn):
     invoice_pdts = InvoiceProducts.objects.filter(invoice=invoice)
 
     context['company'] = company
+    context['anti_fake'] = anti_fake
+
     context['client'] = client
     context['invoice'] = []
     context['taxes'] = []
@@ -517,13 +544,14 @@ def prod_delete(request, slug):
         request, f"{instance.product.name} was successfully deleted")
     return redirect('create-build-invoice', slug=instance.invoice.slug)
 
+@login_required
 def refresh_cn_status(request, id):
     cn = CreditNote.objects.get(id=id)
     encrpted = encode(json.dumps({"id": cn.reference})).decode()
-    resp = refreshCnStatus(request, encrpted)
-    
+    resp = refreshCnStatus(request, encrpted)    
     return redirect('create-build-invoice', slug=cn.invoice.slug)
 
+@login_required
 def cn_list(request):
     all_cns = CreditNote.objects.filter(company=request.user.company1, status=False)
     context = {}
@@ -539,7 +567,6 @@ def cn_list(request):
         encrpt = encoded_string.decode('utf-8')
         uploadList = cnListUpload(encrpt, request)
         json_dump = json.loads(uploadList)
-
         for cns in all_cns:
             for js in json_dump['records']:
                 if js['referenceNo']==cns.reference:
@@ -561,7 +588,8 @@ def cn_list(request):
         for rec in json_dump['records']:
             context['details'].append(rec)
     return render(request, 'credit_note/cn_list.html', context)
-    
+
+@login_required  
 def inv_list(request):
     context = {}
     context['details']=[]
@@ -573,6 +601,7 @@ def inv_list(request):
             context['details'].append(rec)
     return render(request, 'invoice/inv_list.html', context)
 
+@login_required
 def inv_details(request):
     context = {}
     context['details']=[]
@@ -596,6 +625,7 @@ def inv_details(request):
             messages.warning(request, "Invalid Invoice")
     return render(request, 'invoice/inv_details.html', context)
 
+@login_required
 def cancel_cn(request, inv, cn ):
     cn = CreditNote.objects.get(id = id)
     msg = {}
@@ -619,20 +649,22 @@ def cancel_cn(request, inv, cn ):
     return render(request, 'credit_note/cancel_cn.html',msg)
 
 # this cancels a CN that is not yet approved
+@login_required
 def cancel_cn_application(request, id, ref):
     details = {
         "businessKey": id,
         "referenceNo": ref
         }
     message = encode(str(details)).decode()
-    payload_data = payload_info(request.user.company1.tin, request.user.company1.device_number,"T120",message)
-    request_json = post_message(payload_data)
+    payload_data = payload_info(request,"T120",message)
+    request_json = post_message(request, payload_data)
     if request_json == "":
         messages.error(request, 'Check that the credit note is not approved/Rejected, It must have a status of submitted!!')
     else:
         messages.success(request, 'Invoice Cancelled successfully')
     return redirect('cn_list')
 
+@login_required
 def cancel_approved_cn(request, fdn, cn, ref):
     note = CreditNote.objects.get(reference = ref)
     msg = {}
@@ -650,13 +682,11 @@ def cancel_approved_cn(request, fdn, cn, ref):
             form = form.save(commit=False)
             form.cn = note
             message = encode(str(msg)).decode()
-            payload_data = payload_info(request.user.company1.tin, request.user.company1.device_number,"T114",message)
+            payload_data = payload_info(request,"T114",message)
             request_json = post_message(payload_data)
-            print(request_json)
             form.save()
             messages.success(request, 'Credit note issued successfully')
             return redirect('cn_list')
-            
         else:
             messages.error(request, 'Problem processing your request')
             return redirect('cancel_approved_cn', fdn, cn, ref)

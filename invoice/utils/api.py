@@ -107,8 +107,9 @@ def creditNoteUpload(message, request):
 def refreshCnStatus(request, msg):
     ic = "T112"
     data_dump = payload_info(request, ic, msg)
+    print(data_dump)
     r = re.post(request.user.company1.url, json=data_dump)
-
+    print(r.json())
     content = r.json()['returnStateInfo']['returnMessage']
     return content
 
@@ -121,6 +122,7 @@ def cnListUpload(msg, request):
 
 def invListUpload(start_date, end_date, request):
     json_req = {
+        'invoiceType': "2",
         "invoiceKind": "1",
         "pageNo": "1",
         "pageSize": "99",
@@ -154,9 +156,9 @@ def msg_middleware(request, msg):
     ic = "T108"
     inv_json = json.dumps(json_req)
     msg = encode(inv_json).decode("utf-8")
-    data_dump = payload_info(request.user.company1.tin, request.user.company1.device_number,ic,msg)
+    data_dump = payload_info(request,ic,msg)
     try:
-        r = re.post(base_url, json=data_dump)
+        r = re.post(request.user.company1.url, json=data_dump)
         content = r.json()['data']['content']
         if content:
             decoded = decode(content)
@@ -177,12 +179,11 @@ def cancel_cn_helper(request, msg):
     }
 
     ic = "T114"
-
     inv_json = json.dumps(json_req)
     msg = encode(inv_json).decode("utf-8")
-    data_dump = payload_info(request.user.company1.tin, request.user.company1.device_number,ic,msg)
+    data_dump = payload_info(request,ic,msg)
     try:
-        r = re.post(base_url, json=data_dump)
+        r = re.post(request.user.company1.url, json=data_dump)
         content = r.json()['data']['content']
         print(r.json())
         if content:

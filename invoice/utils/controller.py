@@ -9,9 +9,9 @@ def data_controlller():
 
     inv_json = json.dumps()
     msg = encode(inv_json).decode("utf-8")
-    data_dump = payload_info(request.user.company1.tin, request.user.company1.device_number,ic,msg)
+    data_dump = payload_info(request,ic,msg)
     try:
-        r = re.post(base_url, json=data_dump)
+        r = re.post(request.user.company1.url, json=data_dump)
         content = r.json()['data']['content']
         if content:
             decoded = decode(content)

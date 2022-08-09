@@ -216,6 +216,7 @@ class CreditNote(models.Model):
     reason_code = models.CharField(max_length=100000000, choices=REASONS, null=False, blank=False)
     json_response = models.TextField(null=True, blank=False)
     reason = models.TextField(null=True, blank=False)
+    anti_fake = models.CharField(max_length=10000, null=True, blank=True)
     reference = models.CharField(max_length=10000, null=True, blank=False)
     status = models.BooleanField(default=False) # False if not approved
     company = models.ForeignKey(Company, blank=True, null=True, on_delete=models.SET_NULL)

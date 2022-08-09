@@ -146,6 +146,9 @@
                 {% if inv.status %}
                 <a class="btn btn-outline-success btn-sm" href="{% url 'creditnote_pdf' inv.fdn %}" role="button">PDF</a>
                 {% endif %}
+                {% if inv.status %}
+                <a class="btn btn-outline-success btn-sm" href="{% url 'cn_refresh' inv.id %}" role="button">Refresh</a>
+                {% endif %}
               </td>
             </tr>
           </tbody>
