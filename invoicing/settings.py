@@ -18,7 +18,7 @@ SECRET_KEY = config('SECRET_KEY')
 
 DEBUG = True
 
-ONLINE = True
+ONLINE = False
 
 ALLOWED_HOSTS = ['*']
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
