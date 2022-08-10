@@ -51,8 +51,8 @@ class Company(models.Model):
 
     #Tax fields  
     tin = models.CharField(max_length=10)
-    device_number = models.CharField(max_length=100, null=False, blank=False)
-    url = models.URLField(null=True)
+    device_number = models.CharField(max_length=100, null=False, blank=False, help_text="TCSc0192929020020")
+    url = models.URLField(null=True, help_text="http://167.100.66.192:9880/efristcs/ws/tcsapp/getInformation")
     wht_exempt = models.BooleanField(default=False)
     vat_wht = models.BooleanField(default=False)
     nature = models.CharField(max_length=120, choices=companyTypes)
