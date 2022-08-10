@@ -17,18 +17,20 @@ from django.template.loader import get_template
 
 @login_required
 def dashboard(request):
-    clients = Client.objects.filter(company=request.user.company1).count()
-    invoices = Invoice.objects.filter(company=request.user.company1).count()
-    credits = CreditNote.objects.filter(company=request.user.company1).count()
-
-    invoice2 = Invoice.objects.filter(company=request.user.company1,json_response="")
-    for inv in invoice2:
-        inv.delete()
-
     context = {}
-    context['clients'] = clients
-    context['invoices'] = invoices
-    context['credits'] = credits
+    if hasattr(request.user,'company1'):
+        clients = Client.objects.filter(company=request.user.company1).count()
+        invoices = Invoice.objects.filter(company=request.user.company1).count()
+        credits = CreditNote.objects.filter(company=request.user.company1).count()
+
+        invoice2 = Invoice.objects.filter(company=request.user.company1,json_response="")
+        for inv in invoice2:
+            inv.delete()
+
+    
+        context['clients'] = clients
+        context['invoices'] = invoices
+        context['credits'] = credits
 
     if request.method == 'GET':
         form = CompanyForm()
@@ -242,7 +244,6 @@ def clients(request):
 
 @login_required
 def createInvoice(request, slug):
-    today = datetime.now()
     company = request.user.company1
      
     for inv in Invoice.objects.filter(company=company):
@@ -250,6 +251,7 @@ def createInvoice(request, slug):
             inv.delete()
 
     list_num = [0]
+    today = datetime.now()
     for numb in Invoice.objects.filter(company=company, last_updated__year=today.year):
         list_num.append(numb.number)
 
@@ -400,11 +402,19 @@ def client_home(request, slug):
 
 @login_required
 def createCreditNote(request, slug):
+    list_num = [0]
+    for numb in CreditNote.objects.filter(company=request.user.company1, last_updated__year=datetime.now().year):
+        list_num.append(numb.number)
+
+    max_numb = max(list_num)
+    new_numb = int(max_numb)+1
+    cn_number = str(request.user.company1.short_name+'/'+str(new_numb)+'/'+str(datetime.now().year))+'-CN'
+
     invoice = Invoice.objects.get(slug=slug)
     if request.method == 'POST':
         form = CreditNoteForm(request.POST or None)
         if request.method =="POST" and form.is_valid():
-            creditnote_load = json.dumps(credit_note(invoice, form))
+            creditnote_load = json.dumps(credit_note(invoice, form, cn_number))
             encodedCreditNote = encode(creditnote_load).decode()
             received_message = creditNoteUpload(encodedCreditNote,request)
 
@@ -415,6 +425,7 @@ def createCreditNote(request, slug):
                 reference = received_message['data']['content']
                 decrpt = decode(reference).decode()
                 form.json_response = decrpt
+                form.number = new_numb
                 form.reference = json.loads(decrpt)['referenceNo']
                 form.invoice = invoice
                 form.company = request.user.company1
@@ -516,6 +527,8 @@ def creditnote_pdf(request, fdn):
         tax_total +=float(tax['taxAmount'])
 
     context['tax'] = tax_total
+    context['tax'] = tax_total
+    
     fdn = inv_context(invoice.json_response)['fdn']
 
     for good in inv_context(invoice.json_response)['items']:

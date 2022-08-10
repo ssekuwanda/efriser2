@@ -220,8 +220,9 @@ class CreditNote(models.Model):
     reference = models.CharField(max_length=10000, null=True, blank=False)
     status = models.BooleanField(default=False) # False if not approved
     company = models.ForeignKey(Company, blank=True, null=True, on_delete=models.SET_NULL)
-    fdn = models.CharField(max_length=122, null=True)
+    fdn = models.CharField(max_length=122, null=True, blank=True)
     approval = models.CharField(max_length=122, null=True, default="Pending")
+    number = models.IntegerField()
 
     def __str__(self): 
         return str(self.invoice)
@@ -229,8 +230,16 @@ class CreditNote(models.Model):
     class Meta:
         ordering = ("-date_created",)
 
+    def cn_number(self):
+        return str(self.company.short_name+'/'+str(self.number)+'/'+str(self.date_created.year))+'-CN'
+
+    def __str__(self):
+        if self.company:
+            return str(self.company.short_name+'/'+str(self.number)+'/'+str(self.date_created.year))+'-CN'
+        else:
+            return 'No company'
+
 class CnCancel(models.Model):
-    
     REASONS = [('101','Buyer refused to accept the invoice due to incorrect invoice/receipt'), ('102','Not delivered due to incorrect invoice/receipt'),('103','Other reasons')]
     reason = models.CharField(max_length=10000, choices=REASONS, null=True, blank=False)
     details = models.CharField(max_length=100, null=True, blank=True)

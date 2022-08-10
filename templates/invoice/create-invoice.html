@@ -11,10 +11,9 @@
 {% block main %}
 
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Invoice Creation</h1>
+    <h1 class="h2">INVOICE</h1>
     <div class="btn-toolbar mb-2 mb-md-0">
       <div class="btn-group me-2">
-              
         <a href="#"><button type="button" class="btn btn-primary btn-sm">
           <span data-feather="arrow-left"></span>
           Go Back
@@ -26,7 +25,7 @@
     <div class="card">
       <div class="card-header">
         <div class="row">
-          <div class="col-10">{{invoice.client|upper}} - {{invoice}}</div>
+          <div class="col-10">{{invoice.client.business_name|upper}} - {{invoice}}</div>
           <div class="col-2">
             {% if not invoice.finalized %}
             <div class="spinner-grow spinner-grow-sm text-danger" role="status">

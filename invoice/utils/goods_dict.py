@@ -105,7 +105,7 @@ def pay_way(details):
         },
     return payment_details
 
-def credit_note(note, form):
+def credit_note(note, form, cn_number):
     data = cleaned_json(note.json_response)
     note_details = {
         "oriInvoiceId": data['invoice_id'],
@@ -120,7 +120,7 @@ def credit_note(note, form):
         "contactEmail":"",
         "source":"103",
         "remarks":"",
-        "sellersReferenceNo":"",
+        "sellersReferenceNo":cn_number,
         "goodsDetails":data['goodsDetails'],
         "taxDetails":data['taxes'],
         "summary":data['summary'],
