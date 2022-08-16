@@ -14,6 +14,7 @@ from django.contrib.auth.models import auth
 from uuid import uuid4
 from django.http import HttpResponse
 from django.template.loader import get_template
+from django.db.models import Q
 
 @login_required
 def dashboard(request):
@@ -90,8 +91,15 @@ def online_invoices(request):
 @login_required
 def products(request):
     issuer = request.user.company1
-    context = {}
-    products = Product.objects.filter(company=issuer)
+    context = {}    
+
+    query = request.GET.get('q')
+
+    if query:
+        products = Product.objects.filter(company=issuer).filter(Q(name__icontains = query))
+    else:
+        products = Product.objects.filter(company=issuer)
+
     context['products'] = products
 
     if request.method == 'GET':
@@ -191,7 +199,13 @@ def clients(request):
     owned = request.user.company1
 
     context = {}
-    clients = Client.objects.filter(company=owned)
+    query = request.GET.get('q')
+
+    if query:
+        clients = Client.objects.filter(company=owned).filter(Q(name__icontains=query))
+    else:
+        clients = Client.objects.filter(company=owned)
+
     context['clients'] = clients
 
     if request.method == 'GET':

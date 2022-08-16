@@ -1,7 +1,6 @@
 {% load static %}
 {% load humanize %}
 
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -10,7 +9,6 @@
     <meta name="description" content="EFRISER">
     <meta name="author" content="EFRISER">
     <title>EFRISER</title>
-
     <link rel="canonical" href="">
 
     <!-- Bootstrap core CSS -->
@@ -39,82 +37,83 @@
           font-size: 3.5rem;
         }
       }
-  
     </style>
-
   </head>
   <body>
 
-<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+<!-- <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
   <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Invoicing Online</a>
   <div class="navbar-nav">
     <div class="nav-item text-nowrap">
       <a class="nav-link px-3" href="{% url 'logout' %}?next=/">Log Out</a>
     </div>
   </div>
-</header>
+</header> -->
 
 <div class="container-fluid">
   <div class="row">
-    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-primary sidebar collapse">
       <div class="position-sticky pt-3">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'dashboard' %}">
-              <span data-feather="home"></span>
+            <a class="nav-link form-control-md text-white" href="{% url 'dashboard' %}">
+              <span data-feather="pie-chart" style="color: white; width: 20px; height: 20px;"></span>
               Dashboard
             </a>
           </li>
-            {% if request.user.company1 %}
+          {% if request.user.company1 %}
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'products' %}">
-              <span data-feather="shopping-cart"></span>
+            <a class="nav-link form-control-md text-white" href="{% url 'products' %}">
+              <span data-feather="shopping-cart" style="color: white; width: 20px; height: 20px;"></span>
               Products / Services
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'clients' %}">
-              <span data-feather="users"></span>
+            <a class="nav-link form-control-md text-white" href="{% url 'clients' %}">
+              <span data-feather="users" style="color: white; width: 20px; height: 20px;"></span>
               Clients
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'all_invoices' %}">
-              <span data-feather="file"></span>
+            <a class="nav-link form-control-md text-white" href="{% url 'all_invoices' %}">
+              <span data-feather="file-text" style="color: white; width: 20px; height: 20px;"></span>
               Invoices
             </a>
           </li><li class="nav-item">
-            <a class="nav-link" href="{% url 'creditnotes' %}">
-              <span data-feather="folder-minus"></span>
+            <a class="nav-link form-control-md text-white" href="{% url 'creditnotes' %}">
+              <span data-feather="file" style="color: white; width: 20px; height: 20px;"></span>
               Credit Notes
             </a>
           </li>
 
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'dictonary' %}">
-                    <span data-feather="book"></span>
+                  <a class="nav-link form-control-md text-white" href="{% url 'dictonary' %}">
+                    <span data-feather="slack" style="color: white; width: 20px; height: 20px;"></span>
                     Dictionary
                   </a>
                 </li>
           {% endif %}
         </ul>
         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-          <span>Settings</span>
-          <a class="link-secondary" href="#" aria-label="Add a new report">
-            <span data-feather="plus-circle"></span>
-          </a>
+          <span style="color: white;">Settings</span>
         </h6>
         <ul class="nav flex-column mb-2">
           <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file-text"></span>
+            <a class="nav-link form-control-md text-white" href="#">
+              <span data-feather="settings" style="color: white; width: 20px; height: 20px;"></span>
               Company
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'logout' %}?next=/">
-              <span data-feather="file-text"></span>
+            <a class="nav-link form-control-md text-white" href="#">
+              <span data-feather="sliders"  style="color: white; width: 20px; height: 20px;"></span>
+              System
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link form-control-md text-white" href="{% url 'logout' %}?next=/">
+              <span data-feather="power"  style="color: white; width: 20px; height: 20px;"></span>
               Logout
             </a>
           </li>

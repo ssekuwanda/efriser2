@@ -14,11 +14,16 @@
     <div class="btn-toolbar mb-2 mb-md-0">
       <div class="btn-group me-2">
       </div>
-        <form action="#" method="get">
-          <input type="search" name="q" placeholder="Search client by name..." class="form-control" />
-        </form>
+      <form class="form-inline" method="get">
+        <div class="">
+          <input type="search" name="q" class="form-control" id="inputPassword2" placeholder="Search clients">
+        </div>
+      </form>
     </div>
-    <button href="#addClientModal" type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal">Add New Client</button>
+    <button href="#addClientModal" type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal">
+      <span data-feather="plus" style="color: white; width: 20px; height: 20px;"></span>
+      Add New Client
+    </button>
   </div>
 
   <!-- <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas> -->

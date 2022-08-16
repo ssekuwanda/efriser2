@@ -11,7 +11,10 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h4 class="">OFFLINE INVOICES</h4>
     <h4 class="">
-        <a class="btn btn-sm btn-outline-success" href="{% url 'inv_list' %}" role="button">ALL INVOICES</a>
+        <a class="btn btn-sm btn-outline-success" href="{% url 'inv_list' %}" role="button">
+        <span data-feather="list" style="color: green; width: 20px; height: 20px;"></span>
+            ALL INVOICES
+        </a>
         <a class="btn btn-sm btn-outline-success" href="{% url 'inv_details' %}" role="button">VALIDATE INVOICE</a>
     </h4>
 </div>

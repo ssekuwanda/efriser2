@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'mathfilters',
     'invoice',
     'qr_code',
+    'django_bootstrap_icons',
     'markdownify',
     'accounts',
 ]
