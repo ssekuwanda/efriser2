@@ -53,46 +53,47 @@
 <div class="container-fluid">
   <div class="row">
     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-primary sidebar collapse">
+      <!-- {% if request.user.company1.companyLogo %}
+        <img src="{{ request.user.company1.companyLogo.url }}" style="margin-left: 30px; width: 100px; height: 90px;" class="card-img-top" alt="...">
+      {% endif %} -->
       <div class="position-sticky pt-3">
         <ul class="nav flex-column">
           <li class="nav-item">
             <a class="nav-link form-control-md text-white" href="{% url 'dashboard' %}">
               <span data-feather="pie-chart" style="color: white; width: 20px; height: 20px;"></span>
-              Dashboard
+              DASHBOARD
             </a>
           </li>
           {% if request.user.company1 %}
           <li class="nav-item">
             <a class="nav-link form-control-md text-white" href="{% url 'products' %}">
               <span data-feather="shopping-cart" style="color: white; width: 20px; height: 20px;"></span>
-              Products / Services
+              SERVICES
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link form-control-md text-white" href="{% url 'clients' %}">
               <span data-feather="users" style="color: white; width: 20px; height: 20px;"></span>
-              Clients
+              CLIENTS
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link form-control-md text-white" href="{% url 'all_invoices' %}">
               <span data-feather="file-text" style="color: white; width: 20px; height: 20px;"></span>
-              Invoices
+              INVOICES
             </a>
           </li><li class="nav-item">
             <a class="nav-link form-control-md text-white" href="{% url 'creditnotes' %}">
               <span data-feather="file" style="color: white; width: 20px; height: 20px;"></span>
-              Credit Notes
+              CREDITNOTES
             </a>
           </li>
-
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link form-control-md text-white" href="{% url 'dictonary' %}">
-                    <span data-feather="slack" style="color: white; width: 20px; height: 20px;"></span>
-                    Dictionary
-                  </a>
-                </li>
+          <li class="nav-item">
+            <a class="nav-link form-control-md text-white" href="{% url 'dictonary' %}">
+              <span data-feather="slack" style="color: white; width: 20px; height: 20px;"></span>
+              DICTIONARY
+            </a>
+          </li>
           {% endif %}
         </ul>
         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
@@ -102,19 +103,19 @@
           <li class="nav-item">
             <a class="nav-link form-control-md text-white" href="#">
               <span data-feather="settings" style="color: white; width: 20px; height: 20px;"></span>
-              Company
+              COMPANY
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link form-control-md text-white" href="#">
               <span data-feather="sliders"  style="color: white; width: 20px; height: 20px;"></span>
-              System
+              SYSTEM
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link form-control-md text-white" href="{% url 'logout' %}?next=/">
               <span data-feather="power"  style="color: white; width: 20px; height: 20px;"></span>
-              Logout
+              LOGOUT
             </a>
           </li>
         </ul>
