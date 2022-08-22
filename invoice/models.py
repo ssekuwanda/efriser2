@@ -8,9 +8,11 @@ from uuid import uuid4
 from django.contrib.auth.models import User
 from random import randint
 from jsonfield import JSONField
-
 from invoice.utils.invoice_cleaner import inv_context
-# from django.core.urlresolvers import reverse
+import barcode                     
+from barcode.writer import ImageWriter
+from io import BytesIO
+from django.core.files import File
 
 randoms = randint(120,1000)
 VAT_CHOICES = [
@@ -443,3 +445,18 @@ class Settings(models.Model):
         self.last_updated = timezone.localtime(timezone.now())
 
         super(Settings, self).save(*args, **kwargs)
+
+class BarCode(models.Model):
+    name = models.CharField(max_length=500)
+    barcode = models.ImageField(null=True, blank=True)
+    date_created = models.DateTimeField(auto_now=True, blank=True, null=True)
+
+    def __str__(self):
+        return str(self.name)
+
+    def save(self, *args, **kwargs):
+        COD128 = barcode.get_barcode_class('code128')
+        rv = BytesIO()
+        code = COD128(f'{self.name}', writer=ImageWriter()).write(rv)
+        self.barcode.save(f'{self.name}.png', File(rv), save=False)
+        return super().save(*args, **kwargs)

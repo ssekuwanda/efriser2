@@ -34,6 +34,8 @@ path('creditnote/cancel-fresh/<str:id>/<str:ref>',views.cancel_cn_application, n
 path('creditnote/cancel-approved/<str:fdn>/<str:cn>/<str:ref>',views.cancel_approved_cn, name='cancel_approved_cn'),
 path('creditnote/pdf/<str:fdn>',views.creditnote_pdf, name='creditnote_pdf'),
 
+path('bar-code', views.barcode_generator, name='bar-code'),
+
 
 
 #Delete an invoice

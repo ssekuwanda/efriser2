@@ -97,3 +97,8 @@ class CnCancelForm(forms.ModelForm):
     class Meta:
         model = CnCancel
         fields = ['reason','details',]
+
+class BarCodeForm(forms.ModelForm):
+    class Meta:
+        model = BarCode
+        fields = ['name']

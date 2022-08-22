@@ -718,3 +718,16 @@ def cancel_approved_cn(request, fdn, cn, ref):
             messages.error(request, 'Problem processing your request')
             return redirect('cancel_approved_cn', fdn, cn, ref)
     return render(request, 'credit_note/cancel_cn.html',{'form':form})
+
+def barcode_generator(request):
+    if request.method == "POST":
+        form = BarCodeForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Barcode Generated successfuly")
+        else:
+            messages.error(request,"Error Generating code")
+    else:
+        form = BarCodeForm()
+    context = {'form': form, 'barcodes':BarCode.objects.all().order_by('-date_created')}
+    return render(request, 'barcode/barcode.html', context)
