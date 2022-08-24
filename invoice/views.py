@@ -58,20 +58,19 @@ def invoices(request):
 
     company = request.user.company1
     invoices = Invoice.objects.filter(company=company)
-    invoice2 = Invoice.objects.filter(company=company,json_response="")
+    invoice2 = Invoice.objects.filter(company=company, json_response="")
     for inv in invoice2:
         inv.delete()
 
     context['invoices'] = invoices
-    context['cleaned_inv']=[]
+    context['cleaned_inv'] = []
     for inv in invoices:
         if inv.json_response:
-            context['cleaned_inv'].append(inv_context(inv.json_response))
-            context['cleaned_inv'].append({'slug':inv.slug})
-    context['cleint'] = "cleint"
+            context['cleaned_inv'].append(inv_cleaner(inv.json_response, inv.slug))
+            # context['cleaned_inv'].append({'slug':inv.slug})
+    context['client'] = "client"
     return render(request, 'invoice/all_invoices.html', context)
 
-# Not yet implemented
 @login_required
 def online_invoices(request):
     context = {}
@@ -197,7 +196,6 @@ def dictonary(request):
 @login_required
 def clients(request):
     owned = request.user.company1
-
     context = {}
     query = request.GET.get('q')
 
@@ -275,7 +273,6 @@ def createInvoice(request, slug):
     client = Client.objects.get(slug=slug)
     newInvoice = Invoice.objects.create(number=new_numb, client=client, company=company)
     newInvoice.save()
-
     inv = Invoice.objects.get(slug=newInvoice.slug)
     return redirect('create-build-invoice', slug=inv.slug)
 
@@ -284,7 +281,6 @@ def createBuildInvoice(request, slug):
     ps = []
     for product in Product.objects.filter(company=request.user.company1):
         ps.append(product.id)
-
     try:
         invoice = Invoice.objects.get(slug=slug)
     except:
@@ -295,7 +291,6 @@ def createBuildInvoice(request, slug):
     context = {}
     goods_context = []
     tax_context = []
-    
     net_amount = 0
     tax_amount = 0
     tax_amount_summary = 0
@@ -382,13 +377,18 @@ def createBuildInvoice(request, slug):
             payment_details = pay_way(context)
             goods_summary = summary(context)
 
-
             inv = uploadInvoice(request, context, goodsDetails, taxDetails, goods_summary, payment_details)  
             invoice_update.json_response = inv["content"]
 
             if inv["returnMessage"] == "SUCCESS":
                 invoice_update.finalized = True
                 invoice_update.save()
+                for prod in products:
+                    init_product = Product.objects.get(id=prod.product.id)
+                    prod_total = int(init_product.stock_warning)
+                    reduction = prod_total - int(prod.quantity)
+                    init_product.stock_warning = str(reduction)
+                    init_product.save()
                 messages.success(request, "Invoice Issued succesfully")
             else:
                 messages.warning(request, inv["returnMessage"])
@@ -406,6 +406,7 @@ def createBuildInvoice(request, slug):
             return render(request, 'invoice/create-invoice.html', context)
     return render(request, 'invoice/create-invoice.html', context)
 
+@login_required
 def client_home(request, slug):
     client = Client.objects.get(slug=slug)
     invoices = Invoice.objects.filter(client=client) 
@@ -466,7 +467,11 @@ def pdfInvoice(request, slug):
     client = Client.objects.filter(company=company)
 
     context = {}
-    invoice = Invoice.objects.get(slug= slug)
+    if Invoice.objects.get(slug= slug) != None:
+        invoice = Invoice.objects.get(slug= slug)
+    else:
+        invoice = Invoice.objects.get(slug= slug)
+        
     context['invDetails'] = invoice
     invoice_pdts = InvoiceProducts.objects.filter(invoice=invoice)
 
@@ -479,7 +484,7 @@ def pdfInvoice(request, slug):
     
     tax_total = 0
 
-    for prod in invoice_pdts:     
+    for prod in invoice_pdts:
         tax = tax_details(prod, invoice)
         tax_total +=float(tax['taxAmount'])
 
@@ -495,7 +500,6 @@ def pdfInvoice(request, slug):
  
     bank = request.user.company1.bank_details.filter(currency=invoice.currency)
     context['bank'] = bank
-
     html_string = render_to_string('documents/invoicepdf.html', context)
     html = HTML(string=html_string, base_url=request.build_absolute_uri())
     pdf = html.write_pdf(presentational_hints=True)
@@ -508,7 +512,6 @@ def pdfInvoice(request, slug):
 def creditnote_pdf(request, fdn):
     company = request.user.company1
     client = Client.objects.filter(company=company)
-
 
     context = {}
     cnote = CreditNote.objects.get(fdn=fdn)
@@ -550,7 +553,8 @@ def creditnote_pdf(request, fdn):
 
     for tx in inv_context(invoice.json_response)['taxDetails']:
         context['taxes'].append(tx)
-    # +context.update(inv_context(invoice.json_response))
+
+    # context.update(inv_context(invoice.json_response))
  
     bank = request.user.company1.bank_details.filter(currency=invoice.currency)
     context['bank'] = bank
@@ -640,10 +644,8 @@ def inv_details(request):
             context['date']=return_msg['basicInformation']['issuedDate']
             context['fdn']=return_msg['basicInformation']['invoiceNo']
             context['currency']=return_msg['basicInformation']['currency']
-
             context['buyer']=return_msg['buyerDetails']['buyerLegalName']
             context['tin']=return_msg['buyerDetails']['buyerTin']
-
             context['gross']=return_msg['summary']['grossAmount']
             context['net']=return_msg['summary']['netAmount']
             context['tax']=return_msg['summary']['taxAmount']
@@ -700,7 +702,6 @@ def cancel_approved_cn(request, fdn, cn, ref):
     msg['invoiceApplyCategoryCode']="104"
 
     form = CnCancelForm()
-
     if request.method == 'POST':
         form = CnCancelForm(request.POST)
         if form.is_valid():
@@ -718,6 +719,7 @@ def cancel_approved_cn(request, fdn, cn, ref):
             messages.error(request, 'Problem processing your request')
             return redirect('cancel_approved_cn', fdn, cn, ref)
     return render(request, 'credit_note/cancel_cn.html',{'form':form})
+
 
 def barcode_generator(request):
     if request.method == "POST":

@@ -13,7 +13,7 @@ path('client_home/<slug:slug>', views.client_home, name='client_home'),
 path('invoices/', views.invoices, name='all_invoices'),
 path('invoices/create/<slug:slug>',views.createInvoice, name='create-invoice'),
 path('invoices/create-build/<slug:slug>',views.createBuildInvoice, name='create-build-invoice'),
-path('invoice-pdf/<slug:slug>', views.pdfInvoice, name='invoices-doc'),
+path('invoice-pdf/<slug:slug>', views.pdfInvoice, name='invoices_doc'),
 path('inv_list/', views.inv_list, name='inv_list'),
 path('inv_details/', views.inv_details, name='inv_details'),
 
@@ -22,7 +22,6 @@ path('prod_delete/<slug:slug>',views.prod_delete, name='prod_delete'),
 path('prod_update/<slug:slug>',views.productsMaintance, name='prod_update'),
 path('prod-inquire/<slug:slug>',views.goods_inquiry, name='goods_inquiry'),
 path('dictionary>',views.dictonary, name='dictonary'),
-
 
 # --------------Credit notes---------
 path('credit_notes', views.creditNoteHome, name='creditnotes'),
@@ -35,8 +34,6 @@ path('creditnote/cancel-approved/<str:fdn>/<str:cn>/<str:ref>',views.cancel_appr
 path('creditnote/pdf/<str:fdn>',views.creditnote_pdf, name='creditnote_pdf'),
 
 path('bar-code', views.barcode_generator, name='bar-code'),
-
-
 
 #Delete an invoice
     # path('invoices/delete/<slug:client_slug>/<slug:invoice_slug>',views.deleteInvoice, name='delete-invoice'),

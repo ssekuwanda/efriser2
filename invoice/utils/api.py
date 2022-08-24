@@ -57,7 +57,7 @@ def goodsInquire(request, req):
     outer_json = payload_info(request ,ic,encode_request)
     return post_message(request, outer_json)
     
-def uploadInvoice(request, context, goodsDetails, taxDetails,summary_json, payment_detials):
+def uploadInvoice(request, context, goodsDetails, taxDetails, summary_json, payment_detials):
     interface_code = "T109"
     message = invoice_load(request, context, goodsDetails, taxDetails,summary_json, payment_detials)
     to_json = json.dumps(message)

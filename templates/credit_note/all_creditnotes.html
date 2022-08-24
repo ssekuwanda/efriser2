@@ -12,24 +12,24 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h4 class="">CREDIT NOTES</h4>
     <h4 class="">
-        <a class="btn btn-sm btn-outline-success" href="{% url 'cn_list' %}" role="button">CREDIT NOTE LIST</a>
+        <a class="btn btn-sm btn-outline-success" href="{% url 'cn_list' %}" role="button">
+        <span data-feather="list" style="color: green; width: 20px; height: 20px;"></span>
+            CREDIT NOTES LIST
+        </a>
     </h4>
 </div>
-
-<!-- <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas> -->
-
 {% if credits %}
 <div class="table-responsive">
     <table class="table table-striped table-sm">
         <thead>
             <tr>
                 <th>#</th>
-                <th>Client name</th>
-                <th>Due Date</th>
-                <th>Reference</th>
-                <th>Invoice Number</th>
-                <th>Status</th>
-                <th>Reason</th>
+                <th>CLIENT</th>
+                <th>DATE</th>
+                <th>REFERENCE</th>
+                <th>FDN</th>
+                <th>STATUS</th>
+                <th>REASON</th>
                 <th></th>
             </tr>
         </thead>
@@ -38,14 +38,37 @@
             <tr>
                 <td>{{ forloop.counter }}.</td>
                 <td>{{ cred.invoice.client  }}</td>
-                <td>{{ cred.date_created }}</td>
+                <td>{{ cred.date_created|date:"M d, Y" }}</td>
                 <td>{{ cred.reference }}</td>
-                <td>{{ cred.fdn }}</td>
-                <td>{{ cred.approval }}</td>
+                <td>
+                    {% if cred.fdn %}
+                        {{ cred.fdn }}
+                    {% endif %}
+                </td>
+                <td>
+                    {% if cred.approval == 'Approved' %}
+                    <span class="badge rounded-pill bg-success">
+                        {{ cred.approval }}
+                    </span>
+                    {% elif cred.approval == 'Voided' %}
+                    <span class="badge rounded-pill bg-primary">
+                        {{ cred.approval }}
+                    </span>
+                    {% elif cred.approval == 'Rejected' %}
+                    <span class="badge rounded-pill bg-danger">
+                        {{ cred.approval }}
+                    </span>
+                    {% else %}
+                        {{ cred.approval }}
+                    {% endif %}
+                </td>
                 <td>{{ cred.reason }}</td>
                 <td>
                 {% if cred.status %}
-                <a class="btn btn-outline-success btn-sm" href="{% url 'creditnote_pdf' cred.fdn %}" role="button">PDF</a>
+                <a class="btn btn-outline-success btn-sm" href="{% url 'creditnote_pdf' cred.fdn %}" role="button">
+                <!-- <span data-feather="download" style="color: green; width: 20px; height: 20px;"></span> -->
+                    PDF
+                </a>
                 {% endif %}
                 </td>
             </tr>

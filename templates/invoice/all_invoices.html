@@ -1,21 +1,24 @@
 {% extends 'partials/base.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
+{% load humanize %}
 
 {% block css %}
 <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block main %}
-
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h4 class="">OFFLINE INVOICES</h4>
+    <h4 class="">INVOICE LIST</h4>
     <h4 class="">
         <a class="btn btn-sm btn-outline-success" href="{% url 'inv_list' %}" role="button">
         <span data-feather="list" style="color: green; width: 20px; height: 20px;"></span>
             ALL INVOICES
         </a>
-        <a class="btn btn-sm btn-outline-success" href="{% url 'inv_details' %}" role="button">VALIDATE INVOICE</a>
+        <a class="btn btn-sm btn-outline-success" href="{% url 'inv_details' %}" role="button">
+        <span data-feather="check-circle" style="color: green; width: 20px; height: 20px;"></span>
+            VALIDATE INVOICE
+        </a>
     </h4>
 </div>
 
@@ -38,21 +41,17 @@
         <tbody>
             {% for invoice in cleaned_inv %}
             <tr>
-                <td></td>
+                <td>{{ forloop.counter }}.</td>
                 <td>
-                    <a href="#" style="text-decoration: none;">{{ invoice.fdn }}</a>
+                    <a href="{% url 'invoices_doc' invoice.slug %}" style="text-decoration: none;">{{ invoice.fdn }}</a>
                 </td>
                 <td class="text-wrap" style="width: 12rem;">{{ invoice.buyerName }}</td>
-                <td>{{ invoice.date|date:"D, d M, Y" }}</td>
+                <td>{{ invoice.date|date:"M d, Y" }}</td>
                 <td>{{ invoice.invoice_number }}</td>
                 <td>{{ invoice.currency }}</td>
-                <td>{{ invoice.net }}</td>
-                <td>{{ invoice.tax }}</td>
-                <td>{{ invoice.gross }}</td>
-                <!-- <td>
-                    <a href="#"><button class="btn btn-primary"> VIEW
-                        </button></a>
-                </td> -->
+                <td>{{ invoice.net|floatformat:1|intcomma }}</td>
+                <td>{{ invoice.tax|floatformat:1|intcomma }}</td>
+                <td>{{ invoice.gross|floatformat:1|intcomma }}</td>
             </tr>
             {% endfor %}
         </tbody>
@@ -61,7 +60,6 @@
 {% else %}
 <div class="row">
     <div class="col-lg-2">
-
     </div>
     <div class="col-lg-8">
         <h3>Start by Adding First Invoice</h3>
