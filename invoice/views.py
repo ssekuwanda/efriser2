@@ -15,6 +15,7 @@ from uuid import uuid4
 from django.http import HttpResponse
 from django.template.loader import get_template
 from django.db.models import Q
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 @login_required
 def dashboard(request):
@@ -95,9 +96,19 @@ def products(request):
     query = request.GET.get('q')
 
     if query:
-        products = Product.objects.filter(company=issuer).filter(Q(name__icontains = query))
+        paginator = Paginator(Product.objects.filter(company=issuer).filter(Q(name__icontains = query)), 10)
     else:
-        products = Product.objects.filter(company=issuer)
+        paginator = Paginator(Product.objects.filter(company=issuer), 10)
+
+    page = request.GET.get('page', 1)
+
+    try:
+        products = paginator.page(page)
+    except PageNotAnInteger:
+        products = paginator.page(1)
+    except EmptyPage:
+        products = paginator.page(paginator.num_pages)
+
 
     context['products'] = products
 

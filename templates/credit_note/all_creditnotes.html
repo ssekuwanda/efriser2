@@ -2,7 +2,6 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
-
 {% block css %}
 <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet">
 {% endblock %}
@@ -59,14 +58,15 @@
                         {{ cred.approval }}
                     </span>
                     {% else %}
+                    <span class="badge rounded-pill bg-info">
                         {{ cred.approval }}
+                    </span>
                     {% endif %}
                 </td>
                 <td>{{ cred.reason }}</td>
                 <td>
                 {% if cred.status %}
                 <a class="btn btn-outline-success btn-sm" href="{% url 'creditnote_pdf' cred.fdn %}" role="button">
-                <!-- <span data-feather="download" style="color: green; width: 20px; height: 20px;"></span> -->
                     PDF
                 </a>
                 {% endif %}
