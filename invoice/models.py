@@ -155,10 +155,10 @@ class Invoice(models.Model):
     # Basic Fields
     number = models.IntegerField()
     finalized = models.BooleanField(default=False)
-    remarks = models.TextField(max_length=1000,null=True, blank=True) 
-    currency = models.CharField("CURRENCY",choices= CURRENCY,null=True, blank=True, max_length=100)
-    tax = models.CharField(null=True, blank=True, max_length=100)
-    payment_method = models.CharField(null=True, blank=True, choices=payWay, max_length=100)
+    remarks = models.TextField(max_length=1000, null=True, blank=False) 
+    currency = models.CharField("CURRENCY",choices= CURRENCY, null=True, blank=False, max_length=100)
+    tax = models.CharField(null=True, blank=False, max_length=100)
+    payment_method = models.CharField(null=True, blank=False, choices=payWay, max_length=100)
 
     # EFRIS fields
     fdn = models.CharField(null=True, blank=True, max_length=100)
@@ -318,8 +318,8 @@ class Product(models.Model):
 class ProductMeta(models.Model):
     company = models.ForeignKey(Company, null=True, blank=True, on_delete=models.SET_NULL)
     product = models.ForeignKey(Product, related_name="prod_meta", on_delete=models.CASCADE)
-    stock = models.PositiveIntegerField()
-    price = models.PositiveIntegerField()
+    stock = models.PositiveIntegerField(null=True, blank=False)
+    price = models.PositiveIntegerField(null=True, blank=False)
     date_created = models.DateTimeField(blank=True, null=True)
     last_updated = models.DateTimeField(blank=True, null=True)
 
@@ -339,12 +339,12 @@ class InvoiceProducts(models.Model):
     # Basic fields
     invoice = models.ForeignKey(
         Invoice, null=True, blank=True, on_delete=models.SET_NULL, related_name='inv_prod')
-    product = models.ForeignKey(Product, null=False, blank=False, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
     notes = models.TextField(null=True, blank=True)
     quantity = models.FloatField(null=False, default=1, blank=True)
     vat = models.CharField('VAT', choices=VAT_CHOICES, max_length=100, null=True, blank=False)
     price = models.FloatField("Unit Price", null=False, blank=False)
-    tax_type = models.ForeignKey(Tax_Type, blank=False, on_delete=models.CASCADE)
+    tax_type = models.ForeignKey(Tax_Type, blank=True, on_delete=models.CASCADE)
 
     #Utility fields
     uniqueId = models.CharField(null=True, blank=True, max_length=100)

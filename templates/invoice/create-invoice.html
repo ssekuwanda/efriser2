@@ -44,8 +44,8 @@
               <a class="btn btn-success btn-sm" href="{% url 'invoices_doc' invoice.slug %}" role="button">PDF</a>
               {% else %}
               <button class="btn btn-primary btn-sm" href="#addProductModal" type="button" data-bs-toggle="modal"> ADD PRODUCT </button>
-              <a class="btn btn-primary btn-sm" href="{% url 'invoices_doc' invoice.slug %}" role="button">INVOICE</a>
-              <a class="btn btn-primary btn-sm" href="#" role="button">PREVIEW</a>
+              <!-- <a class="btn btn-primary btn-sm" href="{% url 'invoices_doc' invoice.slug %}" role="button">INVOICE</a>
+              <a class="btn btn-primary btn-sm" href="#" role="button">PREVIEW</a> -->
               {% endif %}
               <hr>
               {% if invoice.finalized %}
