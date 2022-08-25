@@ -106,7 +106,7 @@ class Client(models.Model):
     #Basic Fields.
     company = models.ForeignKey(Company, null=True, blank=True, on_delete=models.SET_NULL)
     name = models.CharField(max_length=100, null=False, blank=False)
-    business_name = models.CharField(max_length=100, null=True, blank=True)
+    business_name = models.CharField(max_length=100, null=True, blank=False)
     address = models.CharField(max_length=10000, null=True, blank=False)
     email_address = models.EmailField( null=False, blank=False)
     company_type = models.CharField(max_length=100, choices=BUYER_TYPE, blank=False, null=True)
@@ -277,15 +277,15 @@ class Product(models.Model):
     company = models.ForeignKey(
         Company, null=True, blank=True, on_delete=models.SET_NULL)
     name = models.CharField(null=False, blank=False, max_length=100)
-    code = models.CharField(null=False, blank=False, max_length=4)
+    code = models.CharField(null=False, blank=False, max_length=4, help_text="The code should be unique to all produucts")
     unit_measure = models.ForeignKey(
         Unit_Measurement, on_delete=models.SET_NULL, null=True, blank=False)
-    unit_price = models.FloatField('Fees',null=False, blank=True, default=1)
+    unit_price = models.FloatField('Unit Price',null=False, blank=False, default=1)
     currency = models.CharField(choices=CURRENCY, max_length=3)
     tax_rate = models.CharField(choices=VAT_CHOICES, null=False, blank=False, max_length=3, default='18%')
-    commodity_id = models.CharField(null=False, blank=False, max_length=18)
+    commodity_id = models.CharField(null=False, blank=False, max_length=18, help_text="An 18 digit code from URA coding system")
     has_excise_duty = models.CharField(
-        choices=YES_OR_NO, max_length=3, null=True, blank=True)
+        choices=YES_OR_NO, max_length=3, null=True, blank=False)
     description = models.CharField(null=False, blank=False, max_length=1024)
     stock_warning = models.CharField(null=False, blank=False, max_length=24)
 

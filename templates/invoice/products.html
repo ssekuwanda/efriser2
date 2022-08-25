@@ -45,27 +45,27 @@
         </tr>
       </thead>
       <tbody>
-        {% for product in products %}
-      <tr>
-        <td>{{ forloop.counter }}.</td>
-        <td>{{product.name}}</td>
-        <td>{{product.code}}</td>
-        <td>{{product.description}}</td>
-        <td>{{product.unit_measure}}</td>
-        <td>{{product.commodity_id}}</td>
-        <td>{{product.stock_warning|intcomma }}</td>
-        <!-- <td>18%</td>
-        <td>None</td> -->
-        <td>{{product.unit_price|intcomma}}</td>
-        <td>{{product.currency}}</td>
-        <td>
-          <a class="btn btn-sm btn-outline-info" href="{% url 'prod_update' product.slug %}" role="button">ADJUST</a>
-        </td>
+      {% for product in products %}
+        <tr>
+          <td>{{ forloop.counter }}.</td>
+          <td>{{product.name}}</td>
+          <td>{{product.code}}</td>
+          <td>{{product.description}}</td>
+          <td>{{product.unit_measure}}</td>
+          <td>{{product.commodity_id}}</td>
+          <td>{{product.stock_warning|intcomma }}</td>
+          <!-- <td>18%</td>
+          <td>None</td> -->
+          <td>{{product.unit_price|intcomma}}</td>
+          <td>{{product.currency}}</td>
+          <td>
+            <a class="btn btn-sm btn-outline-info" href="{% url 'prod_update' product.slug %}" role="button">ADJUST</a>
+          </td>
           <td>
             <a class="btn btn-sm btn-outline-primary" href="{% url 'goods_inquiry' product.slug %}" role="button">INQUIRE</a>
           </td>
-      </tr>
-        {% endfor %}
+        </tr>
+      {% endfor %}
       </tbody>
     </table>
     {% if products.has_other_pages %}

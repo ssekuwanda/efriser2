@@ -109,7 +109,6 @@ def products(request):
     except EmptyPage:
         products = paginator.page(paginator.num_pages)
 
-
     context['products'] = products
 
     if request.method == 'GET':
@@ -228,6 +227,7 @@ def clients(request):
         if form.is_valid():
             form_tin = form.cleaned_data['tin']
             form = form.save(commit=False)
+            response = None
             if form.tin:
                 response = getClientDetails(request, form_tin)
             if response:
