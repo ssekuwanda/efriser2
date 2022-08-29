@@ -16,6 +16,7 @@ from django.http import HttpResponse
 from django.template.loader import get_template
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.forms import modelformset_factory, inlineformset_factory, BaseModelFormSet
 
 @login_required
 def dashboard(request):
@@ -24,6 +25,7 @@ def dashboard(request):
         clients = Client.objects.filter(company=request.user.company1).count()
         invoices = Invoice.objects.filter(company=request.user.company1).count()
         credits = CreditNote.objects.filter(company=request.user.company1).count()
+        banks = BankDetails.objects.filter(company=request.user.company1)
 
         invoice2 = Invoice.objects.filter(company=request.user.company1,json_response="")
         for inv in invoice2:
@@ -33,6 +35,8 @@ def dashboard(request):
         context['clients'] = clients
         context['invoices'] = invoices
         context['credits'] = credits
+        
+        context['banks'] = banks
 
     if request.method == 'GET':
         form = CompanyForm()
@@ -55,10 +59,24 @@ def dashboard(request):
 
 @login_required
 def invoices(request):
+    query = request.GET.get('q')
     context = {}
-
     company = request.user.company1
-    invoices = Invoice.objects.filter(company=company)
+
+    if query:
+        paginator = Paginator(Invoice.objects.filter(company=company).filter(Q(client__name__icontains = query)), 15)
+    else:
+        paginator = Paginator(Invoice.objects.filter(company=company), 15)
+
+    page = request.GET.get('page', 1)
+
+    try:
+        invoices = paginator.page(page)
+    except PageNotAnInteger:
+        invoices = paginator.page(1)
+    except EmptyPage:
+        invoices = paginator.page(paginator.num_pages)
+
     invoice2 = Invoice.objects.filter(company=company, json_response="")
     for inv in invoice2:
         inv.delete()
@@ -68,7 +86,6 @@ def invoices(request):
     for inv in invoices:
         if inv.json_response:
             context['cleaned_inv'].append(inv_cleaner(inv.json_response, inv.slug))
-            # context['cleaned_inv'].append({'slug':inv.slug})
     context['client'] = "client"
     return render(request, 'invoice/all_invoices.html', context)
 
@@ -96,9 +113,9 @@ def products(request):
     query = request.GET.get('q')
 
     if query:
-        paginator = Paginator(Product.objects.filter(company=issuer).filter(Q(name__icontains = query)), 10)
+        paginator = Paginator(Product.objects.filter(company=issuer).filter(Q(name__icontains = query)), 15)
     else:
-        paginator = Paginator(Product.objects.filter(company=issuer), 10)
+        paginator = Paginator(Product.objects.filter(company=issuer), 15)
 
     page = request.GET.get('page', 1)
 
@@ -188,10 +205,61 @@ def productsMaintance(request, slug):
     context = {'form': form,'product':prod}
     return render(request, 'product/product_update.html', context)   
 
+def import_pdts(request):
+    productSet = modelformset_factory(Product, form=ProductsFormSet, extra=10)
+    company = request.user.company1
+    comp_products = Product.objects.filter(company=company)[0:0]
+    formset = productSet(queryset=Product.objects.filter(company=company))
+    
+    if request.method == "POST":
+        formset = productSet(request.POST, queryset=comp_products)
+        if formset.is_valid():
+            codes = []
+            for f in formset:
+                cd = f.cleaned_data
+                code = cd.get('code')
+                if code != None:
+                    codes.append(code)
+            for c in codes:
+                if not Product.objects.filter(company=company, code=c):
+                    req = goods_inquiry_req(str(c))
+                    result = json.loads(goodsInquire(request, req))
+                    for x in result['records']:
+                        if x['haveExciseTax']=='102':
+                            excise = "No"
+                        else:
+                            excise = "Yes"
+                        if x['measureUnit']:
+                            for measure in Unit_Measurement.objects.filter(code=x['measureUnit']):
+                                u_measure = measure
+                        
+                        comp = Company.objects.get(owner=request.user)
+                        
+
+                        prod_save = Product.objects.create(
+                                                name=x['commodityCategoryName'],
+                                                code=x['goodsCode'],
+                                                company=comp, 
+                                                unit_measure=u_measure,
+                                                unit_price=float(x['unitPrice']),
+                                                currency="USD" if x['currency'] =="101" else "UGX",
+                                                tax_rate=x['taxRate'],
+                                                commodity_id=x['commodityCategoryCode'],
+                                                has_excise_duty=excise,
+                                                description=x['remarks'],
+                                                stock_warning = x['stock'],
+                                                )
+                        prod_save.save()                   
+                messages.success(request,"Products imported successfully from EFRIS")
+            return redirect('products')
+    else:
+        formset = productSet(queryset=comp_products)
+    return render(request, 'product/product_import.html',{'formset':formset})
+
 @login_required
 def goods_inquiry(request, slug):
     prod = get_object_or_404(Product, slug=slug)
-    req = goods_inquiry_req(prod)
+    req = goods_inquiry_req(prod.code)
     result = json.loads(goodsInquire(request, req))
     return render(request, 'product/product_inquiry.html', result) 
 
@@ -210,9 +278,17 @@ def clients(request):
     query = request.GET.get('q')
 
     if query:
-        clients = Client.objects.filter(company=owned).filter(Q(name__icontains=query))
+        paginator = Paginator(Client.objects.filter(company=owned).filter(Q(name__icontains=query)), 15)
     else:
-        clients = Client.objects.filter(company=owned)
+        paginator = Paginator(Client.objects.filter(company=owned), 15)
+    page = request.GET.get('page', 1)
+
+    try:
+        clients = paginator.page(page)
+    except PageNotAnInteger:
+        clients = paginator.page(1)
+    except EmptyPage:
+        clients = paginator.page(paginator.num_pages)
 
     context['clients'] = clients
 
@@ -467,8 +543,23 @@ def createCreditNote(request, slug):
 
 @login_required
 def creditNoteHome(request):
+    query = request.GET.get('q')
     company = request.user.company1
-    credits = CreditNote.objects.filter(company=company)#.order_by('-status')
+
+    if query:
+        paginator = Paginator(CreditNote.objects.filter(company=company).filter(Q(invoice__client__name__icontains = query)), 15)
+    else:
+        paginator = Paginator(CreditNote.objects.filter(company=company), 15)
+
+    page = request.GET.get('page', 1)
+
+    try:
+        credits = paginator.page(page)
+    except PageNotAnInteger:
+        credits = paginator.page(1)
+    except EmptyPage:
+        credits = paginator.page(paginator.num_pages)
+
     context = {'credits':credits}
     return render(request, 'credit_note/all_creditnotes.html', context)
 

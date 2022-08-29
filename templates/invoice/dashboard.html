@@ -5,7 +5,7 @@
 {% block main %}
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     {% if request.user.company1 %}
-    <h1 class="h2">{{request.user.company1.name|upper }}</h1>
+    <h1 class="h2" style="text-align: center;">{{request.user.company1.name|upper }}</h1>
     {% else %}
     <div class="btn-toolbar mb-2 mb-md-0">
       <div class="btn-group me-2">
@@ -18,22 +18,107 @@
   </div>  
   {% if request.user.company1 %}
   <div class="row">
-    <div class="col-lg-4 col-sm-1 col-md-1">
-      <div class="card" style="width: 20rem;">
+    <div class="col-lg-4 col-sm-12 col-md-6">
+      <div class="card border-0" style="width: 20rem;">
         <img src="{{ request.user.company1.companyLogo.url }}" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">COMPANY DASHBOARD</h5>
+        <br>
+        <div class="list-group">
+          <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">COMPANY DETAILS</h5>
+              <small></small>
+            </div>
+            <small>E-Invoicing details</small>
+          </a>
+            <a href="#" class="list-group-item list-group-item-action">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1"><span></span></h5>
               </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Number Of Cleints: {{clients}}
-          </li>
-          <li class="list-group-item">Number Of Invoices: {{ invoices }}</li>
-          <li class="list-group-item">Number Of Credit Notes: {{ credits }}</li>
-        </ul>
+              <p class="mb-1">LOGGED IN AS: <span>{{ request.user }}</span> </p>
+              <p class="mb-1">SHORT NAME: <span>{{ request.user.company1.short_name }}</span></p>
+              <p class="mb-1">EMAIL: <span>{{ request.user.company1.email }}</span></p>
+              <p class="mb-1">TELEPHONE: <span>{{ request.user.company1.telephone_number }}</span></p>
+              <p class="mb-1">LOCATION: <span>{{ request.user.company1.location }}</span></p>
+              <p class="mb-1">WEBSITE: <span>{{ request.user.company1.website }}</span></p>
+              <p class="mb-1">TIN: <span>{{ request.user.company1.tin }}</span></p>
+            </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-sm-12 col-md-6">
+      <div class="list-group">
+        <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">BANKING DETAILS</h5>
+            <small></small>
+          </div>
+          <small>Banking Details to be included on the invoices.</small>
+        </a>
+        {% if banks %}
+          {% for bank in banks %}
+            <a href="#" class="list-group-item list-group-item-action">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1"><span>{{ forloop.counter }}. {{ bank|upper }}-{{ bank.currency }}</span></h5>
+              </div>
+              <p class="mb-1">A/C NAME: <span>{{ bank.account_name }}</span> </p>
+              <p class="mb-1">A/C NUMBER: <span>{{ bank.account_number }}</span></p>
+              <p class="mb-1">NUMBER: <span>{{ bank.account_number }}</span></p>
+              <p class="mb-1">BRANCH: <span>{{ bank.branch }}</span></p>
+              <p class="mb-1">SWIFT ADDRESS: <span>{{ bank.swift_address }}</span></p>
+              <p class="mb-1">SWIFT CODE: <span>{{ bank.swift_code }}</span></p>
+              <p class="mb-1">NUMBER: <span>{{ bank.account_number }}</span></p>
+              <p class="mb-1">CURRENCY: <span>{{ bank.currency }}</span></p>
+            </a>
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+    <div class="col-lg-4 col-sm-12 col-md-6">
+      <div class="list-group">
+        <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">COMPANY STATISTICS</h5>
+          </div>
+        </a>
+        <a href="#" class="list-group-item list-group-item-action">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1 d-flex justify-content-between align-items-center">
+              <div class="row">
+                <div class="col-10"> CLIENTS:</div>
+                <div class="col-2">
+                  <span class="badge bg-primary rounded-pill">{{clients}}</span>
+                </div>
+              </div>
+            </h5>
+          </div>
+        </a>
+        <a href="#" class="list-group-item list-group-item-action">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1 d-flex justify-content-between align-items-center">
+              <div class="row">
+                <div class="col-10"> INVOICES:</div>
+                <div class="col-2">
+                  <span class="badge bg-primary rounded-pill">{{invoices}}</span>
+                </div>
+              </div>
+            </h5>
+          </div>
+        </a>         
+        <a href="#" class="list-group-item list-group-item-action">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1 d-flex justify-content-between align-items-center">
+              <div class="row">
+                <div class="col-10"> CREDIT NOTES:</div>
+                <div class="col-2">
+                  <span class="badge bg-primary rounded-pill">{{credits}}</span>
+                </div>
+              </div>
+            </h5>
+          </div>
+        </a>
       </div>
     </div>
   </div>
-
   {% endif %}
 
   <!-- MODALS MODALS -->

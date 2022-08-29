@@ -102,3 +102,8 @@ class BarCodeForm(forms.ModelForm):
     class Meta:
         model = BarCode
         fields = ['name']
+
+class ProductsFormSet(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ['code',]

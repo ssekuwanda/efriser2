@@ -1,0 +1,36 @@
+{% extends 'partials/base.html' %}
+{% load humanize %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block main %}
+<div class="header bg-gradient-primary pb-2 pt-2 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Card stats -->
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt--7">
+  <div class="row mt-5">
+    <div class="col-xl-11 mb-12 mb-xl-0">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <div class="row align-items-center">
+            <div class="col">
+              <h3 class="mb-0 text-center">IMPORT GOODS/SERVICES FROM EFRIS</h3>
+            </div>
+          </div>
+        </div>
+        <div class="table-responsive text-sm">
+          <form method="post" enctype="multipart/form-data" class="m-4" autocomplete="off">
+            {% csrf_token %}
+            {{ formset|crispy }}
+            <button type="submit" class="btn btn-primary btn-block">IMPORT FROM EFRIS</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

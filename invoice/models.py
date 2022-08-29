@@ -13,6 +13,7 @@ import barcode
 from barcode.writer import ImageWriter
 from io import BytesIO
 from django.core.files import File
+from django.contrib.auth import get_user_model
 
 randoms = randint(120,1000)
 VAT_CHOICES = [
@@ -312,6 +313,7 @@ class Product(models.Model):
             self.slug = slugify('{} {}'.format(self.name, self.uniqueId))
         self.slug = slugify('{} {}'.format(self.name, self.uniqueId))
         self.last_updated = timezone.localtime(timezone.now())
+        # self.company = self.request.user.company1
         self.unit_price = round(self.unit_price, 2)
         super(Product, self).save(*args, **kwargs)
 

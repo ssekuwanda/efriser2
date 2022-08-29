@@ -21,7 +21,9 @@ path('inv_details/', views.inv_details, name='inv_details'),
 path('prod_delete/<slug:slug>',views.prod_delete, name='prod_delete'),
 path('prod_update/<slug:slug>',views.productsMaintance, name='prod_update'),
 path('prod-inquire/<slug:slug>',views.goods_inquiry, name='goods_inquiry'),
-path('dictionary>',views.dictonary, name='dictonary'),
+path('dictionary',views.dictonary, name='dictonary'),
+path('product/import',views.import_pdts, name='import_pdts'),
+
 
 # --------------Credit notes---------
 path('credit_notes', views.creditNoteHome, name='creditnotes'),

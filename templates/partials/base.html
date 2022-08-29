@@ -38,6 +38,11 @@
           font-size: 3.5rem;
         }
       }
+      .nav-link:active,
+      .nav-link:focus,
+      .nav-link:hover {
+        background-color: #ffffff3f;
+      }
     </style>
   </head>
   <body>
@@ -54,15 +59,17 @@
 <div class="container-fluid">
   <div class="row">
     <nav id="sidebarMenu" class="col-md-3 col-sm-3 col-lg-2 d-md-block bg-primary sidebar collapse">
-      <!-- {% if request.user.company1.companyLogo %}
-        <img src="{{ request.user.company1.companyLogo.url }}" style="margin-left: 30px; width: 100px; height: 90px;" class="card-img-top" alt="...">
-      {% endif %} -->
+      {% if request.user.company1 %}
+      <h2 class="sidebar-heading d-flex  px-1 mb-1 text-muted">
+        <span style="color: white; font-size: 18px; text-align: center; font-weight: bold;">{{ request.user.company1.name }}</span>
+      </h2>
+      {% endif %}
       <div class="position-sticky pt-3">
         <ul class="nav flex-column">
-          <li class="nav-item">
+          <li class="nav-item ">
             <a class="nav-link form-control-md text-white" href="{% url 'dashboard' %}">
-              <span data-feather="pie-chart" style="color: white; width: 20px; height: 20px;"></span>
-              DASHBOARD
+              <span data-feather="home" style="color: white; width: 20px; height: 20px;"></span>
+              HOME
             </a>
           </li>
           {% if request.user.company1 %}
@@ -101,16 +108,16 @@
           <span style="color: white;">Settings</span>
         </h6>
         <ul class="nav flex-column mb-2">
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link form-control-md text-white" href="#">
               <span data-feather="settings" style="color: white; width: 20px; height: 20px;"></span>
               COMPANY
             </a>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a class="nav-link form-control-md text-white" href="#">
               <span data-feather="sliders"  style="color: white; width: 20px; height: 20px;"></span>
-              SYSTEM
+              SYSTEM SETUP
             </a>
           </li>
           <li class="nav-item">
@@ -120,8 +127,11 @@
             </a>
           </li>
         </ul>
+
       </div>
+      
     </nav>
+    
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       {% for message in messages %}
       <div class="alert {{ message.tags }} mb-4 pt-3" role="alert">

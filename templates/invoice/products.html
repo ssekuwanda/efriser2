@@ -19,8 +19,13 @@
       <div class="btn-group me-2">
         <button href="#addProductModal" type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal">
           <span data-feather="plus" style="color: white; width: 20px; height: 20px;"></span>
-          Add A Product
+          ADD
         </button>
+        <a href='{% url "import_pdts" %}' class="btn btn-sm btn-dark">
+          <span data-feather="corner-left-down" style="color: white; width: 20px; height: 20px;"></span>
+          IMPORT
+        </a>
+        
       </div>
     </div>
   </div>

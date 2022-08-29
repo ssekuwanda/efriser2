@@ -1,6 +1,6 @@
 def goods_inquiry_req(prod):
     msg = {
-    "goodsCode": prod.code,
+    "goodsCode": prod,
     "goodsName ": "",
     "commodityCategoryName": "",
     "pageNo": "1",
