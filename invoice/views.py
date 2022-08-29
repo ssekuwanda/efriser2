@@ -495,9 +495,25 @@ def createBuildInvoice(request, slug):
 
 @login_required
 def client_home(request, slug):
+    query = request.GET.get('q')
     client = Client.objects.get(slug=slug)
-    invoices = Invoice.objects.filter(client=client) 
     context ={}
+
+    if query:
+        paginator = Paginator(Invoice.objects.filter(client=client).filter(Q(number__icontains = query)), 15)
+    else:
+        paginator = Paginator(Invoice.objects.filter(client=client), 15)
+
+    page = request.GET.get('page', 1)
+
+    try:
+        invoices = paginator.page(page)
+    except PageNotAnInteger:
+        invoices = paginator.page(1)
+    except EmptyPage:
+        invoices = paginator.page(paginator.num_pages)
+
+    
     context['client'] = client
     context['invoices'] = invoices
     return render(request, 'invoice/client-home.html', context)
