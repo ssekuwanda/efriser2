@@ -125,7 +125,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 # STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')]
 
-CSS_LOCATION = os.path.join(BASE_DIR,'static')
+# CSS_LOCATION = os.path.join(BASE_DIR,'static')
 
 #Dynamic files and documents
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
@@ -145,7 +145,7 @@ EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
 DEFAULT_FROM_EMAIL = ''
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 GOOGLE_RECAPTCHA_ENABLED = False
 GOOGLE_RECAPTCHA_SITE_KEY = ""
