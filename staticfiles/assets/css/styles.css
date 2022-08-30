@@ -1,0 +1,16 @@
+#watermark {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 999;
+}
+
+body {
+    background: url(../img/back.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: Lora;
+    height: 100%;
+    background-size: cover;
+  }
+  
