@@ -31,11 +31,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
-
     'crispy_forms',
     'widget_tweaks',
     'mathfilters',
     'invoice',
+
     'qr_code',
     'django_bootstrap_icons',
     'markdownify',
@@ -79,6 +79,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'invoicing.wsgi.application'
 
+# Postgres setup in production environment
 if ONLINE:
     DATABASES = {
         'default': dj_database_url.config(
@@ -147,7 +148,6 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 GOOGLE_RECAPTCHA_ENABLED = config("GOOGLE_RECAPTCHA_ENABLED", default=False)
 GOOGLE_RECAPTCHA_SITE_KEY = config("GOOGLE_RECAPTCHA_SITE_KEY", default="")
 GOOGLE_RECAPTCHA_SECRET_KEY = config("GOOGLE_RECAPTCHA_SECRET_KEY", default="")
-
 
 MARKDOWNIFY = {
     "default": {
