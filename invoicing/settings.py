@@ -14,9 +14,7 @@ MESSAGE_TAGS = {
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECRET_KEY = config('SECRET_KEY')
-SECRET_KEY = "dhshdhsreioairkaidskfmdjrfidfdmfkdkfk"
-
+SECRET_KEY = "django-insecure-_zd*50mf%f%fa8k20%99%fg)#lz!ifi#66^tz#q-yd78odt8@v"
 
 DEBUG = True
 
@@ -33,11 +31,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+
     'crispy_forms',
     'widget_tweaks',
     'mathfilters',
     'invoice',
-
     'qr_code',
     'django_bootstrap_icons',
     'markdownify',
@@ -81,7 +79,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'invoicing.wsgi.application'
 
-# Postgres setup in production environment
 if ONLINE:
     DATABASES = {
         'default': dj_database_url.config(
@@ -122,10 +119,10 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
-# STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')]
+STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 
-# CSS_LOCATION = os.path.join(BASE_DIR,'static')
+CSS_LOCATION = os.path.join(BASE_DIR,'static')
 
 #Dynamic files and documents
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
@@ -145,11 +142,12 @@ EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
 DEFAULT_FROM_EMAIL = ''
 
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 GOOGLE_RECAPTCHA_ENABLED = False
 GOOGLE_RECAPTCHA_SITE_KEY = ""
 GOOGLE_RECAPTCHA_SECRET_KEY = ""
+
 
 MARKDOWNIFY = {
     "default": {
