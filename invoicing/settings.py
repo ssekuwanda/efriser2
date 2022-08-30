@@ -14,7 +14,9 @@ MESSAGE_TAGS = {
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = config('SECRET_KEY')
+# SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = "dhshdhsreioairkaidskfmdjrfidfdmfkdkfk"
+
 
 DEBUG = True
 
@@ -145,9 +147,9 @@ DEFAULT_FROM_EMAIL = ''
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-GOOGLE_RECAPTCHA_ENABLED = config("GOOGLE_RECAPTCHA_ENABLED", default=False)
-GOOGLE_RECAPTCHA_SITE_KEY = config("GOOGLE_RECAPTCHA_SITE_KEY", default="")
-GOOGLE_RECAPTCHA_SECRET_KEY = config("GOOGLE_RECAPTCHA_SECRET_KEY", default="")
+GOOGLE_RECAPTCHA_ENABLED = False
+GOOGLE_RECAPTCHA_SITE_KEY = ""
+GOOGLE_RECAPTCHA_SECRET_KEY = ""
 
 MARKDOWNIFY = {
     "default": {
