@@ -14,3 +14,8 @@ git pull
 
 chris@server# ssh-keygen -t rsa -b 4096 -C "joe@example.com"
 chris@server# cat .ssh/id_rsa.pub
+
+sudo systemctl restart gunicorn
+sudo systemctl daemon-reload
+sudo systemctl restart gunicorn.socket gunicorn.service
+sudo nginx -t && sudo systemctl restart nginx

@@ -352,7 +352,9 @@
     </style>
     <div class="container-1">
         <div class="box-1" style="float: right; padding-top: 10px;">
-            <img src="{{ company.companyLogo.url }}" style="height: 57px; width: 144px;" alt="" />
+            {% if company.companyLogo %}
+            <img src="{{ company.companyLogo.url }}" style="object-fit: cover; background-size: cover; background-repeat: no-repeat;background-position: 50% 50%;"  alt="" />
+            {% endif %}        
         </div>
         <div class="box-2">
             <p>Tel: {{company.telephone_number}}</p>
@@ -445,7 +447,7 @@
         </div>
     </div>
 </body>
-    <footer style="text-align: center; display: table; margin-left:auto; margin-right: auto;">
-        Please make all payments for this invoice using the account details listed therein on this invoice. Thanks!
+    <footer style="text-align: center; width: 100%; font-size: 12px;">
+            Please make all payments for this invoice using the account details listed therein on this invoice. Thanks!
     </footer>
 </html>

@@ -21,11 +21,19 @@
 <body>
     <style>
         @font-face {
-            font-family: "Trebuchet MS";
+            font-family: "Trebuchet";
             font-style: normal;
             font-weight: normal;
             src: local("Trebuchet MS"),
             url("{% static 'assets/fonts/Trebuchet MS.ttf' %}");
+        }
+
+        @font-face {
+            font-family: "playfair";
+            font-style: normal;
+            font-weight: normal;
+            src: local("Trebuchet MS"),
+            url("{% static 'assets/fonts/playfair.ttf' %}");
         }
 
         @font-face {
@@ -47,7 +55,7 @@
             height: 100%;
             margin: 0;
             line-height: 1.5em;
-            font-family: Trebuchet MS;
+            font-family: Trebuchet;
         }
 
         footer {
@@ -351,12 +359,14 @@
         }
     </style>
     <div class="container-1">
-        <div class="box-1" style="float: right; padding-top: 10px;">
-            <img src="{{ company.companyLogo.url }}" style="height: 57px; width: 144px;" alt="" />
+        <div class="box-1" >
+                {% if company.companyLogo %}
+                <img src="{{ company.companyLogo.url }}" style="object-fit: cover; background-size: cover; background-repeat: no-repeat;background-position: 50% 50%;"  alt="" />
+                {% endif %}        
         </div>
         <div class="box-2">
             <p>Tel: {{company.telephone_number}}</p>
-            <p>Email: {{company.email}}</p>
+            <p>Emddail: {{company.email}}</p>
             {% if company.website %}<p>{{company.website}}</p>{% endif %}
             <p>TIN: {{ company.tin }}</p>
         </div>
@@ -445,7 +455,7 @@
         </div>
     </div>
 </body>
-    <footer style="text-align: center; display: table; margin-left:auto; margin-right: auto;">
+    <footer style="text-align: center; width: 100%; font-size: 12px;">
         Please make all payments for this invoice using the account details listed therein on this invoice. Thanks!
     </footer>
 </html>

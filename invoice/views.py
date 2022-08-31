@@ -237,7 +237,7 @@ def import_pdts(request):
                         
 
                         prod_save = Product.objects.create(
-                                                name=x['commodityCategoryName'],
+                                                name=x['goodsName'],
                                                 code=x['goodsCode'],
                                                 company=comp, 
                                                 unit_measure=u_measure,
@@ -498,7 +498,6 @@ def client_home(request, slug):
     query = request.GET.get('q')
     client = Client.objects.get(slug=slug)
     context ={}
-
     if query:
         paginator = Paginator(Invoice.objects.filter(client=client).filter(Q(number__icontains = query)), 15)
     else:
@@ -512,7 +511,6 @@ def client_home(request, slug):
         invoices = paginator.page(1)
     except EmptyPage:
         invoices = paginator.page(paginator.num_pages)
-
     
     context['client'] = client
     context['invoices'] = invoices
