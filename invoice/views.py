@@ -231,6 +231,8 @@ def import_pdts(request):
                         if x['measureUnit']:
                             for measure in Unit_Measurement.objects.filter(code=x['measureUnit']):
                                 u_measure = measure
+                        else:
+                            u_measure = ""
                         
                         comp = Company.objects.get(owner=request.user)
                         
