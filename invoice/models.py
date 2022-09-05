@@ -106,10 +106,10 @@ class CompanyLocation(models.Model):
 class Client(models.Model):
     #Basic Fields.
     company = models.ForeignKey(Company, null=True, blank=True, on_delete=models.SET_NULL)
-    name = models.CharField(max_length=100, null=False, blank=False)
+    name = models.CharField(max_length=100, null=True, blank=False)
     business_name = models.CharField(max_length=100, null=True, blank=False)
     address = models.CharField(max_length=10000, null=True, blank=False)
-    email_address = models.EmailField( null=False, blank=False)
+    email_address = models.EmailField( null=True, blank=False)
     company_type = models.CharField(max_length=100, choices=BUYER_TYPE, blank=False, null=True)
     contact_number = models.CharField(max_length=100, null=True, blank=False)
     tin = models.CharField(max_length=10, null=True, blank=True, help_text="leave blank if export")
@@ -278,7 +278,7 @@ class Product(models.Model):
     company = models.ForeignKey(
         Company, null=True, blank=True, on_delete=models.SET_NULL)
     name = models.CharField(null=False, blank=False, max_length=100)
-    code = models.CharField(null=False, blank=False, max_length=4, help_text="The code should be unique to all produucts")
+    code = models.CharField(null=False, blank=False, max_length=40, help_text="The code should be unique to all produucts")
     unit_measure = models.ForeignKey(
         Unit_Measurement, on_delete=models.SET_NULL, null=True, blank=False)
     unit_price = models.FloatField('Unit Price',null=False, blank=False, default=1)

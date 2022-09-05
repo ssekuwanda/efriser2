@@ -52,6 +52,15 @@ class InvoiceProductForm(forms.ModelForm):
         super(InvoiceProductForm, self).__init__(*args, **kwargs)
         self.fields['product'].queryset = Product.objects.filter(id__in=ps)
 
+class IndInvProductForm(forms.ModelForm):
+    class Meta:
+        model = InvoiceProducts
+        fields = ['product', 'tax_type', 'price']
+
+    def __init__(self, ps, *args, **kwargs):
+        super(InvoiceProductForm, self).__init__(*args, **kwargs)
+        self.fields['product'].queryset = Product.objects.filter(id__in=ps)
+
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
@@ -76,8 +85,8 @@ class SettingsForm(forms.ModelForm):
 
 class ClientSelectForm(forms.ModelForm):
     class Meta:
-        model = Invoice
-        fields = ['client']
+        model = Client
+        fields = ['name','tin']
 
 class CreditNoteForm(forms.ModelForm):
     class Meta:

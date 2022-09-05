@@ -17,6 +17,10 @@ path('invoice-pdf/<slug:slug>', views.pdfInvoice, name='invoices_doc'),
 path('inv_list/', views.inv_list, name='inv_list'),
 path('inv_details/', views.inv_details, name='inv_details'),
 
+# -----------Personal Invoice---------------
+path('invoices/create-indiviual',views.inv_creation, name='inv_ind'),
+path('invoices/create-indiviual/<slug:slug>',views.create_invoice, name='create_invoice'),
+
 # ---------------Product----------------
 path('prod_delete/<slug:slug>',views.prod_delete, name='prod_delete'),
 path('prod_update/<slug:slug>',views.productsMaintance, name='prod_update'),

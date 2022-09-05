@@ -13,10 +13,9 @@ from .utils.goods_dict import *
 from django.contrib.auth.models import auth
 from uuid import uuid4
 from django.http import HttpResponse
-from django.template.loader import get_template
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.forms import modelformset_factory, inlineformset_factory, BaseModelFormSet
+from django.forms import modelformset_factory
 
 @login_required
 def dashboard(request):
@@ -364,6 +363,152 @@ def createInvoice(request, slug):
     return redirect('create-build-invoice', slug=inv.slug)
 
 @login_required
+def inv_creation(request):
+    company = request.user.company1
+     
+    for inv in Invoice.objects.filter(company=company):
+        if inv.inv_prod.all == None:
+            inv.delete()
+
+    list_num = [0]
+    today = datetime.now()
+    for numb in Invoice.objects.filter(company=company, last_updated__year=today.year):
+        list_num.append(numb.number)
+
+    max_numb = max(list_num)
+    new_numb = int(max_numb)+1
+
+    newInvoice = Invoice.objects.create(number=new_numb, company=company)
+    newInvoice.save()
+    inv = Invoice.objects.get(slug=newInvoice.slug)
+    return redirect('create_invoice', slug=inv.slug)
+
+
+@login_required
+def create_invoice(request, slug):
+    ps = []
+    for product in Product.objects.filter(company=request.user.company1):
+        ps.append(product.id)
+    try:
+        invoice = Invoice.objects.get(slug=slug)
+    except:
+        messages.error(request, 'Something went wrong')
+        return redirect('invoices')
+    products = InvoiceProducts.objects.filter(invoice=invoice)
+
+    context = {}
+    goods_context = []
+    tax_context = []
+    net_amount = 0
+    tax_amount = 0
+    tax_amount_summary = 0
+    gross_amount = 0
+    order_number = 0
+
+    if invoice.json_response != "":
+        context.update(inv_context(invoice.json_response))
+    
+    for prod in products:
+        good = goods_details(prod, order_number, invoice)
+        tax = tax_details(prod, invoice)
+        order_number+=1
+        net_amount += prod.net_amount()
+        tax_amount += prod.tax()
+        gross_amount += prod.total()
+        goods_context.append(good)
+        tax_context.append(tax)
+
+        # check if the customer is VAT exempt if yes tax = 0 in the summary section
+        if prod.tax_type.code == "04":
+            tax_amount_summary = 0
+        else:
+            tax_amount_summary += prod.tax()
+    
+    context['invoice'] = invoice
+    context['products'] = products
+    context['net'] = net_amount
+    context['tax'] = tax_amount
+    context['tax_summary'] = tax_amount_summary
+    context['gross'] = gross_amount
+    context['operator'] = request.user.username
+   
+    context['buyerTin'] = ""
+    context['itemCount'] = order_number
+    context['payWay'] = invoice.payment_method,
+
+    # context['buyerLegalName'] = invoice.client.name,
+    # context['buyerEmail'] = invoice.client.email_address,
+
+    # context['buyerAddress'] = invoice.client.address
+    # if invoice.client.company_type == "2":
+    #     context['industryCode'] = "102",
+    # else:
+    context['industryCode'] = "101",
+    context['buyerType'] = "1"
+
+
+    goodsDetails = goods_context
+    taxDetails = tax_context
+
+    if request.method == 'GET':
+        prod_form = InvoiceProductForm(ps)
+        inv_form = InvoiceForm(instance=invoice)
+        context['prod_form'] = prod_form
+        context['inv_form'] = inv_form
+        return render(request, 'invoice/create-invoice.html', context)
+
+    if request.method == 'POST':
+        prod_form = InvoiceProductForm(ps,request.POST)
+        inv_form = InvoiceForm(request.POST, instance=invoice)
+        client_form = ClientSelectForm(request.POST)
+
+        if prod_form.is_valid():
+            obj = prod_form.save(commit=False)
+            obj.invoice = invoice
+            if obj.price == '':
+                obj.price = 1
+            obj.save()
+            messages.success(request, "Product added succesfully")
+            return redirect('create-build-invoice', slug=slug)
+        elif inv_form.is_valid and request.POST:
+            invoice_update = inv_form.save(commit=False)
+            
+            context['currency'] = inv_form['currency'].value()
+            context['remarks'] = inv_form['remarks'].value()
+            context['payment_method'] = inv_form['payment_method'].value()
+            payment_details = pay_way(context)
+            goods_summary = summary(context)
+
+            inv = uploadInvoice(request, context, goodsDetails, taxDetails, goods_summary, payment_details)  
+            invoice_update.json_response = inv["content"]
+
+            if inv["returnMessage"] == "SUCCESS":
+                invoice_update.finalized = True
+                invoice_update.save()
+                for prod in products:
+                    init_product = Product.objects.get(id=prod.product.id)
+                    prod_total = int(init_product.stock_warning)
+                    reduction = prod_total - int(prod.quantity)
+                    init_product.stock_warning = str(reduction)
+                    init_product.save()
+                messages.success(request, "Invoice Issued succesfully")
+            else:
+                messages.warning(request, inv["returnMessage"])
+            return redirect('create-build-invoice', slug=slug)
+
+        elif client_form.is_valid() and 'client' in request.POST:
+            client_form.save()
+            messages.success(request, "Client added to invoice succesfully")
+            return redirect('create-build-invoice', slug=slug)
+        else:
+            context['prod_form'] = prod_form
+            context['inv_form'] = inv_form
+            context['client_form'] = client_form
+            messages.error(request,"Problem processing your request")
+            return render(request, 'invoice/create-invoice.html', context)
+    return render(request, 'invoice/create-invoice.html', context)
+
+@login_required
 def createBuildInvoice(request, slug):
     ps = []
     for product in Product.objects.filter(company=request.user.company1):
@@ -445,7 +590,7 @@ def createBuildInvoice(request, slug):
     if request.method == 'POST':
         prod_form = InvoiceProductForm(ps,request.POST)
         inv_form = InvoiceForm(request.POST, instance=invoice)
-        client_form = ClientSelectForm(request.POST, instance=invoice)
+        client_form = ClientSelectForm(request.POST)
 
         if prod_form.is_valid():
             obj = prod_form.save(commit=False)
@@ -486,7 +631,7 @@ def createBuildInvoice(request, slug):
             messages.success(request, "Client added to invoice succesfully")
             return redirect('create-build-invoice', slug=slug)
         else:
-            context['prod_form'] = prod_form
+            context['prod_form'] = prod_form 
             context['inv_form'] = inv_form
             context['client_form'] = client_form
             messages.error(request,"Problem processing your request")
@@ -730,8 +875,7 @@ def cn_list(request):
                         cns.approval = "Rejected"
                     elif js['approveStatus'] == "104":
                         cns.approval = "Voided"
-                    cns.save()                    
-
+                    cns.save()                   
         for rec in json_dump['records']:
             context['details'].append(rec)
     return render(request, 'credit_note/cn_list.html', context)

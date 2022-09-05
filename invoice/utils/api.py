@@ -15,11 +15,10 @@ def post_message(request, data_dump):
             return gzip.decompress(gz).decode('utf-8')
         else:
             decoded = decode(content)
-            print(decoded.decode())
+            # print(decoded.decode())
             return decoded.decode()
     except re.HTTPError as ex:
         return "No data got"
-
 
 def getClientDetails(request, client_tin):
     ic = "T119"
