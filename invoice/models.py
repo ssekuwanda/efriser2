@@ -10,7 +10,6 @@ from random import randint
 from jsonfield import JSONField
 from invoice.utils.invoice_cleaner import inv_context
 import barcode                     
-from barcode.writer import ImageWriter
 from io import BytesIO
 from django.core.files import File
 from django.contrib.auth import get_user_model
@@ -459,6 +458,6 @@ class BarCode(models.Model):
     def save(self, *args, **kwargs):
         COD128 = barcode.get_barcode_class('code128')
         rv = BytesIO()
-        code = COD128(f'{self.name}', writer=ImageWriter()).write(rv)
+        code = COD128(f'{self.name}', writer=barcode.writer.ImageWriter()).write(rv)
         self.barcode.save(f'{self.name}.png', File(rv), save=False)
         return super().save(*args, **kwargs)

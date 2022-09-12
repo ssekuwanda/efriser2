@@ -49,19 +49,19 @@
         </thead>
         <tbody>
             {% for invoice in cleaned_inv %}
-            <tr>
-                <td>{{ forloop.counter }}.</td>
-                <td>
-                    <a href="{% url 'invoices_doc' invoice.slug %}" style="text-decoration: none;">{{ invoice.fdn }}</a>
-                </td>
-                <td class="text-wrap" style="width: 12rem;">{{ invoice.buyerName }}</td>
-                <td>{{ invoice.date|date:"M d, Y" }}</td>
-                <td>{{ invoice.invoice_number }}</td>
-                <td>{{ invoice.currency }}</td>
-                <td>{{ invoice.net|floatformat:1|intcomma }}</td>
-                <td>{{ invoice.tax|floatformat:1|intcomma }}</td>
-                <td>{{ invoice.gross|floatformat:1|intcomma }}</td>
-            </tr>
+              <tr>
+                  <td>{{ forloop.counter }}.</td>
+                  <td>
+                      <a href="{% url 'invoices_doc' invoice.slug %}" style="text-decoration: none;">{{ invoice.fdn }}</a>
+                  </td>
+                  <td class="text-wrap" style="width: 12rem;">{{ invoice.buyerName }}</td>
+                  <td>{{ invoice.date|date:"M d, Y" }}</td>
+                  <td>{{ invoice.invoice_number }}</td>
+                  <td>{{ invoice.currency }}</td>
+                  <td>{{ invoice.net|floatformat:1|intcomma }}</td>
+                  <td>{{ invoice.tax|floatformat:1|intcomma }}</td>
+                  <td>{{ invoice.gross|floatformat:1|intcomma }}</td>
+              </tr>
             {% endfor %}
         </tbody>
     </table>
@@ -108,16 +108,16 @@
     {% endif %}
 </div>
 {% else %}
-<div class="row">
-    <div class="col-lg-2">
-    </div>
-    <div class="col-lg-8">
-        <h3>Start by Adding First Invoice</h3>
-        <img class=img-fluid src="{% static 'assets/img/empty.svg' %}" alt="EFRISER">
-    </div>
-    <div class="col-lg-3">
+  <div class="row">
+      <div class="col-lg-2">
+      </div>
+      <div class="col-lg-8">
+          <h3>Start by Adding First Invoice</h3>
+          <img class=img-fluid src="{% static 'assets/img/empty.svg' %}" alt="EFRISER">
+      </div>
+      <div class="col-lg-3">
 
-    </div>
-</div>
+      </div>
+  </div>
 {% endif %}
 {% endblock %}

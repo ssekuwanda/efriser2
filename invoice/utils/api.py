@@ -136,6 +136,7 @@ def invListUpload(start_date, end_date, request):
     data_dump = payload_info(request,ic,msg)
     try:
         r = re.post(request.user.company1.url, json=data_dump)
+        print(r)
         content = r.json()['data']['content']
         try:
             decoded = decode(content)
