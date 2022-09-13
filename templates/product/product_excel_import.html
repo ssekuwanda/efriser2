@@ -1,0 +1,42 @@
+{% extends 'partials/base.html' %}
+{% load humanize %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block main %}
+<div class="header bg-gradient-primary pb-2 pt-2 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Card stats -->
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt--7">
+  <div class="row mt-5">
+    <div class="col-xl-11 mb-12 mb-xl-0">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <div class="row align-items-center">
+            <div class="col">
+              <h3 class="mb-0 text-center">IMPORT GOODS/SERVICES FROM EFRIS</h3>
+            </div>
+          </div>
+        </div>
+          <form action="{% url 'excel_import' %}" method="POST" enctype="multipart/form-data" class="form-horizontal p-4"> 
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="formFileSm" class="form-label">Upload Goods from EFRIS</label>
+              <small> Only Accepted excels are from EFRIS Products download</small>
+              <input class="form-control form-control-sm" name="excel_file" id="excel_file" type="file">
+            </div>
+            <div class="form-group">                    
+                <div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-3" style="margin-bottom:10px;">
+                     <button class="btn btn-primary"> <span class="glyphicon glyphicon-upload" style="margin-right:5px;"></span>Upload Goods/Services</button>
+                </div> 
+            </div>
+            </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

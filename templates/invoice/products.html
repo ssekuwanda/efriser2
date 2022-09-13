@@ -10,6 +10,8 @@
 {% block main %}
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">GOODS/SERVICES</h1>
+    <a class="btn btn-sm btn-outline-info" href="{% url 'measure_units' %}" role="button">RATES</a>
+
     <form class="form-inline" method="get">
       <div class="">
         <input type="search" name="q" class="form-control" id="inputPassword2" placeholder="Search product/Service">
@@ -21,11 +23,14 @@
           <span data-feather="plus" style="color: white; width: 20px; height: 20px;"></span>
           ADD
         </button>
+        <a href='{% url "excel_import" %}' class="btn btn-sm btn-secondary">
+          <span data-feather="corner-left-down" style="color: white; width: 20px; height: 20px;"></span>
+          EXCEL IMPORT
+        </a>
         <a href='{% url "import_pdts" %}' class="btn btn-sm btn-dark">
           <span data-feather="corner-left-down" style="color: white; width: 20px; height: 20px;"></span>
           IMPORT
         </a>
-        
       </div>
     </div>
   </div>

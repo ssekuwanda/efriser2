@@ -125,6 +125,9 @@ class Client(models.Model):
 
     def get_absolute_url(self):
         return reverse('client-detail', kwargs={'slug': self.slug})
+    
+    class Meta:
+        ordering = ['id']
 
     def save(self, *args, **kwargs):
         if self.date_created is None:
@@ -286,7 +289,7 @@ class Product(models.Model):
     commodity_id = models.CharField(null=False, blank=False, max_length=18, help_text="An 18 digit code from URA coding system")
     has_excise_duty = models.CharField(
         choices=YES_OR_NO, max_length=3, null=True, blank=False)
-    description = models.CharField(null=False, blank=False, max_length=1024)
+    description = models.CharField(null=True, blank=False, max_length=1024)
     stock_warning = models.CharField(null=False, blank=False, max_length=24)
 
     #Utility fields
@@ -340,7 +343,7 @@ class InvoiceProducts(models.Model):
     # Basic fields
     invoice = models.ForeignKey(
         Invoice, null=True, blank=True, on_delete=models.SET_NULL, related_name='inv_prod')
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, blank=True)
     notes = models.TextField(null=True, blank=True)
     quantity = models.FloatField(null=False, default=1, blank=True)
     vat = models.CharField('VAT', choices=VAT_CHOICES, max_length=100, null=True, blank=False)

@@ -43,7 +43,7 @@
               <a class="btn btn-primary btn-sm" href="{% url 'create-creditnote' invoice.slug %}">ISSUE CREDIT NOTE</a>
               <a class="btn btn-success btn-sm" href="{% url 'invoices_doc' invoice.slug %}" role="button">PDF</a>
               {% else %}
-              <button class="btn btn-primary btn-sm" href="#addProductModal" type="button" data-bs-toggle="modal"> ADD PRODUCT </button>
+              <button class="btn btn-primary btn-sm" href="#addProductModal"  type="button" data-bs-toggle="modal"> ADD PRODUCT </button>
               <!-- <a class="btn btn-primary btn-sm" href="{% url 'invoices_doc' invoice.slug %}" role="button">INVOICE</a>
               <a class="btn btn-primary btn-sm" href="#" role="button">PREVIEW</a> -->
               {% endif %}
@@ -172,7 +172,7 @@
                 </div>
               </div>
               <br>
-                <button type="submit" class="btn btn-primary">CREATE INVOICE</button>
+                <button type="submit" class="btn btn-primary" name="invoiceform">CREATE INVOICE</button>
             </form>
           {% endif %}
     
@@ -190,7 +190,9 @@
           <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
           {% csrf_token %}
           {% include 'partials/partform.html' with form=prod_form %}
-          <button type="submit" class="btn btn-primary mt-3">Submit</button>
+          <div class="d-grid gap-2 col-6 mx-auto">
+            <button type="submit" class="btn btn-primary mt-3" name="productform">ADD</button>
+          </div>
         </form>
       </div>
     </div>

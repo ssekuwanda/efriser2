@@ -16,6 +16,8 @@ from django.http import HttpResponse
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.forms import modelformset_factory
+from .utils import rate_units
+import pandas as pd
 
 @login_required
 def dashboard(request):
@@ -57,6 +59,17 @@ def dashboard(request):
     return render(request, 'invoice/dashboard.html', context)
 
 @login_required
+def measure_units(request):
+    units = rate_units.rates()
+    for rate in units['rateUnit']:
+        if Unit_Measurement.objects.filter(code = rate['value']):
+            pass
+        else:
+            create_rate = Unit_Measurement.objects.create(name=rate['name'],code=rate['value'])
+            create_rate.save()
+    return redirect('products')
+
+@login_required
 def invoices(request):
     query = request.GET.get('q')
     context = {}
@@ -68,7 +81,6 @@ def invoices(request):
         paginator = Paginator(Invoice.objects.filter(company=company), 15)
 
     page = request.GET.get('page', 1)
-
     try:
         invoices = paginator.page(page)
     except PageNotAnInteger:
@@ -202,8 +214,60 @@ def productsMaintance(request, slug):
     else:
         form = ProdMetaForm()
     context = {'form': form,'product':prod}
-    return render(request, 'product/product_update.html', context)   
+    return render(request, 'product/product_update.html', context) 
 
+@login_required
+def excel_import(request):
+    try:
+        excel_file = request.FILES["excel_file"]
+    except:
+        return render(request, 'product/product_excel_import.html')   
+
+    company = request.user.company1
+
+    if not excel_file.name.endswith('.xls'or'.xlsx'):
+        messages.error(request,'File is not of Excel type')
+        return redirect('products')
+
+    df = pd.read_excel(excel_file, header=1)
+    all_code = df['My Product Code'].tolist()
+    for c in all_code:
+        if not Product.objects.filter(company=company, code=c):
+            req = goods_inquiry_req(str(c))
+            result = json.loads(goodsInquire(request, req))
+            for x in result['records']:
+                if x['haveExciseTax']=='102':
+                    excise = "No"
+                else:
+                    excise = "Yes"
+                if x['measureUnit']:
+                    for measure in Unit_Measurement.objects.filter(code=x['measureUnit']):
+                        u_measure = measure
+                else:
+                    u_measure = ""
+                
+                comp = Company.objects.get(owner=request.user)
+
+                remarks = x.get('remarks', None)                  
+
+                prod_save = Product.objects.create(
+                                        name=x['goodsName'],
+                                        code=x['goodsCode'],
+                                        company=comp, 
+                                        unit_measure=u_measure,
+                                        unit_price=float(x['unitPrice']),
+                                        currency="USD" if x['currency'] =="101" else "UGX",
+                                        tax_rate=x['taxRate'],
+                                        commodity_id=x['commodityCategoryCode'],
+                                        has_excise_duty=excise,
+                                        description=remarks,
+                                        stock_warning = x['stock'],
+                                        )
+                prod_save.save()
+        messages.success(request,"Products imported successfully from EFRIS")
+    return render(request, 'product/product_excel_import.html')   
+  
+@login_required
 def import_pdts(request):
     productSet = modelformset_factory(Product, form=ProductsFormSet, extra=10)
     company = request.user.company1
@@ -235,7 +299,8 @@ def import_pdts(request):
                             u_measure = ""
                         
                         comp = Company.objects.get(owner=request.user)
-                        
+
+                        remarks = x.get('remarks', None)                  
 
                         prod_save = Product.objects.create(
                                                 name=x['goodsName'],
@@ -247,11 +312,11 @@ def import_pdts(request):
                                                 tax_rate=x['taxRate'],
                                                 commodity_id=x['commodityCategoryCode'],
                                                 has_excise_duty=excise,
-                                                description=x['remarks'],
+                                                description=remarks,
                                                 stock_warning = x['stock'],
                                                 )
                         prod_save.save()                   
-                messages.success(request,"Products imported successfully from EFRIS")
+            messages.success(request,"Products imported successfully from EFRIS")
             return redirect('products')
     else:
         formset = productSet(queryset=comp_products)
@@ -588,12 +653,9 @@ def createBuildInvoice(request, slug):
         context['prod_form'] = prod_form
         context['inv_form'] = inv_form
         return render(request, 'invoice/create-invoice.html', context)
-
-    if request.method == 'POST':
+    
+    if request.method == 'POST' and 'productform' in request.POST:
         prod_form = InvoiceProductForm(ps,request.POST)
-        inv_form = InvoiceForm(request.POST, instance=invoice)
-        client_form = ClientSelectForm(request.POST)
-
         if prod_form.is_valid():
             obj = prod_form.save(commit=False)
             obj.invoice = invoice
@@ -602,15 +664,19 @@ def createBuildInvoice(request, slug):
             obj.save()
             messages.success(request, "Product added succesfully")
             return redirect('create-build-invoice', slug=slug)
-        elif inv_form.is_valid and request.POST:
+        else:
+            messages.error(request, "Please make sure that no fields are left blank")
+            return redirect('create-build-invoice', slug=slug)
+
+    if request.method == 'POST' and 'invoiceform' in request.POST:
+        inv_form = InvoiceForm(request.POST, instance=invoice)
+        if inv_form.is_valid:
             invoice_update = inv_form.save(commit=False)
-            
             context['currency'] = inv_form['currency'].value()
             context['remarks'] = inv_form['remarks'].value()
             context['payment_method'] = inv_form['payment_method'].value()
             payment_details = pay_way(context)
             goods_summary = summary(context)
-
             inv = uploadInvoice(request, context, goodsDetails, taxDetails, goods_summary, payment_details)  
             invoice_update.json_response = inv["content"]
 
@@ -627,15 +693,9 @@ def createBuildInvoice(request, slug):
             else:
                 messages.warning(request, inv["returnMessage"])
             return redirect('create-build-invoice', slug=slug)
-
-        elif client_form.is_valid() and 'client' in request.POST:
-            client_form.save()
-            messages.success(request, "Client added to invoice succesfully")
-            return redirect('create-build-invoice', slug=slug)
         else:
             context['prod_form'] = prod_form 
             context['inv_form'] = inv_form
-            context['client_form'] = client_form
             messages.error(request,"Problem processing your request")
             return render(request, 'invoice/create-invoice.html', context)
     return render(request, 'invoice/create-invoice.html', context)

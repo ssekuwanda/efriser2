@@ -27,7 +27,7 @@ path('prod_update/<slug:slug>',views.productsMaintance, name='prod_update'),
 path('prod-inquire/<slug:slug>',views.goods_inquiry, name='goods_inquiry'),
 path('dictionary',views.dictonary, name='dictonary'),
 path('product/import',views.import_pdts, name='import_pdts'),
-
+path('product/xl_import',views.excel_import, name='excel_import'),
 
 # --------------Credit notes---------
 path('credit_notes', views.creditNoteHome, name='creditnotes'),
@@ -40,6 +40,10 @@ path('creditnote/cancel-approved/<str:fdn>/<str:cn>/<str:ref>',views.cancel_appr
 path('creditnote/pdf/<str:fdn>',views.creditnote_pdf, name='creditnote_pdf'),
 
 path('bar-code', views.barcode_generator, name='bar-code'),
+
+path('measure_units', views.measure_units, name='measure_units'),
+
+
 
 #Delete an invoice
     # path('invoices/delete/<slug:client_slug>/<slug:invoice_slug>',views.deleteInvoice, name='delete-invoice'),
