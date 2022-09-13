@@ -13,6 +13,7 @@ import barcode
 from io import BytesIO
 from django.core.files import File
 from django.contrib.auth import get_user_model
+from django.urls import reverse
 
 randoms = randint(120,1000)
 VAT_CHOICES = [
@@ -54,7 +55,7 @@ class Company(models.Model):
     #Tax fields  
     tin = models.CharField(max_length=10)
     device_number = models.CharField(max_length=100, null=False, blank=False, help_text="TCSc0192929020020")
-    url = models.URLField(null=True, help_text="http://167.100.66.192:9880/efristcs/ws/tcsapp/getInformation")
+    url = models.URLField(null=True, help_text="http://167.109.66.192:9880/efristcs/ws/tcsapp/getInformation")
     wht_exempt = models.BooleanField(default=False)
     vat_wht = models.BooleanField(default=False)
     nature = models.CharField(max_length=120, choices=companyTypes)
@@ -79,6 +80,9 @@ class Company(models.Model):
         self.last_updated = timezone.localtime(timezone.now())
         super(Company, self).save(*args, **kwargs)
 
+    def get_absolute_url(self):
+        return reverse('company_detail', args=[str[self.slug]])
+
 class BankDetails(models.Model):
     company = models.ForeignKey(Company, related_name='bank_details', on_delete=models.SET_NULL, null=True)
     bank_name = models.CharField(max_length=1000)
@@ -88,7 +92,7 @@ class BankDetails(models.Model):
     swift_address = models.CharField(max_length=1000)
     swift_code = models.CharField(max_length=1000)
     currency = models.CharField(max_length=1000, choices=CURRENCY)
-
+                    
     def __str__(self):
         return self.bank_name
 
