@@ -85,9 +85,9 @@ if ONLINE:
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
             'NAME': 'prime',
             'USER': 'u_prime',
-            'PASSWORD': 'T8gyp@DDD',
-            'HOST': '',
-            'PORT': '',
+            'PASSWORD': 'Sseku2021',
+            'HOST': 'localhost',
+            'PORT': '5432',
         }
     }
     # DATABASES = {
