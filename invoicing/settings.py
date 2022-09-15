@@ -18,7 +18,7 @@ SECRET_KEY = "django-insecure-_zd*50mf%f%fa8k20%99%fg)#lz!ifi#66^tz#q-yd78odt8@v
 
 DEBUG = False
 
-ONLINE = False
+ONLINE = True
 
 ALLOWED_HOSTS = ['*']
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -81,10 +81,20 @@ WSGI_APPLICATION = 'invoicing.wsgi.application'
 
 if ONLINE:
     DATABASES = {
-        'default': dj_database_url.config(
-            default=config('DATABASE_URL')
-        )
+        "default":{
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'prime',
+            'USER': 'u_prime',
+            'PASSWORD': 'Sseku2021',
+            'HOST': '',
+            'PORT': '',
+        }
     }
+    # DATABASES = {
+    #     'default': dj_database_url.config(
+    #         default=config('DATABASE_URL')
+    #     )
+    # }
 else:
     DATABASES = {
         'default': {
