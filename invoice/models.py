@@ -322,7 +322,7 @@ class Product(models.Model):
         # self.company = self.request.user.company1
         self.unit_price = round(self.unit_price, 2)
         super(Product, self).save(*args, **kwargs)
-
+ 
 class ProductMeta(models.Model):
     company = models.ForeignKey(Company, null=True, blank=True, on_delete=models.SET_NULL)
     product = models.ForeignKey(Product, related_name="prod_meta", on_delete=models.CASCADE)
