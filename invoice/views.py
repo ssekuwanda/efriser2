@@ -38,6 +38,8 @@ def dashboard(request):
         context['credits'] = credits
         
         context['banks'] = banks
+    else:
+        pass
 
     if request.method == 'GET':
         form = CompanyForm()
