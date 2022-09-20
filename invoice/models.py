@@ -437,10 +437,8 @@ class Settings(models.Model):
     def __str__(self):
         return '{} {}'.format(self.clientName, self.uniqueId)
 
-
     def get_absolute_url(self):
         return reverse('settings-detail', kwargs={'slug': self.slug})
-
 
     def save(self, *args, **kwargs):
         if self.date_created is None:
