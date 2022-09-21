@@ -50,3 +50,4 @@ gunicorn
 pandas
 xlrd
 psycopg2-binary
+libpangocairo-1.0-0
