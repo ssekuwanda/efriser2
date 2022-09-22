@@ -222,7 +222,7 @@ class CreditNote(models.Model):
     invoice = models.ForeignKey(Invoice, related_name="credit_notes", blank=True, null=True, on_delete=models.SET_NULL)
     date_created = models.DateTimeField(blank=True, null=True, auto_now_add=True)
     last_updated = models.DateTimeField(blank=True, null=True, auto_now=True)
-    reason_code = models.CharField(max_length=100000000, choices=REASONS, null=False, blank=False)
+    reason_code = models.CharField(max_length=10000, choices=REASONS, null=False, blank=False)
     json_response = models.TextField(null=True, blank=False)
     reason = models.TextField(null=True, blank=False)
     anti_fake = models.CharField(max_length=10000, null=True, blank=True)
