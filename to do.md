@@ -2,6 +2,8 @@ heroku
 git push heroku master
 heroku run python manage.py migrate
 
+heroku run bash
+
 BACKUP DOWNLOAD from Heroku
 heroku pg:backups:capture
 heroku pg:backups:download
