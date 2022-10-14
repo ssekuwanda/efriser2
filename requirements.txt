@@ -50,3 +50,4 @@ gunicorn
 pandas
 xlrd
 psycopg2-binary
+django-import-export

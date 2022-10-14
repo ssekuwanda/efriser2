@@ -11,6 +11,8 @@ heroku pg:backups:download
 insertion to local postgres [first create the db in local]
 postgres@douglas:~$ pg_restore -d bdoprime -v -h localhost -p 5432 -U ssekuwanda '/home/douglas/Documents/DOUGLAS/CODE/bdoprime/latest.dump'
 
+git config --global user.name "imrancs058" 
+git config --global user.email "imrancs058@yahoo.com"
 git reset --hard HEAD
 git pull
 

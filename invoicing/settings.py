@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'widget_tweaks',
     'mathfilters',
+    'import_export',
     'invoice',
     'qr_code',
     'django_bootstrap_icons',

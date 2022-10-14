@@ -285,8 +285,7 @@ class Product(models.Model):
         Company, null=True, blank=True, on_delete=models.SET_NULL)
     name = models.CharField(null=False, blank=False, max_length=100)
     code = models.CharField(null=False, blank=False, max_length=40, help_text="The code should be unique to all produucts")
-    unit_measure = models.ForeignKey(
-        Unit_Measurement, on_delete=models.SET_NULL, null=True, blank=False)
+    unit_measure = models.ForeignKey(Unit_Measurement, on_delete=models.SET_NULL, null=True, blank=False)
     unit_price = models.FloatField('Unit Price',null=False, blank=False, default=1)
     currency = models.CharField(choices=CURRENCY, max_length=3)
     tax_rate = models.CharField(choices=VAT_CHOICES, null=False, blank=False, max_length=3, default='18%')
