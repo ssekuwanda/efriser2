@@ -16,11 +16,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = "django-insecure-_zd*50mf%f%fa8k20%99%fg)#lz!ifi#66^tz#q-yd78odt8@v"
 
-DEBUG = True
+DEBUG = False
 
 ONLINE = True
 
-ALLOWED_HOSTS = ['https://efris.herokuapp.com','localhost']
+ALLOWED_HOSTS = ['efris.herokuapp.com','localhost']
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 INSTALLED_APPS = [
