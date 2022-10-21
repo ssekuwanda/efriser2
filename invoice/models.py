@@ -297,7 +297,7 @@ class Product(models.Model):
 
     #Utility fields
     uniqueId = models.CharField(null=True, blank=True, max_length=100)
-    slug = models.SlugField(max_length=255, unique=True, blank=True, null=True)
+    slug = models.CharField(max_length=255, unique=True, blank=True, null=True)
     date_created = models.DateTimeField(blank=True, null=True)
     last_updated = models.DateTimeField(blank=True, null=True)
 
