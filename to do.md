@@ -25,3 +25,8 @@ sudo systemctl restart gunicorn.socket gunicorn.service
 sudo nginx -t && sudo systemctl restart nginx
 
 libpangocairo-1.0-0 in requirements.txt
+
+# Generating public/privatekeys
+cd ~/.ssh
+ssh-keygen
+cat id_rsa.pub | xclip

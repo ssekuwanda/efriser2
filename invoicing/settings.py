@@ -16,9 +16,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = "django-insecure-_zd*50mf%f%fa8k20%99%fg)#lz!ifi#66^tz#q-yd78odt8@v"
 
-DEBUG = True
+DEBUG = False
 
-ONLINE = False
+ONLINE = True
 
 ALLOWED_HOSTS = ['*']
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -198,3 +198,6 @@ MARKDOWNIFY = {
         ]
     }
 }
+
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
