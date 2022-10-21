@@ -20,7 +20,7 @@ DEBUG = True
 
 ONLINE = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['https://efris.herokuapp.com','localhost']
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 INSTALLED_APPS = [
