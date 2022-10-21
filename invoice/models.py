@@ -262,8 +262,8 @@ class CnCancel(models.Model):
         ordering = ("-date_created",)
 
 class Unit_Measurement(models.Model):
-    name = models.CharField(max_length=400, null=False, blank=False)
-    code = models.CharField(max_length=400, null=True, blank=False)
+    name = models.CharField(max_length=100, null=False, blank=False)
+    code = models.CharField(max_length=3, null=True, blank=False)
 
     def __str__(self):
         return self.name
@@ -297,7 +297,7 @@ class Product(models.Model):
 
     #Utility fields
     uniqueId = models.CharField(null=True, blank=True, max_length=100)
-    slug = models.SlugField(max_length=500, unique=True, blank=True, null=True)
+    slug = models.SlugField(max_length=255, unique=True, blank=True, null=True)
     date_created = models.DateTimeField(blank=True, null=True)
     last_updated = models.DateTimeField(blank=True, null=True)
 
