@@ -288,7 +288,7 @@ class Product(models.Model):
     unit_measure = models.ForeignKey(Unit_Measurement, on_delete=models.SET_NULL, null=True, blank=False)
     unit_price = models.FloatField('Unit Price',null=False, blank=False, default=1)
     currency = models.CharField(choices=CURRENCY, max_length=30)
-    tax_rate = models.CharField(choices=VAT_CHOICES, null=False, blank=False, max_length=3, default='18%')
+    tax_rate = models.CharField(choices=VAT_CHOICES, null=False, blank=False, max_length=30, default='18%')
     commodity_id = models.CharField(null=False, blank=False, max_length=18, help_text="An 18 digit code from URA coding system")
     has_excise_duty = models.CharField(
         choices=YES_OR_NO, max_length=30, null=True, blank=False)
