@@ -11,6 +11,14 @@ class MeasurementsResource(resources.ModelResource):
 class MeasurementsAdmin(ImportExportModelAdmin):
     resource_class = MeasurementsResource
 
+class TaxTypeResource(resources.ModelResource):
+    class Meta:
+        model = Tax_Type
+        fields = ('__all__')
+
+class TaxTypeAdmin(ImportExportModelAdmin):
+    resource_class = TaxTypeResource
+
 admin.site.register(Company)
 admin.site.register(Client)
 admin.site.register(Product)
@@ -23,4 +31,4 @@ admin.site.register(ProductMeta)
 admin.site.register(BankDetails)
 admin.site.register(CompanyLocation)
 admin.site.register(CnCancel)
-admin.site.register(Tax_Type)
+admin.site.register(Tax_Type,TaxTypeAdmin)
