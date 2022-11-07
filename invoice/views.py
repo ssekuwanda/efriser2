@@ -673,7 +673,7 @@ def createBuildInvoice(request, slug):
         return render(request, 'invoice/create-invoice.html', context)
     
     if request.method == 'POST' and 'productform' in request.POST:
-        prod_form = InvoiceProductForm(ps,request.POST)
+        prod_form = InvoiceProductForm(ps, request.POST)
         if prod_form.is_valid():
             obj = prod_form.save(commit=False)
             obj.invoice = invoice

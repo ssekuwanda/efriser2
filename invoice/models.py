@@ -195,10 +195,16 @@ class Invoice(models.Model):
             return None
 
     def inv_number(self):
-        return str(self.company.short_name+'/'+str(self.number)+'/'+str(self.date_created.year))
+        if self.client.c_code:
+            return str(self.company.short_name+'/'+self.client.c_code+'/'+str(self.number)+'/'+str(self.date_created.year))
+        else:
+            return str(self.company.short_name+'/'+str(self.number)+'/'+str(self.date_created.year))
 
     def __str__(self):
-        return str(self.company.short_name+'/'+str(self.number)+'/'+str(self.date_created.year))
+        if self.client.c_code:
+            return str(self.company.short_name+'/'+self.client.c_code+'/'+str(self.number)+'/'+str(self.date_created.year))
+        else:
+            return str(self.company.short_name+'/'+str(self.number)+'/'+str(self.date_created.year))
 
     def save(self, *args, **kwargs):
         if self.date_created is None:
