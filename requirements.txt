@@ -51,3 +51,4 @@ pandas
 xlrd
 psycopg2-binary
 django-import-export
+tablib==0.12.1
