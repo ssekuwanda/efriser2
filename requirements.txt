@@ -1,5 +1,6 @@
 asgiref==3.5.2
 barcode==1.0.2
+tablib==0.12.1
 beautifulsoup4==4.11.1
 bleach==5.0.1
 Brotli==1.0.9
