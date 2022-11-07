@@ -116,6 +116,7 @@ class Client(models.Model):
     company_type = models.CharField(max_length=100, choices=BUYER_TYPE, blank=False, null=True)
     contact_number = models.CharField(max_length=100, null=True, blank=False)
     tin = models.CharField(max_length=10, null=True, blank=True, help_text="leave blank if export")
+    c_code = models.CharField('Client Code', max_length=9, null=True, blank=True)
     # foreignier = models.BooleanField(default=False)
 
     # Utility fields
@@ -125,7 +126,7 @@ class Client(models.Model):
     last_updated = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
-        return '{}'.format(self.name)
+        return '{}-{}'.format(self.business_name, self.company.short_name)
 
     def get_absolute_url(self):
         return reverse('client-detail', kwargs={'slug': self.slug})

@@ -374,6 +374,7 @@ def clients(request):
             response = None
             if form.tin:
                 response = getClientDetails(request, form_tin)
+
             if response:
                 if 'address' in json.loads(response)['taxpayer']:
                     address = json.loads(response)['taxpayer']['address']
@@ -401,6 +402,21 @@ def clients(request):
                 form.nin_brn = nin
                 form.address = address
             form.company = owned
+
+            first_letter = form.business_name[0]
+            if first_letter in ("1", "2", "3", "4", "5", "6", "7", "8", "9", "0"):
+                first_letter = 'A'
+            else:
+                first_letter = str(form.business_name)[0]
+            q = Client.objects.filter(c_code__startswith=first_letter,company=owned)
+            number = [0]
+            for clientee in q:
+                client_no = int(clientee.c_code[1:])
+                number.append(client_no)
+            current_max = max(number)+1
+            formated_number = "{:02d}".format(current_max)
+            form.c_code = first_letter.upper() + str(formated_number)
+
             form.save()
             messages.success(request, 'New Client Added')
             return redirect('clients')
