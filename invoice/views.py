@@ -703,7 +703,7 @@ def createBuildInvoice(request, slug):
                 invoice_update.save()
                 for prod in products:
                     init_product = Product.objects.get(id=prod.product.id)
-                    prod_total = int(init_product.stock_warning)
+                    prod_total = int(round(init_product.stock_warning))
                     reduction = prod_total - int(prod.quantity)
                     init_product.stock_warning = str(reduction)
                     init_product.save()

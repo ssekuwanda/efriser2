@@ -1,4 +1,5 @@
 {% extends 'partials/base.html' %}
+{% load humanize %}
 {% load static %}
 {% load crispy_forms_tags %}
 
@@ -24,10 +25,10 @@
     <p class="lead">Goods Code: {{ rec.goodsCode }}</p>
     <p class="lead">Name: {{ rec.goodsName }}</p>
     <p class="lead">Unit Measure: {{ rec.measureUnit }}</p>
-    <p class="lead">Stock: {{ rec.stock }}</p>
-    <p class="lead">Stock Prewarning: {{ rec.stockPrewarning }}</p>
+    <p class="lead">Stock: {{ rec.stock|floatformat:0|intcomma}}</p>
+    <p class="lead">Stock Prewarning: {{ rec.stockPrewarning|intcomma }}</p>
     <p class="lead">Tax Rate: {{ rec.taxRate }}</p>
-    <p class="lead">Unit Price: {{ rec.unitPrice }}</p>
+    <p class="lead">Unit Price: {{ rec.unitPrice|intcomma }}</p>
     <p class="lead">Last Updated: {{ rec.updateDateStr }}</p>
     <hr class="my-4">
 {% endfor %}

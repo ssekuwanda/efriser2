@@ -1,33 +1,35 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>{{p_settings.clientName}}</title>
 
-    <style >
-
+    <style>
       .container {
         margin-left: 50px;
         margin-right: 50px;
       }
 
-  table {
-    caption-side: bottom;
-    border-collapse: collapse; }
+      table {
+        caption-side: bottom;
+        border-collapse: collapse;
+      }
 
-    th {
-      text-align: inherit;
-      text-align: -webkit-match-parent; }
+      th {
+        text-align: inherit;
+        text-align: -webkit-match-parent;
+      }
 
-    thead,
-    tbody,
-    tfoot,
-    tr,
-    td,
-    th {
-      border-color: inherit;
-      border-style: solid;
-      border-width: 0; }
+      thead,
+      tbody,
+      tfoot,
+      tr,
+      td,
+      th {
+        border-color: inherit;
+        border-style: solid;
+        border-width: 0;
+      }
 
       .table {
         --bs-table-bg: transparent;
@@ -41,40 +43,55 @@
         margin-bottom: 1rem;
         color: #495057;
         vertical-align: top;
-        border-color: #eff2f7; }
-        .table > :not(caption) > * > * {
-          padding: 0.75rem 0.75rem;
-          background-color: var(--bs-table-bg);
-          background-image: -webkit-gradient(linear, right top, right bottom, from(var(--bs-table-accent-bg)), to(var(--bs-table-accent-bg)));
-          background-image: linear-gradient(var(--bs-table-accent-bg), var(--bs-table-accent-bg));
-          border-bottom-width: 0px; }
-        .table > tbody {
-          vertical-align: inherit; }
-        .table > thead {
-          vertical-align: bottom; }
-        .table > :not(:last-child) > :last-child > * {
-          border-bottom-color: #eff2f7; }
+        border-color: #eff2f7;
+      }
+      .table > :not(caption) > * > * {
+        padding: 0.75rem 0.75rem;
+        background-color: var(--bs-table-bg);
+        background-image: -webkit-gradient(
+          linear,
+          right top,
+          right bottom,
+          from(var(--bs-table-accent-bg)),
+          to(var(--bs-table-accent-bg))
+        );
+        background-image: linear-gradient(
+          var(--bs-table-accent-bg),
+          var(--bs-table-accent-bg)
+        );
+        border-bottom-width: 0px;
+      }
+      .table > tbody {
+        vertical-align: inherit;
+      }
+      .table > thead {
+        vertical-align: bottom;
+      }
+      .table > :not(:last-child) > :last-child > * {
+        border-bottom-color: #eff2f7;
+      }
 
-  .table-responsive {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch; }
+      .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
 
-    .d-table {
-      display: table !important; }
+      .d-table {
+        display: table !important;
+      }
 
       .table th {
-        font-weight: 600; }
-
-
-</style>
+        font-weight: 600;
+      }
+    </style>
   </head>
   <body>
     <div class="container">
       <h1>Invoice: {{p_settings.clientName}}</h1>
-      <br>
-      <hr>
-      <br>
-      <br>
+      <br />
+      <hr />
+      <br />
+      <br />
       <div class="table-responsive">
         <table class="table">
           <tbody>
@@ -91,7 +108,7 @@
           </tbody>
         </table>
       </div>
-      <br>
+      <br />
       <div class="table-responsive">
         <table class="table">
           <tbody>
@@ -99,11 +116,10 @@
               <td>
                 <strong>{{p_settings.clientName}}</strong> <br />
                 {{p_settings.addressLine1}}<br />
-                {{p_settings.postalCode}} <br/ >
-                {{p_settings.emailAddress}} <br/ >
-                {{p_settings.phoneNumber}}
-                <br>
-                <br>
+                {{p_settings.postalCode}} <br/ > {{p_settings.emailAddress}}
+                <br/ > {{p_settings.phoneNumber}}
+                <br />
+                <br />
                 Tax Number: {{p_settings.taxNumber}}
               </td>
 
@@ -113,8 +129,8 @@
                 {{invoice.client.postalCode}}<br />
                 {{invoice.client.emailAddress}} <br/ >
                 {{invoice.client.phoneNumber}}
-                <br>
-                <br>
+                <br />
+                <br />
                 Tax Number: {{invoice.client.taxNumber}}
               </td>
             </tr>
@@ -122,11 +138,10 @@
         </table>
       </div>
 
-
-      <br>
-      <br>
+      <br />
+      <br />
       <h1>Invoice Items</h1>
-      <br>
+      <br />
       <div class="table-responsive">
         <table class="table">
           <thead>
@@ -137,29 +152,25 @@
             </tr>
           </thead>
 
-
           <tbody>
             {% for product in products %}
             <tr>
               <td>{{product.title}}</td>
               <td>{{product.quantity}}</td>
-    					<td>{{product.currency}} {{product.price}}</td>
+              <td>{{product.currency}} {{product.price}}</td>
             </tr>
             {% endfor %}
             <tr>
               <td></td>
               <td></td>
-              <td> <strong> Total: {{invoiceTotal}} </strong> </td>
+              <td><strong> Total: {{invoiceTotal}} </strong></td>
             </tr>
           </tbody>
-
         </table>
       </div>
-      <br>
-      <br>
-      <p>
-        {{invoice.notes}}
-      </p>
+      <br />
+      <br />
+      <p>{{invoice.notes}}</p>
     </div>
   </body>
 </html>

@@ -1,461 +1,503 @@
 <!DOCTYPE html>
 {% load static %}
-{% load humanize %}
-{% load mathfilters %}
+{% load humanize %} 
+{% load mathfilters %} 
 {% load qr_code %}
 {% load markdownify %}
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name=author content="Prime Invoices">
-    <meta name=description content="@1984">
-    <meta name=producer content=" Prime">
-    <meta name=keywords content="">
-    <meta name=generator content="S">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="author" content="Prime Invoices" />
+    <meta name="description" content="@1984" />
+    <meta name="producer" content=" Prime" />
+    <meta name="keywords" content="" />
+    <meta name="generator" content="S" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>{{ clean_data.fdn }}</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <style>
-        @font-face {
-            font-family: "Trebuchet";
-            font-style: normal;
-            font-weight: normal;
-            src: local("Trebuchet MS"),
-            url("{% static 'assets/fonts/Trebuchet MS.ttf' %}");
-        }
+      @font-face {
+        font-family: "Trebuchet";
+        font-style: normal;
+        font-weight: normal;
+        src: local("Trebuchet MS"),
+          url("{% static 'assets/fonts/Trebuchet MS.ttf' %}");
+      }
 
-        @font-face {
-            font-family: "playfair";
-            font-style: normal;
-            font-weight: normal;
-            src: local("Trebuchet MS"),
-            url("{% static 'assets/fonts/playfair.ttf' %}");
-        }
+      @font-face {
+        font-family: "playfair";
+        font-style: normal;
+        font-weight: normal;
+        src: local("Trebuchet MS"),
+          url("{% static 'assets/fonts/playfair.ttf' %}");
+      }
 
-        @font-face {
-            font-family: "book-antiqua";
-            font-style: normal;
-            font-weight: normal;
-            src: local("book-antiqua"),
-            url("{% static 'assets/fonts/book-antiqua.ttf' %}");
-        }
-        @font-face {
-            font-family: "lora";
-            font-style: normal;
-            font-weight: normal;
-            src: local("lora"),
-            url("{% static 'assets/fonts/Lora-Regular.ttf' %}");
-        }
+      @font-face {
+        font-family: "book-antiqua";
+        font-style: normal;
+        font-weight: normal;
+        src: local("book-antiqua"),
+          url("{% static 'assets/fonts/book-antiqua.ttf' %}");
+      }
+      @font-face {
+        font-family: "lora";
+        font-style: normal;
+        font-weight: normal;
+        src: local("lora"), url("{% static 'assets/fonts/Lora-Regular.ttf' %}");
+      }
 
-        body {
-            height: 100%;
-            margin: 0;
-            line-height: 1.5em;
-            font-family: Trebuchet;
-        }
+      body {
+        height: 100%;
+        margin: 0;
+        line-height: 1.5em;
+        font-family: Trebuchet;
+      }
 
-        footer {
-            height: 10px;
-        }
+      footer {
+        height: 10px;
+      }
 
-        .container-1 {
-            display: flex;
-        }
+      .container-1 {
+        display: flex;
+      }
 
-        .box-1 {
-            flex: 0.9;
-        }
+      .box-1 {
+        flex: 0.9;
+      }
 
-        .box-1 img {
-            width: 115px;
-        }
+      .box-1 img {
+        width: 115px;
+      }
 
-        .box-2 {
-            flex: 0.8;
-        }
+      .box-2 {
+        flex: 0.8;
+      }
 
-        .box-2 p {
-            margin-top: 4px;
-            margin-bottom: 4px;
-            font-size: 12px;
-            color: rgb(83, 47, 0);
-            line-height: 1.3em;
-        }
+      .box-2 p {
+        margin-top: 4px;
+        margin-bottom: 4px;
+        font-size: 12px;
+        color: rgb(83, 47, 0);
+        line-height: 1.3em;
+      }
 
-        .box-3 p {
-            margin-top: 4px;
-            margin-bottom: 4px;
-            font-size: 12px;
-            color: rgb(83, 47, 0);
-            line-height: 1.2em;
-        }
+      .box-3 p {
+        margin-top: 4px;
+        margin-bottom: 4px;
+        font-size: 12px;
+        color: rgb(83, 47, 0);
+        line-height: 1.2em;
+      }
 
-        .box-3 {
-            flex: 0.8;
-        }
+      .box-3 {
+        flex: 0.8;
+      }
 
-        .box-8 {
-            flex: 1;
-            float: right;
-            color: rgb(117, 20, 20);
-            font-size: 28px;
-            font-family: book-antiqua;
-            text-decoration: underline;
-            text-decoration-color: black;
-        }
+      .box-8 {
+        flex: 1;
+        float: right;
+        color: rgb(117, 20, 20);
+        font-size: 28px;
+        font-family: book-antiqua;
+        text-decoration: underline;
+        text-decoration-color: black;
+      }
 
-        .box-9 img {
-            height: 60px;
-            margin-top: -27px;
-            padding-top: 0px;
-        }
+      .box-9 img {
+        height: 60px;
+        margin-top: -27px;
+        padding-top: 0px;
+      }
 
-        .dcdm {
-            font-family: book-antiqua;
-            margin-top: -13px;
-            margin-left: 4px;
-            color: rgb(117, 20, 20);
-        }
+      .dcdm {
+        font-family: book-antiqua;
+        margin-top: -13px;
+        margin-left: 4px;
+        color: rgb(117, 20, 20);
+      }
 
-        div.upper {
-            padding-top: 50px;
-            line-height: 1.1em;
-        }
+      div.upper {
+        padding-top: 50px;
+        line-height: 1.1em;
+      }
 
-        .upper p {
-            font-weight: bold;
-            font-size: 13.5px;
-            margin-top: 2px;
-            margin-bottom: 3px;
-        }
+      .upper p {
+        font-weight: bold;
+        font-size: 13.5px;
+        margin-top: 2px;
+        margin-bottom: 3px;
+      }
 
-        .address {
-            display: flex;
-            flex-direction: row;
-            margin-top: 0.5px;
-        }
+      .address {
+        display: flex;
+        flex-direction: row;
+        margin-top: 0.5px;
+      }
 
-        .address p {
-            margin-top: 10px;
-            font-size: 14px;
-        }
+      .address p {
+        margin-top: 10px;
+        font-size: 14px;
+      }
 
-        p.add1 {
-            margin-top: 0px;
-            margin-bottom: 0px;
-            line-height: 19.5px;
-        }
+      p.add1 {
+        margin-top: 0px;
+        margin-bottom: 0px;
+        line-height: 19.5px;
+      }
 
-        .container-2 {
-            display: flex;
-            margin-top: 10px;
-        }
+      .container-2 {
+        display: flex;
+        margin-top: 10px;
+      }
 
-        .word {
-            flex: 1;
-        }
+      .word {
+        flex: 1;
+      }
 
-        .word p {
-            margin-top: 15px;
-            margin-bottom: 5px;
-        }
+      .word p {
+        margin-top: 15px;
+        margin-bottom: 5px;
+      }
 
-        .number p {
-            margin-top: 15px;
-            margin-bottom: 10px;
-        }
+      .number p {
+        margin-top: 15px;
+        margin-bottom: 10px;
+      }
 
-        .number {
-            flex: 0.1;
-            text-align: right;
-            padding-right: 30px;
-        }
+      .number {
+        flex: 0.1;
+        text-align: right;
+        padding-right: 30px;
+      }
 
-        .tax {
-            font-weight: bold;
-            margin-top: 8px;
-            margin-bottom: 5px;
-            font-size: 14px;
-        }
+      .tax {
+        font-weight: bold;
+        margin-top: 8px;
+        margin-bottom: 5px;
+        font-size: 14px;
+      }
 
-        .total {
-            width: 0px;
-            padding: 0px;
-            font-weight: bold;
-            border-top: solid;
-            border-bottom-style: double;
-            border-width: 2px;
-        }
+      .total {
+        width: 0px;
+        padding: 0px;
+        font-weight: bold;
+        border-top: solid;
+        border-bottom-style: double;
+        border-width: 2px;
+      }
 
-        .container-3 {
-            display: flex;
-            margin-top: 10px;
-        }
+      .container-3 {
+        display: flex;
+        margin-top: 10px;
+      }
 
-        .other {
-            flex: 2;
-        }
+      .other {
+        flex: 2;
+      }
 
-        .other p {
-            margin: 1px;
-            font-size: 14px;
-        }
+      .other p {
+        margin: 1px;
+        font-size: 14px;
+      }
 
-        .bank {
-            flex: 4;
-        }
+      .bank {
+        flex: 4;
+      }
 
-        .qr {
-            flex: 3
-        }
+      .qr {
+        flex: 3;
+      }
 
-        .bank p {
-            margin: 1px;
-            font-size: 14px;
-            line-height: 20px;
-        }
+      .bank p {
+        margin: 1px;
+        font-size: 14px;
+        line-height: 20px;
+      }
 
-        .note {
-            font-size: 12px;
-            font-weight: bold;
-        }
+      .note {
+        font-size: 12px;
+        font-weight: bold;
+      }
 
-        .note-please {
-            font-size: 4px;
-            font-weight: bold;
-        }
+      .note-please {
+        font-size: 4px;
+        font-weight: bold;
+      }
 
-        .narative {
-            display: flex;
-            margin-bottom: 10px;
-        }
+      .narative {
+        display: flex;
+        margin-bottom: 10px;
+      }
 
-        .dcdm_other {
-            padding-top: -12px;
-            margin-top: -12px;
-            padding-bottom: -12px;
-            margin-bottom: -12px;
-            display: flex;
-            line-height: 0px;
-            color: rgb(70, 70, 70);
-            font-family: book-antiqua;
-        }
+      .dcdm_other {
+        padding-top: -12px;
+        margin-top: -12px;
+        padding-bottom: -12px;
+        margin-bottom: -12px;
+        display: flex;
+        line-height: 0px;
+        color: rgb(70, 70, 70);
+        font-family: book-antiqua;
+      }
 
-        .dcdm_blank {
-            flex: 2;
-        }
+      .dcdm_blank {
+        flex: 2;
+      }
 
-        .dcdm_address {
-            flex: 1;
-            font-family: book-antiqua;
-        }
+      .dcdm_address {
+        flex: 1;
+        font-family: book-antiqua;
+      }
 
-        .dcdm_address h6 {
-            padding: -1px;
-            margin-top: 15px;
-            margin-bottom: 15px;
-            font-family: book-antiqua;
-        }
+      .dcdm_address h6 {
+        padding: -1px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        font-family: book-antiqua;
+      }
 
-        .nara1 {
-            flex: 3;
-        }
+      .nara1 {
+        flex: 3;
+      }
 
-        .nara2 {
-            flex: 0.5;
-            vertical-align: text-bottom;
-            padding-right: 2px;
-            margin-left: 13px;
-        }
+      .nara2 {
+        flex: 0.5;
+        vertical-align: text-bottom;
+        padding-right: 2px;
+        margin-left: 13px;
+      }
 
-        .nara4 {
-            flex: 0.17;
-            padding-right: 6px;
-            margin-left: 4px;
-        }
+      .nara4 {
+        flex: 0.17;
+        padding-right: 6px;
+        margin-left: 4px;
+      }
 
-        p.texted {
-            margin: 0px;
-            padding: 0px;
-            font-size: 14px;
-            line-height: 21px;
-        }
+      p.texted {
+        margin: 0px;
+        padding: 0px;
+        font-size: 14px;
+        line-height: 21px;
+      }
 
-        p.total {
-            font-weight: bold;
-        }
+      p.total {
+        font-weight: bold;
+      }
 
-        .blank-foot {
-            flex: 3;
-        }
+      .blank-foot {
+        flex: 3;
+      }
 
-        .address-foot {
-            text-decoration: overline;
-            color: rgb(0, 0, 0);
-            float: right;
-            text-align: right;
-            flex: 3;
-            font-size: 12px;
-            font-family: book-antiqua;
-        }
+      .address-foot {
+        text-decoration: overline;
+        color: rgb(0, 0, 0);
+        float: right;
+        text-align: right;
+        flex: 3;
+        font-size: 12px;
+        font-family: book-antiqua;
+      }
 
-        footer {
-            font-size: 8px;
-            margin: 0;
-            padding: 0;
-            color: rgb(83, 49, 0);
-            font-weight: 500;
-            position: absolute;
-            bottom: 8px;
-        }
+      footer {
+        font-size: 8px;
+        margin: 0;
+        padding: 0;
+        color: rgb(83, 49, 0);
+        font-weight: 500;
+        position: absolute;
+        bottom: 8px;
+      }
 
-        .taxexempt {
-            flex: 8.5;
-            padding-left: 850px;
-        }
+      .taxexempt {
+        flex: 8.5;
+        padding-left: 850px;
+      }
 
-        .wht {
-            border-style: solid;
-            width: 300px;
-            padding-left: 20px;
-            padding-right: 20px;
-            border: 2.5px solid #01579b;
-            border-radius: 9px;
-            color: #01579b;
-            font-weight: bold;
-            margin-right: 240px;
-            margin-left: 130px;
-            font-family: Lora;
-        }
+      .wht {
+        border-style: solid;
+        width: 300px;
+        padding-left: 20px;
+        padding-right: 20px;
+        border: 2.5px solid #01579b;
+        border-radius: 9px;
+        color: #01579b;
+        font-weight: bold;
+        margin-right: 240px;
+        margin-left: 130px;
+        font-family: Lora;
+      }
 
-        .wht-1 {
-            font-size: 20px;
-            margin-bottom: 3px;
-            margin-top: 4px;
-        }
+      .wht-1 {
+        font-size: 20px;
+        margin-bottom: 3px;
+        margin-top: 4px;
+      }
 
-        .wht-2 {
-            font-size: 20px;
-            margin-bottom: -30px;
-            margin-top: -5px;
-            padding-left: 7px;
-            letter-spacing: 1.5px;
-            padding-bottom: 7px;
-        }
-        table {
-            border-collapse: collapse;
-        }
+      .wht-2 {
+        font-size: 20px;
+        margin-bottom: -30px;
+        margin-top: -5px;
+        padding-left: 7px;
+        letter-spacing: 1.5px;
+        padding-bottom: 7px;
+      }
+      table {
+        border-collapse: collapse;
+      }
 
-        tr:nth-child(even) {
-            background-color: rgb(224, 224, 224);
-        }
+      tr:nth-child(even) {
+        background-color: rgb(224, 224, 224);
+      }
 
-        tr:nth-child(odd) {
-            background-color: rgb(255, 255, 255);
-        }
+      tr:nth-child(odd) {
+        background-color: rgb(255, 255, 255);
+      }
     </style>
     <div class="container-1">
-        <div class="box-1" >
-                {% if company.companyLogo %}
-                <img src="{{ company.companyLogo.url }}" style="object-fit: cover; background-size: cover; background-repeat: no-repeat;background-position: 50% 50%;"  alt="" />
-                {% endif %}        
-        </div>
-        <div class="box-2">
-            <p>Tel: {{company.telephone_number}}</p>
-            <p>Emddail: {{company.email}}</p>
-            {% if company.website %}<p>{{company.website}}</p>{% endif %}
-            <p>TIN: {{ company.tin }}</p>
-        </div>
-        <div class="box-3">
-            <p>{{ company.name }}</p>
-            <p>{{ company.companylocation.plot }}</p>
-            <p>P.O. Box {{ company.companylocation.pobox }}</p>
-            <p>{{ company.companylocation.other_details }}</p>
-            <p>{{ company.companylocation.location }}</p>
-        </div>
+      <div class="box-1">
+        {% if company.companyLogo %}
+        <img
+          src="{{ company.companyLogo.url }}"
+          style="
+            object-fit: cover;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: 50% 50%;
+          "
+          alt=""
+        />
+        {% endif %}
+      </div>
+      <div class="box-2">
+        <p>Tel: {{company.telephone_number}}</p>
+        <p>Email: {{company.email}}</p>
+        {% if company.website %}
+        <p>{{company.website}}</p>
+        {% endif %}
+        
+      </div>
+      <div class="box-3">
+        <p>{{ company.name }}</p>
+        <p>{{ company.companylocation.plot }}</p>
+        {% if company.companylocation.pobox %}
+        <p>P.O. Box {{ company.companylocation.pobox }}</p>
+        {% endif %}
+        {% if company.tin %}
+        <p>TIN: {{ company.tin }}</p>
+        {% endif %}
+        <p>{{ company.companylocation.other_details }}</p>
+        <p>{{ company.companylocation.location }}</p>
+      </div>
     </div>
     <div class="container-1">
-        <div class="upper">
-            <p>FISCAL DOCUMENT NUMBER: {{ clean_data.fdn }}</p>
-            <p>VERIFICTION CODE: {{ clean_data.antifake }}
-            <p>INVOICE NUMBER: {{ clean_data.invoice_number }}</p>
-            <p>CURRENCY: {{ clean_data.currency }}</p>
-        </div>
+      <div class="upper">
+        <p>FISCAL DOCUMENT NUMBER: {{ clean_data.fdn }}</p>
+        <p>VERIFICTION CODE: {{ clean_data.antifake }}</p>
+        <p>INVOICE NUMBER: {{ clean_data.invoice_number }}</p>
+        <p>CURRENCY: {{ clean_data.currency }}</p>
+      </div>
     </div>
     <div class="address">
-        <div class="date">
-            <p>{{ clean_data.date|date:"l, F d, Y"|upper }}</p>
-            <p class="add1">TO: {{ clean_data.buyerName }}</p>
-            {% if clean_data.buyerTin %}
-            <p class="add1">TIN: {{ clean_data.buyerTin }}</p>
-            {% endif %}
-
-        </div>
+      <div class="date">
+        <p>{{ clean_data.date|date:"l, F d, Y"|upper }}</p>
+        <p class="add1">TO: {{ clean_data.buyerName }}</p>
+        {% if clean_data.buyerTin %}
+        <p class="add1">TIN: {{ clean_data.buyerTin }}</p>
+        {% endif %}
+      </div>
     </div>
-    <div class="" style="text-align: center; font-size: 20px;">TAX INVOICE</div>
+    <div class="" style="text-align: center; font-size: 20px">TAX INVOICE</div>
 
-    <table style="width:100%; margin-bottom: 10px;">
-        <tr>
-            <th colspan="9">DESCRIPTION</th>
-            <th colspan="1">NET</th>
-            <th colspan="1">VAT</th>
-            <th colspan="1" style="text-align: right;">GROSS</th>
-        </tr>
-           {% for product in products %}
-           <tr>
-                <td colspan="9">{{ product.product.name }}</td>
-                <td colspan="1">{{product.net_amount|floatformat:2|intcomma}}</td>
-                <td colspan="1">{{product.tax|floatformat:2|intcomma}}</td>
-                <td colspan="1" style="text-align: right;">{{ product.total|floatformat:2|intcomma }}</td>
-           </tr>
-        {% endfor %}
-        <tr style="border-top: 1.5px solid black; border-bottom: 1.0px solid rgb(59, 59, 59);">
-            <td colspan="9">
-                TOTAL
-            </td>
+    <table style="width: 100%; margin-bottom: 10px">
+      <tr>
+        <th colspan="9">DESCRIPTION</th>
+        <th colspan="1">NET</th>
+        <th colspan="1">VAT</th>
+        <th colspan="1" style="text-align: right">GROSS</th>
+      </tr>
+      {% for product in products %}
+      <tr>
+        <td colspan="9">{{ product.product.name }}</td>
+        <td colspan="1">{{product.net_amount|floatformat:2|intcomma}}</td>
+        <td colspan="1">{{product.tax|floatformat:2|intcomma}}</td>
+        <td colspan="1" style="text-align: right">
+          {{ product.total|floatformat:2|intcomma }}
+        </td>
+      </tr>
+      {% endfor %}
+      <tr
+        style="
+          border-top: 1.5px solid black;
+          border-bottom: 1px solid rgb(59, 59, 59);
+        "
+      >
+        <td colspan="9">TOTAL</td>
         <td>{{ clean_data.net|floatformat:2|intcomma}}</td>
         <td>{{ tax|floatformat:2|intcomma }}</td>
-        <td style="text-align: right;">{{ clean_data.gross|floatformat:2|intcomma}}</td>
-        </tr>
+        <td style="text-align: right">
+          {{ clean_data.gross|floatformat:2|intcomma}}
+        </td>
+      </tr>
     </table>
-        <div class="" style="text-align: justify; text-justify: inter-word;">
-            <span>Remarks:</span>  {{ invDetails.remarks|markdownify }}
-        </div>
-    <div class="container-3">
-        <div class="other">
-            <p style="padding-top: 12px; font-style: italic;">With Compliments</p>
-            <p style="font-style: italic; ">E&OE</p>
-        </div>
-        {% if company.wht_exempt %}
-        <div class="wht taxexempt" style="color: rgb(0, 59, 168);">
-            <p class="wht-1" style="font-family: Lora; color: rgb(0, 59, 168); font-size: 25px; font-weight: bold;">WITHHOLDING</p>
-            <p class="wht-2" style="font-family: Lora; font-size: 25px; color: rgb(0, 59, 168); font-weight: bold;">TAX EXEMPT</p>
-        </div>
-        {% endif %}
+    <div class="" style="text-align: justify; text-justify: inter-word">
+      <span>Remarks:</span> {{ invDetails.remarks|markdownify }}
     </div>
     <div class="container-3">
-        <div class="bank">
-            <p class="note-please" style="font-size: 12px;">Please make payments or deposits to:</p>
-            {% for bk in bank %}
-                Bank Name: {{ bk.bank_name }} <br>
-                Account Name: {{ bk.account_name }} <br>
-                Bank Branch: {{ bk.branch }}<br>
-                Account Number: {{ bk.account_number }}<br>
-                Currency: {{ bk.currency }}<br>
-                Swift Address: {{ bk.swift_address }}<br>
-                Swift Code: {{ bk.swift_code }}<br>
-            {% endfor %}
-        </div>
-        <div style="padding: 0px; margin: 0px; text-align: right;">
-            {% qr_from_text clean_data.qrcode size=3 image_format="png" error_correction="L" border=3 %}
-        </div>
+      <div class="other">
+        <p style="padding-top: 12px; font-style: italic">With Compliments</p>
+        <p style="font-style: italic">E&OE</p>
+      </div>
+      {% if company.wht_exempt %}
+      <div class="wht taxexempt" style="color: rgb(0, 59, 168)">
+        <p
+          class="wht-1"
+          style="
+            font-family: Lora;
+            color: rgb(0, 59, 168);
+            font-size: 25px;
+            font-weight: bold;
+          "
+        >
+          WITHHOLDING
+        </p>
+        <p
+          class="wht-2"
+          style="
+            font-family: Lora;
+            font-size: 25px;
+            color: rgb(0, 59, 168);
+            font-weight: bold;
+          "
+        >
+          TAX EXEMPT
+        </p>
+      </div>
+      {% endif %}
     </div>
-</body>
-    <footer style="text-align: center; width: 100%; font-size: 12px;">
-        Please make all payments for this invoice using the account details listed therein on this invoice. Thanks!
-    </footer>
+    <div class="container-3">
+      <div class="bank">
+        <p class="note-please" style="font-size: 12px">
+          Please make payments or deposits to:
+        </p>
+        {% for bk in bank %} Bank Name: {{ bk.bank_name }} <br />
+        Account Name: {{ bk.account_name }} <br />
+        Bank Branch: {{ bk.branch }}<br />
+        Account Number: {{ bk.account_number }}<br />
+        Currency: {{ bk.currency }}<br />
+        Swift Address: {{ bk.swift_address }}<br />
+        Swift Code: {{ bk.swift_code }}<br />
+        {% endfor %}
+      </div>
+      <div style="padding: 0px; margin: 0px; text-align: right">
+        {% qr_from_text clean_data.qrcode size=3 image_format="png" error_correction="L" border=3 %}
+      </div>
+    </div>
+  </body>
+  <footer style="text-align: center; width: 100%; font-size: 12px">
+    Please make all payments for this invoice using the account details listed
+    therein on this invoice. Thanks!
+  </footer>
 </html>

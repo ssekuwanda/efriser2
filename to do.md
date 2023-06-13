@@ -2,6 +2,21 @@ heroku
 git push heroku main
 heroku run python manage.py migrate
 
+# Offline enabler
+sudo timedatectl set-timezone Africa/Nairobi
+
+apt install libaio1 numactl
+apt install openjdk-8-jdk openjdk-8-jre
+cat >> /etc/environment <<EOL
+JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+JRE_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre
+EOL
+source /etc/environment
+dpkg-reconfigure dash
+  <No>
+
+sudo su
+
 heroku run bash
 
 BACKUP DOWNLOAD from Heroku
